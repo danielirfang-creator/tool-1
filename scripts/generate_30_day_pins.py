@@ -1,4 +1,4 @@
-﻿import os
+import os
 import sys
 import csv
 from datetime import datetime, timedelta
@@ -500,13 +500,13 @@ def generate_full_month_package(out_dir="pinterest_output/month_schedule"):
             "Title": item["title"],
             "Description": desc,
             "Destination_Link": item["link"],
-            "Image_File": img_name,
+            "Image_URL": f"https://raw.githubusercontent.com/danielirfang-creator/tool-1/main/pinterest_output/month_schedule/{img_name}",
             "Schedule_Date": post_date,
             "Board": item["category"]
         })
 
     with open(csv_file, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=["Day", "Title", "Description", "Destination_Link", "Image_File", "Schedule_Date", "Board"])
+        writer = csv.DictWriter(f, fieldnames=["Day", "Title", "Description", "Destination_Link", "Image_URL", "Schedule_Date", "Board"])
         writer.writeheader()
         writer.writerows(rows)
 
