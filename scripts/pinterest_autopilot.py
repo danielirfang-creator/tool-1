@@ -214,13 +214,13 @@ def generate_all_pins_and_csv(output_dir="pinterest_output"):
             "Title": tool["title"],
             "Description": description,
             "Destination_Link": tool["link"],
-            "Image_File": img_filename,
+            "Image_URL": f"{BASE_URL}/pins/{img_filename}",
             "Schedule_Date": post_date,
             "Board": tool["category"],
         })
 
     with open(csv_file, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=["Title", "Description", "Destination_Link", "Image_File", "Schedule_Date", "Board"])
+        writer = csv.DictWriter(f, fieldnames=["Title", "Description", "Destination_Link", "Image_URL", "Schedule_Date", "Board"])
         writer.writeheader()
         writer.writerows(rows)
 
