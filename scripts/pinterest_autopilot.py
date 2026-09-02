@@ -214,7 +214,7 @@ def generate_all_pins_and_csv(output_dir="pinterest_output"):
             "Title": tool["title"],
             "Description": description,
             "Destination_Link": tool["link"],
-            "Image_URL": f"{BASE_URL}/api/pin-image?name={tool['id']}",
+            "Image_URL": f"https://raw.githubusercontent.com/danielirfang-creator/tool-1/main/pinterest_output/{img_filename}",
             "Schedule_Date": post_date,
             "Board": tool["category"],
         })
