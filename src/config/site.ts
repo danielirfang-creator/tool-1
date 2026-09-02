@@ -26,7 +26,7 @@ export const siteConfig: SiteConfig = {
   shortName: 'CraftCalc',
   tagline: 'Precision Home Improvement & DIY Calculators',
   description: 'Free, professional-grade home improvement and DIY calculators. Accurate material estimations, waste factors, cost breakdowns, and step-by-step guidance for flooring, painting, concrete, garden, and room renovations.',
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://craftcalc.com',
+  url: 'https://tool-1-pied.vercel.app',
   ogImage: '/og-image.png',
   author: {
     name: 'CraftCalc Editorial & Engineering Team',

@@ -15,7 +15,7 @@ except ImportError:
     subprocess.check_call([sys.executable, "-m", "pip", "install", "Pillow"])
     from PIL import Image, ImageDraw, ImageFont
 
-BASE_URL = "https://tool-1.vercel.app"
+BASE_URL = "https://tool-1-pied.vercel.app"
 
 TOOLS_DATA = [
     {
