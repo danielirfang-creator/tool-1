@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { getToolsByCluster } from '@/config/tools';
 import { getGuidesByCluster } from '@/config/guides';
@@ -51,32 +51,23 @@ export default function FlooringClusterPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {tools.map((tool) => (
-              <div
+              <Link
                 key={tool.slug}
-                className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-emerald-500 transition-all flex flex-col justify-between"
+                href={`${tool.clusterHref}/${tool.slug}`}
+                className="group p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:border-emerald-500 transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between text-xs mb-3">
-                    <span className="font-semibold text-emerald-600 uppercase tracking-wider text-[10px]">
+                    <span className="font-bold text-emerald-600 uppercase tracking-wider text-[10px]">
                       Flooring Suite
                     </span>
-                    {tool.status === 'live' ? (
-                      <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-bold text-[10px] border border-emerald-200">
-                        Live Tool
-                      </span>
-                    ) : (
-                      <span className="px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-medium text-[10px]">
-                        Roadmap
-                      </span>
-                    )}
+                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold text-[10px] flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                      Live Calculator
+                    </span>
                   </div>
-                  <h3 className="text-lg font-bold text-slate-900">
-                    <Link
-                      href={tool.status === 'live' ? `/calculators/flooring/${tool.slug}` : '#'}
-                      className="hover:text-emerald-700 transition-colors"
-                    >
-                      {tool.name}
-                    </Link>
+                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                    {tool.name}
                   </h3>
                   <p className="text-xs text-slate-600 mt-2 line-clamp-3 leading-relaxed">
                     {tool.benefit}
@@ -84,21 +75,12 @@ export default function FlooringClusterPage() {
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-slate-100">
-                  {tool.status === 'live' ? (
-                    <Link
-                      href={`/calculators/flooring/${tool.slug}`}
-                      className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-emerald-600 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-colors shadow-sm"
-                    >
-                      <span>Open Calculator</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  ) : (
-                    <div className="text-xs text-center text-slate-400 font-medium py-2 bg-slate-50 rounded-xl">
-                      Formula in Launch Registry
-                    </div>
-                  )}
+                  <div className="flex items-center text-xs font-bold text-emerald-600 group-hover:translate-x-1 transition-transform">
+                    <span>Launch Calculator</span>
+                    <ArrowRight className="w-4 h-4 ml-1" />
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

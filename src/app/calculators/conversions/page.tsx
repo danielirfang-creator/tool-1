@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { getToolsByCluster } from '@/config/tools';
 import { getGuidesByCluster } from '@/config/guides';
@@ -48,31 +48,39 @@ export default function ConversionsClusterPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {tools.map((tool) => (
-              <div
+              <Link
                 key={tool.slug}
-                className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-500 transition-all flex flex-col justify-between"
+                href={`${tool.clusterHref}/${tool.slug}`}
+                className="group p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:border-indigo-500 transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between text-xs mb-3">
-                    <span className="font-semibold text-indigo-600 uppercase tracking-wider text-[10px]">
+                    <span className="font-bold text-indigo-600 uppercase tracking-wider text-[10px]">
                       Trade Units
                     </span>
-                    <span className="px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-medium text-[10px]">
-                      In Registry
+                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold text-[10px] flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                      Live Calculator
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-slate-900">{tool.name}</h3>
+                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
+                    {tool.name}
+                  </h3>
                   <p className="text-xs text-slate-600 mt-2 line-clamp-3 leading-relaxed">
                     {tool.benefit}
                   </p>
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-slate-100">
-                  <div className="p-3 bg-slate-50 rounded-xl text-xs text-slate-500 font-mono">
+                  <div className="p-2.5 bg-slate-50 rounded-xl text-xs text-slate-500 font-mono mb-3">
                     {tool.formula}
                   </div>
+                  <div className="flex items-center text-xs font-bold text-indigo-600 group-hover:translate-x-1 transition-transform">
+                    <span>Launch Calculator</span>
+                    <ArrowRight className="w-4 h-4 ml-1" />
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
