@@ -1,4 +1,4 @@
-﻿import type { Metadata, Viewport } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { siteConfig } from '@/config/site';
 import { Header } from '@/components/layout/Header';
@@ -60,6 +60,8 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
+import Script from 'next/script';
+
 export default function RootLayout({
   children,
 }: {
@@ -68,6 +70,22 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full scroll-smooth">
       <body className="flex min-h-full flex-col font-sans">
+        {/* Google Analytics 4 Tag */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-MG3YK2RT7L"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-MG3YK2RT7L', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
+
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
