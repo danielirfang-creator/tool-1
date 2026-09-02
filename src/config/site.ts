@@ -96,7 +96,7 @@ export const siteConfig: SiteConfig = {
     ],
   },
   adsense: {
-    publisherId: 'ca-pub-XXXXXXXXXXXXXXXX',
-    enabled: true,
+    publisherId: '',
+    enabled: false,
   },
 };
