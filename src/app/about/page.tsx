@@ -6,20 +6,20 @@ import type { Metadata } from 'next';
 import { generateAboutPageSchema, generateBreadcrumbSchema, generateOrganizationSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'About CraftCalc - Editorial Standards & Calculation Methodology',
+  title: 'About - Editorial Standards & Methodology',
   description: 'Learn about CraftCalc, our contractor-reviewed calculation methodology, editorial integrity, and our mission to simplify DIY project planning.',
   alternates: {
     canonical: '/about',
   },
   openGraph: {
-    title: 'About CraftCalc - Editorial Standards & Calculation Methodology | CraftCalc',
+    title: 'About CraftCalc - Editorial Standards & Methodology | CraftCalc',
     description: 'Learn about CraftCalc, our contractor-reviewed calculation methodology, editorial integrity, and our mission to simplify DIY project planning.',
     url: `${siteConfig.url}/about`,
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About CraftCalc - Editorial Standards & Methodology',
+    title: 'About CraftCalc - Editorial Standards & Methodology | CraftCalc',
     description: 'Learn about CraftCalc and our contractor-reviewed calculation methodology.',
   },
 };

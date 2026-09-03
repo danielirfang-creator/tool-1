@@ -9,7 +9,7 @@ import type { Metadata } from 'next';
 import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'DIY & Home Renovation Estimating Guides - CraftCalc',
+  title: 'DIY & Home Renovation Estimating Guides',
   description: 'In-depth contractor guides to calculating flooring waste, thinset trowel sizes, laminate expansion gaps, and paint sheen selection.',
   alternates: {
     canonical: '/guides',

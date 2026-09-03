@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Search DIY Calculators & Renovation Guides - CraftCalc',
+  title: 'Search DIY Calculators & Guides',
   description: 'Search through 33 trade-grade home improvement calculators and comprehensive material estimating guides.',
   robots: {
     index: false,
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     canonical: '/search',
   },
   openGraph: {
-    title: 'Search DIY Calculators & Renovation Guides | CraftCalc',
+    title: 'Search DIY Calculators & Guides | CraftCalc',
     description: 'Search through 33 trade-grade home improvement calculators and comprehensive material estimating guides.',
     url: `${siteConfig.url}/search`,
     type: 'website',

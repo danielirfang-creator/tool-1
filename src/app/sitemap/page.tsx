@@ -1,3 +1,4 @@
+import { generateBreadcrumbSchema } from '@/lib/seo';
 ﻿import React from 'react';
 import Link from 'next/link';
 import { toolsRegistry } from '@/config/tools';
@@ -8,28 +9,37 @@ import { Map, Calculator, BookOpen, Compass, ShieldCheck } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'HTML Sitemap - All Calculators & Guides - CraftCalc',
+  title: 'HTML Sitemap - All Calculators & Guides',
   description: 'Complete index of all 33 calculators, 6 category hubs, 8 renovation guides, and resources on CraftCalc.',
   alternates: {
     canonical: '/sitemap',
   },
   openGraph: {
-    title: 'HTML Sitemap - All Calculators & Guides - CraftCalc | CraftCalc',
+    title: 'HTML Sitemap - All Calculators & Guides | CraftCalc',
     description: 'Complete index of all 33 calculators, 6 category hubs, 8 renovation guides, and resources on CraftCalc.',
     url: `${siteConfig.url}/sitemap`,
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'HTML Sitemap - All Calculators & Guides - CraftCalc | CraftCalc',
+    title: 'HTML Sitemap - All Calculators & Guides | CraftCalc',
     description: 'Complete index of all 33 calculators, 6 category hubs, 8 renovation guides, and resources on CraftCalc.',
   },
 };
 
 
 export default function SitemapPage() {
+    const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', item: '/' },
+    { name: 'Sitemap', item: '/sitemap' },
+  ]);
+
   return (
     <div className="min-h-screen bg-slate-50/50 pb-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <Breadcrumbs items={[{ name: 'Sitemap', href: '/sitemap' }]} />
 

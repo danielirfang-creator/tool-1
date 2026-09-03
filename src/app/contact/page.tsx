@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 import { generateBreadcrumbSchema, generateContactPageSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Contact CraftCalc - Formula Corrections & Inquiries',
+  title: 'Contact - Formula Corrections & Inquiries',
   description: 'Have a formula correction, partnership inquiry, or calculator request? Get in touch with the CraftCalc engineering team.',
   alternates: {
     canonical: '/contact',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Contact CraftCalc',
+    title: 'Contact CraftCalc - Formula Corrections & Inquiries | CraftCalc',
     description: 'Get in touch with the CraftCalc team.',
   },
 };
