@@ -46,7 +46,7 @@ export const gardenTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['soil-calculator', 'mulch-calculator', 'patio-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'soil-calculator',
@@ -93,7 +93,7 @@ export const gardenTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['mulch-calculator', 'turf-calculator', 'gravel-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'mulch-calculator',
@@ -140,7 +140,7 @@ export const gardenTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['soil-calculator', 'turf-calculator', 'gravel-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'turf-calculator',
@@ -186,7 +186,7 @@ export const gardenTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['soil-calculator', 'mulch-calculator', 'patio-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'fence-calculator',
@@ -234,7 +234,7 @@ export const gardenTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['concrete-bags-calculator', 'patio-calculator', 'turf-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'patio-calculator',
@@ -285,6 +285,6 @@ export const gardenTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['gravel-calculator', 'soil-calculator', 'concrete-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   }
 ];

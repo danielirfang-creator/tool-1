@@ -9,6 +9,7 @@ export interface SiteConfig {
     name: string;
     role: string;
     bio: string;
+    email: string;
   };
   navigation: {
     main: { name: string; href: string }[];
@@ -31,6 +32,7 @@ export const siteConfig: SiteConfig = {
   author: {
     name: 'CraftCalc Editorial & Engineering Team',
     role: 'Licensed Contractors & Construction Estimators',
+    email: 'contact@craftcalc.app',
     bio: 'CraftCalc is built by experienced tradespeople and construction engineers dedicated to eliminating material waste, preventing costly DIY estimation errors, and providing transparent, verified formulas.',
   },
   navigation: {

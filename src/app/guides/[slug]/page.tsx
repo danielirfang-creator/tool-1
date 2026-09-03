@@ -1,12 +1,14 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { getGuideBySlug, guidesRegistry } from '@/config/guides';
 import { getToolBySlug } from '@/config/tools';
+import { siteConfig } from '@/config/site';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { notFound } from 'next/navigation';
-import { BookOpen, Clock, Calendar, CheckCircle2, ArrowRight, Calculator } from 'lucide-react';
+import { BookOpen, Clock, Calendar, CheckCircle2, ArrowRight, Calculator, User } from 'lucide-react';
 import type { Metadata } from 'next';
+import { generateArticleSchema, generateBreadcrumbSchema } from '@/lib/seo';
 
 export async function generateStaticParams() {
   return guidesRegistry.map((guide) => ({
@@ -18,12 +20,36 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const guide = getGuideBySlug(params.slug);
   if (!guide) return {};
 
+  const path = `/guides/${guide.slug}`;
+
   return {
     title: guide.title,
     description: guide.summary,
     keywords: guide.keywords,
     alternates: {
-      canonical: `/guides/${guide.slug}`,
+      canonical: path,
+    },
+    openGraph: {
+      title: `${guide.title} | CraftCalc`,
+      description: guide.summary,
+      url: `${siteConfig.url}${path}`,
+      type: 'article',
+      publishedTime: guide.publishedDate,
+      authors: [siteConfig.author.name],
+      images: [
+        {
+          url: `${siteConfig.url}/og-image.png`,
+          width: 1200,
+          height: 630,
+          alt: guide.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${guide.title} | CraftCalc`,
+      description: guide.summary,
+      images: [`${siteConfig.url}/og-image.png`],
     },
   };
 }
@@ -34,8 +60,33 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
 
   const relatedTool = getToolBySlug(guide.relatedToolSlug);
 
+  const articleSchema = generateArticleSchema({
+    title: guide.title,
+    description: guide.summary,
+    url: `/guides/${guide.slug}`,
+    publishedDate: guide.publishedDate,
+    readTime: guide.readTime,
+    clusterName: guide.clusterName,
+    keywords: guide.keywords,
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', item: '/' },
+    { name: 'Guides', item: '/guides' },
+    { name: guide.title, item: `/guides/${guide.slug}` },
+  ]);
+
   return (
     <div className="min-h-screen bg-slate-50/50 pb-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <Breadcrumbs
           items={[
@@ -59,67 +110,76 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
                 <Calendar className="w-3.5 h-3.5" />
                 Published {guide.publishedDate}
               </span>
+              <span className="flex items-center gap-1">
+                <User className="w-3.5 h-3.5" />
+                By {siteConfig.author.name}
+              </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
               {guide.title}
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
               {guide.summary}
             </p>
           </header>
 
           <AdSlot placement="header" />
 
-          {/* Key Takeaways Box */}
-          <div className="p-6 rounded-2xl bg-emerald-50/80 border border-emerald-200 space-y-3">
-            <div className="flex items-center gap-2 text-emerald-950 font-bold text-base">
-              <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
-              <span>Key Takeaways for Homeowners & DIYers</span>
-            </div>
-            <ul className="space-y-2 text-xs sm:text-sm text-emerald-900">
-              {guide.keyTakeaways.map((takeaway, idx) => (
-                <li key={idx} className="flex items-start gap-2">
-                  <span className="font-bold text-emerald-700">•</span>
-                  <span>{takeaway}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Article Body Paragraphs */}
-          <div className="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm space-y-6 text-slate-700 leading-relaxed text-sm sm:text-base">
-            {guide.content.map((p, idx) => (
-              <p key={idx}>{p}</p>
-            ))}
-          </div>
-
-          <AdSlot placement="in-content" />
-
-          {/* Connected Tool CTA */}
+          {/* Connected Tool Card */}
           {relatedTool && (
-            <div className="p-6 rounded-2xl bg-slate-900 text-white shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="p-6 rounded-2xl bg-gradient-to-br from-emerald-900 to-teal-950 text-white shadow-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="space-y-1">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400">
-                  Interactive Companion Tool
+                  Interactive Tool
                 </span>
-                <h3 className="text-lg font-bold text-white">
-                  Calculate Your Numbers with the {relatedTool.name}
-                </h3>
-                <p className="text-xs text-slate-400 max-w-lg">
-                  Apply the formulas and recommendations in this guide instantly.
-                </p>
+                <h3 className="text-lg font-bold text-white">{relatedTool.name}</h3>
+                <p className="text-xs text-slate-300 max-w-md">{relatedTool.benefit}</p>
               </div>
               <Link
                 href={`${relatedTool.clusterHref}/${relatedTool.slug}`}
-                className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-xs text-white shrink-0 flex items-center gap-1.5 transition-colors shadow-md"
+                className="px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold inline-flex items-center gap-2 shrink-0 transition-colors shadow-md self-start sm:self-auto"
               >
                 <Calculator className="w-4 h-4" />
-                <span>Launch {relatedTool.name}</span>
+                Launch Calculator
               </Link>
             </div>
           )}
+
+          {/* Key Contractor Takeaways */}
+          {guide.keyTakeaways && guide.keyTakeaways.length > 0 && (
+            <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-3">
+              <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
+                <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+                Key Contractor Takeaways
+              </h2>
+              <ul className="space-y-2">
+                {guide.keyTakeaways.map((takeaway, idx) => (
+                  <li key={idx} className="text-xs sm:text-sm text-slate-700 flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0"></span>
+                    <span>{takeaway}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Article Body Content */}
+          <div className="space-y-6 text-slate-700 leading-relaxed text-sm sm:text-base">
+            {guide.content.map((paragraph, idx) => (
+              <section key={idx} className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
+                <h2 className="text-xl font-bold text-slate-900 tracking-tight">
+                  {idx === 0 ? 'Core Estimating Principles' : idx === 1 ? 'Site Evaluation & Geometry Factors' : 'Trade Best Practices & Execution'}
+                </h2>
+                <p className="text-sm leading-relaxed text-slate-600">
+                  {paragraph}
+                </p>
+              </section>
+            ))}
+          </div>
+
+          <AdSlot placement="footer" />
         </article>
       </div>
     </div>

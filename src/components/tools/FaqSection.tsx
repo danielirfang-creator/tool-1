@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
@@ -24,28 +24,8 @@ export function FaqSection({ faqs, title = 'Frequently Asked Questions' }: FaqSe
     }
   };
 
-  // Structured Data Schema for Google Rich Snippets
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
-  };
-
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm space-y-6">
-      {/* FAQ Schema Injector */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-
       <div className="flex items-center gap-2 text-slate-900 font-bold text-lg sm:text-xl border-b border-slate-100 pb-3">
         <HelpCircle className="w-5 h-5 text-emerald-600 shrink-0" />
         <span>{title}</span>

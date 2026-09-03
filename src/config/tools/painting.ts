@@ -48,7 +48,7 @@ export const paintingTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['wall-paint-calculator', 'ceiling-paint-calculator', 'primer-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'wall-paint-calculator',
@@ -95,7 +95,7 @@ export const paintingTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['paint-calculator', 'ceiling-paint-calculator', 'primer-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'ceiling-paint-calculator',
@@ -142,7 +142,7 @@ export const paintingTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['paint-calculator', 'wall-paint-calculator', 'primer-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'primer-calculator',
@@ -187,7 +187,7 @@ export const paintingTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['paint-calculator', 'wall-paint-calculator', 'paint-coverage-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'paint-coverage-calculator',
@@ -235,6 +235,6 @@ export const paintingTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['paint-calculator', 'wall-paint-calculator', 'ceiling-paint-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   }
 ];

@@ -48,7 +48,7 @@ export const roomTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['wall-area-calculator', 'square-metres-calculator', 'flooring-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'wall-area-calculator',
@@ -95,7 +95,7 @@ export const roomTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['room-area-calculator', 'paint-calculator', 'wallpaper-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'square-metres-calculator',
@@ -142,7 +142,7 @@ export const roomTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['room-area-calculator', 'square-feet-to-m2', 'flooring-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'wallpaper-calculator',
@@ -188,7 +188,7 @@ export const roomTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['wall-area-calculator', 'room-area-calculator', 'paint-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'skirting-board-calculator',
@@ -236,6 +236,6 @@ export const roomTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['room-area-calculator', 'flooring-calculator', 'laminate-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   }
 ];

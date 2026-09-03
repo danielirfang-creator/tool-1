@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { siteConfig } from '@/config/site';
 import { toolsRegistry } from '@/config/tools';
@@ -6,10 +6,25 @@ import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { Hammer, Layers, Paintbrush, Trees, Home, ArrowRightLeft, ArrowRight, Check } from 'lucide-react';
 import type { Metadata } from 'next';
+import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'All Home Improvement Calculators - 33 Professional DIY Tools',
-  description: 'Browse all 33 professional DIY calculators across Flooring, Painting, Concrete, Garden, Rooms, and Unit Conversions.',
+  description: 'Browse all 33 professional DIY calculators across Flooring, Painting, Concrete, Garden, Rooms, and Unit Conversions with exact material estimators.',
+  alternates: {
+    canonical: '/calculators',
+  },
+  openGraph: {
+    title: 'All Home Improvement Calculators - 33 Professional DIY Tools | CraftCalc',
+    description: 'Browse all 33 professional DIY calculators across Flooring, Painting, Concrete, Garden, Rooms, and Unit Conversions with exact material estimators.',
+    url: `${siteConfig.url}/calculators`,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'All Home Improvement Calculators - 33 Professional DIY Tools | CraftCalc',
+    description: 'Browse all 33 professional DIY calculators across Flooring, Painting, Concrete, Garden, Rooms, and Unit Conversions.',
+  },
 };
 
 export default function CalculatorsHubPage() {
@@ -22,8 +37,32 @@ export default function CalculatorsHubPage() {
     conversions: <ArrowRightLeft className="w-5 h-5 text-indigo-600" />,
   };
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', item: '/' },
+    { name: 'Calculators', item: '/calculators' },
+  ]);
+
+  const collectionSchema = generateCollectionSchema({
+    name: 'CraftCalc DIY Calculators Directory',
+    description: 'Complete directory of 33 trade-grade home improvement calculators.',
+    url: '/calculators',
+    items: toolsRegistry.map((t) => ({
+      name: t.name,
+      url: `${t.clusterHref}/${t.slug}`,
+      description: t.benefit,
+    })),
+  });
+
   return (
     <div className="min-h-screen bg-slate-50/50 pb-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <Breadcrumbs items={[{ name: 'Calculators', href: '/calculators' }]} />
 

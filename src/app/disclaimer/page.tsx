@@ -1,12 +1,28 @@
+import { siteConfig } from '@/config/site';
 ﻿import React from 'react';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { ShieldAlert } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Material & Construction Disclaimer - CraftCalc',
-  description: 'Important legal and safety disclaimer regarding DIY estimates, structural calculations, and building code compliance.',
+  title: 'Material Estimator Disclaimer - CraftCalc',
+  description: 'Important disclaimer regarding material estimates, waste percentage variances, and structural engineering limitations.',
+  alternates: {
+    canonical: '/disclaimer',
+  },
+  openGraph: {
+    title: 'Material Estimator Disclaimer - CraftCalc | CraftCalc',
+    description: 'Important disclaimer regarding material estimates, waste percentage variances, and structural engineering limitations.',
+    url: `${siteConfig.url}/disclaimer`,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Material Estimator Disclaimer - CraftCalc | CraftCalc',
+    description: 'Important disclaimer regarding material estimates, waste percentage variances, and structural engineering limitations.',
+  },
 };
+
 
 export default function DisclaimerPage() {
   return (

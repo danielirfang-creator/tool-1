@@ -44,7 +44,7 @@ export const conversionTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['inches-to-mm', 'square-feet-to-m2', 'room-area-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'inches-to-mm',
@@ -90,7 +90,7 @@ export const conversionTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['feet-to-metres', 'square-feet-to-m2', 'tile-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'square-feet-to-m2',
@@ -135,7 +135,7 @@ export const conversionTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['feet-to-metres', 'square-metres-calculator', 'flooring-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'litres-to-gallons',
@@ -179,7 +179,7 @@ export const conversionTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['paint-calculator', 'paint-coverage-calculator', 'kg-to-pounds'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'kg-to-pounds',
@@ -224,6 +224,6 @@ export const conversionTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['concrete-bags-calculator', 'gravel-calculator', 'litres-to-gallons'],
-    status: 'coming-soon'
+    status: 'live'
   }
 ];

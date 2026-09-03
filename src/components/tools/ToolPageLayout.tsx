@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { ToolMeta } from '@/config/tools';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { WorkedExample } from './WorkedExample';
@@ -7,7 +7,7 @@ import { FaqSection } from './FaqSection';
 import { RelatedTools } from './RelatedTools';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { BookOpen, AlertCircle, ShieldAlert, Cpu } from 'lucide-react';
-import { generateCalculatorSchema } from '@/lib/seo';
+import { generateCalculatorSchema, generateBreadcrumbSchema, generateFaqSchema } from '@/lib/seo';
 
 interface ToolPageLayoutProps {
   tool: ToolMeta;
@@ -15,7 +15,7 @@ interface ToolPageLayoutProps {
 }
 
 export function ToolPageLayout({ tool, calculatorSlot }: ToolPageLayoutProps) {
-  const breadcrumbs = [
+  const breadcrumbItems = [
     { name: 'Calculators', href: '/calculators' },
     { name: tool.clusterName, href: tool.clusterHref },
     { name: tool.name, href: `${tool.clusterHref}/${tool.slug}` },
@@ -28,6 +28,15 @@ export function ToolPageLayout({ tool, calculatorSlot }: ToolPageLayoutProps) {
     category: tool.clusterName,
   });
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', item: '/' },
+    { name: 'Calculators', item: '/calculators' },
+    { name: tool.clusterName, item: tool.clusterHref },
+    { name: tool.name, item: `${tool.clusterHref}/${tool.slug}` },
+  ]);
+
+  const faqSchema = tool.faqs && tool.faqs.length > 0 ? generateFaqSchema(tool.faqs) : null;
+
   return (
     <div className="min-h-screen bg-slate-50/50 pb-16">
       {/* Schema.org WebApplication structured data */}
@@ -35,13 +44,23 @@ export function ToolPageLayout({ tool, calculatorSlot }: ToolPageLayoutProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }}
       />
+      {/* Schema.org BreadcrumbList structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      {/* Schema.org FAQPage structured data */}
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Breadcrumbs items={breadcrumbs} />
+        <Breadcrumbs items={breadcrumbItems} />
 
-        {/* =========================================================================
-            SECTION 1 & 2: ABOVE THE FOLD & RESULT INTELLIGENCE (Calculator + Output)
-            ========================================================================= */}
+        {/* SECTION 1: HEADER */}
         <div className="pt-2 pb-8">
           <div className="max-w-3xl mb-6">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-200 mb-3">
@@ -56,101 +75,94 @@ export function ToolPageLayout({ tool, calculatorSlot }: ToolPageLayoutProps) {
             </p>
           </div>
 
-          {/* Interactive Calculator + Result Intelligence Engine Slot */}
+          {/* Interactive Calculator Slot */}
           <div className="w-full">
             {calculatorSlot}
           </div>
         </div>
 
-        {/* Top Ad Slot (CLS Safe) */}
         <AdSlot placement="header" />
 
-        {/* Main Content Sections 3 to 6 */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-6">
+        {/* SECTION 3, 4, 5: EDITORIAL CONTENT & SUPPORTING TABLES */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 my-10">
           <div className="lg:col-span-8 space-y-10">
-
-            {/* =====================================================================
-                SECTION 3: HOW IT WORKS, FORMULAS & METHODOLOGY
-                ===================================================================== */}
-            <section aria-labelledby="how-it-works-heading" className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm space-y-6">
-              <div className="flex items-center gap-2 text-slate-900 font-bold text-xl border-b border-slate-100 pb-3">
-                <BookOpen className="w-5 h-5 text-emerald-600 shrink-0" />
-                <h2 id="how-it-works-heading">How the Calculation Works</h2>
+            {/* Step-by-Step Instructions & Practical Logic */}
+            <section className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
+              <div className="flex items-center gap-2 text-emerald-700">
+                <BookOpen className="w-5 h-5" />
+                <h2 className="text-xl font-bold text-slate-900">
+                  How This Calculation Works: Professional Methodology
+                </h2>
               </div>
-
-              {/* Verified Mathematical Formula Box */}
-              <div className="p-4 rounded-xl bg-slate-900 text-white font-mono text-xs sm:text-sm border border-slate-800 space-y-1">
-                <div className="text-[10px] uppercase font-bold text-emerald-400 tracking-wider">Formula</div>
-                <div className="text-emerald-300 font-bold overflow-x-auto py-1">{tool.formula}</div>
-              </div>
-
-              <p className="text-sm text-slate-700 leading-relaxed">
-                {tool.formulaDescription}
-              </p>
-
-              {/* Methodology steps */}
-              <div>
-                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
-                  Contractor Calculation Methodology
-                </h3>
-                <ol className="space-y-2.5 text-sm text-slate-700">
-                  {tool.methodology.map((step, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5">
-                      <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                        {idx + 1}
-                      </span>
-                      <span>{step}</span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-
-              {/* Limitations & Real-world Trade Nuances */}
-              {tool.limitations.length > 0 && (
-                <div className="p-4 rounded-xl bg-amber-50/70 border border-amber-200 text-xs text-amber-900 space-y-2">
-                  <div className="flex items-center gap-1.5 font-bold text-amber-950">
-                    <ShieldAlert className="w-4 h-4 text-amber-600 shrink-0" />
-                    <span>Real-World Construction Limitations</span>
-                  </div>
-                  <ul className="list-disc list-inside space-y-1 text-amber-800">
-                    {tool.limitations.map((lim, idx) => (
-                      <li key={idx}>{lim}</li>
-                    ))}
+              <div className="prose prose-slate max-w-none text-sm leading-relaxed text-slate-600 space-y-3">
+                <p>
+                  Accurate estimating requires accounting for both theoretical surface geometry and real-world manufacturer specifications.
+                  When purchasing building materials, standard packaging (such as whole cartons, pre-mixed bags, or rolls) introduces fractional waste that must be rounded up to the nearest commercial sales unit.
+                </p>
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 space-y-1.5">
+                  <span className="font-bold text-slate-900 block">Core Contractor Rules Applied:</span>
+                  <ul className="list-disc list-inside space-y-1 text-slate-600">
+                    <li>Dynamic cutting and breakage waste margins based on room/project complexity.</li>
+                    <li>Automatic rounding to full retailer cartons to prevent mid-job shortfalls.</li>
+                    <li>Imperial and metric conversion parity with precision rounding.</li>
                   </ul>
                 </div>
-              )}
+              </div>
             </section>
 
-            {/* =====================================================================
-                SECTION 4: WORKED REALISTIC EXAMPLE
-                ===================================================================== */}
-            <section aria-labelledby="worked-example-heading">
-              <WorkedExample {...tool.workedExample} />
+            {/* Decision Support Table */}
+            {tool.decisionSupport && (
+              <DecisionTable
+                title={tool.decisionSupport.title}
+                description={tool.decisionSupport.description}
+                headers={tool.decisionSupport.headers}
+                rows={tool.decisionSupport.rows}
+                notes={tool.decisionSupport.notes}
+              />
+            )}
+
+            {/* Worked Step Example */}
+            {tool.workedExample && (
+              <WorkedExample
+                title={tool.workedExample.title}
+                scenario={tool.workedExample.scenario}
+                inputs={tool.workedExample.inputs}
+                steps={tool.workedExample.steps}
+                finalAnswer={tool.workedExample.finalAnswer}
+                proTip={tool.workedExample.proTip}
+              />
+            )}
+
+            {/* When NOT to Use / Edge Cases */}
+            <section className="p-6 sm:p-8 rounded-2xl bg-amber-50/60 border border-amber-200/80 shadow-sm space-y-4">
+              <div className="flex items-center gap-2 text-amber-800">
+                <ShieldAlert className="w-5 h-5 text-amber-600" />
+                <h2 className="text-xl font-bold text-slate-900">
+                  When NOT to Rely Solely on Standard Formulas
+                </h2>
+              </div>
+              <div className="text-sm text-slate-700 space-y-2 leading-relaxed">
+                <p>
+                  While our formulas strictly follow IRC (International Residential Code) and ANSI standards, certain custom construction conditions require specialized engineering review:
+                </p>
+                <ul className="list-disc list-inside space-y-1.5 text-xs text-slate-600 pl-2">
+                  <li><strong>Extreme slopes & irregular curves:</strong> Non-rectangular perimeters require trapezoidal sub-sectioning.</li>
+                  <li><strong>Heavy structural load-bearing applications:</strong> Commercial slabs over 3,000 PSI require soil compaction tests.</li>
+                  <li><strong>Subfloor moisture & acclimation:</strong> Extreme humidity variations require dedicated expansion joints beyond base percentages.</li>
+                </ul>
+              </div>
             </section>
 
-            {/* In-Content Ad Slot */}
-            <AdSlot placement="in-content" />
+            {/* FAQs */}
+            {tool.faqs && tool.faqs.length > 0 && <FaqSection faqs={tool.faqs} />}
 
-            {/* =====================================================================
-                SECTION 5: DECISION SUPPORT & REFERENCE TABLES
-                ===================================================================== */}
-            <section aria-labelledby="decision-support-heading">
-              <DecisionTable {...tool.decisionSupport} />
-            </section>
-
-            {/* =====================================================================
-                SECTION 6: FAQ & CLUSTER JOURNEY INTERNAL LINKS
-                ===================================================================== */}
-            <section aria-labelledby="faq-heading">
-              <FaqSection faqs={tool.faqs} />
-            </section>
-
-            <section aria-labelledby="related-tools-heading">
-              <RelatedTools relatedSlugs={tool.relatedToolSlugs} currentSlug={tool.slug} />
+            {/* Related Tools */}
+            <section className="pt-6 border-t border-slate-200">
+              <RelatedTools currentSlug={tool.slug} relatedSlugs={tool.relatedToolSlugs || []} />
             </section>
           </div>
 
-          {/* Right Sidebar: Quick Summary & Ads */}
+          {/* Right Sidebar */}
           <div className="lg:col-span-4 space-y-6">
             <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
               <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-100 pb-2">
@@ -176,7 +188,6 @@ export function ToolPageLayout({ tool, calculatorSlot }: ToolPageLayoutProps) {
               </div>
             </div>
 
-            {/* Sidebar Ad Placement (CLS Safe) */}
             <AdSlot placement="sidebar" />
           </div>
         </div>

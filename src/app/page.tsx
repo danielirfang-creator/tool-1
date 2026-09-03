@@ -1,9 +1,11 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 import { toolsRegistry, getFeaturedTools } from '@/config/tools';
 import { guidesRegistry } from '@/config/guides';
 import { AdSlot } from '@/components/ads/AdSlot';
+import { generateWebSiteSchema, generateOrganizationSchema } from '@/lib/seo';
 import {
   Hammer,
   Layers,
@@ -21,9 +23,25 @@ import {
   Clock,
 } from 'lucide-react';
 
+export const metadata: Metadata = {
+  title: `${siteConfig.name} - Precision Home Improvement & DIY Calculators`,
+  description: siteConfig.description,
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: `${siteConfig.name} - Precision Home Improvement & DIY Calculators`,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    type: 'website',
+  },
+};
+
 export default function HomePage() {
   const featuredTools = getFeaturedTools();
   const recentGuides = guidesRegistry.slice(0, 4);
+  const websiteSchema = generateWebSiteSchema();
+  const orgSchema = generateOrganizationSchema();
 
   const clusterIcons: Record<string, React.ReactNode> = {
     Flooring: <Layers className="w-6 h-6 text-emerald-600" />,
@@ -36,6 +54,16 @@ export default function HomePage() {
 
   return (
     <div className="space-y-12 sm:space-y-16 pb-16">
+      {/* Schema.org WebSite & Organization structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+      />
+
       {/* =========================================================================
           HERO SECTION: High Authority Headline, Subtitle & Fast Tool Search
           ========================================================================= */}

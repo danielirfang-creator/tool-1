@@ -1,4 +1,12 @@
-﻿import { siteConfig } from '@/config/site';
+import { siteConfig } from '@/config/site';
+
+export function buildCanonicalUrl(path: string): string {
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  if (cleanPath === '/' || cleanPath === '') {
+    return siteConfig.url;
+  }
+  return `${siteConfig.url}${cleanPath.replace(/\/$/, '')}`;
+}
 
 export interface BreadcrumbItem {
   name: string;
@@ -13,7 +21,7 @@ export function generateBreadcrumbSchema(items: BreadcrumbItem[]) {
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: item.item.startsWith('http') ? item.item : siteConfig.url + item.item,
+      item: item.item.startsWith('http') ? item.item : buildCanonicalUrl(item.item),
     })),
   };
 }
@@ -48,12 +56,13 @@ export interface CalculatorAppSchemaProps {
 export function generateCalculatorSchema({ name, description, url, category }: CalculatorAppSchemaProps) {
   return {
     '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
+    '@type': 'WebApplication',
     name,
     description,
-    url: url.startsWith('http') ? url : siteConfig.url + url,
-    applicationCategory: 'BusinessApplication',
+    url: buildCanonicalUrl(url),
+    applicationCategory: 'UtilityApplication',
     operatingSystem: 'All',
+    browserRequirements: 'Requires JavaScript. Requires HTML5.',
     offers: {
       '@type': 'Offer',
       price: '0',
@@ -63,26 +72,153 @@ export function generateCalculatorSchema({ name, description, url, category }: C
       '@type': 'Organization',
       name: siteConfig.name,
       url: siteConfig.url,
+      logo: `${siteConfig.url}/og-image.png`,
     },
   };
 }
 
-export interface HowToStep {
-  name: string;
-  text: string;
+export interface ArticleSchemaProps {
+  title: string;
+  description: string;
+  url: string;
+  publishedDate: string;
+  readTime: string;
+  clusterName: string;
+  keywords?: string[];
 }
 
-export function generateHowToSchema(name: string, description: string, steps: HowToStep[]) {
+export function generateArticleSchema({
+  title,
+  description,
+  url,
+  publishedDate,
+  readTime,
+  clusterName,
+  keywords,
+}: ArticleSchemaProps) {
   return {
     '@context': 'https://schema.org',
-    '@type': 'HowTo',
+    '@type': 'Article',
+    headline: title,
+    description,
+    url: buildCanonicalUrl(url),
+    datePublished: publishedDate,
+    dateModified: publishedDate,
+    articleSection: clusterName,
+    keywords: keywords ? keywords.join(', ') : undefined,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': buildCanonicalUrl(url),
+    },
+    author: {
+      '@type': 'Organization',
+      name: siteConfig.author.name,
+      url: siteConfig.url,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteConfig.url}/og-image.png`,
+      },
+    },
+    image: `${siteConfig.url}/og-image.png`,
+  };
+}
+
+export interface CollectionSchemaProps {
+  name: string;
+  description: string;
+  url: string;
+  items: Array<{ name: string; url: string; description?: string }>;
+}
+
+export function generateCollectionSchema({ name, description, url, items }: CollectionSchemaProps) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
     name,
     description,
-    step: steps.map((step, idx) => ({
-      '@type': 'HowToStep',
-      position: idx + 1,
-      name: step.name,
-      text: step.text,
-    })),
+    url: buildCanonicalUrl(url),
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: items.length,
+      itemListElement: items.map((item, idx) => ({
+        '@type': 'ListItem',
+        position: idx + 1,
+        name: item.name,
+        url: buildCanonicalUrl(item.url),
+        description: item.description,
+      })),
+    },
+  };
+}
+
+export function generateWebSiteSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteConfig.name,
+    url: siteConfig.url,
+    description: siteConfig.description,
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteConfig.url}/og-image.png`,
+      },
+    },
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${siteConfig.url}/search?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
+  };
+}
+
+export function generateOrganizationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: siteConfig.name,
+    url: siteConfig.url,
+    logo: `${siteConfig.url}/og-image.png`,
+    description: siteConfig.description,
+    sameAs: [
+      'https://github.com/danielirfang-creator/tool-1',
+    ],
+  };
+}
+
+export function generateAboutPageSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: `About ${siteConfig.name}`,
+    description: siteConfig.description,
+    url: buildCanonicalUrl('/about'),
+    mainEntity: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: `${siteConfig.url}/og-image.png`,
+    },
+  };
+}
+
+export function generateContactPageSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: `Contact ${siteConfig.name}`,
+    description: 'Get in touch with the CraftCalc editorial and engineering team for formula feedback and inquiries.',
+    url: buildCanonicalUrl('/contact'),
   };
 }

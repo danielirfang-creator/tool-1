@@ -1,8 +1,10 @@
-﻿import { siteConfig } from '@/config/site';
+import { siteConfig } from '@/config/site';
 
 export async function GET() {
   const robots = `User-agent: *
 Allow: /
+Disallow: /search
+Disallow: /api/
 
 Sitemap: ${siteConfig.url}/sitemap.xml
 `;

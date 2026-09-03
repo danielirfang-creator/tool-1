@@ -48,7 +48,7 @@ export const concreteTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['concrete-slab-calculator', 'concrete-bags-calculator', 'mortar-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'concrete-slab-calculator',
@@ -94,7 +94,7 @@ export const concreteTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['concrete-calculator', 'concrete-bags-calculator', 'brick-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'concrete-bags-calculator',
@@ -143,7 +143,7 @@ export const concreteTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['concrete-calculator', 'concrete-slab-calculator', 'block-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'brick-calculator',
@@ -191,7 +191,7 @@ export const concreteTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['block-calculator', 'mortar-calculator', 'concrete-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'block-calculator',
@@ -239,7 +239,7 @@ export const concreteTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['brick-calculator', 'mortar-calculator', 'concrete-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'mortar-calculator',
@@ -285,6 +285,6 @@ export const concreteTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['brick-calculator', 'block-calculator', 'concrete-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   }
 ];

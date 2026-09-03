@@ -291,7 +291,7 @@ export const flooringTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['flooring-calculator', 'flooring-waste-calculator', 'laminate-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'vinyl-flooring-calculator',
@@ -338,7 +338,7 @@ export const flooringTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['flooring-calculator', 'tile-calculator', 'laminate-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   },
   {
     id: 'flooring-waste-calculator',
@@ -385,6 +385,6 @@ export const flooringTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['flooring-calculator', 'tile-calculator', 'laminate-calculator'],
-    status: 'coming-soon'
+    status: 'live'
   }
 ];
