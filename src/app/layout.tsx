@@ -51,6 +51,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteConfig.url,
   },
+  verification: {
+    yandex: '3281b26c1ed89405',
+  },
 };
 
 export const viewport: Viewport = {
@@ -68,6 +71,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full scroll-smooth">
       <head>
+        {/* Yandex Webmaster Verification */}
+        <meta name="yandex-verification" content="3281b26c1ed89405" />
+
         {/* Google tag (gtag.js) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-MG3YK2RT7L"></script>
         <script
