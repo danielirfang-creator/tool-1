@@ -11,13 +11,15 @@ import {
   Calendar,
   User,
   Building,
-  CheckCircle2,
   Download,
+  Loader2,
+  Sparkles,
 } from 'lucide-react';
 
 interface EstimatePDFModalProps {
   isOpen: boolean;
   onClose: () => void;
+  defaultMode?: 'pdf' | 'print';
   primaryTitle: string;
   primaryValue: string;
   primarySubtext?: string;
@@ -38,7 +40,8 @@ export function EstimatePDFModal({
   const [clientName, setClientName] = useState('');
   const [contractorName, setContractorName] = useState('');
   const [customNotes, setCustomNotes] = useState('');
-  const [estimateDate, setEstimateDate] = useState(() =>
+  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
+  const [estimateDate] = useState(() =>
     new Date().toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
@@ -50,6 +53,48 @@ export function EstimatePDFModal({
 
   const handlePrint = () => {
     window.print();
+  };
+
+  const handleDownloadPDF = async () => {
+    setIsGeneratingPdf(true);
+    try {
+      const card = document.getElementById('printable-estimate-card');
+      if (!card) {
+        window.print();
+        return;
+      }
+
+      const html2canvas = (await import('html2canvas')).default;
+      const { jsPDF } = await import('jspdf');
+
+      const canvas = await html2canvas(card, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#ffffff',
+        logging: false,
+      });
+
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4',
+      });
+
+      const margin = 10;
+      const pdfWidth = 210 - margin * 2;
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+      pdf.addImage(imgData, 'PNG', margin, margin, pdfWidth, Math.min(pdfHeight, 277));
+
+      const cleanName = (projectName || 'Estimate').replace(/[^a-zA-Z0-9-_ ]/g, '').trim().replace(/\s+/g, '-');
+      pdf.save(`CraftCalc-${cleanName}.pdf`);
+    } catch (err) {
+      console.error('PDF export failed:', err);
+      window.print();
+    } finally {
+      setIsGeneratingPdf(false);
+    }
   };
 
   return (
@@ -66,7 +111,7 @@ export function EstimatePDFModal({
                 Official Estimate & Material Sheet
               </h3>
               <p className="text-xs text-slate-400">
-                Print or Save as PDF with contractor-grade specifications
+                Direct PDF file download & physical printer receipt
               </p>
             </div>
           </div>
@@ -80,10 +125,10 @@ export function EstimatePDFModal({
 
         {/* Modal Body: Editor & Live Preview */}
         <div className="p-6 overflow-y-auto flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-slate-900 text-slate-100 print:block print:p-0 print:m-0 print:bg-transparent print:overflow-visible">
-          {/* Left Column: Custom Project Controls */}
+          {/* Left Column: Custom Project Controls & Action Buttons */}
           <div className="lg:col-span-4 space-y-4 print:hidden">
             <div className="text-xs font-bold uppercase tracking-wider text-emerald-400">
-              Estimate Details
+              Project Details
             </div>
 
             <div>
@@ -138,24 +183,43 @@ export function EstimatePDFModal({
               <textarea
                 value={customNotes}
                 onChange={(e) => setCustomNotes(e.target.value)}
-                rows={3}
+                rows={2}
                 placeholder="e.g. Includes 10% waste buffer for diagonal herringbone pattern."
                 className="w-full px-3 py-2 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none resize-none"
               />
             </div>
 
-            <div className="pt-2">
+            {/* SEPARATE BUTTONS FOR PDF & PRINT */}
+            <div className="pt-2 space-y-2.5">
+              {/* Button 1: Direct PDF File Download */}
+              <button
+                type="button"
+                onClick={handleDownloadPDF}
+                disabled={isGeneratingPdf}
+                className="w-full py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg hover:shadow-emerald-500/25 transition-all disabled:opacity-50"
+              >
+                {isGeneratingPdf ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Generating PDF File...</span>
+                  </>
+                ) : (
+                  <>
+                    <Download className="w-4 h-4" />
+                    <span>Download PDF File (.pdf)</span>
+                  </>
+                )}
+              </button>
+
+              {/* Button 2: Direct Printer Sheet */}
               <button
                 type="button"
                 onClick={handlePrint}
-                className="w-full py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-sm flex items-center justify-center gap-2 shadow-lg hover:shadow-emerald-500/25 transition-all"
+                className="w-full py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-bold text-xs flex items-center justify-center gap-2 border border-slate-700 transition-colors"
               >
-                <Printer className="w-4 h-4" />
-                <span>Print / Save as PDF</span>
+                <Printer className="w-4 h-4 text-emerald-400" />
+                <span>Print to Printer (1 Page)</span>
               </button>
-              <p className="text-[11px] text-slate-400 text-center mt-2">
-                Tip: Select <b>&quot;Save as PDF&quot;</b> in your browser print window.
-              </p>
             </div>
           </div>
 
@@ -166,26 +230,26 @@ export function EstimatePDFModal({
               className="bg-white text-slate-900 p-6 sm:p-8 rounded-2xl shadow-xl border border-slate-200 text-left print:p-4 print:border-none print:shadow-none print:w-full print:m-0"
             >
               {/* Document Header */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b-2 border-slate-900 pb-4 mb-6 gap-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b-2 border-slate-900 pb-3 mb-4 gap-3">
                 <div>
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center">
-                      <Hammer className="w-4 h-4" />
+                    <div className="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center">
+                      <Hammer className="w-3.5 h-3.5" />
                     </div>
-                    <span className="text-xl font-black tracking-tight text-slate-900">
+                    <span className="text-lg font-black tracking-tight text-slate-900">
                       Craft<span className="text-emerald-600">Calc</span>
                     </span>
                   </div>
-                  <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-widest mt-0.5">
+                  <div className="text-[10px] font-semibold text-slate-500 uppercase tracking-widest mt-0.5">
                     Material & Cost Estimating Certificate
                   </div>
                 </div>
 
                 <div className="text-right sm:text-right text-xs text-slate-600 space-y-0.5">
-                  <div className="font-bold text-slate-900">
+                  <div className="font-bold text-slate-900 text-xs">
                     {projectName || 'Project Estimate'}
                   </div>
-                  <div className="flex items-center sm:justify-end gap-1 text-[11px] text-slate-500">
+                  <div className="flex items-center sm:justify-end gap-1 text-[10px] text-slate-500">
                     <Calendar className="w-3 h-3 text-slate-400" />
                     <span>{estimateDate}</span>
                   </div>
@@ -194,63 +258,63 @@ export function EstimatePDFModal({
 
               {/* Meta Info Bar (Client / Contractor) */}
               {(clientName || contractorName) && (
-                <div className="grid grid-cols-2 gap-4 p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs mb-6">
+                <div className="grid grid-cols-2 gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs mb-4">
                   {clientName && (
                     <div>
-                      <span className="text-slate-400 block text-[10px] uppercase font-bold">
+                      <span className="text-slate-400 block text-[9px] uppercase font-bold">
                         Prepared For
                       </span>
-                      <span className="font-bold text-slate-900">{clientName}</span>
+                      <span className="font-bold text-slate-900 text-xs">{clientName}</span>
                     </div>
                   )}
                   {contractorName && (
                     <div>
-                      <span className="text-slate-400 block text-[10px] uppercase font-bold">
+                      <span className="text-slate-400 block text-[9px] uppercase font-bold">
                         Prepared By
                       </span>
-                      <span className="font-bold text-slate-900">{contractorName}</span>
+                      <span className="font-bold text-slate-900 text-xs">{contractorName}</span>
                     </div>
                   )}
                 </div>
               )}
 
               {/* Primary Total Highlight Banner */}
-              <div className="p-4 sm:p-6 rounded-xl bg-slate-900 text-white mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="p-3.5 sm:p-4 rounded-xl bg-slate-900 text-white mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
-                  <div className="text-xs uppercase font-bold tracking-wider text-emerald-400">
+                  <div className="text-[10px] uppercase font-bold tracking-wider text-emerald-400">
                     {primaryTitle}
                   </div>
-                  <div className="text-2xl sm:text-4xl font-black text-white mt-1">
+                  <div className="text-xl sm:text-3xl font-black text-white mt-0.5">
                     {primaryValue}
                   </div>
                 </div>
                 {primarySubtext && (
-                  <div className="text-xs sm:text-sm font-medium text-slate-300 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
+                  <div className="text-xs font-medium text-slate-300 bg-slate-800 px-2.5 py-1 rounded-lg border border-slate-700">
                     {primarySubtext}
                   </div>
                 )}
               </div>
 
               {/* Secondary Breakdown Table */}
-              <div className="mb-6">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+              <div className="mb-4">
+                <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                   Detailed Itemization & Quantities
                 </h4>
                 <div className="border border-slate-200 rounded-xl overflow-hidden">
                   <table className="w-full text-left text-xs border-collapse">
                     <thead>
-                      <tr className="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
-                        <th className="p-2.5">Metric / Material</th>
-                        <th className="p-2.5 text-right">Calculated Quantity</th>
-                        <th className="p-2.5 text-right">Specification</th>
+                      <tr className="bg-slate-100 text-slate-700 font-bold border-b border-slate-200 text-[11px]">
+                        <th className="p-2">Metric / Material</th>
+                        <th className="p-2 text-right">Calculated Quantity</th>
+                        <th className="p-2 text-right">Specification</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-100">
+                    <tbody className="divide-y divide-slate-100 text-xs">
                       {secondaryMetrics.map((m, idx) => (
                         <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'}>
-                          <td className="p-2.5 font-medium text-slate-800">{m.label}</td>
-                          <td className="p-2.5 font-bold text-slate-900 text-right">{m.value}</td>
-                          <td className="p-2.5 text-slate-500 text-right">{m.subtext || '-'}</td>
+                          <td className="p-2 font-medium text-slate-800">{m.label}</td>
+                          <td className="p-2 font-bold text-slate-900 text-right">{m.value}</td>
+                          <td className="p-2 text-slate-500 text-right text-[11px]">{m.subtext || '-'}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -260,20 +324,20 @@ export function EstimatePDFModal({
 
               {/* Notes or Assumptions */}
               {(customNotes || assumptions.length > 0) && (
-                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-2 mb-6">
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1.5 mb-4">
                   {customNotes && (
                     <div>
-                      <div className="font-bold text-slate-800 mb-0.5">Project Notes:</div>
-                      <p className="text-slate-600 italic">{customNotes}</p>
+                      <div className="font-bold text-slate-800 text-[11px]">Project Notes:</div>
+                      <p className="text-slate-600 italic text-[11px]">{customNotes}</p>
                     </div>
                   )}
 
                   {assumptions.length > 0 && (
                     <div>
-                      <div className="font-bold text-slate-800 mb-0.5">
+                      <div className="font-bold text-slate-800 text-[11px]">
                         Technical Assumptions & Algorithms:
                       </div>
-                      <ul className="list-disc list-inside space-y-0.5 text-slate-600 text-[11px]">
+                      <ul className="list-disc list-inside space-y-0.5 text-slate-600 text-[10px]">
                         {assumptions.map((a, idx) => (
                           <li key={idx}>{a}</li>
                         ))}
@@ -284,9 +348,9 @@ export function EstimatePDFModal({
               )}
 
               {/* Document Certificate Footer */}
-              <div className="pt-4 border-t border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between text-[10px] text-slate-500 gap-2">
-                <div className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+              <div className="pt-3 border-t border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between text-[9px] text-slate-500 gap-1">
+                <div className="flex items-center gap-1">
+                  <ShieldCheck className="w-3 h-3 text-emerald-600" />
                   <span>Calculated via Verified Construction Algorithms • CraftCalc.app</span>
                 </div>
                 <div className="text-slate-400">

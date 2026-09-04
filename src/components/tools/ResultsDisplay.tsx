@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Check, Copy, Printer, Info, FileText } from 'lucide-react';
+import { Check, Copy, Printer, Info, FileText, Download } from 'lucide-react';
 import { EstimatePDFModal } from './EstimatePDFModal';
 
 export interface ResultMetric {
@@ -51,18 +51,26 @@ Calculated at: ${window.location.href}`;
           <button
             type="button"
             onClick={handleCopy}
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg transition-colors border border-slate-700"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 px-2.5 py-1.5 rounded-lg transition-colors border border-slate-700"
           >
             {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-            <span>{copied ? 'Copied!' : 'Copy Summary'}</span>
+            <span className="hidden sm:inline">{copied ? 'Copied!' : 'Copy Summary'}</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setIsPdfModalOpen(true)}
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 px-2.5 py-1.5 rounded-lg transition-colors border border-slate-700"
+          >
+            <Printer className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Print Sheet</span>
           </button>
           <button
             type="button"
             onClick={() => setIsPdfModalOpen(true)}
             className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 px-3 py-1.5 rounded-lg transition-colors shadow-sm"
           >
-            <FileText className="w-3.5 h-3.5" />
-            <span>Save PDF / Print Estimate</span>
+            <Download className="w-3.5 h-3.5" />
+            <span>Download PDF</span>
           </button>
         </div>
       </div>
