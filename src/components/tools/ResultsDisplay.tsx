@@ -1,7 +1,8 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
-import { Check, Copy, Printer, Info } from 'lucide-react';
+import { Check, Copy, Printer, Info, FileText } from 'lucide-react';
+import { EstimatePDFModal } from './EstimatePDFModal';
 
 export interface ResultMetric {
   label: string;
@@ -26,6 +27,7 @@ export function ResultsDisplay({
   assumptions,
 }: ResultsDisplayProps) {
   const [copied, setCopied] = useState(false);
+  const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
 
   const handleCopy = () => {
     const text = `CraftCalc Results:
@@ -38,33 +40,29 @@ Calculated at: ${window.location.href}`;
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handlePrint = () => {
-    window.print();
-  };
-
   return (
     <div className="rounded-2xl bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 text-white p-6 sm:p-8 shadow-xl border border-slate-800">
       {/* Top action header */}
-      <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+      <div className="flex flex-wrap items-center justify-between border-b border-slate-800 pb-4 mb-6 gap-2">
         <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
           Calculation Result
         </span>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <button
             type="button"
             onClick={handleCopy}
-            className="inline-flex items-center gap-1 text-xs font-medium text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 px-2.5 py-1.5 rounded-lg transition-colors border border-slate-700"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg transition-colors border border-slate-700"
           >
             {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
             <span>{copied ? 'Copied!' : 'Copy Summary'}</span>
           </button>
           <button
             type="button"
-            onClick={handlePrint}
-            className="inline-flex items-center gap-1 text-xs font-medium text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 px-2.5 py-1.5 rounded-lg transition-colors border border-slate-700"
+            onClick={() => setIsPdfModalOpen(true)}
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 px-3 py-1.5 rounded-lg transition-colors shadow-sm"
           >
-            <Printer className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Print</span>
+            <FileText className="w-3.5 h-3.5" />
+            <span>Save PDF / Print Estimate</span>
           </button>
         </div>
       </div>
@@ -118,6 +116,17 @@ Calculated at: ${window.location.href}`;
           </ul>
         </div>
       )}
+
+      {/* Official Print & PDF Estimate Modal */}
+      <EstimatePDFModal
+        isOpen={isPdfModalOpen}
+        onClose={() => setIsPdfModalOpen(false)}
+        primaryTitle={primaryTitle}
+        primaryValue={primaryValue}
+        primarySubtext={primarySubtext}
+        secondaryMetrics={secondaryMetrics}
+        assumptions={assumptions}
+      />
     </div>
   );
 }

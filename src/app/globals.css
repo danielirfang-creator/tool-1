@@ -1,4 +1,4 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -14,13 +14,22 @@
   }
 }
 
-/* Print styling for direct calculator printouts */
+/* Print styling for direct calculator & estimate certificate printouts */
 @media print {
-  header, footer, aside, button, nav {
+  header, footer, aside, button, nav, .print\:hidden {
     display: none !important;
   }
   body {
     background: white !important;
     color: black !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  #printable-estimate-card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 10px !important;
+    margin: 0 !important;
+    width: 100% !important;
   }
 }
