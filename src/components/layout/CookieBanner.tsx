@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -49,13 +49,15 @@ export function CookieBanner() {
         <div className="flex items-center gap-3 shrink-0 w-full md:w-auto justify-end">
           <button
             onClick={handleDecline}
-            className="px-4 py-2 rounded-xl border border-slate-700 bg-slate-800 text-xs font-semibold text-slate-300 hover:bg-slate-700 transition-colors w-full md:w-auto"
+            aria-label="Accept essential cookies only"
+            className="min-h-[44px] px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-xs font-semibold text-slate-300 hover:bg-slate-700 transition-colors w-full md:w-auto"
           >
             Essential Only
           </button>
           <button
             onClick={handleAccept}
-            className="px-5 py-2 rounded-xl bg-emerald-600 text-xs font-semibold text-white hover:bg-emerald-500 shadow-md transition-colors w-full md:w-auto"
+            aria-label="Accept all cookies"
+            className="min-h-[44px] px-5 py-2.5 rounded-xl bg-emerald-600 text-xs font-semibold text-white hover:bg-emerald-500 shadow-md transition-colors w-full md:w-auto"
           >
             Accept All
           </button>
