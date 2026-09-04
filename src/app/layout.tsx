@@ -96,14 +96,14 @@ export default function RootLayout({
         <Footer />
         <CookieBanner />
 
-        {/* Non-blocking Google Analytics with strategy afterInteractive */}
+        {/* Non-blocking Google Analytics with strategy lazyOnload */}
         <Script
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           src="https://www.googletagmanager.com/gtag/js?id=G-MG3YK2RT7L"
         />
         <Script
           id="google-analytics-init"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];

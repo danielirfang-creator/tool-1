@@ -81,11 +81,12 @@ export default function HomePage() {
           <div className="max-w-xl mx-auto pt-2">
             <Link
               href="/search"
-              className="w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-500 shadow-md hover:shadow-lg text-slate-400 hover:text-slate-600 transition-all text-sm group"
+              aria-label="Search all 33 DIY tools and calculators"
+              className="w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-500 shadow-md hover:shadow-lg text-slate-500 hover:text-slate-700 transition-all text-sm group"
             >
               <div className="flex items-center gap-3">
                 <Search className="w-5 h-5 text-emerald-600" />
-                <span className="text-slate-500 font-medium">Search e.g. flooring boxes, tile grout, paint gallons...</span>
+                <span className="text-slate-600 font-medium">Search e.g. flooring boxes, tile grout, paint gallons...</span>
               </div>
               <span className="bg-emerald-50 text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-xl border border-emerald-200 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
                 Find Tool →
@@ -94,7 +95,7 @@ export default function HomePage() {
           </div>
 
           {/* Quick Stats Badges */}
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 pt-4 text-xs font-semibold text-slate-500">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 pt-4 text-xs font-semibold text-slate-600">
             <div className="flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4 text-emerald-600" />
               <span>100% Free & Client-Side</span>
@@ -314,7 +315,7 @@ export default function HomePage() {
                 1
               </div>
               <h3 className="text-base font-bold text-white">Exact Carton Rounding</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <p className="text-xs text-slate-300 leading-relaxed">
                 Retailers sell in full cartons. We calculate fractional requirements and round up to whole cartons to guarantee zero project shortages.
               </p>
             </div>
@@ -324,7 +325,7 @@ export default function HomePage() {
                 2
               </div>
               <h3 className="text-base font-bold text-white">Pattern Physics</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <p className="text-xs text-slate-300 leading-relaxed">
                 Herringbone, chevron, and diagonal patterns generate substantially more cut scrap. Our algorithms adjust waste margins dynamically.
               </p>
             </div>
@@ -334,7 +335,7 @@ export default function HomePage() {
                 3
               </div>
               <h3 className="text-base font-bold text-white">Zero Thin Pages</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <p className="text-xs text-slate-300 leading-relaxed">
                 Every calculator provides worked examples, formula breakdowns, limitation alerts, and comparison sizing tables.
               </p>
             </div>

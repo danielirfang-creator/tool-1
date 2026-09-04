@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
@@ -56,6 +56,9 @@ export function Header() {
                 <button
                   onClick={() => setClusterDropdownOpen(!clusterDropdownOpen)}
                   onMouseEnter={() => setClusterDropdownOpen(true)}
+                  aria-haspopup="true"
+                  aria-expanded={clusterDropdownOpen}
+                  aria-label="Calculator Categories"
                   className={`px-3 py-2 rounded-lg text-sm font-semibold inline-flex items-center gap-1 transition-colors ${
                     pathname.startsWith('/calculators')
                       ? 'text-emerald-600 bg-emerald-50'
@@ -143,9 +146,10 @@ export function Header() {
           <div className="flex items-center gap-2">
             <Link
               href="/search"
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-500 hover:text-slate-900 hover:bg-slate-100 text-sm font-medium transition-colors"
+              aria-label="Search all calculators and tools"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-600 hover:text-slate-900 hover:bg-slate-100 text-sm font-medium transition-colors"
             >
-              <Search className="w-4 h-4 text-slate-400" />
+              <Search className="w-4 h-4 text-slate-500" />
               <span className="hidden sm:inline">Search tools...</span>
             </Link>
 
