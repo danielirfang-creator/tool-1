@@ -1,9 +1,17 @@
 import type { Metadata, Viewport } from 'next';
+import Script from 'next/script';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import { siteConfig } from '@/config/site';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CookieBanner } from '@/components/layout/CookieBanner';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -75,14 +83,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full scroll-smooth">
+    <html lang="en" className={`h-full scroll-smooth ${inter.variable}`}>
       <head>
         {/* Yandex Webmaster Verification */}
         <meta name="yandex-verification" content="3281b26c1ed89405" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+      </head>
+      <body className={`flex min-h-full flex-col font-sans ${inter.className}`}>
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+        <CookieBanner />
 
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MG3YK2RT7L"></script>
-        <script
+        {/* Non-blocking Google Analytics with strategy afterInteractive */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-MG3YK2RT7L"
+        />
+        <Script
+          id="google-analytics-init"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -94,12 +115,6 @@ export default function RootLayout({
             `,
           }}
         />
-      </head>
-      <body className="flex min-h-full flex-col font-sans">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <CookieBanner />
       </body>
     </html>
   );
