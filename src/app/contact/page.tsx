@@ -6,20 +6,19 @@ import type { Metadata } from 'next';
 import { generateBreadcrumbSchema, generateContactPageSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Contact - Formula Corrections & Inquiries',
+  title: 'Contact CraftCalc Support',
   description: 'Have a formula correction, partnership inquiry, or calculator request? Get in touch with the CraftCalc engineering team.',
   alternates: {
     canonical: '/contact',
   },
   openGraph: {
-    title: 'Contact CraftCalc - Formula Corrections & Inquiries | CraftCalc',
+    title: 'Contact CraftCalc Support | CraftCalc',
     description: 'Have a formula correction, partnership inquiry, or calculator request? Get in touch with the CraftCalc engineering team.',
     url: `${siteConfig.url}/contact`,
     type: 'website',
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Contact CraftCalc - Formula Corrections & Inquiries | CraftCalc',
+    title: 'Contact CraftCalc Support | CraftCalc',
     description: 'Get in touch with the CraftCalc team.',
   },
 };

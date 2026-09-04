@@ -16,7 +16,6 @@ export const metadata: Metadata = {
     type: 'website',
   },
   twitter: {
-    card: 'summary_large_image',
     title: 'Terms of Service | CraftCalc',
     description: 'Terms of service and usage conditions for CraftCalc home improvement calculators and estimating tools.',
   },

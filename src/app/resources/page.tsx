@@ -7,20 +7,19 @@ import type { Metadata } from 'next';
 import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'DIY Planning Printables & Cheat Sheets',
+  title: 'Printable DIY Cheat Sheets',
   description: 'Download free printable material cheat sheets, waste percentage rules, unit conversion tables, and project planning checklists.',
   alternates: {
     canonical: '/resources',
   },
   openGraph: {
-    title: 'DIY Planning Printables & Cheat Sheets | CraftCalc',
+    title: 'Printable DIY Cheat Sheets | CraftCalc',
     description: 'Download free printable material cheat sheets, waste percentage rules, unit conversion tables, and project planning checklists.',
     url: `${siteConfig.url}/resources`,
     type: 'website',
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'DIY Planning Printables & Cheat Sheets | CraftCalc',
+    title: 'Printable DIY Cheat Sheets | CraftCalc',
     description: 'Download free printable material cheat sheets, waste percentage rules, and conversion tables.',
   },
 };

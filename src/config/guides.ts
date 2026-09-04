@@ -18,7 +18,7 @@ export const guidesRegistry: GuideMeta[] = [
   {
     id: 'flooring-waste-percentage-guide',
     slug: 'flooring-waste-percentage-guide',
-    title: 'How Much Extra Flooring to Order: Waste Factors by Pattern',
+    title: 'Flooring Waste Percentage Guide',
     cluster: 'flooring',
     clusterName: 'Flooring',
     summary: 'A complete contractor guide to calculating waste percentages for straight, diagonal, herringbone, and multi-room flooring jobs.',
@@ -41,7 +41,7 @@ export const guidesRegistry: GuideMeta[] = [
   {
     id: 'tile-trowel-size-thinset-guide',
     slug: 'tile-trowel-size-thinset-guide',
-    title: 'Tile Trowel Size & Thinset Mortar Coverage Guide',
+    title: 'Tile Trowel Size & Thinset Guide',
     cluster: 'flooring',
     clusterName: 'Flooring',
     summary: 'How to select the right notch trowel size (1/4", 3/8", 1/2") and estimate 50lb bags of polymer-modified thinset mortar.',
@@ -63,7 +63,7 @@ export const guidesRegistry: GuideMeta[] = [
   {
     id: 'laminate-acclimation-expansion-gap-guide',
     slug: 'laminate-acclimation-expansion-gap-guide',
-    title: 'Laminate Acclimation & Expansion Gap Best Practices',
+    title: 'Laminate Acclimation & Gap Guide',
     cluster: 'flooring',
     clusterName: 'Flooring',
     summary: 'Why laminate flooring buckles without proper 48-hour acclimation and 3/8" perimeter expansion gaps.',
@@ -85,7 +85,7 @@ export const guidesRegistry: GuideMeta[] = [
   {
     id: 'paint-sheen-selection-guide',
     slug: 'paint-sheen-selection-guide',
-    title: 'Paint Sheen Selection Guide: Flat vs Eggshell vs Satin vs Semi-Gloss',
+    title: 'Paint Sheen Selection Guide',
     cluster: 'painting',
     clusterName: 'Painting',
     summary: 'How to pick the right interior paint sheen for bedrooms, bathrooms, ceilings, trim, and high-traffic hallways.',
@@ -107,7 +107,7 @@ export const guidesRegistry: GuideMeta[] = [
   {
     id: 'concrete-curing-compressive-strength-guide',
     slug: 'concrete-curing-compressive-strength-guide',
-    title: 'How to Cure Concrete for Maximum 4,000+ PSI Compressive Strength',
+    title: 'Concrete Curing Strength Guide',
     cluster: 'concrete-masonry',
     clusterName: 'Concrete & Masonry',
     clusterHref: '/calculators/concrete-masonry',
@@ -130,7 +130,7 @@ export const guidesRegistry: GuideMeta[] = [
   {
     id: 'paver-patio-subbase-compaction-guide',
     slug: 'paver-patio-subbase-compaction-guide',
-    title: 'Paver Patio Subbase & Compaction: The Step-by-Step Foundation',
+    title: 'Paver Patio Subbase Guide',
     cluster: 'garden',
     clusterName: 'Garden & Outdoors',
     summary: 'Why patios sink and how to install a 4"-6" crushed stone base with ASTM C33 sand and polymeric joints.',
@@ -152,7 +152,7 @@ export const guidesRegistry: GuideMeta[] = [
   {
     id: 'how-to-calculate-room-square-footage-odd-shapes',
     slug: 'how-to-calculate-room-square-footage-odd-shapes',
-    title: 'Calculating Room Square Footage for Odd Shapes, Closets & Alcoves',
+    title: 'Room Square Footage Guide',
     cluster: 'rooms',
     clusterName: 'Rooms & Walls',
     summary: 'How to calculate square footage for L-shaped rooms, bay windows, circular spaces, and stairways.',
@@ -173,7 +173,7 @@ export const guidesRegistry: GuideMeta[] = [
   {
     id: 'imperial-vs-metric-construction-conversions',
     slug: 'imperial-vs-metric-construction-conversions',
-    title: 'Imperial vs Metric Construction Conversions: Trade Tolerances',
+    title: 'Construction Conversions Guide',
     cluster: 'conversions',
     clusterName: 'Conversions',
     summary: 'Fast mental math rules and exact conversion tolerances for international building plans.',

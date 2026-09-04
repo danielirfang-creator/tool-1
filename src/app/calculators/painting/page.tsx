@@ -10,20 +10,19 @@ import type { Metadata } from 'next';
 import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Paint Calculators - Wall, Ceiling, Primer & Trim Coverage Estimators',
+  title: 'Painting & Wall Calculators',
   description: 'Professional interior and exterior paint calculators. Estimate wall coverage, gallons needed, 2-coat primer rules, and door/window deductions.',
   alternates: {
     canonical: '/calculators/painting',
   },
   openGraph: {
-    title: 'Paint Calculators - Wall, Ceiling, Primer & Trim Coverage Estimators | CraftCalc',
+    title: 'Painting & Wall Calculators | CraftCalc',
     description: 'Professional interior and exterior paint calculators. Estimate wall coverage, gallons needed, 2-coat primer rules, and door/window deductions.',
     url: `${siteConfig.url}/calculators/painting`,
     type: 'website',
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Paint Calculators - Wall, Ceiling, Primer & Trim Coverage Estimators | CraftCalc',
+    title: 'Painting & Wall Calculators | CraftCalc',
     description: 'Professional interior and exterior paint calculators. Estimate wall coverage, gallons needed, 2-coat primer rules, and door/window deductions.',
   },
 };

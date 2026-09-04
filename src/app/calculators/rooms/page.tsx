@@ -10,20 +10,19 @@ import type { Metadata } from 'next';
 import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Room & Wall Calculators - Area, Square Feet, Wallpaper & Drywall',
+  title: 'Room & Wall Area Calculators',
   description: 'Room renovation calculators for DIYers. Calculate surface square footage, cubic volume for HVAC, wallpaper double rolls, and drywall 4x8 sheets.',
   alternates: {
     canonical: '/calculators/rooms',
   },
   openGraph: {
-    title: 'Room & Wall Calculators - Area, Square Feet, Wallpaper & Drywall | CraftCalc',
+    title: 'Room & Wall Area Calculators | CraftCalc',
     description: 'Room renovation calculators for DIYers. Calculate surface square footage, cubic volume for HVAC, wallpaper double rolls, and drywall 4x8 sheets.',
     url: `${siteConfig.url}/calculators/rooms`,
     type: 'website',
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Room & Wall Calculators - Area, Square Feet, Wallpaper & Drywall | CraftCalc',
+    title: 'Room & Wall Area Calculators | CraftCalc',
     description: 'Room renovation calculators for DIYers. Calculate surface square footage, cubic volume for HVAC, wallpaper double rolls, and drywall 4x8 sheets.',
   },
 };

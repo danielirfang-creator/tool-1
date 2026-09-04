@@ -10,20 +10,19 @@ import type { Metadata } from 'next';
 import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Concrete & Masonry Calculators - Slabs, Footings, 80lb Bags & Mortar',
+  title: 'Concrete & Masonry Calculators',
   description: 'Calculate concrete volume in cubic yards, 60lb/80lb pre-mix bags, rebar grids, cinder blocks (CMU), bricks, and mortar requirements.',
   alternates: {
     canonical: '/calculators/concrete-masonry',
   },
   openGraph: {
-    title: 'Concrete & Masonry Calculators - Slabs, Footings, 80lb Bags & Mortar | CraftCalc',
+    title: 'Concrete & Masonry Calculators | CraftCalc',
     description: 'Calculate concrete volume in cubic yards, 60lb/80lb pre-mix bags, rebar grids, cinder blocks (CMU), bricks, and mortar requirements.',
     url: `${siteConfig.url}/calculators/concrete-masonry`,
     type: 'website',
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Concrete & Masonry Calculators - Slabs, Footings, 80lb Bags & Mortar | CraftCalc',
+    title: 'Concrete & Masonry Calculators | CraftCalc',
     description: 'Calculate concrete volume in cubic yards, 60lb/80lb pre-mix bags, rebar grids, cinder blocks (CMU), bricks, and mortar requirements.',
   },
 };

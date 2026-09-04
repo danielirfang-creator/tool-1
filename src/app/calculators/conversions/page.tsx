@@ -10,20 +10,19 @@ import type { Metadata } from 'next';
 import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Construction Trade Converters - Feet, Meters, Sq Ft, Liters & Gallons',
+  title: 'Construction Unit Converters',
   description: 'Instant 2-way trade conversion tools for building materials. Convert feet to meters, inches to mm, square feet to square meters, liters to gallons.',
   alternates: {
     canonical: '/calculators/conversions',
   },
   openGraph: {
-    title: 'Construction Trade Converters - Feet, Meters, Sq Ft, Liters & Gallons | CraftCalc',
+    title: 'Construction Unit Converters | CraftCalc',
     description: 'Instant 2-way trade conversion tools for building materials. Convert feet to meters, inches to mm, square feet to square meters, liters to gallons.',
     url: `${siteConfig.url}/calculators/conversions`,
     type: 'website',
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Construction Trade Converters - Feet, Meters, Sq Ft, Liters & Gallons | CraftCalc',
+    title: 'Construction Unit Converters | CraftCalc',
     description: 'Instant 2-way trade conversion tools for building materials. Convert feet to meters, inches to mm, square feet to square meters, liters to gallons.',
   },
 };

@@ -9,20 +9,19 @@ import { Map, Calculator, BookOpen, Compass, ShieldCheck } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'HTML Sitemap - All Calculators & Guides',
+  title: 'HTML Sitemap & Tool Directory',
   description: 'Complete index of all 33 calculators, 6 category hubs, 8 renovation guides, and resources on CraftCalc.',
   alternates: {
     canonical: '/sitemap',
   },
   openGraph: {
-    title: 'HTML Sitemap - All Calculators & Guides | CraftCalc',
+    title: 'HTML Sitemap & Tool Directory | CraftCalc',
     description: 'Complete index of all 33 calculators, 6 category hubs, 8 renovation guides, and resources on CraftCalc.',
     url: `${siteConfig.url}/sitemap`,
     type: 'website',
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'HTML Sitemap - All Calculators & Guides | CraftCalc',
+    title: 'HTML Sitemap & Tool Directory | CraftCalc',
     description: 'Complete index of all 33 calculators, 6 category hubs, 8 renovation guides, and resources on CraftCalc.',
   },
 };

@@ -9,20 +9,19 @@ import type { Metadata } from 'next';
 import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'DIY & Home Renovation Estimating Guides',
+  title: 'DIY Planning & Estimating Guides',
   description: 'In-depth contractor guides to calculating flooring waste, thinset trowel sizes, laminate expansion gaps, and paint sheen selection.',
   alternates: {
     canonical: '/guides',
   },
   openGraph: {
-    title: 'DIY & Home Renovation Estimating Guides | CraftCalc',
+    title: 'DIY Planning & Estimating Guides | CraftCalc',
     description: 'In-depth contractor guides to calculating flooring waste, thinset trowel sizes, laminate expansion gaps, and paint sheen selection.',
     url: `${siteConfig.url}/guides`,
     type: 'website',
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'DIY & Home Renovation Estimating Guides | CraftCalc',
+    title: 'DIY Planning & Estimating Guides | CraftCalc',
     description: 'In-depth contractor guides to calculating flooring waste, thinset trowel sizes, laminate expansion gaps, and paint sheen selection.',
   },
 };

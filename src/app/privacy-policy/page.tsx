@@ -16,7 +16,6 @@ export const metadata: Metadata = {
     type: 'website',
   },
   twitter: {
-    card: 'summary_large_image',
     title: 'Privacy Policy | CraftCalc',
     description: 'CraftCalc privacy policy. Learn how we handle client-side calculator data, browser cookies, and Google Analytics in compliance with GDPR and CCPA.',
   },

@@ -10,20 +10,19 @@ import type { Metadata } from 'next';
 import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Garden & Outdoor Calculators - Gravel, Mulch, Soil, Turf & Fencing',
+  title: 'Garden & Outdoor Calculators',
   description: 'Landscaping material calculators. Estimate crushed gravel tons, mulch cubic yards, topsoil, sod grass rolls, interlocking pavers, and wood fences.',
   alternates: {
     canonical: '/calculators/garden',
   },
   openGraph: {
-    title: 'Garden & Outdoor Calculators - Gravel, Mulch, Soil, Turf & Fencing | CraftCalc',
+    title: 'Garden & Outdoor Calculators | CraftCalc',
     description: 'Landscaping material calculators. Estimate crushed gravel tons, mulch cubic yards, topsoil, sod grass rolls, interlocking pavers, and wood fences.',
     url: `${siteConfig.url}/calculators/garden`,
     type: 'website',
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Garden & Outdoor Calculators - Gravel, Mulch, Soil, Turf & Fencing | CraftCalc',
+    title: 'Garden & Outdoor Calculators | CraftCalc',
     description: 'Landscaping material calculators. Estimate crushed gravel tons, mulch cubic yards, topsoil, sod grass rolls, interlocking pavers, and wood fences.',
   },
 };

@@ -16,7 +16,6 @@ export const metadata: Metadata = {
     type: 'website',
   },
   twitter: {
-    card: 'summary_large_image',
     title: 'Cookie Policy | CraftCalc',
     description: 'Information about how CraftCalc uses essential cookies, local storage for unit preferences, and analytics tracking.',
   },

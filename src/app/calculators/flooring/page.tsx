@@ -10,20 +10,19 @@ import type { Metadata } from 'next';
 import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Flooring Calculators - Hardwood, Tile, Laminate & Waste Estimators',
+  title: 'Flooring Calculators & Estimators',
   description: 'Complete suite of professional flooring calculators. Calculate square footage, box quantities, tile layouts, laminate underlayment, and waste buffers.',
   alternates: {
     canonical: '/calculators/flooring',
   },
   openGraph: {
-    title: 'Flooring Calculators - Hardwood, Tile, Laminate & Waste Estimators | CraftCalc',
+    title: 'Flooring Calculators & Estimators | CraftCalc',
     description: 'Complete suite of professional flooring calculators. Calculate square footage, box quantities, tile layouts, laminate underlayment, and waste buffers.',
     url: `${siteConfig.url}/calculators/flooring`,
     type: 'website',
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Flooring Calculators - Hardwood, Tile, Laminate & Waste Estimators | CraftCalc',
+    title: 'Flooring Calculators & Estimators | CraftCalc',
     description: 'Complete suite of professional flooring calculators. Calculate square footage, box quantities, tile layouts, laminate underlayment, and waste buffers.',
   },
 };
