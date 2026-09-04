@@ -5,7 +5,7 @@ import { guidesRegistry } from '@/config/guides';
 import { siteConfig } from '@/config/site';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { AdSlot } from '@/components/ads/AdSlot';
-import { BookOpen, Clock, Calendar, ArrowRight, CheckCircle2, ShieldCheck, Wrench } from 'lucide-react';
+import { BookOpen, Clock, Calendar, ArrowRight, CheckCircle2, ShieldCheck, Wrench, Layers, Ruler, FileCheck } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata = createMetadata({
@@ -95,14 +95,58 @@ export default function GuidesIndexPage() {
           ))}
         </div>
 
-        {/* Editorial Standards Overview */}
-        <div className="my-12 p-6 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4 text-slate-700 text-sm leading-relaxed">
-          <h2 className="text-xl font-bold text-slate-900">
-            About Our Trade Educational Library
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Every renovation guide in the CraftCalc library is authored to bridge the gap between complex architectural engineering standards and practical on-site trade execution. Whether calculating diagonal flooring waste percentages, selecting ANSI A118 polymer-modified thinset mortars, or preparing multi-layered paver patio subbases, our mission is to eliminate material waste and prevent expensive remodeling callbacks.
-          </p>
+        {/* Educational Methodology & Planning Section */}
+        <div className="my-12 p-6 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-6 text-slate-700 text-sm leading-relaxed">
+          <div className="border-b border-slate-100 pb-4">
+            <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+              The Science of Material Takeoffs: Why Renovation Math Matters
+            </h2>
+            <p className="text-xs text-slate-500 mt-1">
+              Bridging the gap between theoretical blueprints and physical job-site execution.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Ruler className="w-4 h-4 text-emerald-600" />
+                Waste Factors & Layout Geometry
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Material waste is not random scrap; it is directly governed by room geometry and pattern angle. Straight plank flooring produces reusable offcuts, keeping waste around 10%. In contrast, 45-degree diagonal lines or herringbone miters produce unusable triangular end cuts, requiring 15% to 20% waste buffer.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Layers className="w-4 h-4 text-emerald-600" />
+                Mortar & Thinset Thickness Physics
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Trowel notch depth dictates the final collapsed mortar bed thickness beneath ceramic and porcelain tiles. Using undersized notches leads to hollow tiles that crack under impact, while oversized notches cause mortar to squeeze through grout joints, creating hours of tedious cleanup.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Wrench className="w-4 h-4 text-emerald-600" />
+                Concrete Hydration vs Drying
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Concrete achieves compressive strength through a continuous chemical reaction between water and Portland cement crystals. Maintaining moisture for 7 days attains 70% of design strength, whereas premature evaporation permanently weakens slabs and causes unsightly surface crazing.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <FileCheck className="w-4 h-4 text-emerald-600" />
+                Packaging Rules & Dye-Lot Integrity
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Flooring, drywall, and tiles are packaged in discrete unit batches. Calculating exact net area and dividing by carton yield ensures you order full cartons with matched dye lots, avoiding noticeable shade differences between production batches.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { createMetadata, generateBreadcrumbSchema, generateCollectionSchema } fr
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { siteConfig } from '@/config/site';
-import { FileText, Download, CheckCircle2, ShieldCheck, Printer, ArrowRight, Chrome, Sparkles, BookOpen } from 'lucide-react';
+import { FileText, Download, CheckCircle2, ShieldCheck, Printer, ArrowRight, Chrome, Sparkles, BookOpen, Ruler, Layers, Box } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata = createMetadata({
@@ -81,7 +81,7 @@ export default function ResourcesPage() {
             <span>Printable Cheat Sheets</span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-            DIY Material Reference Resources
+            DIY Material Reference Resources & Quick Cards
           </h1>
           <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
             Take contractor-verified conversion tables and estimating matrices to the job site.
@@ -183,13 +183,37 @@ export default function ResourcesPage() {
         </div>
 
         {/* Job Site Planning Methodology */}
-        <div className="my-12 p-6 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4 text-slate-700 text-sm leading-relaxed">
-          <h2 className="text-xl font-bold text-slate-900">
-            Field Guidelines for Material Takeoff Cards
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Our printable quick cards and cheat sheets are designed to be laminated and kept in your tool bag or glove box for rapid on-site reference. When estimating on site, always measure rooms at their maximum dimensions, deduct openings conservatively, and consult the relevant formula card before placing wholesale orders with building supply yards.
-          </p>
+        <div className="my-12 p-6 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-6 text-slate-700 text-sm leading-relaxed">
+          <div className="border-b border-slate-100 pb-4">
+            <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+              Field Guidelines for Material Takeoff Reference Cards
+            </h2>
+            <p className="text-xs text-slate-500 mt-1">
+              How trade estimators and carpenters utilize pocket cheat sheets during on-site customer consultations.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Ruler className="w-4 h-4 text-emerald-600" />
+                Perimeter Measurements & Deduction Rules
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                When estimating on site, always measure rooms at their maximum bounding points. For interior painting, deduct standard doors (21 sq ft) and windows (15 sq ft). For drywall, multiply wall length by ceiling height and round up to whole 4x8 or 4x12 panels.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Box className="w-4 h-4 text-emerald-600" />
+                Pre-Purchase Subfloor & Surface Inspection
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Before purchasing flooring, verify subfloor flatness using a 10-foot straightedge (tolerance within 3/16 inch). Inspect moisture content on concrete slabs using calcium chloride tests or electronic moisture meters before laying vinyl or engineered wood underlayment.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

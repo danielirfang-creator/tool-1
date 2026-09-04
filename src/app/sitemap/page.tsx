@@ -5,7 +5,7 @@ import { toolsRegistry } from '@/config/tools';
 import { guidesRegistry } from '@/config/guides';
 import { siteConfig } from '@/config/site';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
-import { Map, Calculator, BookOpen, Compass, ShieldCheck, Layers } from 'lucide-react';
+import { Map, Calculator, BookOpen, Compass, ShieldCheck, Layers, Network, Globe } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata = createMetadata({
@@ -34,7 +34,7 @@ export default function SitemapPage() {
             Site Directory
           </span>
           <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-1">
-            CraftCalc Complete HTML Sitemap
+            CraftCalc Complete HTML Sitemap & Architectural Directory
           </h1>
           <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
             Quickly navigate every trade calculator, educational guide, category hub, and technical page across the CraftCalc network.
@@ -159,12 +159,16 @@ export default function SitemapPage() {
         </div>
 
         {/* Sitemap Architectural Structure */}
-        <div className="my-8 p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-3 text-slate-700 text-sm leading-relaxed">
-          <h2 className="text-lg font-bold text-slate-900">
-            Sitemap Organization & Indexing Structure
+        <div className="my-8 p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4 text-slate-700 text-sm leading-relaxed">
+          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <Network className="w-5 h-5 text-emerald-600" />
+            Sitemap Organization & Topical Cluster Hierarchy
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            CraftCalc organizes tools through a structured topical cluster hierarchy. Each parent cluster hub serves as a central clearinghouse linking related interactive calculators, contractor takeoff matrices, and educational guides. This clear navigational structure ensures fast discoverability for both search engine web crawlers and trade users looking for immediate calculations.
+            CraftCalc organizes estimation tools through a structured topical cluster architecture. Each parent cluster hub serves as a central clearinghouse linking related interactive calculators, contractor takeoff matrices, and educational guides. This clear navigational structure ensures fast discoverability for both search engine web crawlers and trade users looking for immediate calculations.
+          </p>
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            All URLs published in this sitemap are canonical, indexable, and served with mobile-optimized responsive HTML to ensure instant page load speeds across all modern devices.
           </p>
         </div>
       </div>
