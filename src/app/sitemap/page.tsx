@@ -59,7 +59,7 @@ export default function SitemapPage() {
           <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
             <h2 className="flex items-center gap-2 font-bold text-slate-900 text-base border-b border-slate-100 pb-2">
               <Compass className="w-4 h-4 text-emerald-600" />
-              <span>Core Hub Pages</span>
+              <span>Main CraftCalc Navigation Hubs</span>
             </h2>
             <ul className="space-y-2 text-xs">
               <li>
@@ -94,7 +94,7 @@ export default function SitemapPage() {
           <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
             <h2 className="flex items-center gap-2 font-bold text-slate-900 text-base border-b border-slate-100 pb-2">
               <Calculator className="w-4 h-4 text-emerald-600" />
-              <span>Category Hubs</span>
+              <span>Renovation Category Estimator Hubs</span>
             </h2>
             <ul className="space-y-2 text-xs">
               {siteConfig.navigation.clusters.map((c) => (
@@ -111,7 +111,7 @@ export default function SitemapPage() {
           <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
             <h2 className="flex items-center gap-2 font-bold text-slate-900 text-base border-b border-slate-100 pb-2">
               <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span>Trust & Legal</span>
+              <span>Legal, Trust & Compliance Pages</span>
             </h2>
             <ul className="space-y-2 text-xs">
               <li>
@@ -152,7 +152,7 @@ export default function SitemapPage() {
         <div className="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-6">
           <h2 className="flex items-center gap-2 font-bold text-slate-900 text-lg border-b border-slate-100 pb-3">
             <Calculator className="w-5 h-5 text-emerald-600" />
-            <span>Complete Calculator Registry ({toolsRegistry.length} Tools)</span>
+            <span>All 33 Trade Calculators in Registry</span>
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">

@@ -418,7 +418,7 @@ export function UniversalCalculatorWidget({ tool }: UniversalCalculatorWidgetPro
             <Calculator className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-lg font-bold text-slate-900">Interactive Calculation Engine</h2>
+            <h2 className="text-lg font-bold text-slate-900">{tool.name} Interactive Calculation Engine</h2>
             <p className="text-xs text-slate-500 font-medium">Real-time dynamic contractor formulas</p>
           </div>
         </div>

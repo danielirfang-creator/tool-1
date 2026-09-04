@@ -98,7 +98,7 @@ export default function SearchPage() {
             <div className="flex items-center justify-between border-b border-slate-200 pb-3 mb-6">
               <h2 className="flex items-center gap-2 text-slate-900 font-bold text-lg">
                 <Calculator className="w-5 h-5 text-emerald-600" />
-                <span>Calculators ({filteredTools.length})</span>
+                <span>Searchable Construction Calculators Database ({filteredTools.length})</span>
               </h2>
             </div>
 
@@ -152,7 +152,7 @@ export default function SearchPage() {
             <div className="flex items-center justify-between border-b border-slate-200 pb-3 mb-6">
               <h2 className="flex items-center gap-2 text-slate-900 font-bold text-lg">
                 <BookOpen className="w-5 h-5 text-emerald-600" />
-                <span>Supporting Guides ({filteredGuides.length})</span>
+                <span>Searchable Renovation & Estimation Guides ({filteredGuides.length})</span>
               </h2>
             </div>
 

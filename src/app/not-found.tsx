@@ -31,6 +31,9 @@ export default function NotFound() {
         </div>
 
         <div className="flex flex-col gap-2 pt-2">
+          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
+            Recommended Directory Links
+          </h2>
           <Link
             href="/"
             className="w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-emerald-600 text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors"

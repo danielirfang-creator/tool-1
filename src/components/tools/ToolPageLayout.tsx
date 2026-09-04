@@ -91,7 +91,7 @@ export function ToolPageLayout({ tool, calculatorSlot }: ToolPageLayoutProps) {
               <div className="flex items-center gap-2 text-emerald-700">
                 <BookOpen className="w-5 h-5" />
                 <h2 className="text-xl font-bold text-slate-900">
-                  How This Calculation Works: Professional Methodology
+                  {tool.name} Estimating Methodology & Formula Calculation
                 </h2>
               </div>
               <div className="prose prose-slate max-w-none text-sm leading-relaxed text-slate-600 space-y-3">
@@ -138,7 +138,7 @@ export function ToolPageLayout({ tool, calculatorSlot }: ToolPageLayoutProps) {
               <div className="flex items-center gap-2 text-amber-800">
                 <ShieldAlert className="w-5 h-5 text-amber-600" />
                 <h2 className="text-xl font-bold text-slate-900">
-                  When NOT to Rely Solely on Standard Formulas
+                  Important Variations & Considerations for {tool.name}
                 </h2>
               </div>
               <div className="text-sm text-slate-700 space-y-2 leading-relaxed">
@@ -154,11 +154,20 @@ export function ToolPageLayout({ tool, calculatorSlot }: ToolPageLayoutProps) {
             </section>
 
             {/* FAQs */}
-            {tool.faqs && tool.faqs.length > 0 && <FaqSection faqs={tool.faqs} />}
+            {tool.faqs && tool.faqs.length > 0 && (
+              <FaqSection
+                faqs={tool.faqs}
+                title={`Frequently Asked Questions About ${tool.name}`}
+              />
+            )}
 
             {/* Related Tools */}
             <section className="pt-6 border-t border-slate-200">
-              <RelatedTools currentSlug={tool.slug} relatedSlugs={tool.relatedToolSlugs || []} />
+              <RelatedTools
+                currentSlug={tool.slug}
+                relatedSlugs={tool.relatedToolSlugs || []}
+                toolName={tool.name}
+              />
             </section>
           </div>
 

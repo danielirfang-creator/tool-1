@@ -86,7 +86,7 @@ export default function FlooringClusterPage() {
         {/* Cluster Tools Grid */}
         <div className="my-10">
           <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-6">
-            Calculators in this Suite ({tools.length} Tools)
+            All Professional Flooring Calculators ({tools.length} Tools)
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {tools.map((tool) => (
@@ -128,7 +128,7 @@ export default function FlooringClusterPage() {
         {guides.length > 0 && (
           <div className="my-12 pt-8 border-t border-slate-200">
             <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-6">
-              Expert Guides for Flooring Calculators
+              Expert Guides for Flooring Installation & Takeoffs
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {guides.map((guide) => (

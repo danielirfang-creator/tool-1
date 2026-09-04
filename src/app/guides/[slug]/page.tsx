@@ -152,7 +152,7 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
             <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-3">
               <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-                Key Contractor Takeaways
+                Key Contractor Takeaways: {guide.title}
               </h2>
               <ul className="space-y-2">
                 {guide.keyTakeaways.map((takeaway, idx) => (
@@ -170,7 +170,11 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
             {guide.content.map((paragraph, idx) => (
               <section key={idx} className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
                 <h2 className="text-xl font-bold text-slate-900 tracking-tight">
-                  {idx === 0 ? 'Core Estimating Principles' : idx === 1 ? 'Site Evaluation & Geometry Factors' : 'Trade Best Practices & Execution'}
+                  {idx === 0
+                    ? `Core Principles: ${guide.title}`
+                    : idx === 1
+                    ? `Site Evaluation & Calculation Factors`
+                    : `Trade Best Practices & Pro Tips`}
                 </h2>
                 <p className="text-sm leading-relaxed text-slate-600">
                   {paragraph}
