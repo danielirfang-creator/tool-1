@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { siteConfig } from '@/config/site';
 import { Hammer, ShieldCheck, Heart } from 'lucide-react';
@@ -77,6 +77,18 @@ export function Footer() {
                 <Link href="/resources" className="text-slate-400 hover:text-emerald-400 transition-colors">
                   Printable Cheat Sheets
                 </Link>
+              </li>
+              <li>
+                <a
+                  href="/craftcalc-chrome-extension.zip"
+                  download
+                  className="text-emerald-400 hover:text-emerald-300 transition-colors inline-flex items-center gap-1.5 font-medium"
+                >
+                  <span>Chrome Extension</span>
+                  <span className="text-[10px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-500/30">
+                    Free Addon
+                  </span>
+                </a>
               </li>
             </ul>
           </div>

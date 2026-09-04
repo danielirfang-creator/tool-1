@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { siteConfig } from '@/config/site';
-import { FileText, Download, CheckCircle2, ShieldCheck, Printer, ArrowRight } from 'lucide-react';
+import { FileText, Download, CheckCircle2, ShieldCheck, Printer, ArrowRight, Chrome, Sparkles } from 'lucide-react';
 import type { Metadata } from 'next';
 import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
@@ -100,6 +100,53 @@ export default function ResourcesPage() {
             Take contractor-verified conversion tables and estimating matrices to the job site.
             All cheat sheets are free and formatted for easy printing or mobile reading.
           </p>
+        </div>
+
+        {/* Chrome Extension Spotlight Banner */}
+        <div className="my-8 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-950 text-white border border-emerald-500/20 shadow-xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div className="space-y-3 max-w-2xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-500/30">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Official Browser Addon (Manifest V3)</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
+                CraftCalc Quick Estimator Extension
+              </h2>
+              <p className="text-sm text-slate-300 leading-relaxed">
+                Estimate flooring waste, paint coverage, concrete bags, and instant unit conversions directly inside your Chrome browser without opening extra tabs.
+              </p>
+              <div className="flex flex-wrap items-center gap-4 text-xs text-emerald-300 pt-1">
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  100% Offline & Private
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  Instant Popup Calculations
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  Free & Fast
+                </span>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0">
+              <a
+                href="/craftcalc-chrome-extension.zip"
+                download
+                className="px-6 py-3.5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-sm transition-all shadow-lg hover:shadow-emerald-500/25 inline-flex items-center justify-center gap-2"
+              >
+                <Download className="w-4 h-4" />
+                <span>Download Extension (.zip)</span>
+              </a>
+              <span className="text-[11px] text-slate-400 text-center">
+                Supports Chrome, Edge, Brave & Arc
+              </span>
+            </div>
+          </div>
         </div>
 
         {/* Cheat Sheets Grid */}
