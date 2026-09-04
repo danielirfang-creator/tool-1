@@ -35,7 +35,6 @@ Allow: /
 # General Search Crawlers
 User-agent: *
 Allow: /
-Disallow: /search
 Disallow: /api/
 
 Sitemap: ${siteConfig.url}/sitemap.xml

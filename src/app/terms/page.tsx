@@ -4,19 +4,19 @@ import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service',
+  title: 'Terms of Service & Usage Agreement',
   description: 'Terms of service and usage conditions for CraftCalc home improvement calculators and estimating tools.',
   alternates: {
     canonical: '/terms',
   },
   openGraph: {
-    title: 'Terms of Service | CraftCalc',
+    title: 'Terms of Service & Usage Agreement | CraftCalc',
     description: 'Terms of service and usage conditions for CraftCalc home improvement calculators and estimating tools.',
     url: `${siteConfig.url}/terms`,
     type: 'website',
   },
   twitter: {
-    title: 'Terms of Service | CraftCalc',
+    title: 'Terms of Service & Usage Agreement | CraftCalc',
     description: 'Terms of service and usage conditions for CraftCalc home improvement calculators and estimating tools.',
   },
 };

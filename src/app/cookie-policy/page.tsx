@@ -4,19 +4,19 @@ import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Cookie Policy',
+  title: 'Cookie Policy & Local Storage',
   description: 'Information about how CraftCalc uses essential cookies, local storage for unit preferences, and analytics tracking.',
   alternates: {
     canonical: '/cookie-policy',
   },
   openGraph: {
-    title: 'Cookie Policy | CraftCalc',
+    title: 'Cookie Policy & Local Storage | CraftCalc',
     description: 'Information about how CraftCalc uses essential cookies, local storage for unit preferences, and analytics tracking.',
     url: `${siteConfig.url}/cookie-policy`,
     type: 'website',
   },
   twitter: {
-    title: 'Cookie Policy | CraftCalc',
+    title: 'Cookie Policy & Local Storage | CraftCalc',
     description: 'Information about how CraftCalc uses essential cookies, local storage for unit preferences, and analytics tracking.',
   },
 };
