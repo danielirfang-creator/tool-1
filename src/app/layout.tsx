@@ -87,8 +87,6 @@ export default function RootLayout({
       <head>
         {/* Yandex Webmaster Verification */}
         <meta name="yandex-verification" content="3281b26c1ed89405" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>
       <body className={`flex min-h-full flex-col font-sans ${inter.className}`}>
         <Header />

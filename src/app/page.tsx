@@ -128,7 +128,7 @@ export default function HomePage() {
           <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">
             Browse by Project Category
           </h2>
-          <p className="text-sm text-slate-500 mt-1">
+          <p className="text-sm text-slate-600 mt-1">
             Explore focused calculator suites designed for every phase of home renovation.
           </p>
         </div>
@@ -179,7 +179,7 @@ export default function HomePage() {
               <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">
                 Featured Live Calculators
               </h2>
-              <p className="text-sm text-slate-500 mt-1">
+              <p className="text-sm text-slate-600 mt-1">
                 Fully functional tools with live calculations, waste buffers, and decision support tables.
               </p>
             </div>
@@ -247,7 +247,7 @@ export default function HomePage() {
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">
               Latest Renovation Guides
             </h2>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-sm text-slate-600 mt-1">
               Avoid costly ordering mistakes with our in-depth material estimating articles.
             </p>
           </div>
