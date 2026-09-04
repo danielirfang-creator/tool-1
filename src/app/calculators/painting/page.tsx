@@ -6,7 +6,7 @@ import { getGuidesByCluster } from '@/config/guides';
 import { siteConfig } from '@/config/site';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { AdSlot } from '@/components/ads/AdSlot';
-import { Paintbrush, ArrowRight, CheckCircle2, BookOpen } from 'lucide-react';
+import { Paintbrush, ArrowRight, CheckCircle2, BookOpen, ShieldCheck, Ruler, Layers } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata = createMetadata({
@@ -65,7 +65,7 @@ export default function PaintingClusterPage() {
             Painting & Wall Coverage Calculators
           </h1>
           <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
-            Professional interior and exterior paint calculators. Estimate wall coverage, gallons needed, 2-coat primer rules, and door/window deductions.
+            Professional interior and exterior paint calculators. Estimate wall coverage, gallons needed, 2-coat primer rules, and door/window deductions with trade-grade accuracy.
           </p>
         </div>
 
@@ -109,6 +109,60 @@ export default function PaintingClusterPage() {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+
+        {/* Contractor Estimating Editorial Section */}
+        <div className="my-12 p-6 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-6 text-slate-700 leading-relaxed text-sm">
+          <div className="border-b border-slate-100 pb-4">
+            <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+              Painting Takeoff Standards & Material Planning
+            </h2>
+            <p className="text-xs text-slate-500 mt-1">
+              Professional estimating benchmarks for interior residential & commercial coatings.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Ruler className="w-4 h-4 text-emerald-600" />
+                Surface Area & Deductions
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Accurate paint estimating begins with measuring perimeter wall length and multiplying by ceiling height. Standard trade rules deduct 21 square feet for each standard interior door and 15 square feet for each standard window. For rooms with heavy architectural moldings, deduct openings only if window trim is receiving contrasting enamel paint.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Layers className="w-4 h-4 text-emerald-600" />
+                Spreading Rates & Porosity
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                While premium latex paints rate at 350 to 400 square feet per gallon on pre-primed drywall, raw unprimed drywall, textured stucco, or masonry will absorb significantly more liquid, dropping practical coverage to 250 square feet per gallon. Always apply a dedicated PVA primer on fresh joint compound before finish coats.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                Two-Coat Coverage Rule
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Even paints advertised as "one-coat coverage" require two full coats when making dramatic color transitions, painting over patched surfaces, or applying deep vibrant hues. Two coats create a uniform film build (minimum 1.5 to 2.0 mils dry film thickness) necessary for true scrub resistance and stain washability.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Paintbrush className="w-4 h-4 text-emerald-600" />
+                Leftover Touch-Up Allocation
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Always order an extra 10% volume or round up to the nearest whole gallon container. Keeping one quart to one gallon of original paint tightly sealed in airtight containers prevents color mismatching during future drywall repairs, baseboard scuff maintenance, and plumbing access patching.
+              </p>
+            </div>
           </div>
         </div>
 

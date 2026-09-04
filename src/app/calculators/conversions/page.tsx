@@ -6,12 +6,12 @@ import { getGuidesByCluster } from '@/config/guides';
 import { siteConfig } from '@/config/site';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { AdSlot } from '@/components/ads/AdSlot';
-import { ArrowRightLeft, ArrowRight, CheckCircle2, BookOpen } from 'lucide-react';
+import { ArrowLeftRight, ArrowRight, CheckCircle2, ShieldCheck, Ruler, Scale } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata = createMetadata({
-  title: 'Construction Unit Converters',
-  description: 'Fast trade unit converters. Convert feet to metres, inches to mm, sq ft to m2, litres to gallons, and kg to pounds with precise decimals.',
+  title: 'Construction Unit Conversion Calculators',
+  description: 'Fast and accurate imperial to metric construction conversions. Convert feet to meters, inches to mm, sq ft to sq meters, and cubic yards.',
   path: '/calculators/conversions'
 });
 
@@ -22,12 +22,12 @@ export default function ConversionsClusterPage() {
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', item: '/' },
     { name: 'Calculators', item: '/calculators' },
-    { name: 'Construction Trade Converters', item: '/calculators/conversions' },
+    { name: 'Conversion Calculators', item: '/calculators/conversions' },
   ]);
 
   const collectionSchema = generateCollectionSchema({
-    name: 'Construction Trade Converters - Feet, Meters, Sq Ft, Liters & Gallons',
-    description: 'Instant 2-way trade conversion tools for building materials. Convert feet to meters, inches to mm, square feet to square meters, liters to gallons.',
+    name: 'Construction Unit Converters - Feet to Metres, Inches to MM, Sq Ft to Sq M',
+    description: 'Instant imperial and metric construction calculators. Convert linear measurements, area square footage, cubic volumes, and international architectural plans.',
     url: '/calculators/conversions',
     items: tools.map((t) => ({
       name: t.name,
@@ -51,21 +51,21 @@ export default function ConversionsClusterPage() {
         <Breadcrumbs
           items={[
             { name: 'Calculators', href: '/calculators' },
-            { name: 'Construction Trade Converters', href: '/calculators/conversions' },
+            { name: 'Conversion Calculators', href: '/calculators/conversions' },
           ]}
         />
 
         {/* Cluster Hero */}
         <div className="max-w-3xl my-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold mb-3 border border-emerald-200">
-            <ArrowRightLeft className="w-3.5 h-3.5" />
+            <ArrowLeftRight className="w-3.5 h-3.5" />
             <span>Topical Cluster Hub</span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-            Construction & Trade Unit Converters
+            Construction Unit Conversion Calculators
           </h1>
           <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
-            Instant 2-way trade conversion tools for building materials. Convert feet to meters, inches to mm, square feet to square meters, liters to gallons.
+            Fast and accurate imperial to metric construction conversions. Convert feet to meters, inches to millimeters, square feet to square meters, and cubic yards with certified precision.
           </p>
         </div>
 
@@ -74,7 +74,7 @@ export default function ConversionsClusterPage() {
         {/* Cluster Tools Grid */}
         <div className="my-10">
           <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-6">
-            All Construction Unit Converters ({tools.length} Tools)
+            All Unit Conversion Calculators ({tools.length} Tools)
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {tools.map((tool) => (
@@ -112,11 +112,65 @@ export default function ConversionsClusterPage() {
           </div>
         </div>
 
+        {/* Contractor Estimating Editorial Section */}
+        <div className="my-12 p-6 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-6 text-slate-700 leading-relaxed text-sm">
+          <div className="border-b border-slate-100 pb-4">
+            <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+              International Construction Unit Standards & Tolerances
+            </h2>
+            <p className="text-xs text-slate-500 mt-1">
+              Statutory conversion factors for translating blueprints, material packages, and architectural takeoffs.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Ruler className="w-4 h-4 text-emerald-600" />
+                Statutory Linear Conversion Factors
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                By international treaty standards, 1 inch equals exactly 25.40 millimeters, and 1 foot equals exactly 0.3048 meters. In finished carpentry and precision millwork, avoiding approximate rounding is essential to prevent cumulative dimensional creep over long wall and cabinetry runs.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Scale className="w-4 h-4 text-emerald-600" />
+                Area Multipliers (Sq Ft to Sq Metres)
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                One square meter equals 10.7639 square feet, while one square foot equals 0.092903 square meters. When ordering imported European ceramic tile or Asian porcelain planks quoted in square meters, multiply your gross square footage by 0.0929 to verify package requirements.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                Nominal vs Actual Lumber Dimensions
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                North American lumber uses nominal trade naming that differs from actual surfaced dimensions. A 2x4 stud measures 1.5 inches by 3.5 inches (38mm × 89mm), a 2x6 measures 1.5" × 5.5" (38mm × 140mm), and a 4x4 post measures 3.5" × 3.5" (89mm × 89mm).
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <ArrowLeftRight className="w-4 h-4 text-emerald-600" />
+                Volume Conversions (Cu Yds to Cu Metres)
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                One cubic yard (27 cubic feet) equals 0.764555 cubic meters. When ordering bulk concrete, sand, gravel, or topsoil across borders, always round up to ensure sufficient batch volume for dynamic compaction under mechanical roller equipment.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Cluster Guides Section */}
         {guides.length > 0 && (
           <div className="my-12 pt-8 border-t border-slate-200">
             <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-6">
-              Expert Guides for Metric & Imperial Construction Units
+              Expert Guides for Construction Unit Math
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {guides.map((guide) => (

@@ -1,22 +1,21 @@
-﻿import React from 'react';
+import React from 'react';
 import { createMetadata, generateBreadcrumbSchema } from '@/lib/seo';
 import Link from 'next/link';
 import { toolsRegistry } from '@/config/tools';
 import { guidesRegistry } from '@/config/guides';
 import { siteConfig } from '@/config/site';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
-import { Map, Calculator, BookOpen, Compass, ShieldCheck } from 'lucide-react';
+import { Map, Calculator, BookOpen, Compass, ShieldCheck, Layers } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata = createMetadata({
-  title: 'HTML Sitemap & Tool Directory',
+  title: 'HTML Sitemap & Complete Tool Directory',
   description: 'Complete index of all 33 calculators, 6 category hubs, 8 renovation guides, and resources on CraftCalc.',
   path: '/sitemap'
 });
 
-
 export default function SitemapPage() {
-    const breadcrumbSchema = generateBreadcrumbSchema([
+  const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', item: '/' },
     { name: 'Sitemap', item: '/sitemap' },
   ]);
@@ -35,10 +34,10 @@ export default function SitemapPage() {
             Site Directory
           </span>
           <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-1">
-            CraftCalc HTML Sitemap
+            CraftCalc Complete HTML Sitemap
           </h1>
           <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
-            Quickly navigate every tool, guide, cluster hub, and technical page across the CraftCalc network.
+            Quickly navigate every trade calculator, educational guide, category hub, and technical page across the CraftCalc network.
           </p>
         </div>
 
@@ -157,6 +156,16 @@ export default function SitemapPage() {
               </Link>
             ))}
           </div>
+        </div>
+
+        {/* Sitemap Architectural Structure */}
+        <div className="my-8 p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-3 text-slate-700 text-sm leading-relaxed">
+          <h2 className="text-lg font-bold text-slate-900">
+            Sitemap Organization & Indexing Structure
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            CraftCalc organizes tools through a structured topical cluster hierarchy. Each parent cluster hub serves as a central clearinghouse linking related interactive calculators, contractor takeoff matrices, and educational guides. This clear navigational structure ensures fast discoverability for both search engine web crawlers and trade users looking for immediate calculations.
+          </p>
         </div>
       </div>
     </div>

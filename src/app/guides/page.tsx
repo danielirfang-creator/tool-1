@@ -5,11 +5,11 @@ import { guidesRegistry } from '@/config/guides';
 import { siteConfig } from '@/config/site';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { AdSlot } from '@/components/ads/AdSlot';
-import { BookOpen, Clock, Calendar, ArrowRight } from 'lucide-react';
+import { BookOpen, Clock, Calendar, ArrowRight, CheckCircle2, ShieldCheck, Wrench } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata = createMetadata({
-  title: 'DIY Planning & Estimating Guides',
+  title: 'DIY Planning & Material Estimating Guides',
   description: 'Expert trade guides, waste margin calculations, and material takeoff tutorials written by experienced builders and renovators.',
   path: '/guides'
 });
@@ -52,10 +52,10 @@ export default function GuidesIndexPage() {
             <span>Contractor Reference Library</span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-            DIY Material Estimation Guides
+            DIY Material Estimation & Trade Guides
           </h1>
           <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
-            Detailed, research-backed guides on estimating formulas, waste margins, trowel sizes, and material physics.
+            Detailed, research-backed guides on estimating formulas, waste margins, trowel sizes, concrete hydration, and material physics written by seasoned trade professionals.
           </p>
         </div>
 
@@ -93,6 +93,16 @@ export default function GuidesIndexPage() {
               </div>
             </Link>
           ))}
+        </div>
+
+        {/* Editorial Standards Overview */}
+        <div className="my-12 p-6 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4 text-slate-700 text-sm leading-relaxed">
+          <h2 className="text-xl font-bold text-slate-900">
+            About Our Trade Educational Library
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Every renovation guide in the CraftCalc library is authored to bridge the gap between complex architectural engineering standards and practical on-site trade execution. Whether calculating diagonal flooring waste percentages, selecting ANSI A118 polymer-modified thinset mortars, or preparing multi-layered paver patio subbases, our mission is to eliminate material waste and prevent expensive remodeling callbacks.
+          </p>
         </div>
       </div>
     </div>

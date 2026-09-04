@@ -6,12 +6,12 @@ import { getGuidesByCluster } from '@/config/guides';
 import { siteConfig } from '@/config/site';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { AdSlot } from '@/components/ads/AdSlot';
-import { Home, ArrowRight, CheckCircle2, BookOpen } from 'lucide-react';
+import { Home, ArrowRight, CheckCircle2, ShieldCheck, Ruler, Box } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata = createMetadata({
   title: 'Room & Wall Area Calculators',
-  description: 'Room dimension and area calculators. Compute square footage, square metres, wall surface areas, baseboard trim, and wallpaper rolls.',
+  description: 'Calculate square footage, perimeter lengths, wallpaper rolls, drywall sheets, and odd-shaped room dimensions with precision.',
   path: '/calculators/rooms'
 });
 
@@ -22,12 +22,12 @@ export default function RoomsClusterPage() {
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', item: '/' },
     { name: 'Calculators', item: '/calculators' },
-    { name: 'Room & Wall Calculators', item: '/calculators/rooms' },
+    { name: 'Room Calculators', item: '/calculators/rooms' },
   ]);
 
   const collectionSchema = generateCollectionSchema({
-    name: 'Room & Wall Calculators - Area, Square Feet, Wallpaper & Drywall',
-    description: 'Room renovation calculators for DIYers. Calculate surface square footage, cubic volume for HVAC, wallpaper double rolls, and drywall 4x8 sheets.',
+    name: 'Room & Wall Calculators - Square Footage, Drywall, Wallpaper & Trim',
+    description: 'Contractor-grade room and wall calculators. Estimate square footage, drywall 4x8/4x12 sheets, wallpaper pattern repeat rolls, and crown molding trim.',
     url: '/calculators/rooms',
     items: tools.map((t) => ({
       name: t.name,
@@ -51,7 +51,7 @@ export default function RoomsClusterPage() {
         <Breadcrumbs
           items={[
             { name: 'Calculators', href: '/calculators' },
-            { name: 'Room & Wall Calculators', href: '/calculators/rooms' },
+            { name: 'Room Calculators', href: '/calculators/rooms' },
           ]}
         />
 
@@ -62,10 +62,10 @@ export default function RoomsClusterPage() {
             <span>Topical Cluster Hub</span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-            Room Dimensions & Wall Surface Calculators
+            Room Area & Wall Estimation Calculators
           </h1>
           <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
-            Room renovation calculators for DIYers. Calculate surface square footage, cubic volume for HVAC, wallpaper double rolls, and drywall 4x8 sheets.
+            Calculate square footage, perimeter lengths, wallpaper rolls, drywall sheets, trim molding, and odd-shaped room dimensions with certified architectural accuracy.
           </p>
         </div>
 
@@ -74,7 +74,7 @@ export default function RoomsClusterPage() {
         {/* Cluster Tools Grid */}
         <div className="my-10">
           <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-6">
-            All Room & Area Dimension Calculators ({tools.length} Tools)
+            All Room & Wall Calculators ({tools.length} Tools)
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {tools.map((tool) => (
@@ -112,11 +112,65 @@ export default function RoomsClusterPage() {
           </div>
         </div>
 
+        {/* Contractor Estimating Editorial Section */}
+        <div className="my-12 p-6 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-6 text-slate-700 leading-relaxed text-sm">
+          <div className="border-b border-slate-100 pb-4">
+            <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+              Room Geometry & Wall Takeoff Methodology
+            </h2>
+            <p className="text-xs text-slate-500 mt-1">
+              Architectural rules for calculating drywall sheets, wallpaper pattern repeats, and complex room boundaries.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Ruler className="w-4 h-4 text-emerald-600" />
+                Geometric Decomposition for Odd Rooms
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                When estimating L-shaped, T-shaped, or octagonal rooms, divide the floor plan into separate rectangular sections (Area = Length × Width) and right triangles (Area = 0.5 × Base × Height). Sum each sub-area together to find net floor and ceiling square footage.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Box className="w-4 h-4 text-emerald-600" />
+                Drywall Sheet Optimization (4x8 vs 4x12)
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Standard gypsum drywall sheets cover 32 square feet (4ft × 8ft) or 48 square feet (4ft × 12ft). Using 12-foot drywall panels on long residential walls reduces tapered mud joint seams by 25%, resulting in faster taping, cleaner finishes, and less joint compound consumption.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Home className="w-4 h-4 text-emerald-600" />
+                Wallpaper Pattern Repeat Buffers
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Wallpaper rolls cannot be calculated solely on square footage. Patterns with a vertical drop match or large pattern repeat (e.g., 18 inches to 24 inches) require cutting off matching segments per strip, increasing required roll counts by 15% to 25% compared to plain textures.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                Trim & Baseboard Linear Footage
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Baseboard and crown molding materials are purchased in linear feet. Measure perimeter wall runs and deduct doorway openings, then add a 10% allowance for 45-degree miter cuts and scarf joint overlaps along continuous straight runs.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Cluster Guides Section */}
         {guides.length > 0 && (
           <div className="my-12 pt-8 border-t border-slate-200">
             <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-6">
-              Expert Guides for Room Square Footage & Layouts
+              Expert Guides for Room & Wall Layouts
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {guides.map((guide) => (

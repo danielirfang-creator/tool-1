@@ -6,28 +6,28 @@ import { getGuidesByCluster } from '@/config/guides';
 import { siteConfig } from '@/config/site';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { AdSlot } from '@/components/ads/AdSlot';
-import { Hammer, ArrowRight, CheckCircle2, BookOpen } from 'lucide-react';
+import { HardHat, ArrowRight, CheckCircle2, ShieldCheck, Ruler, Box } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata = createMetadata({
   title: 'Concrete & Masonry Calculators',
-  description: 'Concrete slab, bag, brick, and mortar estimators. Calculate cubic yards, 80lb/60lb pre-mix bags, and CMU block wall materials.',
+  description: 'Estimate cubic yards, pre-mix concrete bags, rebar grids, mortar, and block counts for foundations, slabs, and footings.',
   path: '/calculators/concrete-masonry'
 });
 
-export default function ConcretemasonryClusterPage() {
+export default function ConcreteMasonryClusterPage() {
   const tools = getToolsByCluster('concrete-masonry');
   const guides = getGuidesByCluster('concrete-masonry');
 
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', item: '/' },
     { name: 'Calculators', item: '/calculators' },
-    { name: 'Concrete & Masonry Calculators', item: '/calculators/concrete-masonry' },
+    { name: 'Concrete Calculators', item: '/calculators/concrete-masonry' },
   ]);
 
   const collectionSchema = generateCollectionSchema({
-    name: 'Concrete & Masonry Calculators - Slabs, Footings, 80lb Bags & Mortar',
-    description: 'Calculate concrete volume in cubic yards, 60lb/80lb pre-mix bags, rebar grids, cinder blocks (CMU), bricks, and mortar requirements.',
+    name: 'Concrete & Masonry Calculators - Slabs, Footings, Rebar & Mortar',
+    description: 'Contractor-grade masonry calculators. Estimate cubic yard volume, 80lb/60lb pre-mix bags, footing depths, CMU blocks, and rebar reinforcement.',
     url: '/calculators/concrete-masonry',
     items: tools.map((t) => ({
       name: t.name,
@@ -51,21 +51,21 @@ export default function ConcretemasonryClusterPage() {
         <Breadcrumbs
           items={[
             { name: 'Calculators', href: '/calculators' },
-            { name: 'Concrete & Masonry Calculators', href: '/calculators/concrete-masonry' },
+            { name: 'Concrete Calculators', href: '/calculators/concrete-masonry' },
           ]}
         />
 
         {/* Cluster Hero */}
         <div className="max-w-3xl my-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold mb-3 border border-emerald-200">
-            <Hammer className="w-3.5 h-3.5" />
+            <HardHat className="w-3.5 h-3.5" />
             <span>Topical Cluster Hub</span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-            Concrete, Masonry & Slab Calculators
+            Concrete & Masonry Estimating Calculators
           </h1>
           <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
-            Calculate concrete volume in cubic yards, 60lb/80lb pre-mix bags, rebar grids, cinder blocks (CMU), bricks, and mortar requirements.
+            Estimate cubic yards, pre-mix concrete bags, rebar reinforcement grids, mortar, and CMU concrete block counts for footings, driveways, and foundations.
           </p>
         </div>
 
@@ -112,11 +112,65 @@ export default function ConcretemasonryClusterPage() {
           </div>
         </div>
 
+        {/* Contractor Estimating Editorial Section */}
+        <div className="my-12 p-6 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-6 text-slate-700 leading-relaxed text-sm">
+          <div className="border-b border-slate-100 pb-4">
+            <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+              Concrete Volume & Structural Takeoff Standards
+            </h2>
+            <p className="text-xs text-slate-500 mt-1">
+              Engineering conventions for estimating slabs, footings, ready-mix truckloads, and bagged concrete.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Ruler className="w-4 h-4 text-emerald-600" />
+                Cubic Yard Volume Formulas
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Concrete volume is calculated in cubic yards using the statutory formula: Volume (cu yd) = (Length ft × Width ft × Depth ft) ÷ 27. For standard 4-inch residential slabs, multiply total square footage by 0.333 ft before dividing by 27. Always add 10% extra volume for subgrade irregularities and form deflection.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Box className="w-4 h-4 text-emerald-600" />
+                Bagged Concrete vs Ready-Mix Trucks
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                One cubic yard of concrete requires exactly 45 pre-mix 80-pound bags or 60 pre-mix 60-pound bags. For projects exceeding 1.5 to 2.0 cubic yards (e.g., driveways, garage slabs, or large patios), ordering a ready-mix concrete truck delivery is significantly more cost-effective and prevents cold joints.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                Rebar Grids & Structural Reinforcement
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Concrete possesses immense compressive strength but weak tensile resistance. Installing #3 (3/8-inch) or #4 (1/2-inch) rebar in 12-inch or 18-inch on-center grids supported by plastic chairs prevents slab settlement cracking and reinforces load distribution under heavy vehicle weights.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <HardHat className="w-4 h-4 text-emerald-600" />
+                Curing Hydration & Temperature Rules
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Concrete solidifies via chemical hydration rather than drying out. Keep fresh concrete moist for a minimum of 7 days using curing blankets or spray sealers to attain 70% of rated compressive strength. Never pour concrete when freezing temperatures are expected within 48 hours.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Cluster Guides Section */}
         {guides.length > 0 && (
           <div className="my-12 pt-8 border-t border-slate-200">
             <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-6">
-              Expert Guides for Concrete & Masonry Projects
+              Expert Guides for Concrete & Masonry Work
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {guides.map((guide) => (

@@ -3,12 +3,12 @@ import { createMetadata, generateBreadcrumbSchema, generateCollectionSchema } fr
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { siteConfig } from '@/config/site';
-import { FileText, Download, CheckCircle2, ShieldCheck, Printer, ArrowRight, Chrome, Sparkles } from 'lucide-react';
+import { FileText, Download, CheckCircle2, ShieldCheck, Printer, ArrowRight, Chrome, Sparkles, BookOpen } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata = createMetadata({
-  title: 'Printable DIY Cheat Sheets',
-  description: 'Download and print pocket measurement conversion cheat sheets and trade formula cards for job-site reference.',
+  title: 'Printable DIY Reference & Material Cheat Sheets',
+  description: 'Download and print pocket measurement conversion cheat sheets, trowel coverage matrices, and trade formula cards for job-site reference.',
   path: '/resources'
 });
 
@@ -51,7 +51,7 @@ export default function ResourcesPage() {
 
   const collectionSchema = generateCollectionSchema({
     name: 'CraftCalc DIY Reference Resources',
-    description: 'Printable DIY reference guides and estimating cheat sheets.',
+    description: 'Printable DIY reference guides, Chrome extensions, and material estimating cheat sheets.',
     url: '/resources',
     items: cheatSheets.map((c) => ({
       name: c.title,
@@ -85,7 +85,7 @@ export default function ResourcesPage() {
           </h1>
           <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
             Take contractor-verified conversion tables and estimating matrices to the job site.
-            All cheat sheets are free and formatted for easy printing or mobile reading.
+            All cheat sheets are free, easy to print, and designed for fast field takeoffs.
           </p>
         </div>
 
@@ -180,6 +180,16 @@ export default function ResourcesPage() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Job Site Planning Methodology */}
+        <div className="my-12 p-6 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4 text-slate-700 text-sm leading-relaxed">
+          <h2 className="text-xl font-bold text-slate-900">
+            Field Guidelines for Material Takeoff Cards
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Our printable quick cards and cheat sheets are designed to be laminated and kept in your tool bag or glove box for rapid on-site reference. When estimating on site, always measure rooms at their maximum dimensions, deduct openings conservatively, and consult the relevant formula card before placing wholesale orders with building supply yards.
+          </p>
         </div>
       </div>
     </div>

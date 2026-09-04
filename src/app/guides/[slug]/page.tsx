@@ -54,6 +54,15 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
+const sectionHeadings = [
+  "Core Principles & Technical Overview",
+  "Site Evaluation & Takeoff Factors",
+  "Material Specifications & Math Formulas",
+  "Contractor Best Practices & Pro Tips",
+  "Packaging Rules & Ordering Strategy",
+  "Long-Term Maintenance & Field Preservation"
+];
+
 export default function GuideDetailPage({ params }: { params: { slug: string } }) {
   const guide = getGuideBySlug(params.slug);
   if (!guide) return notFound();
@@ -170,11 +179,7 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
             {guide.content.map((paragraph, idx) => (
               <section key={idx} className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
                 <h2 className="text-xl font-bold text-slate-900 tracking-tight">
-                  {idx === 0
-                    ? `Principles: ${guide.title.slice(0, 45)}`
-                    : idx === 1
-                    ? `Site Evaluation & Calculation Factors`
-                    : `Trade Best Practices & Pro Tips`}
+                  {sectionHeadings[idx] || `Field Methodology Section ${idx + 1}`}
                 </h2>
                 <p className="text-sm leading-relaxed text-slate-600">
                   {paragraph}

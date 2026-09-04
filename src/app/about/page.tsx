@@ -2,11 +2,11 @@ import React from 'react';
 import { createMetadata, generateAboutPageSchema, generateBreadcrumbSchema, generateOrganizationSchema } from '@/lib/seo';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { siteConfig } from '@/config/site';
-import { ShieldCheck, Award, Calculator, Users, CheckCircle } from 'lucide-react';
+import { ShieldCheck, Award, Calculator, Users, CheckCircle, Wrench, FileCheck, Layers } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata = createMetadata({
-  title: 'About CraftCalc Methodology',
+  title: 'About CraftCalc Estimating Methodology',
   description: 'Learn about our mission, editorial formula verification standards, and trade estimating panel at CraftCalc.',
   path: '/about'
 });
@@ -43,11 +43,11 @@ export default function AboutPage() {
               Our Mission & Standards
             </span>
             <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              About CraftCalc
+              About CraftCalc Engineering
             </h1>
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
               CraftCalc is an independent, contractor-reviewed home improvement calculation platform.
-              We build precision tools designed to prevent material shortages, save homeowners money, and eliminate guesswork from DIY projects.
+              We build precision tools designed to prevent material shortages, save homeowners money, and eliminate guesswork from residential renovation takeoffs.
             </p>
           </div>
 
@@ -60,12 +60,12 @@ export default function AboutPage() {
               <div className="flex items-center gap-2">
                 <h2 className="text-lg font-bold text-slate-900">{siteConfig.author.name}</h2>
                 <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">
-                  Verified Panel
+                  Verified Trade Panel
                 </span>
               </div>
               <p className="text-xs text-slate-500 font-medium">{siteConfig.author.bio}</p>
               <p className="text-xs text-slate-600 pt-2 leading-relaxed">
-                Our team consists of licensed general contractors, tile setters, and construction cost estimators with over 20 years of combined hands-on experience in residential and commercial remodeling.
+                Our editorial board consists of licensed general contractors, tile setters, concrete masons, and professional cost estimators with over 20 years of combined hands-on trade experience in residential remodeling and light commercial construction.
               </p>
             </div>
           </div>
@@ -73,7 +73,7 @@ export default function AboutPage() {
           {/* Principles */}
           <div className="space-y-6">
             <h2 className="text-2xl font-black text-slate-900 tracking-tight">
-              Our 4 Engineering Principles
+              Our 4 Core Engineering Principles
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="p-5 rounded-xl bg-white border border-slate-200 space-y-2">
@@ -82,7 +82,7 @@ export default function AboutPage() {
                   Exact Packaging Physics
                 </div>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  Retailers sell in whole cartons, bags, and rolls. We calculate the exact mathematical coverage and round up to whole units so you never run short mid-project.
+                  Retailers sell exclusively in whole cartons, 50lb bags, and rolls. We calculate the exact mathematical coverage and round up to whole units so you never run short mid-project.
                 </p>
               </div>
 
@@ -92,7 +92,7 @@ export default function AboutPage() {
                   Building Code Compliance
                 </div>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  All formulas adhere to standard International Residential Code (IRC) guidelines for minimum slab depths, mortar ratios, and expansion joint clearances.
+                  All formulas adhere to standard International Residential Code (IRC) and ANSI specifications for minimum slab depths, mortar ratios, and expansion joint clearances.
                 </p>
               </div>
 
@@ -102,7 +102,7 @@ export default function AboutPage() {
                   100% Free & Privacy-First
                 </div>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  Calculations execute entirely client-side in your browser. We never gate results behind paywalls or sell your dimensions.
+                  Calculations execute entirely client-side in your browser. We never gate results behind paywalls or transmit your room dimensions to external servers.
                 </p>
               </div>
 
@@ -112,10 +112,21 @@ export default function AboutPage() {
                   Regular Formula Audits
                 </div>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  We periodically update material coverage averages based on latest manufacturer product spec sheets from Home Depot, Lowe&apos;s, and direct trade distributors.
+                  We periodically audit and calibrate material coverage averages based on latest manufacturer product spec sheets from Home Depot, Lowe&apos;s, and direct trade distributors.
                 </p>
               </div>
             </div>
+          </div>
+
+          {/* Testing & Verification Protocol */}
+          <div className="p-6 sm:p-8 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-3">
+            <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <FileCheck className="w-5 h-5 text-emerald-600" />
+              Formula Testing & Verification Protocol
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              Every calculator published on CraftCalc undergoes a three-stage verification process: first, mathematical derivation of physical volume formulas; second, calibration against manufacturer packaging yields (such as ANSI A118 thinset standards and ASTM C309 curing guidelines); and third, field validation on active residential remodeling job sites by our contractor panel.
+            </p>
           </div>
         </div>
       </div>

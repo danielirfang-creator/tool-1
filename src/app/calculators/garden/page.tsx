@@ -6,12 +6,12 @@ import { getGuidesByCluster } from '@/config/guides';
 import { siteConfig } from '@/config/site';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { AdSlot } from '@/components/ads/AdSlot';
-import { Trees, ArrowRight, CheckCircle2, BookOpen } from 'lucide-react';
+import { Trees, ArrowRight, CheckCircle2, ShieldCheck, Ruler, Box } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata = createMetadata({
-  title: 'Garden & Outdoor Calculators',
-  description: 'Landscaping and outdoor project calculators. Estimate gravel tonnage, topsoil volume, mulch depth, patio pavers, and fence materials.',
+  title: 'Garden & Outdoor Living Calculators',
+  description: 'Calculators for outdoor living projects. Estimate mulch, topsoil, gravel, paver patios, fencing, deck boards, and retaining walls.',
   path: '/calculators/garden'
 });
 
@@ -22,12 +22,12 @@ export default function GardenClusterPage() {
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', item: '/' },
     { name: 'Calculators', item: '/calculators' },
-    { name: 'Garden & Outdoor Calculators', item: '/calculators/garden' },
+    { name: 'Garden Calculators', item: '/calculators/garden' },
   ]);
 
   const collectionSchema = generateCollectionSchema({
-    name: 'Garden & Outdoor Calculators - Gravel, Mulch, Soil, Turf & Fencing',
-    description: 'Landscaping material calculators. Estimate crushed gravel tons, mulch cubic yards, topsoil, sod grass rolls, interlocking pavers, and wood fences.',
+    name: 'Garden & Outdoor Calculators - Mulch, Gravel, Decking & Patio Estimators',
+    description: 'Professional outdoor living calculators. Estimate bulk mulch yards, gravel subbases, fence post holes, deck boards, and polymeric sand.',
     url: '/calculators/garden',
     items: tools.map((t) => ({
       name: t.name,
@@ -51,7 +51,7 @@ export default function GardenClusterPage() {
         <Breadcrumbs
           items={[
             { name: 'Calculators', href: '/calculators' },
-            { name: 'Garden & Outdoor Calculators', href: '/calculators/garden' },
+            { name: 'Garden Calculators', href: '/calculators/garden' },
           ]}
         />
 
@@ -62,10 +62,10 @@ export default function GardenClusterPage() {
             <span>Topical Cluster Hub</span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-            Garden & Landscaping Material Calculators
+            Garden & Hardscape Estimating Calculators
           </h1>
           <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
-            Landscaping material calculators. Estimate crushed gravel tons, mulch cubic yards, topsoil, sod grass rolls, interlocking pavers, and wood fences.
+            Calculators for outdoor living projects. Estimate bulk mulch cubic yards, topsoil, crushed gravel, paver patios, fencing materials, deck framing, and retaining walls.
           </p>
         </div>
 
@@ -74,7 +74,7 @@ export default function GardenClusterPage() {
         {/* Cluster Tools Grid */}
         <div className="my-10">
           <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-6">
-            All Garden & Outdoor Calculators ({tools.length} Tools)
+            All Garden & Hardscape Calculators ({tools.length} Tools)
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {tools.map((tool) => (
@@ -112,11 +112,65 @@ export default function GardenClusterPage() {
           </div>
         </div>
 
+        {/* Contractor Estimating Editorial Section */}
+        <div className="my-12 p-6 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-6 text-slate-700 leading-relaxed text-sm">
+          <div className="border-b border-slate-100 pb-4">
+            <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+              Hardscape & Landscape Material Takeoff Standards
+            </h2>
+            <p className="text-xs text-slate-500 mt-1">
+              Field estimating rules for paver bases, bulk aggregate, mulch, fencing, and deck carpentry.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Ruler className="w-4 h-4 text-emerald-600" />
+                Bulk Material Compaction Allowance
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                When ordering crushed stone base, gravel, or topsoil in bulk cubic yards, always add a 12% to 15% compaction buffer. Loose aggregate compresses under heavy mechanical plate compactors. One cubic yard covers 108 square feet at 3 inches of depth or 81 square feet at 4 inches of depth.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Box className="w-4 h-4 text-emerald-600" />
+                Mulch & Soil Bag Conversions
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Retail bags of landscape mulch are sold in 2 cubic foot or 3 cubic foot bags. Exactly 13.5 bags of 2 cu ft mulch or 9 bags of 3 cu ft mulch equal one cubic yard. Applying a 2-inch to 3-inch depth provides weed suppression while preserving natural soil moisture.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                Patio Subbase Layering Profile
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                A long-lasting paver patio requires 4 to 6 inches of compacted dense-graded road base, a non-woven geotextile soil stabilization fabric, 1 inch of ASTM C33 coarse concrete sand, and spiked edge restraints to prevent lateral shifting and sunken paver tracks over winter freeze cycles.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Trees className="w-4 h-4 text-emerald-600" />
+                Fence & Post Hole Depth Rules
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Fence post holes must extend below the local winter frost line (typically 24 to 36 inches deep) to prevent frost heaving. The hole diameter should be 3 times the width of the post (e.g., a 12-inch diameter hole for a 4x4 post), filled with fast-setting concrete poured around crushed gravel drainage bases.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Cluster Guides Section */}
         {guides.length > 0 && (
           <div className="my-12 pt-8 border-t border-slate-200">
             <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-6">
-              Expert Guides for Landscaping & Outdoor Estimations
+              Expert Guides for Garden & Hardscape Projects
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {guides.map((guide) => (
