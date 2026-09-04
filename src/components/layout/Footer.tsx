@@ -31,7 +31,7 @@ export function Footer() {
 
           {/* Calculator Categories */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-white mb-4">Calculator Hubs</h3>
+            <div className="text-xs font-bold uppercase tracking-wider text-white mb-4">Calculator Hubs</div>
             <ul className="space-y-2.5 text-sm">
               {siteConfig.navigation.clusters.map((cluster) => (
                 <li key={cluster.name}>
@@ -51,7 +51,7 @@ export function Footer() {
 
           {/* Guides & Resources */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-white mb-4">Guides & Advice</h3>
+            <div className="text-xs font-bold uppercase tracking-wider text-white mb-4">Guides & Advice</div>
             <ul className="space-y-2.5 text-sm">
               <li>
                 <Link href="/guides/flooring-waste-percentage-guide" className="text-slate-400 hover:text-emerald-400 transition-colors">
@@ -95,7 +95,7 @@ export function Footer() {
 
           {/* Company & Legal */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-white mb-4">Legal & Trust</h3>
+            <div className="text-xs font-bold uppercase tracking-wider text-white mb-4">Legal & Trust</div>
             <ul className="space-y-2.5 text-sm">
               <li>
                 <Link href="/about" className="text-slate-400 hover:text-emerald-400 transition-colors">

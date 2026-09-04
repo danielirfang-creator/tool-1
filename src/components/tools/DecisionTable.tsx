@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Table, Check } from 'lucide-react';
 
 interface DecisionTableProps {
@@ -18,10 +18,10 @@ export function DecisionTable({
 }: DecisionTableProps) {
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm space-y-4">
-      <div className="flex items-center gap-2 text-slate-900 font-bold text-lg sm:text-xl border-b border-slate-100 pb-3">
+      <h2 className="flex items-center gap-2 text-slate-900 font-bold text-lg sm:text-xl border-b border-slate-100 pb-3">
         <Table className="w-5 h-5 text-emerald-600 shrink-0" />
         <span>{title}</span>
-      </div>
+      </h2>
 
       <p className="text-sm text-slate-600 leading-relaxed">{description}</p>
 

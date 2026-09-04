@@ -134,7 +134,7 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
                 <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400">
                   Interactive Tool
                 </span>
-                <h3 className="text-lg font-bold text-white">{relatedTool.name}</h3>
+                <div className="text-lg font-bold text-white">{relatedTool.name}</div>
                 <p className="text-xs text-slate-300 max-w-md">{relatedTool.benefit}</p>
               </div>
               <Link

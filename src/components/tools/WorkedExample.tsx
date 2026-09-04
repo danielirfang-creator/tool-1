@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Calculator, CheckCircle2, Lightbulb } from 'lucide-react';
 
 interface WorkedExampleProps {
@@ -20,10 +20,10 @@ export function WorkedExample({
 }: WorkedExampleProps) {
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm space-y-6">
-      <div className="flex items-center gap-2 text-slate-900 font-bold text-lg sm:text-xl border-b border-slate-100 pb-3">
+      <h2 className="flex items-center gap-2 text-slate-900 font-bold text-lg sm:text-xl border-b border-slate-100 pb-3">
         <Calculator className="w-5 h-5 text-emerald-600 shrink-0" />
         <span>Worked Example: {title}</span>
-      </div>
+      </h2>
 
       <div className="bg-slate-50 p-4 rounded-xl text-sm text-slate-700 leading-relaxed border border-slate-100">
         <span className="font-bold text-slate-900">Scenario: </span>
@@ -32,7 +32,7 @@ export function WorkedExample({
 
       {/* Inputs List */}
       <div>
-        <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Example Parameters</h4>
+        <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Example Parameters</div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           {inputs.map((inp, idx) => (
             <div key={idx} className="p-2.5 rounded-lg bg-slate-100/70 border border-slate-200/60">
@@ -45,7 +45,7 @@ export function WorkedExample({
 
       {/* Step by step calculation table */}
       <div>
-        <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Step-by-Step Calculation</h4>
+        <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Step-by-Step Calculation</div>
         <div className="border border-slate-200 rounded-xl overflow-hidden">
           <table className="w-full text-left text-xs sm:text-sm">
             <thead className="bg-slate-100/80 text-slate-700 font-semibold border-b border-slate-200">

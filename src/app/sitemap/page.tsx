@@ -57,10 +57,10 @@ export default function SitemapPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-8">
           {/* Main Pages */}
           <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
-            <div className="flex items-center gap-2 font-bold text-slate-900 text-base border-b border-slate-100 pb-2">
+            <h2 className="flex items-center gap-2 font-bold text-slate-900 text-base border-b border-slate-100 pb-2">
               <Compass className="w-4 h-4 text-emerald-600" />
               <span>Core Hub Pages</span>
-            </div>
+            </h2>
             <ul className="space-y-2 text-xs">
               <li>
                 <Link href="/" className="text-slate-700 hover:text-emerald-600 font-medium">
@@ -92,10 +92,10 @@ export default function SitemapPage() {
 
           {/* 6 Category Clusters */}
           <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
-            <div className="flex items-center gap-2 font-bold text-slate-900 text-base border-b border-slate-100 pb-2">
+            <h2 className="flex items-center gap-2 font-bold text-slate-900 text-base border-b border-slate-100 pb-2">
               <Calculator className="w-4 h-4 text-emerald-600" />
               <span>Category Hubs</span>
-            </div>
+            </h2>
             <ul className="space-y-2 text-xs">
               {siteConfig.navigation.clusters.map((c) => (
                 <li key={c.name}>
@@ -109,10 +109,10 @@ export default function SitemapPage() {
 
           {/* Legal & Compliance */}
           <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
-            <div className="flex items-center gap-2 font-bold text-slate-900 text-base border-b border-slate-100 pb-2">
+            <h2 className="flex items-center gap-2 font-bold text-slate-900 text-base border-b border-slate-100 pb-2">
               <ShieldCheck className="w-4 h-4 text-emerald-600" />
               <span>Trust & Legal</span>
-            </div>
+            </h2>
             <ul className="space-y-2 text-xs">
               <li>
                 <Link href="/about" className="text-slate-700 hover:text-emerald-600 font-medium">
@@ -150,10 +150,10 @@ export default function SitemapPage() {
 
         {/* All Calculators List */}
         <div className="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-6">
-          <div className="flex items-center gap-2 font-bold text-slate-900 text-lg border-b border-slate-100 pb-3">
+          <h2 className="flex items-center gap-2 font-bold text-slate-900 text-lg border-b border-slate-100 pb-3">
             <Calculator className="w-5 h-5 text-emerald-600" />
             <span>Complete Calculator Registry ({toolsRegistry.length} Tools)</span>
-          </div>
+          </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {toolsRegistry.map((tool) => (

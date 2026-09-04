@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { toolsRegistry } from '@/config/tools';
 import { ArrowRight, Compass } from 'lucide-react';
@@ -17,10 +17,10 @@ export function RelatedTools({ relatedSlugs, currentSlug }: RelatedToolsProps) {
 
   return (
     <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-6 sm:p-8 shadow-sm space-y-4">
-      <div className="flex items-center gap-2 text-slate-900 font-bold text-lg sm:text-xl border-b border-slate-200/80 pb-3">
+      <h2 className="flex items-center gap-2 text-slate-900 font-bold text-lg sm:text-xl border-b border-slate-200/80 pb-3">
         <Compass className="w-5 h-5 text-emerald-600 shrink-0" />
         <span>Next Steps in Your Project</span>
-      </div>
+      </h2>
 
       <p className="text-xs sm:text-sm text-slate-600">
         Planning a comprehensive renovation? Continue your estimate with these connected cluster tools:
@@ -37,9 +37,9 @@ export function RelatedTools({ relatedSlugs, currentSlug }: RelatedToolsProps) {
               <div className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">
                 {tool.clusterName}
               </div>
-              <h4 className="text-sm font-bold text-slate-900 group-hover:text-emerald-700 mt-1 transition-colors">
+              <h3 className="text-sm font-bold text-slate-900 group-hover:text-emerald-700 mt-1 transition-colors">
                 {tool.name}
-              </h4>
+              </h3>
               <p className="text-xs text-slate-500 mt-1 line-clamp-2 leading-snug">
                 {tool.benefit}
               </p>
