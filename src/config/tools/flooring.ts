@@ -1,4 +1,4 @@
-﻿import { ToolMeta } from './types';
+import { ToolMeta } from './types';
 
 export const flooringTools: ToolMeta[] = [
   {
@@ -10,7 +10,7 @@ export const flooringTools: ToolMeta[] = [
     clusterHref: '/calculators/flooring',
     benefit: 'Calculate total square footage, pack requirements, waste percentage, and overall material budget in seconds.',
     metaTitle: 'Flooring Calculator - Sq Footage & Boxes',
-    metaDescription: 'Free, professional flooring calculator. Estimate total square feet or meters, pack coverage, recommended waste buffers (10-20%), and material cost for hardwood, vinyl, and tile.',
+    metaDescription: 'Free flooring calculator. Estimate total square feet, box quantities, waste factors (10-20%), and material costs for hardwood, vinyl, and tile.',
     keywords: ['flooring calculator', 'floor square footage calculator', 'how much flooring do i need', 'flooring box calculator', 'flooring waste calculator'],
     formula: 'Total Area = Length × Width | Order Area = Total Area × (1 + Waste%) | Total Boxes = ⌈Order Area ÷ Sq Ft Per Box⌉',
     formulaDescription: 'Multiply the room length by room width to find the base square footage. Then apply a waste factor (typically 10% for rectangular straight-lay patterns, or 15-20% for diagonal, herringbone, or multi-room layouts). Finally, divide the gross area by the manufacturer coverage per carton and round up to the nearest whole box.',
@@ -91,7 +91,7 @@ export const flooringTools: ToolMeta[] = [
     clusterHref: '/calculators/flooring',
     benefit: 'Calculate exact tile count, cartons, thinset mortar bags, and grout volume for floors, showers, and backsplashes.',
     metaTitle: 'Tile Calculator - Tiles, Grout & Mortar',
-    metaDescription: 'Free online tile calculator. Enter room dimensions, tile size (inches or cm), and joint width to calculate exact tiles needed, boxes to buy, mortar bags, and grout volume.',
+    metaDescription: 'Free tile calculator. Calculate exact tile count, box cartons, mortar bags, and grout pounds needed based on room size and tile dimensions.',
     keywords: ['tile calculator', 'how many tiles do i need', 'tile box calculator', 'floor tile calculator', 'grout calculator', 'thinset mortar calculator'],
     formula: 'Tile Area (sq ft) = (Tile L × Tile W) ÷ 144 | Exact Tiles = ⌈Net Room Area ÷ Single Tile Area⌉ | Order Tiles = Exact Tiles × (1 + Waste%)',
     formulaDescription: 'Convert the tile length and width to square feet. Divide total room area by single tile area to get raw tile count, then factor in 10% to 15% waste for cuts around edges, drains, and door jambs. Also estimates 50lb thinset bags (coverage ~45 sq ft) and 10lb grout bags.',
@@ -174,7 +174,7 @@ export const flooringTools: ToolMeta[] = [
     clusterHref: '/calculators/flooring',
     benefit: 'Estimate laminate plank cartons, underlayment rolls, transition T-moldings, and quarter-round trim.',
     metaTitle: 'Laminate Flooring Calculator - Planks',
-    metaDescription: 'Free laminate flooring calculator. Calculate total boxes needed, foam underlayment rolls, vapor barrier, perimeter quarter-round molding, and expansion gap allowances.',
+    metaDescription: 'Free laminate flooring calculator. Calculate total plank boxes, foam underlayment rolls, expansion gaps, and perimeter trim molding needed.',
     keywords: ['laminate calculator', 'laminate flooring calculator', 'how many boxes of laminate flooring', 'laminate underlayment calculator', 'laminate cost calculator'],
     formula: 'Gross Area = Length × Width × (1 + Waste%) | Boxes = ⌈Gross Area ÷ Box Sq Ft⌉ | Underlayment Rolls = ⌈Gross Area ÷ Roll Sq Ft⌉',
     formulaDescription: 'Calculate room area, add 10% standard waste (15% for multi-room spans or diagonal runs), divide by carton square footage, and round up. Calculates perimeter linear footage for 1/4" expansion gap trims, quarter-round shoe molding, and underlayment rolls (typically 100 sq ft per roll).',
