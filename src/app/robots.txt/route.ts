@@ -36,6 +36,7 @@ Allow: /
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /search
 
 Sitemap: ${siteConfig.url}/sitemap.xml
 `;

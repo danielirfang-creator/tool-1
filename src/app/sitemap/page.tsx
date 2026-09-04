@@ -5,7 +5,7 @@ import { toolsRegistry } from '@/config/tools';
 import { guidesRegistry } from '@/config/guides';
 import { siteConfig } from '@/config/site';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
-import { Map, Calculator, BookOpen, Compass, ShieldCheck, Layers, Network, Globe } from 'lucide-react';
+import { Map, Calculator, BookOpen, Compass, ShieldCheck, Layers, Network, Globe, CheckCircle2, HelpCircle } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata = createMetadata({
@@ -70,8 +70,8 @@ export default function SitemapPage() {
                 </Link>
               </li>
               <li>
-                <Link href="/search" className="text-slate-700 hover:text-emerald-600 font-medium">
-                  Live Calculator Search
+                <Link href="/about" className="text-slate-700 hover:text-emerald-600 font-medium">
+                  About & Testing Methodology
                 </Link>
               </li>
             </ul>
@@ -158,18 +158,49 @@ export default function SitemapPage() {
           </div>
         </div>
 
-        {/* Sitemap Architectural Structure */}
-        <div className="my-8 p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4 text-slate-700 text-sm leading-relaxed">
-          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-            <Network className="w-5 h-5 text-emerald-600" />
-            Sitemap Organization & Topical Cluster Hierarchy
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            CraftCalc organizes estimation tools through a structured topical cluster architecture. Each parent cluster hub serves as a central clearinghouse linking related interactive calculators, contractor takeoff matrices, and educational guides. This clear navigational structure ensures fast discoverability for both search engine web crawlers and trade users looking for immediate calculations.
-          </p>
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            All URLs published in this sitemap are canonical, indexable, and served with mobile-optimized responsive HTML to ensure instant page load speeds across all modern devices.
-          </p>
+        {/* Sitemap Architectural Structure & Navigation Guide */}
+        <div className="my-8 p-6 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-6 text-slate-700 text-sm leading-relaxed">
+          <div className="border-b border-slate-100 pb-4">
+            <h2 className="text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2">
+              <Network className="w-6 h-6 text-emerald-600" />
+              Sitemap Organization & Topical Cluster Hierarchy
+            </h2>
+            <p className="text-xs text-slate-500 mt-1">
+              How CraftCalc organizes interactive estimators, educational guides, and mathematical conversion engines.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Layers className="w-4 h-4 text-emerald-600" />
+                Topical Silo & Navigation Architecture
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                CraftCalc organizes 33 distinct calculation engines into 6 core trade clusters: Flooring, Painting, Concrete & Masonry, Garden & Hardscaping, Rooms & Drywall, and Construction Unit Conversions. Each cluster hub links directly to specialized sub-calculators, printable job-site reference cards, and contractor-authored guides.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Globe className="w-4 h-4 text-emerald-600" />
+                Crawl Frequency & XML Machine Sitemap
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                In addition to this human-readable HTML sitemap, CraftCalc publishes an automated XML sitemap at /sitemap.xml conforming to standard Sitemaps.org protocols. Search engine crawlers (Googlebot, Bingbot) and AI retrieval engines are provided with daily and weekly lastmod timestamps to ensure fresh indexation of newly deployed calculation tools.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-2">
+            <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              Canonical URL Integrity & Mobile Optimization
+            </h3>
+            <p className="text-xs text-slate-700 leading-relaxed">
+              Every single tool URL listed across our directory hierarchy is canonicalized, pre-rendered with static HTML (SSG) on edge CDNs, and designed for sub-second mobile rendering. This architecture guarantees that trade professionals can instantly launch calculators in the field, even on low-bandwidth job-site mobile networks.
+            </p>
+          </div>
         </div>
       </div>
     </div>

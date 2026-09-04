@@ -2,7 +2,7 @@ import React from 'react';
 import { createMetadata, generateAboutPageSchema, generateBreadcrumbSchema, generateOrganizationSchema } from '@/lib/seo';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { siteConfig } from '@/config/site';
-import { ShieldCheck, Award, Calculator, Users, CheckCircle, Wrench, FileCheck, Layers, BookOpen, Sparkles } from 'lucide-react';
+import { ShieldCheck, Award, Calculator, Users, CheckCircle, Wrench, FileCheck, Layers, BookOpen, Sparkles, Target, Compass } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata = createMetadata({
@@ -72,11 +72,12 @@ export default function AboutPage() {
 
           {/* The Problem We Solve */}
           <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3 text-slate-700 text-sm leading-relaxed">
-            <h2 className="text-xl font-bold text-slate-900">
+            <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+              <Target className="w-5 h-5 text-emerald-600" />
               The Real Cost of Material Estimating Errors
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              In residential remodeling, material estimation errors are among the most expensive mistakes a homeowner or contractor can make. Running short on hardwood planks mid-installation leads to costly work stoppages, dye-lot color mismatches, and expensive secondary freight fees. Conversely, over-purchasing excessive materials locks up valuable project capital in unreturnable custom goods.
+              In residential remodeling, material estimation errors are among the most expensive mistakes a homeowner or contractor can make. Running short on hardwood planks mid-installation leads to costly work stoppages, dye-lot color mismatches, and expensive secondary freight shipping fees. Conversely, over-purchasing excessive materials locks up valuable project capital in unreturnable custom goods.
             </p>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               CraftCalc was created to solve this problem by providing mathematical calculators that combine geometric formulas with real-world packaging rules, whole-carton rounding physics, and proven trade waste margins.
@@ -140,11 +141,15 @@ export default function AboutPage() {
             <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
               Every calculator published on CraftCalc undergoes a rigorous three-stage verification process: first, mathematical derivation of physical volume formulas; second, calibration against manufacturer packaging yields (such as ANSI A118 thinset standards and ASTM C309 curing guidelines); and third, field validation on active residential remodeling job sites by our contractor panel.
             </p>
+            <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              When building material specifications change—such as changes in bagged concrete coverage or thinner porcelain tile backer board specifications—our engineering team updates the corresponding formula constants to reflect current retail inventory.
+            </p>
           </div>
 
           {/* Sustainability & Editorial Independence */}
           <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3 text-slate-700 text-sm leading-relaxed">
-            <h2 className="text-xl font-bold text-slate-900">
+            <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+              <Compass className="w-5 h-5 text-emerald-600" />
               Editorial Independence & Environmental Sustainability
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">

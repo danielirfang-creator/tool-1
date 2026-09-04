@@ -3,7 +3,7 @@ import { createMetadata, generateBreadcrumbSchema, generateCollectionSchema } fr
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { siteConfig } from '@/config/site';
-import { FileText, Download, CheckCircle2, ShieldCheck, Printer, ArrowRight, Chrome, Sparkles, BookOpen, Ruler, Layers, Box } from 'lucide-react';
+import { FileText, Download, CheckCircle2, ShieldCheck, Printer, ArrowRight, Chrome, Sparkles, BookOpen, Ruler, Layers, Box, HelpCircle } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata = createMetadata({
@@ -200,7 +200,7 @@ export default function ResourcesPage() {
                 Perimeter Measurements & Deduction Rules
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                When estimating on site, always measure rooms at their maximum bounding points. For interior painting, deduct standard doors (21 sq ft) and windows (15 sq ft). For drywall, multiply wall length by ceiling height and round up to whole 4x8 or 4x12 panels.
+                When estimating on site, always measure rooms at their maximum bounding points. For interior painting, deduct standard doors (21 sq ft) and windows (15 sq ft). For drywall, multiply wall length by ceiling height and round up to whole 4x8 or 4x12 panels to minimize mudding joints.
               </p>
             </div>
 
@@ -211,6 +211,26 @@ export default function ResourcesPage() {
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
                 Before purchasing flooring, verify subfloor flatness using a 10-foot straightedge (tolerance within 3/16 inch). Inspect moisture content on concrete slabs using calcium chloride tests or electronic moisture meters before laying vinyl or engineered wood underlayment.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <Layers className="w-4 h-4 text-emerald-600" />
+                Polymer-Modified Thinset Mortar Standards
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                For porcelain tiles, glass mosaics, and natural marble slabs, select ANSI A118.4 or ANSI A118.15 polymer-modified thinset mortars. Standard unmodified mortar lacks the tensile bond strength required to grip impervious porcelain tile backs, causing loose tiles over time.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <h3 className="font-bold text-slate-900 flex items-center gap-2 text-sm">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                Compaction & Frost Line Engineering
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                When building exterior paver patios and retaining walls, always compact crushed aggregate in 2-inch lifts. Dig fence post holes and concrete footings at least 6 inches below local winter frost depth to eliminate seasonal frost heaving.
               </p>
             </div>
           </div>
