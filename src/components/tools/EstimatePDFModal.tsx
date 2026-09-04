@@ -53,10 +53,10 @@ export function EstimatePDFModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="relative w-full max-w-4xl rounded-3xl bg-slate-900 border border-slate-700 shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200 print:static print:p-0 print:m-0 print:bg-transparent print:backdrop-blur-none print:overflow-visible">
+      <div className="relative w-full max-w-4xl rounded-3xl bg-slate-900 border border-slate-700 shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col print:static print:max-w-none print:max-h-none print:border-none print:shadow-none print:bg-transparent print:overflow-visible print:my-0">
         {/* Modal Top Bar */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950/70 text-white shrink-0">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950/70 text-white shrink-0 print:hidden">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
               <FileText className="w-4 h-4" />
@@ -79,7 +79,7 @@ export function EstimatePDFModal({
         </div>
 
         {/* Modal Body: Editor & Live Preview */}
-        <div className="p-6 overflow-y-auto flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-slate-900 text-slate-100">
+        <div className="p-6 overflow-y-auto flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-slate-900 text-slate-100 print:block print:p-0 print:m-0 print:bg-transparent print:overflow-visible">
           {/* Left Column: Custom Project Controls */}
           <div className="lg:col-span-4 space-y-4 print:hidden">
             <div className="text-xs font-bold uppercase tracking-wider text-emerald-400">
@@ -160,10 +160,10 @@ export function EstimatePDFModal({
           </div>
 
           {/* Right Column: Printable Sheet Preview */}
-          <div className="lg:col-span-8">
+          <div className="lg:col-span-8 print:w-full print:p-0 print:m-0">
             <div
               id="printable-estimate-card"
-              className="bg-white text-slate-900 p-6 sm:p-8 rounded-2xl shadow-xl border border-slate-200 text-left"
+              className="bg-white text-slate-900 p-6 sm:p-8 rounded-2xl shadow-xl border border-slate-200 text-left print:p-4 print:border-none print:shadow-none print:w-full print:m-0"
             >
               {/* Document Header */}
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b-2 border-slate-900 pb-4 mb-6 gap-4">
