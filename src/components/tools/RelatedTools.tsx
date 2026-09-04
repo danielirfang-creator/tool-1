@@ -20,7 +20,7 @@ export function RelatedTools({ relatedSlugs, currentSlug, toolName }: RelatedToo
     <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-6 sm:p-8 shadow-sm space-y-4">
       <h2 className="flex items-center gap-2 text-slate-900 font-bold text-lg sm:text-xl border-b border-slate-200/80 pb-3">
         <Compass className="w-5 h-5 text-emerald-600 shrink-0" />
-        <span>{toolName ? `Related Calculators & Next Steps for ${toolName}` : 'Next Steps in Your Project'}</span>
+        <span>{toolName ? `Related Tools: ${toolName}` : 'Next Steps in Your Project'}</span>
       </h2>
 
       <p className="text-xs sm:text-sm text-slate-600">

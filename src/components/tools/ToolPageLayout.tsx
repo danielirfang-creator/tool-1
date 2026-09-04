@@ -91,7 +91,7 @@ export function ToolPageLayout({ tool, calculatorSlot }: ToolPageLayoutProps) {
               <div className="flex items-center gap-2 text-emerald-700">
                 <BookOpen className="w-5 h-5" />
                 <h2 className="text-xl font-bold text-slate-900">
-                  {tool.name} Estimating Methodology & Formula Calculation
+                  How It Works: {tool.name.split('(')[0].trim()}
                 </h2>
               </div>
               <div className="prose prose-slate max-w-none text-sm leading-relaxed text-slate-600 space-y-3">
@@ -138,7 +138,7 @@ export function ToolPageLayout({ tool, calculatorSlot }: ToolPageLayoutProps) {
               <div className="flex items-center gap-2 text-amber-800">
                 <ShieldAlert className="w-5 h-5 text-amber-600" />
                 <h2 className="text-xl font-bold text-slate-900">
-                  Important Variations & Considerations for {tool.name}
+                  Key Factors for {tool.name.split('(')[0].trim()}
                 </h2>
               </div>
               <div className="text-sm text-slate-700 space-y-2 leading-relaxed">
@@ -157,7 +157,7 @@ export function ToolPageLayout({ tool, calculatorSlot }: ToolPageLayoutProps) {
             {tool.faqs && tool.faqs.length > 0 && (
               <FaqSection
                 faqs={tool.faqs}
-                title={`Frequently Asked Questions About ${tool.name}`}
+                title={`FAQs: ${tool.name.split('(')[0].trim()}`}
               />
             )}
 
@@ -166,7 +166,7 @@ export function ToolPageLayout({ tool, calculatorSlot }: ToolPageLayoutProps) {
               <RelatedTools
                 currentSlug={tool.slug}
                 relatedSlugs={tool.relatedToolSlugs || []}
-                toolName={tool.name}
+                toolName={tool.name.split('(')[0].trim()}
               />
             </section>
           </div>

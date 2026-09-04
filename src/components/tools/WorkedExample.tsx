@@ -22,7 +22,7 @@ export function WorkedExample({
     <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm space-y-6">
       <h2 className="flex items-center gap-2 text-slate-900 font-bold text-lg sm:text-xl border-b border-slate-100 pb-3">
         <Calculator className="w-5 h-5 text-emerald-600 shrink-0" />
-        <span>Worked Example: {title}</span>
+        <span>Example: {title.length > 45 ? `${title.slice(0, 45)}...` : title}</span>
       </h2>
 
       <div className="bg-slate-50 p-4 rounded-xl text-sm text-slate-700 leading-relaxed border border-slate-100">
