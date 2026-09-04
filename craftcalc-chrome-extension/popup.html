@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CraftCalc Quick Estimator</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="header">
+    <div class="logo-container">
+      <div class="logo-badge">CC</div>
+      <div>
+        <h1 class="logo-title">CraftCalc</h1>
+        <p class="logo-sub">Precision DIY Estimator</p>
+      </div>
+    </div>
+    <a href="https://tool-1-pied.vercel.app" target="_blank" class="web-btn" title="Open Full 33-Tool Website">
+      Full Web &rarr;
+    </a>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="flooring">Flooring</button>
+    <button class="tab-btn" data-tab="paint">Paint</button>
+    <button class="tab-btn" data-tab="concrete">Concrete</button>
+    <button class="tab-btn" data-tab="convert">Convert</button>
+  </div>
+
+  <!-- Flooring Tab -->
+  <div id="flooring" class="tab-content active">
+    <div class="input-grid">
+      <div class="input-group">
+        <label>Room Length (ft)</label>
+        <input type="number" id="floor-len" value="12" min="1" step="0.5">
+      </div>
+      <div class="input-group">
+        <label>Room Width (ft)</label>
+        <input type="number" id="floor-wid" value="15" min="1" step="0.5">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Installation Pattern / Waste</label>
+      <select id="floor-waste">
+        <option value="10">Straight Lay (+10% Waste)</option>
+        <option value="15">Diagonal 45° (+15% Waste)</option>
+        <option value="20">Herringbone (+20% Waste)</option>
+        <option value="5">Simple Minimal (+5% Waste)</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label>Sq Ft Per Box (Pack)</label>
+      <input type="number" id="floor-box" value="20" min="1" step="0.5">
+    </div>
+
+    <button id="calc-floor-btn" class="calc-btn">Calculate Flooring</button>
+
+    <div id="floor-res" class="result-box">
+      <div class="res-row"><span>Base Area:</span> <strong id="floor-base">180 sq ft</strong></div>
+      <div class="res-row"><span>Total with Waste:</span> <strong id="floor-total" class="highlight">198 sq ft</strong></div>
+      <div class="res-row"><span>Boxes to Buy:</span> <strong id="floor-boxes" class="accent">10 Boxes</strong></div>
+    </div>
+  </div>
+
+  <!-- Paint Tab -->
+  <div id="paint" class="tab-content">
+    <div class="input-grid">
+      <div class="input-group">
+        <label>Room Perimeter (ft)</label>
+        <input type="number" id="paint-perim" value="50" min="1" step="1">
+      </div>
+      <div class="input-group">
+        <label>Wall Height (ft)</label>
+        <input type="number" id="paint-height" value="8" min="1" step="0.5">
+      </div>
+    </div>
+
+    <div class="input-grid">
+      <div class="input-group">
+        <label>Doors (Deduction)</label>
+        <input type="number" id="paint-doors" value="2" min="0" step="1">
+      </div>
+      <div class="input-group">
+        <label>Windows (Deduction)</label>
+        <input type="number" id="paint-windows" value="2" min="0" step="1">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Number of Coats</label>
+      <select id="paint-coats">
+        <option value="2">2 Coats (Standard Recommended)</option>
+        <option value="1">1 Coat (Touch-up / Same Color)</option>
+        <option value="3">3 Coats (Drastic Color Change)</option>
+      </select>
+    </div>
+
+    <button id="calc-paint-btn" class="calc-btn">Calculate Paint Gallons</button>
+
+    <div id="paint-res" class="result-box">
+      <div class="res-row"><span>Net Wall Area:</span> <strong id="paint-net">320 sq ft</strong></div>
+      <div class="res-row"><span>Total Paint Needed:</span> <strong id="paint-gallons" class="accent">2 Gallons (~7.6 L)</strong></div>
+    </div>
+  </div>
+
+  <!-- Concrete Tab -->
+  <div id="concrete" class="tab-content">
+    <div class="input-grid">
+      <div class="input-group">
+        <label>Slab Length (ft)</label>
+        <input type="number" id="conc-len" value="10" min="1" step="0.5">
+      </div>
+      <div class="input-group">
+        <label>Slab Width (ft)</label>
+        <input type="number" id="conc-wid" value="10" min="1" step="0.5">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Slab Thickness (Thickness in Inches)</label>
+      <select id="conc-thick">
+        <option value="4">4 Inches (Standard Patio / Walkway)</option>
+        <option value="6">6 Inches (Driveway / Heavy Load)</option>
+        <option value="3.5">3.5 Inches (Light Duty)</option>
+      </select>
+    </div>
+
+    <button id="calc-conc-btn" class="calc-btn">Calculate Concrete Volume</button>
+
+    <div id="conc-res" class="result-box">
+      <div class="res-row"><span>Cubic Yards:</span> <strong id="conc-yards" class="highlight">1.23 Cu Yd</strong></div>
+      <div class="res-row"><span>80lb Pre-Mix Bags:</span> <strong id="conc-80lb" class="accent">56 Bags</strong></div>
+      <div class="res-row"><span>60lb Pre-Mix Bags:</span> <strong id="conc-60lb">74 Bags</strong></div>
+    </div>
+  </div>
+
+  <!-- Converter Tab -->
+  <div id="convert" class="tab-content">
+    <div class="input-group">
+      <label>Conversion Type</label>
+      <select id="conv-type">
+        <option value="ft-m">Feet &rarr; Meters</option>
+        <option value="m-ft">Meters &rarr; Feet</option>
+        <option value="sqft-m2">Square Feet &rarr; Square Meters (m²)</option>
+        <option value="m2-sqft">Square Meters (m²) &rarr; Square Feet</option>
+        <option value="in-mm">Inches &rarr; Millimeters (mm)</option>
+        <option value="gal-l">Gallons &rarr; Liters</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label>Value to Convert</label>
+      <input type="number" id="conv-val" value="10" step="any">
+    </div>
+
+    <button id="calc-conv-btn" class="calc-btn">Convert Units</button>
+
+    <div id="conv-res" class="result-box">
+      <div class="res-row"><span>Converted Result:</span> <strong id="conv-out" class="accent">3.048 Meters</strong></div>
+    </div>
+  </div>
+
+  <!-- Footer Quick Links -->
+  <div class="footer">
+    <span>CraftCalc.app &bull; 33 Free Tools</span>
+    <a href="https://tool-1-pied.vercel.app/calculators" target="_blank">All Calculators &rarr;</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
