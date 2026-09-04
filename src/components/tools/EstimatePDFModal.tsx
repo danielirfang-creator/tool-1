@@ -97,6 +97,27 @@ export function EstimatePDFModal({
     }
   };
 
+  const handleWhatsAppShare = () => {
+    const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://tool-1-pied.vercel.app';
+    const metricsList = secondaryMetrics
+      .map((m) => `▫️ *${m.label}*: ${m.value}${m.subtext ? ` (${m.subtext})` : ''}`)
+      .join('\n');
+
+    const message = `📋 *CraftCalc Material & Cost Estimate*
+━━━━━━━━━━━━━━━━━━━━
+📌 *Project*: ${projectName || 'Renovation Estimate'}
+${clientName ? `👤 *Client*: ${clientName}\n` : ''}${contractorName ? `🏗️ *Estimator*: ${contractorName}\n` : ''}⭐ *Total*: *${primaryValue}* ${primarySubtext ? `(${primarySubtext})` : ''}
+
+📊 *Itemization*:
+${metricsList}
+${customNotes ? `\n📝 *Notes*: ${customNotes}\n` : ''}
+🔗 *Online Calculator*: ${currentUrl}
+✅ _Contractor verified via CraftCalc.app_`;
+
+    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200 print:static print:p-0 print:m-0 print:bg-transparent print:backdrop-blur-none print:overflow-visible">
       <div className="relative w-full max-w-4xl rounded-3xl bg-slate-900 border border-slate-700 shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col print:static print:max-w-none print:max-h-none print:border-none print:shadow-none print:bg-transparent print:overflow-visible print:my-0">
@@ -189,14 +210,14 @@ export function EstimatePDFModal({
               />
             </div>
 
-            {/* SEPARATE BUTTONS FOR PDF & PRINT */}
-            <div className="pt-2 space-y-2.5">
+            {/* ACTION BUTTONS: PDF, WHATSAPP, PRINT */}
+            <div className="pt-2 space-y-2">
               {/* Button 1: Direct PDF File Download */}
               <button
                 type="button"
                 onClick={handleDownloadPDF}
                 disabled={isGeneratingPdf}
-                className="w-full py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg hover:shadow-emerald-500/25 transition-all disabled:opacity-50"
+                className="w-full py-2.5 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg hover:shadow-emerald-500/25 transition-all disabled:opacity-50"
               >
                 {isGeneratingPdf ? (
                   <>
@@ -211,13 +232,25 @@ export function EstimatePDFModal({
                 )}
               </button>
 
-              {/* Button 2: Direct Printer Sheet */}
+              {/* Button 2: WhatsApp Share */}
+              <button
+                type="button"
+                onClick={handleWhatsAppShare}
+                className="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md transition-all"
+              >
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.53 1.771.82 2.79.82 3.181 0 5.767-2.586 5.768-5.766 0-3.18-2.586-5.766-5.767-5.766zm3.377 8.204c-.149.422-.767.798-1.077.839-.311.042-.716.06-2.029-.485-1.554-.645-2.57-2.222-2.648-2.327-.078-.105-.629-.838-.629-1.599 0-.761.398-1.135.539-1.29.141-.155.309-.194.412-.194.103 0 .206.002.296.006.095.005.223-.036.348.265.129.311.442 1.079.481 1.157.039.078.065.169.013.272-.052.103-.078.168-.155.259-.078.091-.163.203-.233.272-.078.077-.16.161-.069.317.091.156.404.667.868 1.08 1.07.954 1.258.98 1.439.889.181-.091.776-.902.983-1.211.207-.311.414-.259.699-.155.284.103 1.801.849 2.111 1.004.31.155.517.233.595.362.078.13.078.751-.071 1.173zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.176L2 22l4.98-1.306A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+                </svg>
+                <span>Share via WhatsApp</span>
+              </button>
+
+              {/* Button 3: Direct Printer Sheet */}
               <button
                 type="button"
                 onClick={handlePrint}
-                className="w-full py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-bold text-xs flex items-center justify-center gap-2 border border-slate-700 transition-colors"
+                className="w-full py-2 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-medium text-xs flex items-center justify-center gap-2 border border-slate-700 transition-colors"
               >
-                <Printer className="w-4 h-4 text-emerald-400" />
+                <Printer className="w-3.5 h-3.5 text-slate-400" />
                 <span>Print to Printer (1 Page)</span>
               </button>
             </div>

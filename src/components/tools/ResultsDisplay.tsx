@@ -40,6 +40,26 @@ Calculated at: ${window.location.href}`;
     setTimeout(() => setCopied(false), 2500);
   };
 
+  const handleWhatsAppShare = () => {
+    const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://tool-1-pied.vercel.app';
+    const metricsList = secondaryMetrics
+      .map((m) => `▫️ *${m.label}*: ${m.value}${m.subtext ? ` (${m.subtext})` : ''}`)
+      .join('\n');
+
+    const message = `📋 *CraftCalc Material & Cost Estimate*
+━━━━━━━━━━━━━━━━━━━━
+📌 *Total*: *${primaryValue}* ${primarySubtext ? `(${primarySubtext})` : ''}
+
+📊 *Itemization*:
+${metricsList}
+
+🔗 *Open Calculator*: ${currentUrl}
+✅ _Calculated via CraftCalc.app_`;
+
+    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div className="rounded-2xl bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 text-white p-6 sm:p-8 shadow-xl border border-slate-800">
       {/* Top action header */}
@@ -48,6 +68,20 @@ Calculated at: ${window.location.href}`;
           Calculation Result
         </span>
         <div className="flex flex-wrap items-center gap-2">
+          {/* WhatsApp Instant Share */}
+          <button
+            type="button"
+            onClick={handleWhatsAppShare}
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 px-3 py-1.5 rounded-lg transition-colors shadow-sm"
+            title="Share estimate via WhatsApp"
+          >
+            <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.53 1.771.82 2.79.82 3.181 0 5.767-2.586 5.768-5.766 0-3.18-2.586-5.766-5.767-5.766zm3.377 8.204c-.149.422-.767.798-1.077.839-.311.042-.716.06-2.029-.485-1.554-.645-2.57-2.222-2.648-2.327-.078-.105-.629-.838-.629-1.599 0-.761.398-1.135.539-1.29.141-.155.309-.194.412-.194.103 0 .206.002.296.006.095.005.223-.036.348.265.129.311.442 1.079.481 1.157.039.078.065.169.013.272-.052.103-.078.168-.155.259-.078.091-.163.203-.233.272-.078.077-.16.161-.069.317.091.156.404.667.868 1.08 1.07.954 1.258.98 1.439.889.181-.091.776-.902.983-1.211.207-.311.414-.259.699-.155.284.103 1.801.849 2.111 1.004.31.155.517.233.595.362.078.13.078.751-.071 1.173zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.176L2 22l4.98-1.306A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+            </svg>
+            <span>WhatsApp</span>
+          </button>
+
+          {/* Copy Summary */}
           <button
             type="button"
             onClick={handleCopy}
@@ -56,6 +90,8 @@ Calculated at: ${window.location.href}`;
             {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
             <span className="hidden sm:inline">{copied ? 'Copied!' : 'Copy Summary'}</span>
           </button>
+
+          {/* Print Sheet */}
           <button
             type="button"
             onClick={() => setIsPdfModalOpen(true)}
@@ -64,6 +100,8 @@ Calculated at: ${window.location.href}`;
             <Printer className="w-3.5 h-3.5 text-emerald-400" />
             <span>Print Sheet</span>
           </button>
+
+          {/* Download PDF */}
           <button
             type="button"
             onClick={() => setIsPdfModalOpen(true)}
