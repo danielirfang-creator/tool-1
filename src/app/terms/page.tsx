@@ -1,25 +1,14 @@
 import { siteConfig } from '@/config/site';
+import { createMetadata } from '@/lib/seo';
 ﻿import React from 'react';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: 'Terms of Service & Usage Agreement',
-  description: 'Terms of service and usage conditions for CraftCalc home improvement calculators and estimating tools.',
-  alternates: {
-    canonical: '/terms',
-  },
-  openGraph: {
-    title: 'Terms of Service & Usage Agreement | CraftCalc',
-    description: 'Terms of service and usage conditions for CraftCalc home improvement calculators and estimating tools.',
-    url: `${siteConfig.url}/terms`,
-    type: 'website',
-  },
-  twitter: {
-    title: 'Terms of Service & Usage Agreement | CraftCalc',
-    description: 'Terms of service and usage conditions for CraftCalc home improvement calculators and estimating tools.',
-  },
-};
+  description: 'CraftCalc terms of service, material estimation disclaimers, intellectual property rules, and acceptable usage guidelines.',
+  path: '/terms'
+});
 
 
 export default function TermsPage() {

@@ -1,4 +1,5 @@
 import { siteConfig } from '@/config/site';
+import type { Metadata } from 'next';
 
 export function buildCanonicalUrl(path: string): string {
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
@@ -6,6 +7,52 @@ export function buildCanonicalUrl(path: string): string {
     return siteConfig.url;
   }
   return `${siteConfig.url}${cleanPath.replace(/\/$/, '')}`;
+}
+
+export function createMetadata({
+  title,
+  description,
+  path,
+  noIndex = false,
+}: {
+  title: string;
+  description: string;
+  path: string;
+  noIndex?: boolean;
+}): Metadata {
+  const url = buildCanonicalUrl(path);
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: path,
+    },
+    robots: noIndex
+      ? { index: false, follow: true }
+      : { index: true, follow: true },
+    openGraph: {
+      title: `${title} | ${siteConfig.name}`,
+      description,
+      url,
+      siteName: siteConfig.name,
+      type: 'website',
+      locale: 'en_US',
+      images: [
+        {
+          url: `${siteConfig.url}/og-image.png`,
+          width: 1200,
+          height: 630,
+          alt: `${title} - ${siteConfig.name}`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${title} | ${siteConfig.name}`,
+      description,
+      images: [`${siteConfig.url}/og-image.png`],
+    },
+  };
 }
 
 export interface BreadcrumbItem {

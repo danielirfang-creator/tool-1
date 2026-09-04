@@ -1,27 +1,15 @@
 import React from 'react';
+import { createMetadata, generateBreadcrumbSchema, generateContactPageSchema } from '@/lib/seo';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { siteConfig } from '@/config/site';
 import { Mail, MessageSquare } from 'lucide-react';
 import type { Metadata } from 'next';
-import { generateBreadcrumbSchema, generateContactPageSchema } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: 'Contact CraftCalc Support',
-  description: 'Have a formula correction, partnership inquiry, or calculator request? Get in touch with the CraftCalc engineering team.',
-  alternates: {
-    canonical: '/contact',
-  },
-  openGraph: {
-    title: 'Contact CraftCalc Support | CraftCalc',
-    description: 'Have a formula correction, partnership inquiry, or calculator request? Get in touch with the CraftCalc engineering team.',
-    url: `${siteConfig.url}/contact`,
-    type: 'website',
-  },
-  twitter: {
-    title: 'Contact CraftCalc Support | CraftCalc',
-    description: 'Get in touch with the CraftCalc team.',
-  },
-};
+  description: 'Get in touch with the CraftCalc editorial and engineering team for formula feedback, bug reports, and contractor partnerships.',
+  path: '/contact'
+});
 
 export default function ContactPage() {
   const contactSchema = generateContactPageSchema();

@@ -1,4 +1,5 @@
 import React from 'react';
+import { createMetadata, generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 import Link from 'next/link';
 import { siteConfig } from '@/config/site';
 import { toolsRegistry } from '@/config/tools';
@@ -6,25 +7,12 @@ import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { Hammer, Layers, Paintbrush, Trees, Home, ArrowRightLeft, ArrowRight, Check } from 'lucide-react';
 import type { Metadata } from 'next';
-import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: 'All 33 DIY Project Calculators',
-  description: 'Browse all 33 professional DIY calculators across Flooring, Painting, Concrete, Garden, Rooms, and Unit Conversions with exact material estimators.',
-  alternates: {
-    canonical: '/calculators',
-  },
-  openGraph: {
-    title: 'All 33 DIY Project Calculators | CraftCalc',
-    description: 'Browse all 33 professional DIY calculators across Flooring, Painting, Concrete, Garden, Rooms, and Unit Conversions with exact material estimators.',
-    url: `${siteConfig.url}/calculators`,
-    type: 'website',
-  },
-  twitter: {
-    title: 'All 33 DIY Project Calculators | CraftCalc',
-    description: 'Browse all 33 professional DIY calculators across Flooring, Painting, Concrete, Garden, Rooms, and Unit Conversions.',
-  },
-};
+  description: 'Explore all 33 professional material calculators across flooring, painting, masonry, landscaping, room dimensions, and unit conversions.',
+  path: '/calculators'
+});
 
 export default function CalculatorsHubPage() {
   const clusterIcons: Record<string, React.ReactNode> = {

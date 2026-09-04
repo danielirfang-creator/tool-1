@@ -1,4 +1,5 @@
 import React from 'react';
+import { createMetadata, generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 import Link from 'next/link';
 import { getToolsByCluster } from '@/config/tools';
 import { getGuidesByCluster } from '@/config/guides';
@@ -7,25 +8,12 @@ import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { ArrowRightLeft, ArrowRight, CheckCircle2, BookOpen } from 'lucide-react';
 import type { Metadata } from 'next';
-import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: 'Construction Unit Converters',
-  description: 'Instant 2-way trade conversion tools for building materials. Convert feet to meters, inches to mm, square feet to square meters, liters to gallons.',
-  alternates: {
-    canonical: '/calculators/conversions',
-  },
-  openGraph: {
-    title: 'Construction Unit Converters | CraftCalc',
-    description: 'Instant 2-way trade conversion tools for building materials. Convert feet to meters, inches to mm, square feet to square meters, liters to gallons.',
-    url: `${siteConfig.url}/calculators/conversions`,
-    type: 'website',
-  },
-  twitter: {
-    title: 'Construction Unit Converters | CraftCalc',
-    description: 'Instant 2-way trade conversion tools for building materials. Convert feet to meters, inches to mm, square feet to square meters, liters to gallons.',
-  },
-};
+  description: 'Fast trade unit converters. Convert feet to metres, inches to mm, sq ft to m2, litres to gallons, and kg to pounds with precise decimals.',
+  path: '/calculators/conversions'
+});
 
 export default function ConversionsClusterPage() {
   const tools = getToolsByCluster('conversions');

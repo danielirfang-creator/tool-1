@@ -1,4 +1,5 @@
 import React from 'react';
+import { createMetadata, generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 import Link from 'next/link';
 import { guidesRegistry } from '@/config/guides';
 import { siteConfig } from '@/config/site';
@@ -6,25 +7,12 @@ import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { BookOpen, Clock, Calendar, ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
-import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: 'DIY Planning & Estimating Guides',
-  description: 'In-depth contractor guides to calculating flooring waste, thinset trowel sizes, laminate expansion gaps, and paint sheen selection.',
-  alternates: {
-    canonical: '/guides',
-  },
-  openGraph: {
-    title: 'DIY Planning & Estimating Guides | CraftCalc',
-    description: 'In-depth contractor guides to calculating flooring waste, thinset trowel sizes, laminate expansion gaps, and paint sheen selection.',
-    url: `${siteConfig.url}/guides`,
-    type: 'website',
-  },
-  twitter: {
-    title: 'DIY Planning & Estimating Guides | CraftCalc',
-    description: 'In-depth contractor guides to calculating flooring waste, thinset trowel sizes, laminate expansion gaps, and paint sheen selection.',
-  },
-};
+  description: 'Expert trade guides, waste margin calculations, and material takeoff tutorials written by experienced builders and renovators.',
+  path: '/guides'
+});
 
 export default function GuidesIndexPage() {
   const breadcrumbSchema = generateBreadcrumbSchema([

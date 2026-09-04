@@ -1,4 +1,5 @@
 import React from 'react';
+import { createMetadata, generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 import Link from 'next/link';
 import { getToolsByCluster } from '@/config/tools';
 import { getGuidesByCluster } from '@/config/guides';
@@ -7,25 +8,12 @@ import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { Paintbrush, ArrowRight, CheckCircle2, BookOpen } from 'lucide-react';
 import type { Metadata } from 'next';
-import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: 'Painting & Wall Calculators',
-  description: 'Professional interior and exterior paint calculators. Estimate wall coverage, gallons needed, 2-coat primer rules, and door/window deductions.',
-  alternates: {
-    canonical: '/calculators/painting',
-  },
-  openGraph: {
-    title: 'Painting & Wall Calculators | CraftCalc',
-    description: 'Professional interior and exterior paint calculators. Estimate wall coverage, gallons needed, 2-coat primer rules, and door/window deductions.',
-    url: `${siteConfig.url}/calculators/painting`,
-    type: 'website',
-  },
-  twitter: {
-    title: 'Painting & Wall Calculators | CraftCalc',
-    description: 'Professional interior and exterior paint calculators. Estimate wall coverage, gallons needed, 2-coat primer rules, and door/window deductions.',
-  },
-};
+  description: 'Accurate paint and surface calculators. Estimate gallons, primer coats, drywall coverage, and wall square footage.',
+  path: '/calculators/painting'
+});
 
 export default function PaintingClusterPage() {
   const tools = getToolsByCluster('painting');

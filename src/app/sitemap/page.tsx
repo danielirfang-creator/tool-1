@@ -1,5 +1,5 @@
-import { generateBreadcrumbSchema } from '@/lib/seo';
 ﻿import React from 'react';
+import { createMetadata, generateBreadcrumbSchema } from '@/lib/seo';
 import Link from 'next/link';
 import { toolsRegistry } from '@/config/tools';
 import { guidesRegistry } from '@/config/guides';
@@ -8,23 +8,11 @@ import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { Map, Calculator, BookOpen, Compass, ShieldCheck } from 'lucide-react';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: 'HTML Sitemap & Tool Directory',
   description: 'Complete index of all 33 calculators, 6 category hubs, 8 renovation guides, and resources on CraftCalc.',
-  alternates: {
-    canonical: '/sitemap',
-  },
-  openGraph: {
-    title: 'HTML Sitemap & Tool Directory | CraftCalc',
-    description: 'Complete index of all 33 calculators, 6 category hubs, 8 renovation guides, and resources on CraftCalc.',
-    url: `${siteConfig.url}/sitemap`,
-    type: 'website',
-  },
-  twitter: {
-    title: 'HTML Sitemap & Tool Directory | CraftCalc',
-    description: 'Complete index of all 33 calculators, 6 category hubs, 8 renovation guides, and resources on CraftCalc.',
-  },
-};
+  path: '/sitemap'
+});
 
 
 export default function SitemapPage() {

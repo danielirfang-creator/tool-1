@@ -1,27 +1,15 @@
 import React from 'react';
+import { createMetadata, generateAboutPageSchema, generateBreadcrumbSchema, generateOrganizationSchema } from '@/lib/seo';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { siteConfig } from '@/config/site';
 import { ShieldCheck, Award, Calculator, Users, CheckCircle } from 'lucide-react';
 import type { Metadata } from 'next';
-import { generateAboutPageSchema, generateBreadcrumbSchema, generateOrganizationSchema } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: 'About CraftCalc Methodology',
-  description: 'Learn about CraftCalc, our contractor-reviewed calculation methodology, editorial integrity, and our mission to simplify DIY project planning.',
-  alternates: {
-    canonical: '/about',
-  },
-  openGraph: {
-    title: 'About CraftCalc Methodology | CraftCalc',
-    description: 'Learn about CraftCalc, our contractor-reviewed calculation methodology, editorial integrity, and our mission to simplify DIY project planning.',
-    url: `${siteConfig.url}/about`,
-    type: 'website',
-  },
-  twitter: {
-    title: 'About CraftCalc Methodology | CraftCalc',
-    description: 'Learn about CraftCalc and our contractor-reviewed calculation methodology.',
-  },
-};
+  description: 'Learn about our mission, editorial formula verification standards, and trade estimating panel at CraftCalc.',
+  path: '/about'
+});
 
 export default function AboutPage() {
   const aboutSchema = generateAboutPageSchema();

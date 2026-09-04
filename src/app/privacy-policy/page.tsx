@@ -1,25 +1,14 @@
 import { siteConfig } from '@/config/site';
+import { createMetadata } from '@/lib/seo';
 ﻿import React from 'react';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: 'Privacy Policy & Data Security',
-  description: 'CraftCalc privacy policy. Learn how we handle client-side calculator data, browser cookies, and Google Analytics in compliance with GDPR and CCPA.',
-  alternates: {
-    canonical: '/privacy-policy',
-  },
-  openGraph: {
-    title: 'Privacy Policy & Data Security | CraftCalc',
-    description: 'CraftCalc privacy policy. Learn how we handle client-side calculator data, browser cookies, and Google Analytics in compliance with GDPR and CCPA.',
-    url: `${siteConfig.url}/privacy-policy`,
-    type: 'website',
-  },
-  twitter: {
-    title: 'Privacy Policy & Data Security | CraftCalc',
-    description: 'CraftCalc privacy policy. Learn how we handle client-side calculator data, browser cookies, and Google Analytics in compliance with GDPR and CCPA.',
-  },
-};
+  description: 'CraftCalc privacy policy. Transparent disclosures on client-side calculation processing, cookies, Google AdSense, and GDPR/CCPA compliance.',
+  path: '/privacy-policy'
+});
 
 
 export default function PrivacyPolicyPage() {

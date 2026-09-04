@@ -1,25 +1,14 @@
 import { siteConfig } from '@/config/site';
+import { createMetadata } from '@/lib/seo';
 ﻿import React from 'react';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: 'Cookie Policy & Local Storage',
-  description: 'Information about how CraftCalc uses essential cookies, local storage for unit preferences, and analytics tracking.',
-  alternates: {
-    canonical: '/cookie-policy',
-  },
-  openGraph: {
-    title: 'Cookie Policy & Local Storage | CraftCalc',
-    description: 'Information about how CraftCalc uses essential cookies, local storage for unit preferences, and analytics tracking.',
-    url: `${siteConfig.url}/cookie-policy`,
-    type: 'website',
-  },
-  twitter: {
-    title: 'Cookie Policy & Local Storage | CraftCalc',
-    description: 'Information about how CraftCalc uses essential cookies, local storage for unit preferences, and analytics tracking.',
-  },
-};
+  description: 'Information on how CraftCalc uses functional cookies and browser local storage for calculation preferences and anonymous analytics.',
+  path: '/cookie-policy'
+});
 
 
 export default function CookiePolicyPage() {

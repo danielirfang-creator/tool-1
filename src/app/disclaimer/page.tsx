@@ -1,26 +1,15 @@
 import { siteConfig } from '@/config/site';
+import { createMetadata } from '@/lib/seo';
 ﻿import React from 'react';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { ShieldAlert } from 'lucide-react';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: 'Material Estimating Disclaimer',
-  description: 'Important disclaimer regarding material estimates, waste percentage variances, and structural engineering limitations.',
-  alternates: {
-    canonical: '/disclaimer',
-  },
-  openGraph: {
-    title: 'Material Estimating Disclaimer | CraftCalc',
-    description: 'Important disclaimer regarding material estimates, waste percentage variances, and structural engineering limitations.',
-    url: `${siteConfig.url}/disclaimer`,
-    type: 'website',
-  },
-  twitter: {
-    title: 'Material Estimating Disclaimer | CraftCalc',
-    description: 'Important disclaimer regarding material estimates, waste percentage variances, and structural engineering limitations.',
-  },
-};
+  description: 'Important material disclaimer regarding contractor verification, code compliance, subfloor tolerances, and manufacturer variations.',
+  path: '/disclaimer'
+});
 
 
 export default function DisclaimerPage() {

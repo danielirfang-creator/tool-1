@@ -1,28 +1,16 @@
 import React from 'react';
+import { createMetadata, generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { siteConfig } from '@/config/site';
 import { FileText, Download, CheckCircle2, ShieldCheck, Printer, ArrowRight, Chrome, Sparkles } from 'lucide-react';
 import type { Metadata } from 'next';
-import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: 'Printable DIY Cheat Sheets',
-  description: 'Download free printable material cheat sheets, waste percentage rules, unit conversion tables, and project planning checklists.',
-  alternates: {
-    canonical: '/resources',
-  },
-  openGraph: {
-    title: 'Printable DIY Cheat Sheets | CraftCalc',
-    description: 'Download free printable material cheat sheets, waste percentage rules, unit conversion tables, and project planning checklists.',
-    url: `${siteConfig.url}/resources`,
-    type: 'website',
-  },
-  twitter: {
-    title: 'Printable DIY Cheat Sheets | CraftCalc',
-    description: 'Download free printable material cheat sheets, waste percentage rules, and conversion tables.',
-  },
-};
+  description: 'Download and print pocket measurement conversion cheat sheets and trade formula cards for job-site reference.',
+  path: '/resources'
+});
 
 export default function ResourcesPage() {
   const cheatSheets = [

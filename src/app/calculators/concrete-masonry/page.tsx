@@ -1,4 +1,5 @@
 import React from 'react';
+import { createMetadata, generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 import Link from 'next/link';
 import { getToolsByCluster } from '@/config/tools';
 import { getGuidesByCluster } from '@/config/guides';
@@ -7,25 +8,12 @@ import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { Hammer, ArrowRight, CheckCircle2, BookOpen } from 'lucide-react';
 import type { Metadata } from 'next';
-import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: 'Concrete & Masonry Calculators',
-  description: 'Calculate concrete volume in cubic yards, 60lb/80lb pre-mix bags, rebar grids, cinder blocks (CMU), bricks, and mortar requirements.',
-  alternates: {
-    canonical: '/calculators/concrete-masonry',
-  },
-  openGraph: {
-    title: 'Concrete & Masonry Calculators | CraftCalc',
-    description: 'Calculate concrete volume in cubic yards, 60lb/80lb pre-mix bags, rebar grids, cinder blocks (CMU), bricks, and mortar requirements.',
-    url: `${siteConfig.url}/calculators/concrete-masonry`,
-    type: 'website',
-  },
-  twitter: {
-    title: 'Concrete & Masonry Calculators | CraftCalc',
-    description: 'Calculate concrete volume in cubic yards, 60lb/80lb pre-mix bags, rebar grids, cinder blocks (CMU), bricks, and mortar requirements.',
-  },
-};
+  description: 'Concrete slab, bag, brick, and mortar estimators. Calculate cubic yards, 80lb/60lb pre-mix bags, and CMU block wall materials.',
+  path: '/calculators/concrete-masonry'
+});
 
 export default function ConcretemasonryClusterPage() {
   const tools = getToolsByCluster('concrete-masonry');

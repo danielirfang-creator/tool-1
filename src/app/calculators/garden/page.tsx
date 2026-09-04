@@ -1,4 +1,5 @@
 import React from 'react';
+import { createMetadata, generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 import Link from 'next/link';
 import { getToolsByCluster } from '@/config/tools';
 import { getGuidesByCluster } from '@/config/guides';
@@ -7,25 +8,12 @@ import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { Trees, ArrowRight, CheckCircle2, BookOpen } from 'lucide-react';
 import type { Metadata } from 'next';
-import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: 'Garden & Outdoor Calculators',
-  description: 'Landscaping material calculators. Estimate crushed gravel tons, mulch cubic yards, topsoil, sod grass rolls, interlocking pavers, and wood fences.',
-  alternates: {
-    canonical: '/calculators/garden',
-  },
-  openGraph: {
-    title: 'Garden & Outdoor Calculators | CraftCalc',
-    description: 'Landscaping material calculators. Estimate crushed gravel tons, mulch cubic yards, topsoil, sod grass rolls, interlocking pavers, and wood fences.',
-    url: `${siteConfig.url}/calculators/garden`,
-    type: 'website',
-  },
-  twitter: {
-    title: 'Garden & Outdoor Calculators | CraftCalc',
-    description: 'Landscaping material calculators. Estimate crushed gravel tons, mulch cubic yards, topsoil, sod grass rolls, interlocking pavers, and wood fences.',
-  },
-};
+  description: 'Landscaping and outdoor project calculators. Estimate gravel tonnage, topsoil volume, mulch depth, patio pavers, and fence materials.',
+  path: '/calculators/garden'
+});
 
 export default function GardenClusterPage() {
   const tools = getToolsByCluster('garden');

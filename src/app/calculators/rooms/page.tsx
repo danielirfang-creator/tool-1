@@ -1,4 +1,5 @@
 import React from 'react';
+import { createMetadata, generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 import Link from 'next/link';
 import { getToolsByCluster } from '@/config/tools';
 import { getGuidesByCluster } from '@/config/guides';
@@ -7,25 +8,12 @@ import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { Home, ArrowRight, CheckCircle2, BookOpen } from 'lucide-react';
 import type { Metadata } from 'next';
-import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: 'Room & Wall Area Calculators',
-  description: 'Room renovation calculators for DIYers. Calculate surface square footage, cubic volume for HVAC, wallpaper double rolls, and drywall 4x8 sheets.',
-  alternates: {
-    canonical: '/calculators/rooms',
-  },
-  openGraph: {
-    title: 'Room & Wall Area Calculators | CraftCalc',
-    description: 'Room renovation calculators for DIYers. Calculate surface square footage, cubic volume for HVAC, wallpaper double rolls, and drywall 4x8 sheets.',
-    url: `${siteConfig.url}/calculators/rooms`,
-    type: 'website',
-  },
-  twitter: {
-    title: 'Room & Wall Area Calculators | CraftCalc',
-    description: 'Room renovation calculators for DIYers. Calculate surface square footage, cubic volume for HVAC, wallpaper double rolls, and drywall 4x8 sheets.',
-  },
-};
+  description: 'Room dimension and area calculators. Compute square footage, square metres, wall surface areas, baseboard trim, and wallpaper rolls.',
+  path: '/calculators/rooms'
+});
 
 export default function RoomsClusterPage() {
   const tools = getToolsByCluster('rooms');

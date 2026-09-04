@@ -1,4 +1,5 @@
 import React from 'react';
+import { createMetadata, generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 import Link from 'next/link';
 import { getToolsByCluster } from '@/config/tools';
 import { getGuidesByCluster } from '@/config/guides';
@@ -7,25 +8,12 @@ import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { Layers, ArrowRight, CheckCircle2, BookOpen } from 'lucide-react';
 import type { Metadata } from 'next';
-import { generateBreadcrumbSchema, generateCollectionSchema } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: 'Flooring Calculators & Estimators',
-  description: 'Complete suite of professional flooring calculators. Calculate square footage, box quantities, tile layouts, laminate underlayment, and waste buffers.',
-  alternates: {
-    canonical: '/calculators/flooring',
-  },
-  openGraph: {
-    title: 'Flooring Calculators & Estimators | CraftCalc',
-    description: 'Complete suite of professional flooring calculators. Calculate square footage, box quantities, tile layouts, laminate underlayment, and waste buffers.',
-    url: `${siteConfig.url}/calculators/flooring`,
-    type: 'website',
-  },
-  twitter: {
-    title: 'Flooring Calculators & Estimators | CraftCalc',
-    description: 'Complete suite of professional flooring calculators. Calculate square footage, box quantities, tile layouts, laminate underlayment, and waste buffers.',
-  },
-};
+  description: 'Complete suite of flooring calculators. Calculate square footage, box quantities, tile layouts, laminate underlayment, and waste buffers.',
+  path: '/calculators/flooring'
+});
 
 export default function FlooringClusterPage() {
   const tools = getToolsByCluster('flooring');

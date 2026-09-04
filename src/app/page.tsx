@@ -1,11 +1,11 @@
 import React from 'react';
+import { createMetadata, generateOrganizationSchema, generateWebSiteSchema } from '@/lib/seo';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 import { toolsRegistry, getFeaturedTools } from '@/config/tools';
 import { guidesRegistry } from '@/config/guides';
 import { AdSlot } from '@/components/ads/AdSlot';
-import { generateWebSiteSchema, generateOrganizationSchema } from '@/lib/seo';
 import {
   Hammer,
   Layers,
@@ -23,19 +23,11 @@ import {
   Clock,
 } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: `${siteConfig.name} - Precision Home Improvement & DIY Calculators`,
-  description: siteConfig.description,
-  alternates: {
-    canonical: '/',
-  },
-  openGraph: {
-    title: `${siteConfig.name} - Precision Home Improvement & DIY Calculators`,
-    description: siteConfig.description,
-    url: siteConfig.url,
-    type: 'website',
-  },
-};
+export const metadata = createMetadata({
+  title: 'CraftCalc - Precision Home Improvement & DIY Calculators',
+  description: '33 free contractor-grade DIY calculators. Calculate flooring, paint, concrete, garden materials, room square footage with real waste margins.',
+  path: '/'
+});
 
 export default function HomePage() {
   const featuredTools = getFeaturedTools();
