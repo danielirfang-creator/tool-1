@@ -1,0 +1,79 @@
+{
+  "name": "CraftCalc - Automated Pinterest 180 Pins & Videos",
+  "flow": [
+    {
+      "id": 1,
+      "module": "google-sheets:watchRows",
+      "version": 2,
+      "parameters": {
+        "limit": 1
+      },
+      "mapper": {
+        "chooseType": "byMapping",
+        "sheet": "pinterest_180_videos_schedule",
+        "tableContainsHeaders": true
+      },
+      "metadata": {
+        "designer": {
+          "x": 0,
+          "y": 0,
+          "name": "Google Sheets - Watch 180 Pins"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "module": "http:ActionDownloadFile",
+      "version": 1,
+      "parameters": {
+        "handleErrors": true
+      },
+      "mapper": {
+        "url": "{{1.Video_URL}}"
+      },
+      "metadata": {
+        "designer": {
+          "x": 300,
+          "y": 0,
+          "name": "HTTP - Download Media"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "module": "pinterest:createPin",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "sourceType": "image_url",
+        "image_url": "{{1.Cover_Image_URL}}",
+        "title": "{{1.Title}}",
+        "description": "{{1.Description}}",
+        "link": "{{1.Destination_Link}}"
+      },
+      "metadata": {
+        "designer": {
+          "x": 600,
+          "y": 0,
+          "name": "Pinterest - Publish Pin"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "sequential": false,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false
+    },
+    "designer": {
+      "orphans": []
+    }
+  }
+}
