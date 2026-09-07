@@ -1,5 +1,5 @@
 {
-  "name": "CraftCalc - Pinterest 180 Automation",
+  "name": "CraftCalc - Pinterest Automation",
   "flow": [
     {
       "id": 1,
@@ -17,22 +17,21 @@
         "designer": {
           "x": 0,
           "y": 0,
-          "name": "Google Sheets - Watch Rows"
+          "name": "Google Sheets"
         }
       }
     },
     {
       "id": 2,
-      "module": "pinterest:ActionCreatePin",
+      "module": "pinterest:createPin",
       "version": 1,
       "parameters": {},
       "mapper": {
         "sourceType": "image_url",
-        "imageUrl": "{{1.Cover_Image_URL}}",
+        "image_url": "{{1.Cover_Image_URL}}",
         "title": "{{1.Title}}",
         "description": "{{1.Description}}",
-        "link": "{{1.Destination_Link}}",
-        "boardId": "{{1.Board}}"
+        "link": "{{1.Destination_Link}}"
       },
       "metadata": {
         "designer": {
