@@ -18,44 +18,11 @@
           "x": 0,
           "y": 0,
           "name": "Google Sheets - Watch Rows"
-        },
-        "restore": {
-          "parameters": {
-            "limit": {
-              "label": "1"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "limit",
-            "type": "uinteger",
-            "label": "Limit",
-            "required": true
-          }
-        ]
-      }
-    },
-    {
-      "id": 2,
-      "module": "http:ActionGetFile",
-      "version": 1,
-      "parameters": {
-        "handleErrors": true
-      },
-      "mapper": {
-        "url": "{{1.Video_URL}}"
-      },
-      "metadata": {
-        "designer": {
-          "x": 300,
-          "y": 0,
-          "name": "HTTP - Download Media"
         }
       }
     },
     {
-      "id": 3,
+      "id": 2,
       "module": "pinterest:ActionCreatePin",
       "version": 1,
       "parameters": {},
@@ -69,7 +36,7 @@
       },
       "metadata": {
         "designer": {
-          "x": 600,
+          "x": 300,
           "y": 0,
           "name": "Pinterest - Create a Pin"
         }
