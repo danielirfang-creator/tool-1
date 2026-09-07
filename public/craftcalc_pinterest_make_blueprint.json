@@ -1,5 +1,5 @@
 {
-  "name": "CraftCalc - Automated Pinterest 180 Pins & Videos",
+  "name": "CraftCalc - Pinterest 180 Automation",
   "flow": [
     {
       "id": 1,
@@ -17,13 +17,28 @@
         "designer": {
           "x": 0,
           "y": 0,
-          "name": "Google Sheets - Watch 180 Pins"
-        }
+          "name": "Google Sheets - Watch Rows"
+        },
+        "restore": {
+          "parameters": {
+            "limit": {
+              "label": "1"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "type": "uinteger",
+            "label": "Limit",
+            "required": true
+          }
+        ]
       }
     },
     {
       "id": 2,
-      "module": "http:ActionDownloadFile",
+      "module": "http:ActionGetFile",
       "version": 1,
       "parameters": {
         "handleErrors": true
@@ -41,21 +56,22 @@
     },
     {
       "id": 3,
-      "module": "pinterest:createPin",
+      "module": "pinterest:ActionCreatePin",
       "version": 1,
       "parameters": {},
       "mapper": {
         "sourceType": "image_url",
-        "image_url": "{{1.Cover_Image_URL}}",
+        "imageUrl": "{{1.Cover_Image_URL}}",
         "title": "{{1.Title}}",
         "description": "{{1.Description}}",
-        "link": "{{1.Destination_Link}}"
+        "link": "{{1.Destination_Link}}",
+        "boardId": "{{1.Board}}"
       },
       "metadata": {
         "designer": {
           "x": 600,
           "y": 0,
-          "name": "Pinterest - Publish Pin"
+          "name": "Pinterest - Create a Pin"
         }
       }
     }
