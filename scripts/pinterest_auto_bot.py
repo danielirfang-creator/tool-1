@@ -139,7 +139,7 @@ def post_single_pin(row, headless=False):
     title = row.get("Title", "")[:100]
     description = row.get("Description", "")[:500]
     destination_link = row.get("Destination_Link", "https://tool-1-pied.vercel.app")
-    board_name = row.get("Board", "DIY & Home Improvement")
+    board_name = row.get("Board", "DIY & Construction Tools")
 
     print(f"\n📌 Processing Pin #{pin_id}: {title}")
     print(f"🎬 Media: {Path(media_path).name} ({media_type.upper()})")
@@ -160,146 +160,76 @@ def post_single_pin(row, headless=False):
                 if browser: browser.close()
                 return False
 
-            # Upload media file
-            file_input = page.locator('input[type="file"]').first
-            if file_input.count() == 0:
-                page.goto("https://www.pinterest.com/pin-builder/", timeout=45000)
-                page.wait_for_timeout(4000)
-                file_input = page.locator('input[type="file"]').first
-
-            if file_input.count() > 0:
-                file_input.set_input_files(media_path)
-                print("   ✔ Media uploaded successfully")
+            # 1. Upload media file
+            upload_input = page.locator('input[type="file"], input[data-test-id="storyboard-upload-input"]').first
+            if upload_input.count() > 0:
+                upload_input.set_input_files(media_path)
+                print("   ✔ 1. Media uploaded successfully")
                 page.wait_for_timeout(5000)
             else:
-                print("   [!] Upload input not found directly, proceeding...")
+                print("   [!] Upload input not detected")
 
-            # Fill Title
-            title_selectors = [
-                'input[id*="storyboard-selector-title"]',
-                'textarea[id*="pin-title"]',
-                'input[data-test-id="pin-draft-title"]',
-                'input[placeholder*="title" i]',
-                'textarea[placeholder*="title" i]'
-            ]
-            for sel in title_selectors:
-                if page.locator(sel).count() > 0:
-                    page.locator(sel).first.fill(title)
-                    print("   ✔ Title filled")
-                    break
-
+            # 2. Fill Title with exact placeholder
+            title_box = page.locator('input[placeholder*="Tell everyone" i], input[placeholder*="title" i]').first
+            if title_box.count() > 0:
+                title_box.fill(title)
+                print("   ✔ 2. Title filled")
             page.wait_for_timeout(1000)
 
-            # Fill Description
-            desc_selectors = [
-                'div[data-test-id="pin-draft-description"] [contenteditable="true"]',
-                'textarea[id*="pin-description"]',
-                'textarea[data-test-id="pin-draft-description"]',
-                'div[id*="storyboard-selector-description"] [contenteditable="true"]',
-                'textarea[placeholder*="description" i]'
-            ]
-            for sel in desc_selectors:
-                if page.locator(sel).count() > 0:
-                    page.locator(sel).first.fill(description)
-                    print("   ✔ Description filled")
-                    break
-
+            # 3. Fill Description
+            desc_area = page.locator('div:has-text("Describe your Pin")').last
+            if desc_area.count() > 0:
+                desc_area.click(force=True)
+                page.keyboard.type(description)
+                print("   ✔ 3. Description typed")
             page.wait_for_timeout(1000)
 
-            # Fill Link
-            link_selectors = [
-                'input[data-test-id="pin-draft-link"]',
-                'input[id*="pin-link"]',
-                'input[placeholder*="link" i]',
-                'input[placeholder*="destination" i]'
-            ]
-            for sel in link_selectors:
-                if page.locator(sel).count() > 0:
-                    page.locator(sel).first.fill(destination_link)
-                    print("   ✔ Link filled")
-                    break
+            # 4. Fill Link
+            link_box = page.locator('input[placeholder*="Add a link" i], input[placeholder*="link" i]').first
+            if link_box.count() > 0:
+                link_box.fill(destination_link)
+                print("   ✔ 4. Link filled")
+            page.wait_for_timeout(1000)
 
+            # 5. Select Board
+            board_btn = page.locator('div[data-test-id="board-dropdown-select-button"]')
+            for _ in range(15):
+                if board_btn.get_attribute("aria-disabled") != "true":
+                    print("   ✔ Board dropdown is enabled!")
+                    break
+                page.wait_for_timeout(1000)
+
+            board_btn.click(force=True)
+            print("   ✔ 5. Clicked Board dropdown")
             page.wait_for_timeout(2000)
 
-            # Select or Create Board (Required for Publish button to be enabled)
-            try:
-                board_pickers = [
-                    '[data-test-id="board-dropdown-select-button"]',
-                    'button[aria-label*="Board" i]',
-                    'button[aria-label*="board" i]',
-                    'button:has-text("Choose a board")',
-                    'button:has-text("Select")',
-                    '[data-test-id="board-dropdown"]'
-                ]
-                
-                board_selected = False
-                for sel in board_pickers:
-                    picker = page.locator(sel)
-                    if picker.count() > 0 and picker.first.is_visible():
-                        picker.first.click()
-                        page.wait_for_timeout(2000)
-                        
-                        # Look for existing boards in dropdown
-                        boards = page.locator('[data-test-id="board-row"], [role="option"], div[data-test-id*="board"]')
-                        if boards.count() > 0:
-                            boards.first.click()
-                            board_selected = True
-                            print("   ✔ Board selected from list")
-                            page.wait_for_timeout(1500)
-                            break
-                        
-                        # If no boards found, try creating one
-                        create_btn = page.locator('button:has-text("Create board"), [data-test-id="create-board-button"]')
-                        if create_btn.count() > 0 and create_btn.first.is_visible():
-                            create_btn.first.click()
-                            page.wait_for_timeout(1500)
-                            b_input = page.locator('input[id*="board-name"], input[placeholder*="Name" i], input[type="text"]')
-                            if b_input.count() > 0:
-                                b_input.first.fill(board_name)
-                            b_create = page.locator('button:has-text("Create"), button[type="submit"]')
-                            if b_create.count() > 0:
-                                b_create.first.click()
-                                board_selected = True
-                                print(f"   ✔ Created & selected new board: {board_name}")
-                                page.wait_for_timeout(2000)
-                                break
-            except Exception as b_err:
-                print(f"   [!] Board selection notice: {b_err}")
-
+            # Click existing board or create
+            boards = page.locator('div[data-test-id="board-row"], div[role="option"], div[title]')
+            if boards.count() > 0:
+                boards.first.click()
+                print(f"   ✔ 6. Selected board: {boards.first.inner_text().strip()}")
+            else:
+                create_b = page.locator('button:has-text("Create board"), div:has-text("Create board")').first
+                if create_b.count() > 0:
+                    create_b.click()
+                    page.wait_for_timeout(1000)
+                    page.locator('input[id*="board-name"]').first.fill(board_name)
+                    page.locator('button:has-text("Create")').first.click()
+                    print(f"   ✔ 6. Created board: {board_name}")
             page.wait_for_timeout(3000)
 
-            # Click Publish / Save Button
-            publish_selectors = [
-                'button[data-test-id="board-dropdown-save-button"]',
-                'button:has-text("Publish")',
-                'button:has-text("Save")',
-                'div[data-test-id="board-dropdown-save-button"]'
-            ]
-            
-            published = False
-            for sel in publish_selectors:
-                btn = page.locator(sel).first
-                if btn.count() > 0 and btn.is_visible():
-                    # Wait up to 15 seconds for button to be enabled
-                    for _ in range(30):
-                        if not btn.is_disabled():
-                            break
-                        page.wait_for_timeout(500)
-                    
-                    if not btn.is_disabled():
-                        btn.click()
-                        published = True
-                        print("   ✔ Clicked Publish button")
-                        break
-                    else:
-                        print("   [!] Publish button is still disabled, attempting click...")
-                        btn.click(force=True)
-                        published = True
-                        break
+            # 6. Click Top Right Publish Button
+            publish_btn = page.locator('button:has-text("Publish")').first
+            for _ in range(20):
+                if not publish_btn.is_disabled():
+                    break
+                page.wait_for_timeout(500)
 
-            page.wait_for_timeout(7000)
+            publish_btn.click(force=True)
+            print("   🚀 7. CLICKED PUBLISH BUTTON SUCCESSFULLY!")
+            page.wait_for_timeout(15000)
             
-            # Record success
+            # Record success in history
             history = load_history()
             if pin_id not in history["posted_ids"]:
                 history["posted_ids"].append(pin_id)
@@ -313,7 +243,7 @@ def post_single_pin(row, headless=False):
             })
             save_history(history)
             
-            print(f"🎉 SUCCESS! Pin #{pin_id} published.")
+            print(f"🎉 SUCCESS! Pin #{pin_id} published to Pinterest.")
             context.close()
             if browser: browser.close()
             return True
