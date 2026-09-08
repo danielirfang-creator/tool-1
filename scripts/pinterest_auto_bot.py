@@ -6,6 +6,14 @@ import json
 import argparse
 from datetime import datetime
 from pathlib import Path
+
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 from playwright.sync_api import sync_playwright
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -213,6 +221,53 @@ def post_single_pin(row, headless=False):
 
             page.wait_for_timeout(2000)
 
+            # Select or Create Board (Required for Publish button to be enabled)
+            try:
+                board_pickers = [
+                    '[data-test-id="board-dropdown-select-button"]',
+                    'button[aria-label*="Board" i]',
+                    'button[aria-label*="board" i]',
+                    'button:has-text("Choose a board")',
+                    'button:has-text("Select")',
+                    '[data-test-id="board-dropdown"]'
+                ]
+                
+                board_selected = False
+                for sel in board_pickers:
+                    picker = page.locator(sel)
+                    if picker.count() > 0 and picker.first.is_visible():
+                        picker.first.click()
+                        page.wait_for_timeout(2000)
+                        
+                        # Look for existing boards in dropdown
+                        boards = page.locator('[data-test-id="board-row"], [role="option"], div[data-test-id*="board"]')
+                        if boards.count() > 0:
+                            boards.first.click()
+                            board_selected = True
+                            print("   ✔ Board selected from list")
+                            page.wait_for_timeout(1500)
+                            break
+                        
+                        # If no boards found, try creating one
+                        create_btn = page.locator('button:has-text("Create board"), [data-test-id="create-board-button"]')
+                        if create_btn.count() > 0 and create_btn.first.is_visible():
+                            create_btn.first.click()
+                            page.wait_for_timeout(1500)
+                            b_input = page.locator('input[id*="board-name"], input[placeholder*="Name" i], input[type="text"]')
+                            if b_input.count() > 0:
+                                b_input.first.fill(board_name)
+                            b_create = page.locator('button:has-text("Create"), button[type="submit"]')
+                            if b_create.count() > 0:
+                                b_create.first.click()
+                                board_selected = True
+                                print(f"   ✔ Created & selected new board: {board_name}")
+                                page.wait_for_timeout(2000)
+                                break
+            except Exception as b_err:
+                print(f"   [!] Board selection notice: {b_err}")
+
+            page.wait_for_timeout(3000)
+
             # Click Publish / Save Button
             publish_selectors = [
                 'button[data-test-id="board-dropdown-save-button"]',
@@ -221,12 +276,26 @@ def post_single_pin(row, headless=False):
                 'div[data-test-id="board-dropdown-save-button"]'
             ]
             
+            published = False
             for sel in publish_selectors:
-                btn = page.locator(sel)
-                if btn.count() > 0 and btn.first.is_visible():
-                    btn.first.click()
-                    print("   ✔ Clicked Publish button")
-                    break
+                btn = page.locator(sel).first
+                if btn.count() > 0 and btn.is_visible():
+                    # Wait up to 15 seconds for button to be enabled
+                    for _ in range(30):
+                        if not btn.is_disabled():
+                            break
+                        page.wait_for_timeout(500)
+                    
+                    if not btn.is_disabled():
+                        btn.click()
+                        published = True
+                        print("   ✔ Clicked Publish button")
+                        break
+                    else:
+                        print("   [!] Publish button is still disabled, attempting click...")
+                        btn.click(force=True)
+                        published = True
+                        break
 
             page.wait_for_timeout(7000)
             
