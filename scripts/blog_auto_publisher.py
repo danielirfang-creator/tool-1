@@ -1,4 +1,4 @@
-﻿import os
+import os
 import re
 import sys
 import time
@@ -267,8 +267,11 @@ def publish_to_medium_browser(article, headless=False):
                     page.wait_for_timeout(4000)
                     page.keyboard.press("Enter")
 
-            # 3. Paste Rich Formatted HTML with Real Clickable Links
-            print("   ✔ Pasting Rich HTML (Real clickable backlinks + headers + lists)...")
+            # 3. Paste Rich Formatted HTML with Real Clickable Links below picture
+            print("   ✔ Pasting Rich HTML (Real clickable backlinks + headers + lists) below picture...")
+            page.keyboard.press("ArrowDown")
+            page.keyboard.press("Enter")
+            page.wait_for_timeout(500)
             page.evaluate('''html => {
                 const dt = new DataTransfer();
                 dt.setData("text/html", html);
@@ -278,8 +281,9 @@ def publish_to_medium_browser(article, headless=False):
                     cancelable: true,
                     clipboardData: dt
                 });
-                const editor = document.querySelector('[role="textbox"]') || document.querySelector('p') || document.body;
-                editor.dispatchEvent(event);
+                const paragraphs = document.querySelectorAll('p, [role="textbox"]');
+                const target = paragraphs[paragraphs.length - 1] || document.body;
+                target.dispatchEvent(event);
             }''', rich_html)
             page.wait_for_timeout(3000)
 
