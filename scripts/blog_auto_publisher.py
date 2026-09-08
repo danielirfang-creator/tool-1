@@ -84,7 +84,12 @@ def do_medium_login():
             user_data_dir=str(MEDIUM_USER_DATA_DIR),
             headless=False,
             viewport={"width": 1280, "height": 850},
-            args=["--disable-blink-features=AutomationControlled"]
+            args=[
+                "--disable-blink-features=AutomationControlled",
+                "--no-sandbox",
+                "--disable-infobars"
+            ],
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
         )
         page = browser_context.new_page()
         page.goto("https://medium.com/m/signin", timeout=60000)
@@ -139,7 +144,12 @@ def publish_to_medium_browser(article, headless=False):
             user_data_dir=str(MEDIUM_USER_DATA_DIR),
             headless=headless,
             viewport={"width": 1280, "height": 900},
-            args=["--disable-blink-features=AutomationControlled"]
+            args=[
+                "--disable-blink-features=AutomationControlled",
+                "--no-sandbox",
+                "--disable-infobars"
+            ],
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
         )
         page = browser_context.new_page()
 
@@ -154,7 +164,7 @@ def publish_to_medium_browser(article, headless=False):
                 return None
 
             # Fill Title
-            title_el = page.locator('h3[data-placeholder*="Title" i], [data-testid="editorTitleBlock"], h3').first
+            title_el = page.locator('h3[data-placeholder*="Title" i], [data-testid="editorTitleBlock"], h3, [role="textbox"]').first
             title_el.wait_for(state="visible", timeout=15000)
             title_el.click()
             page.keyboard.type(article["title"])
@@ -162,9 +172,10 @@ def publish_to_medium_browser(article, headless=False):
             print("   ✔ Medium Title entered")
             page.wait_for_timeout(1000)
 
-            # Type Body
-            body_text = article["markdown_body"].replace("#", "").replace("`", "")
-            page.keyboard.type(body_text[:1500])
+            # Type Body (clean markdown formatting)
+            body_text = article["markdown_body"].replace("#", "").replace("`", "").replace("$$", "")
+            # Type first paragraph or full text
+            page.keyboard.type(body_text[:2500], delay=10)
             print("   ✔ Medium Story Content entered")
             page.wait_for_timeout(2000)
 
@@ -184,12 +195,12 @@ def publish_to_medium_browser(article, headless=False):
                     page.wait_for_timeout(500)
                 print("   ✔ Tags added")
 
-            # Click final "Publish now" button
-            final_pub = page.locator('button:has-text("Publish now"), button[data-action="publish-confirm"]').first
+            # Click final modal Publish button
+            final_pub = page.locator('button:has-text("Publish"), button:has-text("Publish now")').last
             if final_pub.count() > 0 and final_pub.is_visible():
                 final_pub.click()
-                print("   🚀 🎯 CLICKED FINAL 'PUBLISH NOW' BUTTON!")
-                page.wait_for_timeout(6000)
+                print("   🚀 🎯 CLICKED MODAL PUBLISH BUTTON!")
+                page.wait_for_timeout(7000)
 
             print(f"🎉 SUCCESS! Article published to Medium: {page.url}")
             med_url = page.url
