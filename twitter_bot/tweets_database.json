@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "category": "Flooring",
+    "text": "🔨 DIY Rule of Thumb: Never order flooring by exact room square footage.\n\nAlways add:\n• 10% for Straight Plank\n• 15% for Diagonal\n• 20% for Herringbone\n\nCalculate your exact box count & waste margin in seconds:\n👉 https://tool-1-pied.vercel.app/calculators/flooring/flooring-calculator\n\n#DIY #Flooring #HomeImprovement #CraftCalc",
+    "image": "pins/day01_flooring_boxes.jpg"
+  },
+  {
+    "id": 2,
+    "category": "Painting",
+    "text": "🎨 Contractor Secret: 1 standard interior door = 21 sq ft. 1 standard window = 15 sq ft.\n\nDeducting these before buying paint saves you at least 1-2 wasted gallons ($80+) per room!\n\nGet exact paint gallon math here:\n👉 https://tool-1-pied.vercel.app/calculators/painting/paint-calculator\n\n#PaintingHacks #HomeRenovation #CraftCalc",
+    "image": "pins/day04_paint_gallons.jpg"
+  },
+  {
+    "id": 3,
+    "category": "Concrete",
+    "text": "🏗️ How many 80lb bags of concrete for a 10×10 patio slab (4\" thick)?\n\nAnswer: Exactly 56 bags (or 1.23 cubic yards).\n\nNever guess structural concrete yardage. Free contractor estimator:\n👉 https://tool-1-pied.vercel.app/calculators/concrete-masonry/concrete-slab-calculator\n\n#Concrete #ContractorLife #DIYProject",
+    "image": "pins/day05_concrete_slab_volume.jpg"
+  },
+  {
+    "id": 4,
+    "category": "Tile",
+    "text": "📐 What trowel notch size do you REALLY need for 12\"×24\" porcelain floor tiles?\n\nAnswer: 1/2\" × 1/2\" square-notch + back-buttering.\n\nCalculate exact tile cartons, grout bags, and mortar requirements:\n👉 https://tool-1-pied.vercel.app/calculators/flooring/tile-calculator\n\n#Tiling #BathroomRemodel #DIYTools",
+    "image": "pins/day02_tile_grout_mortar.jpg"
+  },
+  {
+    "id": 5,
+    "category": "Landscaping",
+    "text": "🌿 Landscape Pro Formula:\nArea (sq ft) × Target Depth (inches) ÷ 324 = Exact Cubic Yards of Mulch or Gravel.\n\nFor a 200 sq ft garden bed at 3\" depth = 1.85 cubic yards (25 bags).\n\nFree Mulch & Gravel Calculator:\n👉 https://tool-1-pied.vercel.app/calculators/garden/mulch-calculator\n\n#Landscaping #GardenDIY #CraftCalc",
+    "image": "pins/day08_mulch_cubic_yards.jpg"
+  },
+  {
+    "id": 6,
+    "category": "Flooring",
+    "text": "📦 Buying Vinyl Plank (LVP)? Always check carton square footage.\n\nMost boxes cover 19 to 24 sq ft. If you have 350 sq ft + 10% waste (385 sq ft) / 20 sq ft = 20 Full Boxes!\n\nCalculate LVP packs and underlayment in 10s:\n👉 https://tool-1-pied.vercel.app/calculators/flooring/vinyl-flooring-calculator\n\n#LVP #FlooringCalculator #HomeImprovement",
+    "image": "pins/day11_vinyl_plank_lvp.jpg"
+  },
+  {
+    "id": 7,
+    "category": "Masonry",
+    "text": "🧱 How many standard 8×8×16 cinder blocks (CMU) do you need for a 50 ft retaining wall (4 ft tall)?\n\nTotal wall area: 200 sq ft.\nTotal blocks: Exactly 225 CMU blocks + 7 bags of Type S mortar!\n\nCalculate masonry blocks and mortar bags:\n👉 https://tool-1-pied.vercel.app/calculators/concrete-masonry/block-calculator\n\n#Masonry #RetainingWall #BuildingTools",
+    "image": "pins/day10_brick_wall_calculator.jpg"
+  },
+  {
+    "id": 8,
+    "category": "Painting",
+    "text": "🖌️ Do you need 1 coat or 2 coats of paint?\n\n• Same color / Refresh: 1 coat\n• Drastic color shift: 1 Primer + 2 Coats\n• Brand new drywall: 1 PVA Primer + 2 Coats\n\nCalculate your exact gallons and primer needs:\n👉 https://tool-1-pied.vercel.app/calculators/painting/wall-paint-calculator\n\n#PaintingTips #HousePainting #CraftCalc",
+    "image": "pins/day04_paint_gallons.jpg"
+  },
+  {
+    "id": 9,
+    "category": "Rooms",
+    "text": "📏 How to measure an L-shaped room for flooring or carpet?\n\nSplit the L into two clean rectangles (Section A + Section B), calculate each area, then sum them up!\n\nFree smart Room Area & Perimeter Calculator:\n👉 https://tool-1-pied.vercel.app/calculators/rooms/room-area-calculator\n\n#DIYMath #RoomArea #Carpentry",
+    "image": "pins/day07_room_square_feet.jpg"
+  },
+  {
+    "id": 10,
+    "category": "Flooring",
+    "text": "⚠️ The #1 Laminate Flooring Mistake: Forgetting the 3/8\" perimeter expansion gap!\n\nLaminate planks expand and contract with humidity. If installed tight to the drywall, they will buckle.\n\nPlan your laminate layout and foam rolls:\n👉 https://tool-1-pied.vercel.app/calculators/flooring/laminate-calculator\n\n#LaminateFlooring #WoodFloors #DIYHacks",
+    "image": "pins/day03_laminate_underlayment.jpg"
+  },
+  {
+    "id": 11,
+    "category": "Garden",
+    "text": "🌱 How many pallets of sod/turf do you need for a new lawn?\n\n1 standard sod pallet = 450 to 500 square feet (approx 50 rolls).\nFor a 2,500 sq ft lawn, you need exactly 5.5 → 6 Pallets!\n\nFree Turf & Sod Calculator:\n👉 https://tool-1-pied.vercel.app/calculators/garden/turf-calculator\n\n#LawnCare #LawnCareTips #Turf",
+    "image": "pins/day09_turf_sod_rolls.jpg"
+  },
+  {
+    "id": 12,
+    "category": "Conversions",
+    "text": "📐 Metric vs Imperial Construction Cheat Sheet:\n\n• 1 Meter = 3.281 Feet (3' 3-3/8\")\n• 1 Sq Meter = 10.764 Sq Feet\n• 1 Cubic Yard = 0.765 Cubic Meters\n\nInstant construction unit converters:\n👉 https://tool-1-pied.vercel.app/calculators/conversions/feet-to-metres\n\n#ConstructionTech #MetricConversion #Builders",
+    "image": "craftcalc_medium_cover.jpg"
+  }
+]
