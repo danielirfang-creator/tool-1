@@ -1,4 +1,5 @@
-import os
+﻿import os
+import re
 import sys
 import time
 import json
@@ -69,6 +70,61 @@ def load_articles():
         print(f"[ERROR] Failed to load articles: {e}")
         return []
 
+def markdown_to_rich_html(md_text):
+    # Remove markdown image syntax from body since cover image is uploaded separately
+    md_text = re.sub(r'!\[.*?\]\(.*?\)', '', md_text)
+    
+    # Convert headings
+    html = re.sub(r'^### (.*?)$', r'<h3>\1</h3>', md_text, flags=re.MULTILINE)
+    html = re.sub(r'^## (.*?)$', r'<h2>\1</h2>', html, flags=re.MULTILINE)
+    
+    # Convert bold
+    html = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', html)
+    
+    # Convert links: [text](url) -> <a href="url">text</a>
+    html = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2">\1</a>', html)
+    
+    # Convert hr
+    html = re.sub(r'^---$', r'<hr>', html, flags=re.MULTILINE)
+    
+    # Convert lists and paragraphs
+    paragraphs = []
+    in_list = False
+    list_items = []
+
+    for line in html.split('\n'):
+        line = line.strip()
+        if not line:
+            if in_list and list_items:
+                paragraphs.append('<ul>' + ''.join(f'<li>{item}</li>' for item in list_items) + '</ul>')
+                list_items = []
+                in_list = False
+            continue
+            
+        if line.startswith('- ') or line.startswith('* '):
+            in_list = True
+            list_items.append(line[2:])
+        elif re.match(r'^\d+\.\s', line):
+            in_list = True
+            list_items.append(re.sub(r'^\d+\.\s', '', line))
+        elif line.startswith('<h2>') or line.startswith('<h3>') or line.startswith('<hr>'):
+            if in_list and list_items:
+                paragraphs.append('<ul>' + ''.join(f'<li>{item}</li>' for item in list_items) + '</ul>')
+                list_items = []
+                in_list = False
+            paragraphs.append(line)
+        else:
+            if in_list and list_items:
+                paragraphs.append('<ul>' + ''.join(f'<li>{item}</li>' for item in list_items) + '</ul>')
+                list_items = []
+                in_list = False
+            paragraphs.append(f'<p>{line}</p>')
+            
+    if in_list and list_items:
+        paragraphs.append('<ul>' + ''.join(f'<li>{item}</li>' for item in list_items) + '</ul>')
+        
+    return '\n'.join(paragraphs)
+
 def do_medium_login():
     ensure_dirs()
     print("=" * 60)
@@ -110,14 +166,20 @@ def publish_to_devto(article, api_key):
         "Content-Type": "application/json",
         "User-Agent": "CraftCalcAutoBlogger/1.0"
     }
+    
+    # Dev.to cover image URL
+    main_img = article.get("cover_image", "")
+    if main_img and not main_img.startswith("http"):
+        main_img = f"https://tool-1-pied.vercel.app/{main_img.replace('public/', '')}"
+        
     payload = {
         "article": {
             "title": article["title"],
             "published": True,
             "body_markdown": article["markdown_body"],
-            "tags": article.get("tags", ["diy", "tools", "productivity"])[:4],
+            "tags": [t.lower().replace(" ", "") for t in article.get("tags", ["diy", "tools", "productivity"])][:4],
             "canonical_url": article.get("canonical_url"),
-            "main_image": article.get("cover_image"),
+            "main_image": main_img,
             "description": article.get("description")
         }
     }
@@ -138,6 +200,23 @@ def publish_to_devto(article, api_key):
 
 def publish_to_medium_browser(article, headless=False):
     print(f"\n🚀 Publishing to Medium.com (DA 96) via Browser: '{article['title']}'...")
+    
+    # Resolve local cover image
+    img_path = None
+    cov = article.get("cover_image", "")
+    if cov:
+        local_cand = BASE_DIR / cov.replace("public/", "").replace("https://tool-1-pied.vercel.app/", "public/")
+        if not local_cand.exists():
+            local_cand = BASE_DIR / "public" / cov.replace("public/", "")
+        if local_cand.exists():
+            img_path = local_cand
+            
+    if not img_path:
+        default_cov = BASE_DIR / "public" / "craftcalc_medium_cover.jpg"
+        if default_cov.exists():
+            img_path = default_cov
+
+    rich_html = markdown_to_rich_html(article["markdown_body"])
     
     with sync_playwright() as p:
         browser_context = p.chromium.launch_persistent_context(
@@ -163,44 +242,69 @@ def publish_to_medium_browser(article, headless=False):
                 browser_context.close()
                 return None
 
-            # Fill Title
+            # 1. Fill Title
             title_el = page.locator('h3[data-placeholder*="Title" i], [data-testid="editorTitleBlock"], h3, [role="textbox"]').first
             title_el.wait_for(state="visible", timeout=15000)
             title_el.click()
-            page.keyboard.type(article["title"])
+            page.keyboard.type(article["title"], delay=10)
             page.keyboard.press("Enter")
             print("   ✔ Medium Title entered")
-            page.wait_for_timeout(1000)
+            page.wait_for_timeout(1500)
 
-            # Type Body (clean markdown formatting)
-            body_text = article["markdown_body"].replace("#", "").replace("`", "").replace("$$", "")
-            # Type first paragraph or full text
-            page.keyboard.type(body_text[:2500], delay=10)
-            print("   ✔ Medium Story Content entered")
-            page.wait_for_timeout(2000)
+            # 2. Upload High-Res Cover Image
+            if img_path and img_path.exists():
+                print(f"   ✔ Uploading Cover Image: {img_path.name}...")
+                plus_btn = page.locator('button[aria-label="Add an image, video, embed, or new part"], button:has-text("+")').first
+                if plus_btn.is_visible():
+                    plus_btn.click()
+                    page.wait_for_timeout(500)
+                    img_btn = page.locator('button[aria-label="Add an image"]').first
+                    with page.expect_file_chooser() as fc_info:
+                        img_btn.click()
+                        file_chooser = fc_info.value
+                        file_chooser.set_files(str(img_path))
+                    print("   ✔ Cover Image Uploaded and Rendered!")
+                    page.wait_for_timeout(4000)
+                    page.keyboard.press("Enter")
 
-            # Click Publish button at top right
+            # 3. Paste Rich Formatted HTML with Real Clickable Links
+            print("   ✔ Pasting Rich HTML (Real clickable backlinks + headers + lists)...")
+            page.evaluate('''html => {
+                const dt = new DataTransfer();
+                dt.setData("text/html", html);
+                dt.setData("text/plain", html.replace(/<[^>]*>?/gm, ''));
+                const event = new ClipboardEvent("paste", {
+                    bubbles: true,
+                    cancelable: true,
+                    clipboardData: dt
+                });
+                const editor = document.querySelector('[role="textbox"]') || document.querySelector('p') || document.body;
+                editor.dispatchEvent(event);
+            }''', rich_html)
+            page.wait_for_timeout(3000)
+
+            # 4. Click Green Publish button at top right
             pub_top = page.locator('button[data-action="publish"], button:has-text("Publish")').first
             if pub_top.is_visible():
                 pub_top.click()
                 print("   ✔ Clicked top Publish button")
                 page.wait_for_timeout(3000)
 
-            # Fill Tags in publish dropdown
+            # 5. Fill Tags in publish dropdown
             tag_input = page.locator('input[placeholder*="topic" i], input[placeholder*="tag" i], input[data-testid="tagInput"]').first
             if tag_input.count() > 0 and tag_input.is_visible():
-                for tag in article.get("tags", ["DIY", "Home Improvement", "Tools"])[:3]:
+                for tag in article.get("tags", ["DIY", "Home Improvement", "Tools"])[:4]:
                     tag_input.fill(tag)
                     page.keyboard.press("Enter")
                     page.wait_for_timeout(500)
-                print("   ✔ Tags added")
+                print("   ✔ Tags/Topics added")
 
-            # Click final modal Publish button
-            final_pub = page.locator('button:has-text("Publish"), button:has-text("Publish now")').last
-            if final_pub.count() > 0 and final_pub.is_visible():
-                final_pub.click()
+            # 6. Click final modal Publish button
+            modal_btn = page.locator('button:has-text("Publish"), button:has-text("Publish now")').last
+            if modal_btn.count() > 0 and modal_btn.is_visible():
+                modal_btn.click()
                 print("   🚀 🎯 CLICKED MODAL PUBLISH BUTTON!")
-                page.wait_for_timeout(7000)
+                page.wait_for_timeout(8000)
 
             print(f"🎉 SUCCESS! Article published to Medium: {page.url}")
             med_url = page.url
@@ -239,7 +343,7 @@ def publish_next_article(headless=False):
         if devto_url:
             results["devto"] = devto_url
 
-    # 2. Medium (Browser session)
+    # 2. Medium (Browser session with rich graphics + clickable backlinks)
     if (MEDIUM_BOT_DIR / "user_session").exists() or MEDIUM_STORAGE_STATE_FILE.exists():
         med_url = publish_to_medium_browser(next_art, headless=headless)
         if med_url:
