@@ -349,7 +349,7 @@ export const flooringTools: ToolMeta[] = [
     clusterHref: '/calculators/flooring',
     benefit: 'Calculate the exact waste percentage needed based on your installation pattern, room angles, and installer experience.',
     metaTitle: 'Flooring Waste Calculator - Waste Buffer',
-    metaDescription: 'Calculate the exact flooring waste percentage for straight, diagonal, herringbone, chevron, and irregular room layouts.',
+    metaDescription: 'Calculate the exact flooring waste percentage for straight, diagonal, herringbone, chevron, and irregular room layouts to prevent costly shortages.',
     keywords: ['flooring waste calculator', 'how much extra flooring to order', 'flooring overage calculator', 'herringbone waste factor'],
     formula: 'Recommended Waste % = Base Pattern (10-20%) + Room Shape Factor (0-5%) + Skill Factor (0-5%)',
     formulaDescription: 'Computes precision overage percentage by combining installation pattern physics, room geometry complexity, and obstacle density.',

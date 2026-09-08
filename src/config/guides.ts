@@ -239,6 +239,174 @@ export const guidesRegistry: GuideMeta[] = [
       'When converting architectural volume takeoffs for concrete, gravel, and topsoil, remember that 1 cubic yard (27 cubic feet) equals 0.764555 cubic meters. When ordering bulk aggregate batches, round up to the nearest half-yard or metric ton to account for dynamic material compaction under roller equipment.',
       'Maintain mathematical consistency across multi-trade trade packages. When converting plumbing pipe sizing, note that European DN (Diameter Nominal) metric pipe standards do not always mate directly with North American NPT (National Pipe Taper) or IPS fittings without specialized transition adapters. Always verify fitting thread pitch before running pressurized supply lines.'
     ]
+  },
+  {
+    id: 'how-to-calculate-concrete-slab-yardage',
+    slug: 'how-to-calculate-concrete-slab-yardage',
+    title: 'How to Calculate Concrete Slab Yardage & Premix Bags',
+    cluster: 'concrete-masonry',
+    clusterName: 'Concrete & Masonry',
+    summary: 'Contractor formulas for calculating cubic yards, 80lb/60lb pre-mix bag counts, subbase gravel tonnage, and rebar grids for concrete slabs.',
+    readTime: '8 min read',
+    publishedDate: '2026-09-05',
+    keywords: ['how to calculate concrete slab yardage', 'concrete slab calculator formulas', 'how many 80lb bags for 10x10 slab', 'concrete rebar grid sizing'],
+    relatedToolSlug: 'concrete-slab-calculator',
+    keyTakeaways: [
+      'Standard formula: Cubic Yards = (Length ft × Width ft × Thickness ft) ÷ 27.',
+      'Always convert slab thickness from inches to feet by dividing by 12 (e.g. 4 inches = 0.333 ft).',
+      'Add a mandatory 10% waste buffer for uneven grade, edge thickening, and form deflection.',
+      'It takes exactly 45 bags of 80lb concrete (or 60 bags of 60lb concrete) to equal 1 cubic yard.',
+      'For slabs exceeding 1.5 cubic yards (~65 bags), ready-mix truck delivery is faster and more economical.',
+      'Install #3 or #4 rebar on 16" to 18" centers elevated on concrete chairs at the mid-depth of the slab.'
+    ],
+    content: [
+      'Pouring a residential concrete slab—whether for a backyard patio, storage shed foundation, hot tub pad, or driveway—requires zero margin for mathematical error. Ordering too little concrete creates cold joints that permanently weaken the structural slab, while over-ordering ready-mix trucks leads to expensive surplus disposal charges.',
+      'The foundational formula for concrete volume is Length (feet) × Width (feet) × Thickness (feet) divided by 27. Because slab thickness is almost universally measured in inches (such as 4 inches for sidewalks or 6 inches for heavy vehicle pads), you must first convert inches into decimal feet by dividing by 12. For example, a 4-inch slab is 4 ÷ 12 = 0.333 feet thick.',
+      'To calculate a 12 ft by 20 ft patio slab at 4 inches thick: Multiply 12 × 20 × 0.333 = 79.92 cubic feet. Divide 79.92 by 27 to obtain 2.96 cubic yards. Always add a 10% subgrade allowance (2.96 × 1.10 = 3.26 cubic yards). On rough-graded excavations, subsoil variations and form bowing will consume this extra volume completely.',
+      'When deciding between bagged concrete and ready-mix truck delivery, evaluate physical labor limits. One cubic yard of concrete weighs approximately 4,050 pounds. Mixing 3.26 cubic yards by hand requires handling 147 eighty-pound bags (nearly 6 tons of material). As a general trade standard, any pour exceeding 1.5 to 2.0 cubic yards is far more cost-effective when ordered from a local ready-mix supplier.',
+      'Subbase preparation and steel reinforcement dictate the lifespan of the slab. Excavate down to undisturbed subsoil and install a minimum 4-inch layer of compacted crushed gravel (such as 3/4" road base). Place welded wire mesh or a rebar grid (#3 rebar on 18-inch centers) supported on polymer rebar chairs so the steel sits exactly in the middle third of the poured slab.',
+      'Control joint placement prevents unsightly cracking as the concrete cures and shrinks. Score or saw-cut control joints to a depth of at least 1/4 the slab thickness (1 inch deep for a 4-inch slab) spaced no further apart than 24 to 30 times the slab thickness in inches (a maximum of 8 to 10 feet apart for a 4-inch slab).'
+    ]
+  },
+  {
+    id: 'interior-paint-coverage-primer-guide',
+    slug: 'interior-paint-coverage-primer-guide',
+    title: 'Interior Paint Coverage & Primer Estimation Guide',
+    cluster: 'painting',
+    clusterName: 'Painting',
+    summary: 'How to calculate net wall square footage minus doors and windows, account for dry drywall absorption, and select between 1 vs 2 finish coats.',
+    readTime: '6 min read',
+    publishedDate: '2026-09-06',
+    keywords: ['how many gallons of paint for room', 'paint coverage per gallon', 'when to use drywall primer', 'how much paint to subtract for windows'],
+    relatedToolSlug: 'paint-calculator',
+    keyTakeaways: [
+      'One standard gallon of quality interior latex paint covers approximately 350 to 400 square feet.',
+      'Deduct 21 sq ft for each standard interior door and 15 sq ft for each standard window.',
+      'Unpainted new drywall or patched plaster requires 1 dedicated coat of PVA sealing primer.',
+      'Drastic color transitions (dark to light) require a high-hiding white primer coat to prevent 3+ paint coats.',
+      'Always apply 2 full finish coats for uniform sheen, accurate color depth, and scrubbable durability.',
+      'Store leftover touch-up paint in an airtight glass jar labeled with room name and paint formula.'
+    ],
+    content: [
+      'Estimating interior paint quantities requires balancing total wall surface area against surface porosity, color transition contrast, and application method. Running out of paint mid-wall forces a trip back to the paint counter where subtle tint formula variations between batches can create noticeable color banding on prominent walls.',
+      'To calculate gross wall area, measure the room perimeter (sum of all four wall lengths) and multiply by the ceiling height. In a 12 ft by 15 ft room with 8 ft ceilings: Perimeter = (12 + 15) × 2 = 54 ft. Gross wall area = 54 × 8 = 432 square feet. Next, subtract openings: deduct 21 sq ft for each standard interior door and 15 sq ft for each window.',
+      'If the room has two doors (42 sq ft) and two windows (30 sq ft), your net paintable area is 432 - 72 = 360 square feet. Because one gallon covers approximately 350 to 400 sq ft on previously painted smooth surfaces, one coat will consume nearly 1 full gallon. For standard two-coat coverage, purchase 2 full gallons.',
+      'Understanding when a separate primer coat is mandatory saves time and money. Self-priming "paint and primer in one" formulas work well on sound, existing paint in similar color shades. However, brand-new drywall, skim-coated joints, bare wood, or water-damaged stains require dedicated specialty primers such as PVA primer for drywall or shellac-based stain blockers.',
+      'Surface texture dramatically alters paint absorption rates. Heavily textured walls (such as knockdown, orange peel, or popcorn plaster) increase total surface area by 20% to 30%. Porous, unsealed masonry or concrete block walls absorb liquid rapidly and may yield only 150 to 200 sq ft of coverage per gallon on the initial prime coat.',
+      'Maintain proper application thickness and roller nap sizing. Use a 3/8" microfiber roller sleeve for smooth drywall, 1/2" for light orange peel textures, and 3/4" for masonry or stucco. Rolling too thin to "stretch" a gallon compromises dry film thickness (DFT), resulting in poor washability and premature sheen burnishing.'
+    ]
+  },
+  {
+    id: 'gravel-and-crushed-stone-depth-guide',
+    slug: 'gravel-and-crushed-stone-depth-guide',
+    title: 'Gravel, Crushed Stone & Mulch Depth Guide',
+    cluster: 'garden',
+    clusterName: 'Garden & Landscaping',
+    summary: 'How to calculate cubic yards and tonnage for driveways, French drains, paver bases, and garden flowerbed weed suppression.',
+    readTime: '7 min read',
+    publishedDate: '2026-09-06',
+    keywords: ['how much gravel do i need', 'gravel depth calculator', 'crushed stone tons per cubic yard', 'mulch bag coverage depth'],
+    relatedToolSlug: 'gravel-calculator',
+    keyTakeaways: [
+      'Formula: Cubic Yards = (Length ft × Width ft × Depth in) ÷ 324.',
+      'Gravel driveway bases require a minimum of 4 to 6 inches of 3/4" crushed stone road base.',
+      'Decorative walkways and patio stone toppings require 2 to 3 inches of pea gravel or crushed granite.',
+      '1 cubic yard of crushed stone/gravel weighs approximately 1.4 to 1.5 tons (2,800 to 3,000 lbs).',
+      'Always install heavy-duty woven geotextile fabric beneath gravel to prevent subsoil migration.',
+      'Factor in 15% to 20% volume loss for compacted crushed aggregate base layers.'
+    ],
+    content: [
+      'Purchasing bulk landscape materials—including crushed gravel, pea stone, river rock, and shredded hardwood mulch—requires converting square foot surface measurements into cubic yards and freight tonnage. Ordering the wrong depth can result in premature driveway rutting, water drainage failures, or excessive weed penetration.',
+      'The contractor shortcut formula for calculating landscape volume is: Area (sq ft) × Depth (inches) ÷ 324 = Cubic Yards. For example, a 10-foot by 50-foot gravel walkway (500 sq ft) at a 3-inch depth requires: 500 × 3 ÷ 324 = 4.63 cubic yards. Always add a 10% settling allowance, bringing the total order to 5.1 cubic yards.',
+      'Converting cubic yards to delivery weight in tons is essential because commercial quarries sell crushed rock by the ton. Standard 3/4-inch crushed gravel with stone dust (dense grade base) has a compacted density of approximately 1.45 tons per cubic yard. Multiplying 5.1 cubic yards by 1.45 gives 7.4 tons of gravel.',
+      'Match the aggregate gradation to the engineering function. For structural driveway and patio subbases, choose 3/4" crushed stone with stone fines (road base / Crusher Run) because the angular particles interlock tightly when compacted with a plate compactor. For French drains and septic drainage fields, use clean washed 3/4" stone without fines to allow unrestricted water flow.',
+      'Decorative ground cover requires careful depth moderation. Pea gravel and decorative river pebbles should be installed at a depth of 2 to 3 inches. Installing pea gravel deeper than 3 inches creates a spongy, shifting surface that is difficult to walk on or push lawn equipment across.',
+      'For garden flowerbed mulching, maintain a consistent 2-to-3-inch layer of organic bark or hardwood mulch. Avoid "mulch volcanoes" piled directly against tree trunks and shrub stems, as trapped moisture promotes fungal rot and insect infestation. One cubic yard of mulch covers 108 square feet at 3 inches deep.'
+    ]
+  },
+  {
+    id: 'lvp-vs-hardwood-flooring-waste-guide',
+    slug: 'lvp-vs-hardwood-flooring-waste-guide',
+    title: 'Luxury Vinyl Plank (LVP) Installation & Box Count Guide',
+    cluster: 'flooring',
+    clusterName: 'Flooring',
+    summary: 'Step-by-step contractor guide for calculating LVP cartons, staggered end-joint overlaps, perimeter expansion gaps, and cutting waste.',
+    readTime: '6 min read',
+    publishedDate: '2026-09-06',
+    keywords: ['how many boxes of vinyl plank flooring', 'lvp waste factor', 'vinyl plank stagger spacing', 'lvp expansion gap requirement'],
+    relatedToolSlug: 'vinyl-flooring-calculator',
+    keyTakeaways: [
+      'Order 10% extra for standard straight LVP runs and 15% for multi-room open floor plans.',
+      'Maintain a minimum 1/4" to 3/8" expansion gap around all perimeter walls, cabinets, and doorframes.',
+      'Stagger plank end-joints by at least 8 to 12 inches to ensure mechanical click-lock strength.',
+      'Never install planks shorter than 8 inches at the beginning or end of any row.',
+      'Verify whether your LVP features an attached acoustic underlayment pad before buying foam rolls.',
+      'Keep room temperature between 65°F and 85°F (18°C-29°C) during and after installation.'
+    ],
+    content: [
+      'Luxury Vinyl Plank (LVP) and Rigid Core SPC (Stone Plastic Composite) flooring have become the dominant residential flooring choices due to their 100% waterproof construction, realistic timber embossing, and floating click-lock installation. However, accurate material ordering and proper layout planning are critical to preventing joint separation and edge buckling.',
+      'When calculating LVP requirements, measure total square footage and add a 10% waste buffer for simple rectangular rooms or 15% for installations running continuously through multiple adjoining rooms and closets without transition moldings. Divide total gross area by carton coverage (commonly 20 to 24 sq ft per box) and round up to the nearest whole carton.',
+      'Layout geometry dictates end-joint stagger spacing. Avoid repeating identical "H-patterns" or stair-step joints across adjacent rows. Maintain a minimum distance of 8 to 12 inches between end joints in neighboring rows to distribute structural rigidity and prevent click-lock tongues from unlocking under heavy point loads.',
+      'Perimeter expansion gaps are non-negotiable for floating LVP floors. Although rigid core SPC planks experience minimal thermal expansion compared to traditional laminate, building walls and subfloors continuously expand and contract with seasonal humidity. Place 1/4" to 3/8" plastic spacers along all walls, kitchen islands, and vertical door jambs.',
+      'Underlayment compatibility is essential. The vast majority of modern SPC vinyl planks come manufactured with an integrated 1mm or 1.5mm IXPE acoustic backing pad. Adding a second layer of soft foam underlayment under pre-padded planks introduces excess vertical deflection, causing the fragile click-lock locking mechanisms to snap under foot pressure.',
+      'Subfloor preparation standards must meet manufacturer tolerances: the substrate must be flat within 3/16" over a 10-foot radius. Grind down high concrete ridges and fill low dips with self-leveling underlayment compound before laying the first plank to ensure a quiet, completely solid floor.'
+    ]
+  },
+  {
+    id: 'cinder-block-and-mortar-calculation-guide',
+    slug: 'cinder-block-and-mortar-calculation-guide',
+    title: 'CMU Cinder Block & Mortar Estimation Guide',
+    cluster: 'concrete-masonry',
+    clusterName: 'Concrete & Masonry',
+    summary: 'Complete engineering guide for calculating 8x8x16 concrete masonry units (CMU), Type S mortar bags, and core-fill grout for retaining walls.',
+    readTime: '7 min read',
+    publishedDate: '2026-09-07',
+    keywords: ['how many cinder blocks for retaining wall', '8x8x16 block calculator', 'mortar bags per 100 blocks', 'core fill grout volume'],
+    relatedToolSlug: 'block-calculator',
+    keyTakeaways: [
+      'Standard 8×8×16 CMU blocks cover 0.89 square feet per block (including 3/8" mortar joint).',
+      'Rule of thumb: Multiply total wall square footage by 1.125 to determine total block count.',
+      'Add 5% to 8% extra blocks for corner cuts, half-blocks, and on-site transit breakage.',
+      'It takes approximately three 80lb bags of Type S masonry mortar per 100 standard CMU blocks.',
+      'Retaining walls over 4 feet tall require structural engineering, rebar reinforcement, and gravel backfill.',
+      'Fill hollow CMU cores with coarse grout and #4 or #5 vertical rebar every 16 to 32 inches.'
+    ],
+    content: [
+      'Concrete Masonry Units (CMU), commonly called cinder blocks or concrete blocks, are the foundation of residential basement walls, landscaping retaining walls, garage foundations, and fire-resistant partitions. Accurately estimating block counts, mortar batches, and core-fill grout prevents costly construction stoppages.',
+      'A standard nominal 8x8x16 CMU block actually measures 7-5/8" high × 7-5/8" wide × 15-5/8" long. When laid with standard 3/8-inch mortar bedding joints, each unit occupies exactly 8 inches in height by 16 inches in length (128 square inches, or 0.8889 square feet). Therefore, 100 square feet of wall area requires exactly 112.5 blocks (order 120 blocks with 6% cutting reserve).',
+      'Mortar estimation requires factoring bed joints and head joints. For standard face-shell bedding on 8x8x16 hollow blocks, plan on approximately 3 bags of 80lb pre-mixed Type S mortar per 100 blocks (or 1 bag per 33 blocks). For structural below-grade foundations or retaining walls with full-width mortar bedding, increase mortar requirements to 4.5 bags per 100 blocks.',
+      'Structural retaining walls require vertical and horizontal steel rebar reinforcement. Place #4 (1/2") or #5 (5/8") vertical rebar dowels embedded in the concrete footing and extended upward through the hollow block cells at 16", 24", or 32" intervals depending on soil surcharge and wall height.',
+      'Core-fill grout volume must be calculated separately from mortar. Filling hollow block cells with coarse pea gravel concrete grout consolidates the wall into a solid structural monolith. One cubic yard of grout fills approximately 80 to 90 hollow cells in standard 8-inch CMU blocks.',
+      'Adequate drainage prevents hydrostatic pressure buildup behind retaining walls. Always install a perforated 4-inch drain pipe surrounded by washed 3/4" crushed stone wrapped in non-woven filter fabric along the base of the wall, and backfill with granular gravel rather than expansive clay soils.'
+    ]
+  },
+  {
+    id: 'wallpaper-roll-repeat-calculation-guide',
+    slug: 'wallpaper-roll-repeat-calculation-guide',
+    title: 'Wallpaper Roll & Pattern Drop Calculation Guide',
+    cluster: 'rooms',
+    clusterName: 'Rooms & Conversions',
+    summary: 'How to measure walls, deduct openings, and account for straight vs drop match pattern repeats when purchasing single vs double wallpaper rolls.',
+    readTime: '6 min read',
+    publishedDate: '2026-09-07',
+    keywords: ['how many rolls of wallpaper do i need', 'wallpaper pattern repeat calculation', 'double roll vs single roll wallpaper', 'wallpaper waste margin'],
+    relatedToolSlug: 'wallpaper-calculator',
+    keyTakeaways: [
+      'Standard "double rolls" (US) cover approximately 56 to 60 gross square feet (use 50 sq ft usable).',
+      'European standard metric rolls (Euro rolls) cover approximately 57 sq ft (use 45 sq ft usable).',
+      'Straight match patterns generate 10% to 15% cutting waste.',
+      'Half-drop match patterns with large repeats (18"-24"+) require an additional 20% to 25% waste buffer.',
+      'Deduct only large openings (over 30 sq ft); ignore small standard windows to preserve pattern alignment.',
+      'Always order all wallpaper rolls from the same dye-lot batch number to prevent color shading differences.'
+    ],
+    content: [
+      'Wallpaper installation combines accurate surface geometry with vertical pattern alignment math. Running short by half a roll often results in a completely wasted project, as wallpaper manufacturers print in discrete dye-lot runs where background inks and pigment tones shift noticeably between print batches.',
+      'Understand commercial wallpaper packaging standards before ordering. In North America, wallpaper is priced by the "single roll" but almost exclusively packaged and shipped as continuous "double rolls" (typically 20.5 inches wide by 33 feet long, yielding ~56 sq ft) or "bolt lengths". European metric rolls measure 0.53m wide by 10.05m long (~57 sq ft).',
+      'Pattern repeat depth dictates actual usable roll square footage. A solid texture or random match pattern has 0" repeat, allowing full utilization of offcuts. However, large damask, botanical, or geometric patterns with a 20-inch straight match or half-drop repeat generate significant scrap cuts at the top of each new strip to align the horizontal motifs.',
+      'To calculate strips needed: Measure total room perimeter in inches and divide by the roll width (e.g. 20.5"). Round up to the next whole number of vertical strips. Then determine how many strips can be cut from a single double roll based on ceiling height plus pattern repeat allowance.',
+      'Do not subtract small windows or doors from wallpaper takeoffs unless the opening exceeds 30 square feet (such as large French doors or bay windows). Cutting around standard doors and windows interrupts continuous vertical strips, and the offcut pieces cannot be reused for full-height ceiling-to-floor drops.',
+      'Always order 1 extra double roll beyond your net calculation. Having a spare roll from the identical dye-lot protects you against trimming errors during installation and provides perfect replacement material if wall damage or water leaks occur in the future.'
+    ]
   }
 ];
 
