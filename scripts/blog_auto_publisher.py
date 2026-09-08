@@ -181,12 +181,49 @@ def publish_next_article():
         })
         save_history(history)
         print("\n✅ Multi-Platform Publishing Completed & Logged!")
+        return True
     else:
         print("\n⚠️ No API keys configured in blog_bot/blog_config.json.")
+        return False
+
+def run_schedule(interval_hours=24.0):
+    print("=" * 65)
+    print("🤖 DAILY AUTO-BLOGGER STARTED")
+    print(f"⏰ Interval: 1 Article every {interval_hours} hours (Daily)")
+    print("=" * 65)
+
+    while True:
+        history = load_history()
+        articles = load_articles()
+        published_ids = {p.get("article_id") for p in history.get("published", [])}
+        next_art = next((a for a in articles if a.get("id") not in published_ids), None)
+
+        if not next_art:
+            print("🏁 All articles have been published! Resetting cycle...")
+            history["published"] = []
+            save_history(history)
+
+        # Check time elapsed since last publish
+        last_pub = history.get("published", [])
+        if last_pub:
+            try:
+                last_time = datetime.fromisoformat(last_pub[-1]["timestamp"])
+                elapsed_hours = (datetime.now() - last_time).total_seconds() / 3600
+                if elapsed_hours < interval_hours:
+                    remaining_secs = (interval_hours - elapsed_hours) * 3600
+                    print(f"⏳ Next article scheduled in {int(interval_hours - elapsed_hours)} hours. Waiting...")
+                    time.sleep(remaining_secs)
+            except Exception:
+                pass
+
+        publish_next_article()
+        print(f"\n⏳ Waiting {interval_hours} hours until the next daily article...")
+        time.sleep(interval_hours * 3600)
 
 def main():
     parser = argparse.ArgumentParser(description="Multi-Platform Auto-Blogging Publisher")
-    parser.add_argument("action", choices=["publish_next", "list_articles", "setup_help"], default="publish_next", nargs="?")
+    parser.add_argument("action", choices=["publish_next", "list_articles", "setup_help", "schedule"], default="publish_next", nargs="?")
+    parser.add_argument("--interval", type=float, default=24.0, help="Interval in hours for scheduler (default: 24)")
     args = parser.parse_args()
 
     if args.action == "list_articles":
@@ -204,8 +241,11 @@ def main():
         print("   👉 Go to https://medium.com/me/settings/security -> Integration tokens")
         print("3. Paste the keys into 'blog_bot/blog_config.json'")
         print("=" * 65)
+    elif args.action == "schedule":
+        run_schedule(interval_hours=args.interval)
     else:
         publish_next_article()
 
 if __name__ == "__main__":
     main()
+
