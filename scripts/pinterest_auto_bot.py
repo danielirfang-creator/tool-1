@@ -276,8 +276,10 @@ def run_schedule(interval_hours=4, headless=False):
                 break
 
         if not next_pin:
-            print("🏁 All 180 scheduled pins have been published!")
-            break
+            print("🏁 All scheduled pins have been published! Recycling queue for continuous posting...")
+            history["posted_ids"] = []
+            save_history(history)
+            next_pin = schedule_rows[0]
 
         success = post_single_pin(next_pin, headless=headless)
         if success:
