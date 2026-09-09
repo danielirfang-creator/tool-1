@@ -1,4 +1,4 @@
-﻿import os
+import os
 import sys
 import time
 import json
@@ -14,7 +14,7 @@ if sys.platform == "win32":
         pass
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-NTFY_TOPIC = "craftcalc_daniel_786"  # Private ntfy topic
+NTFY_TOPIC = "craftcalc_danial"  # User ntfy topic
 
 PINTEREST_HISTORY = BASE_DIR / "pinterest_bot" / "posted_history.json"
 TWITTER_HISTORY = BASE_DIR / "twitter_bot" / "posted_history.json"
@@ -23,19 +23,24 @@ HTML_REPORT_FILE = BASE_DIR / "DAILY_REPORT.html"
 
 def send_ntfy_notification(title, message, tags="white_check_mark", priority="default", click_url="https://tool-1-pied.vercel.app"):
     url = f"https://ntfy.sh/{NTFY_TOPIC}"
-    headers = {
-        "Title": title.encode("utf-8"),
-        "Priority": priority,
-        "Tags": tags,
-        "Click": click_url
-    }
     try:
-        res = requests.post(url, data=message.encode("utf-8"), headers=headers, timeout=15)
-        if res.status_code == 200:
-            print(f"✅ Notification sent successfully to ntfy.sh/{NTFY_TOPIC}")
+        import subprocess
+        # Use curl.exe for 100% reliable SSL transport
+        cmd = [
+            "curl.exe", "-s",
+            "-H", f"Title: {title}",
+            "-H", f"Priority: {priority}",
+            "-H", f"Tags: {tags}",
+            "-H", f"Click: {click_url}",
+            "-d", message,
+            url
+        ]
+        res = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=20)
+        if res.returncode == 0:
+            print(f"✅ Notification sent to phone via ntfy.sh/{NTFY_TOPIC}")
             return True
         else:
-            print(f"[ERROR] ntfy returned status {res.status_code}")
+            print(f"[ERROR] curl failed: {res.stderr}")
             return False
     except Exception as e:
         print(f"[ERROR] Failed to send ntfy notification: {e}")
