@@ -2,7 +2,7 @@ import os
 import sys
 import time
 import json
-import requests
+import subprocess
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -14,18 +14,17 @@ if sys.platform == "win32":
         pass
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-NTFY_TOPIC = "craftcalc_danial"  # User ntfy topic
+NTFY_TOPIC = "craftcalc_danial"  # User mobile ntfy topic
 
 PINTEREST_HISTORY = BASE_DIR / "pinterest_bot" / "posted_history.json"
 TWITTER_HISTORY = BASE_DIR / "twitter_bot" / "posted_history.json"
 BLOG_HISTORY = BASE_DIR / "blog_bot" / "published_history.json"
 HTML_REPORT_FILE = BASE_DIR / "DAILY_REPORT.html"
+PYTHON_EXE = sys.executable
 
-def send_ntfy_notification(title, message, tags="white_check_mark", priority="default", click_url="https://tool-1-pied.vercel.app"):
+def send_ntfy_notification(title, message, tags="chart_with_upwards_trend,white_check_mark", priority="default", click_url="https://tool-1-pied.vercel.app"):
     url = f"https://ntfy.sh/{NTFY_TOPIC}"
     try:
-        import subprocess
-        # Use curl.exe for 100% reliable SSL transport
         cmd = [
             "curl.exe", "-s",
             "-H", f"Title: {title}",
@@ -37,7 +36,7 @@ def send_ntfy_notification(title, message, tags="white_check_mark", priority="de
         ]
         res = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=20)
         if res.returncode == 0:
-            print(f"✅ Notification sent to phone via ntfy.sh/{NTFY_TOPIC}")
+            print(f"✅ Mobile Notification delivered to ntfy.sh/{NTFY_TOPIC}")
             return True
         else:
             print(f"[ERROR] curl failed: {res.stderr}")
@@ -46,81 +45,145 @@ def send_ntfy_notification(title, message, tags="white_check_mark", priority="de
         print(f"[ERROR] Failed to send ntfy notification: {e}")
         return False
 
-def get_24h_stats():
+def get_today_and_total_stats():
     now = datetime.now()
-    cutoff = now - timedelta(hours=24)
+    today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    cutoff_24h = now - timedelta(hours=24)
     
     # 1. Pinterest Stats
-    pin_count = 0
+    pin_count_today = 0
+    total_pins = 0
     latest_pin = "None"
     if PINTEREST_HISTORY.exists():
         try:
             with open(PINTEREST_HISTORY, "r", encoding="utf-8") as f:
                 pdata = json.load(f)
                 logs = pdata.get("logs", [])
-                recent_pins = [l for l in logs if datetime.fromisoformat(l.get("timestamp", "2000-01-01")) >= cutoff]
-                pin_count = len(recent_pins) if recent_pins else len(logs)
+                total_pins = len(logs)
+                for l in logs:
+                    try:
+                        ts = datetime.fromisoformat(l.get("timestamp", "2000-01-01"))
+                        if ts >= today_start or ts >= cutoff_24h:
+                            pin_count_today += 1
+                    except Exception:
+                        pass
                 if logs:
-                    latest_pin = logs[-1].get("title", "Pin")[:45] + "..."
+                    latest_pin = logs[-1].get("title", "Pin")[:42] + "..."
         except Exception:
             pass
 
     # 2. Twitter Stats
-    tweet_count = 0
+    tweet_count_today = 0
+    total_tweets = 0
     latest_tweet = "None"
     if TWITTER_HISTORY.exists():
         try:
             with open(TWITTER_HISTORY, "r", encoding="utf-8") as f:
                 tdata = json.load(f)
                 logs = tdata.get("logs", [])
-                recent_tweets = [l for l in logs if datetime.fromisoformat(l.get("timestamp", "2000-01-01")) >= cutoff]
-                tweet_count = len(recent_tweets) if recent_tweets else len(logs)
+                total_tweets = len(logs)
+                for l in logs:
+                    try:
+                        ts = datetime.fromisoformat(l.get("timestamp", "2000-01-01"))
+                        if ts >= today_start or ts >= cutoff_24h:
+                            tweet_count_today += 1
+                    except Exception:
+                        pass
                 if logs:
-                    latest_tweet = logs[-1].get("text", "Tweet")[:45] + "..."
+                    latest_tweet = logs[-1].get("text", "Tweet")[:42] + "..."
         except Exception:
             pass
 
     # 3. Blog Stats
-    devto_count = 0
-    medium_count = 0
+    devto_today = 0
+    medium_today = 0
+    total_articles = 0
     latest_article = "None"
     if BLOG_HISTORY.exists():
         try:
             with open(BLOG_HISTORY, "r", encoding="utf-8") as f:
                 bdata = json.load(f)
                 published = bdata.get("published", [])
-                recent_blogs = [b for b in published if datetime.fromisoformat(b.get("timestamp", "2000-01-01")) >= cutoff]
-                blogs_to_count = recent_blogs if recent_blogs else published
-                for b in blogs_to_count:
-                    if "devto" in b.get("links", {}): devto_count += 1
-                    if "medium" in b.get("links", {}): medium_count += 1
+                total_articles = len(published)
+                for b in published:
+                    try:
+                        ts = datetime.fromisoformat(b.get("timestamp", "2000-01-01"))
+                        if ts >= today_start or ts >= cutoff_24h:
+                            if "devto" in b.get("links", {}): devto_today += 1
+                            if "medium" in b.get("links", {}): medium_today += 1
+                    except Exception:
+                        pass
                 if published:
-                    latest_article = published[-1].get("title", "Article")[:45] + "..."
+                    latest_article = published[-1].get("title", "Article")[:42] + "..."
         except Exception:
             pass
 
     return {
-        "pin_count": pin_count,
+        "pin_count_today": pin_count_today,
+        "total_pins": total_pins,
         "latest_pin": latest_pin,
-        "tweet_count": tweet_count,
+        "tweet_count_today": tweet_count_today,
+        "total_tweets": total_tweets,
         "latest_tweet": latest_tweet,
-        "devto_count": devto_count,
-        "medium_count": medium_count,
+        "devto_today": devto_today,
+        "medium_today": medium_today,
+        "total_articles": total_articles,
         "latest_article": latest_article,
-        "date_str": now.strftime("%d-%b-%Y")
+        "date_str": now.strftime("%d-%b-%Y"),
+        "time_str": now.strftime("%I:%M %p")
     }
 
-def send_daily_summary():
-    stats = get_24h_stats()
+def check_and_heal_processes():
+    """Checks if background workers are active and auto-restarts any missing ones."""
+    healed = []
+    try:
+        cmd = ["powershell", "-NoProfile", "-Command", "Get-CimInstance Win32_Process -Filter \"Name = 'python.exe'\" | Select-Object -ExpandProperty CommandLine"]
+        res = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=15)
+        running_cmdlines = res.stdout if res.returncode == 0 else ""
+        
+        # Check Pinterest Bot
+        if "pinterest_auto_bot.py" not in running_cmdlines:
+            subprocess.Popen([PYTHON_EXE, str(BASE_DIR / "scripts" / "pinterest_auto_bot.py"), "schedule", "--interval", "2.4", "--headless"], cwd=str(BASE_DIR), creationflags=0x08000000)
+            healed.append("Pinterest 10 Pins/Day Bot Relaunched")
+            
+        # Check Twitter Bot
+        if "twitter_auto_bot.py" not in running_cmdlines:
+            subprocess.Popen([PYTHON_EXE, str(BASE_DIR / "scripts" / "twitter_auto_bot.py"), "schedule", "--interval", "6", "--headless"], cwd=str(BASE_DIR), creationflags=0x08000000)
+            healed.append("Twitter 6h Bot Relaunched")
+            
+        # Check Blog Bot
+        if "blog_auto_publisher.py" not in running_cmdlines:
+            subprocess.Popen([PYTHON_EXE, str(BASE_DIR / "scripts" / "blog_auto_publisher.py"), "schedule", "--interval", "24"], cwd=str(BASE_DIR), creationflags=0x08000000)
+            healed.append("Blog Auto-Publisher Relaunched")
+            
+    except Exception as e:
+        print(f"[WATCHDOG HEAL ERROR] {e}")
+        
+    return healed
+
+def send_daily_summary(is_night_report=True):
+    stats = get_today_and_total_stats()
+    healed = check_and_heal_processes()
     
-    title = f"📊 CraftCalc Daily Report ({stats['date_str']})"
+    if is_night_report:
+        title = f"🌙 CraftCalc End-of-Day Report (11:59 PM - {stats['date_str']})"
+    else:
+        title = f"📊 CraftCalc Daily Report ({stats['time_str']} - {stats['date_str']})"
+        
+    heal_text = "🟢 Sab bots 100% normal chal rahe hain (No errors)"
+    if healed:
+        heal_text = f"🛠️ Auto-Healed & Restored: {', '.join(healed)}"
+
     message = (
-        f"🟢 System Health: 100% Normal\n\n"
-        f"📌 Pinterest: {stats['pin_count']} Pins Posted (Last: {stats['latest_pin']})\n"
-        f"🐦 Twitter/X: {stats['tweet_count']} Tweets Posted (Last: {stats['latest_tweet']})\n"
-        f"✍️ Medium: {stats['medium_count']} Articles Live\n"
-        f"✍️ Dev.to: {stats['devto_count']} Articles Live\n\n"
-        f"🛡️ Self-Healing: All Automated Engines Running Smoothly!"
+        f"📊 Aaj Ka Mukammal Kaam (Full Day Summary):\n\n"
+        f"📌 Pinterest: {stats['pin_count_today']} Pins Posted Today (Total: {stats['total_pins']})\n"
+        f"   Last: {stats['latest_pin']}\n\n"
+        f"🐦 Twitter/X: {stats['tweet_count_today']} Tweets Posted Today (Total: {stats['total_tweets']})\n"
+        f"   Last: {stats['latest_tweet']}\n\n"
+        f"✍️ Articles Live: Medium ({stats['medium_today']}), Dev.to ({stats['devto_today']})\n"
+        f"   Last: {stats['latest_article']}\n\n"
+        f"🛡️ Self-Healing Status:\n{heal_text}\n\n"
+        f"🌐 Traffic Destination: tool-1-pied.vercel.app"
     )
     
     print("=" * 60)
@@ -129,20 +192,15 @@ def send_daily_summary():
     print(message)
     print("=" * 60)
     
-    send_ntfy_notification(title, message, tags="chart_with_upwards_trend,white_check_mark", priority="default")
-    generate_html_report(stats)
+    send_ntfy_notification(title, message, tags="crescent_moon,chart_with_upwards_trend,white_check_mark", priority="high" if is_night_report else "default")
+    generate_html_report(stats, heal_text)
 
-def send_self_healing_alert(action_description):
-    title = "⚠️ CraftCalc Watchdog Auto-Recovery Alert"
-    message = f"🛠️ Issue Detected & Auto-Healed:\n{action_description}\n\n✅ System recovered and resumed work automatically."
-    send_ntfy_notification(title, message, tags="warning,wrench", priority="high")
-
-def generate_html_report(stats):
+def generate_html_report(stats, heal_text):
     html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CraftCalc Daily Automation Report</title>
+    <title>CraftCalc End-of-Day Report</title>
     <style>
         body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #f8fafc; padding: 30px; margin: 0; }}
         .card {{ max-width: 650px; margin: 0 auto; background: #1e293b; border-radius: 16px; padding: 28px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid #334155; }}
@@ -159,35 +217,35 @@ def generate_html_report(stats):
     <div class="card">
         <div class="header">
             <div>
-                <h2 style="margin:0; font-size: 20px;">🚀 CraftCalc Daily Automation Status</h2>
-                <span style="color:#94a3b8; font-size:13px;">Date: {stats['date_str']}</span>
+                <h2 style="margin:0; font-size: 20px;">🌙 CraftCalc End-of-Day Report (11:59 PM)</h2>
+                <span style="color:#94a3b8; font-size:13px;">Date: {stats['date_str']} • Time: {stats['time_str']}</span>
             </div>
             <div class="status-badge">100% HEALTHY</div>
         </div>
         <div class="stat-grid">
             <div class="stat-box">
                 <div class="stat-lbl">📌 Pinterest Video Pins</div>
-                <div class="stat-val">{stats['pin_count']}</div>
-                <div style="font-size:12px; color:#cbd5e1;">Target: 10 Pins / 24h</div>
+                <div class="stat-val">{stats['pin_count_today']} <span style="font-size:14px; color:#94a3b8;">/ 10 daily</span></div>
+                <div style="font-size:12px; color:#cbd5e1;">All-Time Posted: {stats['total_pins']}</div>
             </div>
             <div class="stat-box">
                 <div class="stat-lbl">🐦 Twitter/X Tips</div>
-                <div class="stat-val">{stats['tweet_count']}</div>
-                <div style="font-size:12px; color:#cbd5e1;">Interval: Every 6h</div>
+                <div class="stat-val">{stats['tweet_count_today']}</div>
+                <div style="font-size:12px; color:#cbd5e1;">All-Time Posted: {stats['total_tweets']}</div>
             </div>
             <div class="stat-box">
                 <div class="stat-lbl">✍️ Medium Stories</div>
-                <div class="stat-val">{stats['medium_count']}</div>
+                <div class="stat-val">{stats['medium_today']}</div>
                 <div style="font-size:12px; color:#cbd5e1;">DA 96 High-Authority</div>
             </div>
             <div class="stat-box">
                 <div class="stat-lbl">✍️ Dev.to Articles</div>
-                <div class="stat-val">{stats['devto_count']}</div>
+                <div class="stat-val">{stats['devto_today']}</div>
                 <div style="font-size:12px; color:#cbd5e1;">DA 92 Backlinks</div>
             </div>
         </div>
         <div style="background:#0f172a; padding:16px; border-radius:12px; font-size:13px; line-height:1.6; color:#94a3b8;">
-            <b style="color:#f8fafc;">🛡️ Self-Healing Watchdog:</b> All background workers (Pinterest, Twitter, Medium) are fully active with zero critical errors.
+            <b style="color:#f8fafc;">🛡️ Self-Healing Watchdog:</b> {heal_text}
         </div>
         <div class="footer">CraftCalc Multi-Channel Organic Traffic Engine • <a href="https://tool-1-pied.vercel.app" style="color:#38bdf8;">tool-1-pied.vercel.app</a></div>
     </div>
@@ -197,19 +255,32 @@ def generate_html_report(stats):
         f.write(html_content)
     print(f"📄 Local HTML Report written: {HTML_REPORT_FILE}")
 
-def run_watchdog_loop(interval_hours=24):
+def run_watchdog_loop():
     print("=" * 60)
-    print(f"🛡️ CRAFTCALC SELF-HEALING WATCHDOG & REPORTER ACTIVE")
-    print(f"⏰ Daily Notification Interval: Every {interval_hours} Hours")
-    print(f"📲 ntfy Topic: https://ntfy.sh/{NTFY_TOPIC}")
+    print(f"🛡️ CRAFTCALC 24/7 SELF-HEALING WATCHDOG & 11:59 PM REPORTER")
+    print(f"⏰ Nightly Full-Day Report Scheduled At: 11:59 PM Sharp")
+    print(f"📲 ntfy Channel: https://ntfy.sh/{NTFY_TOPIC}")
     print("=" * 60)
     
-    # Send initial report on launch
-    send_daily_summary()
+    last_reported_day = None
     
     while True:
-        time.sleep(interval_hours * 3600)
-        send_daily_summary()
+        now = datetime.now()
+        current_day = now.date()
+        
+        # Self-healing check every 10 minutes
+        healed = check_and_heal_processes()
+        if healed:
+            print(f"[{now.strftime('%H:%M:%S')}] 🛠️ Watchdog restored: {healed}")
+            
+        # Check if it's 11:59 PM (23:59) and report hasn't been sent for today
+        if now.hour == 23 and now.minute >= 59 and last_reported_day != current_day:
+            print(f"[{now.strftime('%H:%M:%S')}] 🌙 11:59 PM Reached! Sending Full Day Summary...")
+            send_daily_summary(is_night_report=True)
+            last_reported_day = current_day
+            
+        # Sleep for 30 seconds before next check
+        time.sleep(30)
 
 if __name__ == "__main__":
     action = sys.argv[1] if len(sys.argv) > 1 else "report"
@@ -217,5 +288,8 @@ if __name__ == "__main__":
         send_ntfy_notification("🔔 CraftCalc Test Notification", "Test notification successful! Aapka mobile ab CraftCalc bot se connected hai. 🚀", tags="tada,rocket")
     elif action == "watch":
         run_watchdog_loop()
+    elif action == "--scheduled":
+        send_daily_summary(is_night_report=True)
     else:
-        send_daily_summary()
+        send_daily_summary(is_night_report=False)
+
