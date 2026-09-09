@@ -218,10 +218,19 @@ def publish_to_medium_browser(article, headless=False):
 
     rich_html = markdown_to_rich_html(article["markdown_body"])
     
+    config = load_config()
+    proxy_server = config.get("proxy", "").strip()
+    proxy_dict = {"server": proxy_server} if proxy_server else None
+
     with sync_playwright() as p:
         browser_context = p.chromium.launch_persistent_context(
             user_data_dir=str(MEDIUM_USER_DATA_DIR),
             headless=headless,
+            proxy=proxy_dict,
+            geolocation={"latitude": 40.7128, "longitude": -74.0060},
+            locale="en-US",
+            timezone_id="America/New_York",
+            permissions=["geolocation"],
             viewport={"width": 1280, "height": 900},
             args=[
                 "--disable-blink-features=AutomationControlled",
