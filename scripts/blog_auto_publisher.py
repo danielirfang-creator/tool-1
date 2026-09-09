@@ -317,8 +317,67 @@ def publish_to_medium_browser(article, headless=False):
 
         except Exception as e:
             print(f"[ERROR] Failed to publish on Medium: {e}")
-            browser_context.close()
+            try:
+                browser_context.close()
+            except Exception:
+                pass
             return None
+
+def publish_to_medium_api(article, token):
+    print(f"\n🚀 Publishing to Medium.com (DA 96) via Official API: '{article['title']}'...")
+    try:
+        user_res = requests.get(
+            "https://api.medium.com/v1/me",
+            headers={"Authorization": f"Bearer {token}", "Accept": "application/json"},
+            timeout=20
+        )
+        if user_res.status_code != 200:
+            print(f"[ERROR] Medium Token invalid or failed: {user_res.status_code} - {user_res.text}")
+            return None
+            
+        user_data = user_res.json().get("data", {})
+        user_id = user_data.get("id")
+        
+        rich_html = markdown_to_rich_html(article["markdown_body"])
+        main_img = article.get("cover_image", "")
+        if main_img and not main_img.startswith("http"):
+            main_img = f"https://tool-1-pied.vercel.app/{main_img.replace('public/', '')}"
+            
+        full_content = f"<h1>{article['title']}</h1>\n"
+        if main_img:
+            full_content += f"<figure><img src='{main_img}' alt='{article['title']}' /></figure>\n"
+        full_content += rich_html
+        
+        post_payload = {
+            "title": article["title"],
+            "contentFormat": "html",
+            "content": full_content,
+            "canonicalUrl": article.get("canonical_url"),
+            "tags": [t.replace(" ", "") for t in article.get("tags", [])][:5],
+            "publishStatus": "public"
+        }
+        
+        post_res = requests.post(
+            f"https://api.medium.com/v1/users/{user_id}/posts",
+            headers={
+                "Authorization": f"Bearer {token}",
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            json=post_payload,
+            timeout=30
+        )
+        if post_res.status_code in [200, 201]:
+            pdata = post_res.json().get("data", {})
+            post_url = pdata.get("url")
+            print(f"🎉 SUCCESS! Published on Medium via Official API: {post_url}")
+            return post_url
+        else:
+            print(f"[ERROR] Medium API Error: {post_res.status_code} - {post_res.text}")
+            return None
+    except Exception as e:
+        print(f"[ERROR] Medium API exception: {e}")
+        return None
 
 def publish_next_article(headless=False):
     config = load_config()
@@ -347,13 +406,18 @@ def publish_next_article(headless=False):
         if devto_url:
             results["devto"] = devto_url
 
-    # 2. Medium (Browser session with rich graphics + clickable backlinks)
-    if (MEDIUM_BOT_DIR / "user_session").exists() or MEDIUM_STORAGE_STATE_FILE.exists():
+    # 2. Medium (Official REST API first, then browser session fallback)
+    medium_token = config.get("medium_token", "").strip()
+    if medium_token:
+        med_url = publish_to_medium_api(next_art, medium_token)
+        if med_url:
+            results["medium"] = med_url
+    elif (MEDIUM_BOT_DIR / "user_session").exists() or MEDIUM_STORAGE_STATE_FILE.exists():
         med_url = publish_to_medium_browser(next_art, headless=headless)
         if med_url:
             results["medium"] = med_url
     else:
-        print("ℹ️ Medium session not found. Run '1_LOGIN_MEDIUM.bat' once to enable Medium auto-posting.")
+        print("ℹ️ Medium token or session not configured.")
 
     if results:
         history["published"].append({
