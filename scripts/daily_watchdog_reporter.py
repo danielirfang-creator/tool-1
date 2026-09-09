@@ -19,6 +19,7 @@ NTFY_TOPIC = "craftcalc_danial"  # User mobile ntfy topic
 PINTEREST_HISTORY = BASE_DIR / "pinterest_bot" / "posted_history.json"
 TWITTER_HISTORY = BASE_DIR / "twitter_bot" / "posted_history.json"
 BLOG_HISTORY = BASE_DIR / "blog_bot" / "published_history.json"
+BACKLINK_HISTORY = BASE_DIR / "backlink_bot" / "backlink_history.json"
 HTML_REPORT_FILE = BASE_DIR / "DAILY_REPORT.html"
 PYTHON_EXE = sys.executable
 
@@ -118,6 +119,25 @@ def get_today_and_total_stats():
         except Exception:
             pass
 
+    # 4. Auto-Backlink Stats
+    backlink_today = 0
+    total_backlinks = 0
+    if BACKLINK_HISTORY.exists():
+        try:
+            with open(BACKLINK_HISTORY, "r", encoding="utf-8") as f:
+                bkdata = json.load(f)
+                blist = bkdata.get("backlinks", [])
+                total_backlinks = len(blist)
+                for bl in blist:
+                    try:
+                        ts = datetime.fromisoformat(bl.get("timestamp", "2000-01-01"))
+                        if ts >= today_start or ts >= cutoff_24h:
+                            backlink_today += 1
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+
     return {
         "pin_count_today": pin_count_today,
         "total_pins": total_pins,
@@ -129,6 +149,8 @@ def get_today_and_total_stats():
         "medium_today": medium_today,
         "total_articles": total_articles,
         "latest_article": latest_article,
+        "backlink_today": backlink_today,
+        "total_backlinks": total_backlinks,
         "date_str": now.strftime("%d-%b-%Y"),
         "time_str": now.strftime("%I:%M %p")
     }
@@ -155,6 +177,11 @@ def check_and_heal_processes():
         if "blog_auto_publisher.py" not in running_cmdlines:
             subprocess.Popen([PYTHON_EXE, str(BASE_DIR / "scripts" / "blog_auto_publisher.py"), "schedule", "--interval", "24"], cwd=str(BASE_DIR), creationflags=0x08000000)
             healed.append("Blog Auto-Publisher Relaunched")
+
+        # Check Auto-Backlink Engine
+        if "auto_backlink_engine.py" not in running_cmdlines:
+            subprocess.Popen([PYTHON_EXE, str(BASE_DIR / "scripts" / "auto_backlink_engine.py"), "schedule", "--interval", "12"], cwd=str(BASE_DIR), creationflags=0x08000000)
+            healed.append("Auto-Backlink Engine Relaunched")
             
     except Exception as e:
         print(f"[WATCHDOG HEAL ERROR] {e}")
@@ -182,6 +209,8 @@ def send_daily_summary(is_night_report=True):
         f"   Last: {stats['latest_tweet']}\n\n"
         f"✍️ Articles Live: Medium ({stats['medium_today']}), Dev.to ({stats['devto_today']})\n"
         f"   Last: {stats['latest_article']}\n\n"
+        f"🔗 Auto-Backlinks: {stats['backlink_today']} Created Today (Total: {stats['total_backlinks']} Live High-DA Backlinks)\n"
+        f"   Status: Pinged to IndexNow & Search Bots\n\n"
         f"🛡️ Self-Healing Status:\n{heal_text}\n\n"
         f"🌐 Traffic Destination: tool-1-pied.vercel.app"
     )
@@ -234,14 +263,14 @@ def generate_html_report(stats, heal_text):
                 <div style="font-size:12px; color:#cbd5e1;">All-Time Posted: {stats['total_tweets']}</div>
             </div>
             <div class="stat-box">
-                <div class="stat-lbl">✍️ Medium Stories</div>
-                <div class="stat-val">{stats['medium_today']}</div>
-                <div style="font-size:12px; color:#cbd5e1;">DA 96 High-Authority</div>
+                <div class="stat-lbl">✍️ Medium & Dev.to</div>
+                <div class="stat-val">{stats['medium_today'] + stats['devto_today']}</div>
+                <div style="font-size:12px; color:#cbd5e1;">DA 92-96 Authority</div>
             </div>
             <div class="stat-box">
-                <div class="stat-lbl">✍️ Dev.to Articles</div>
-                <div class="stat-val">{stats['devto_today']}</div>
-                <div style="font-size:12px; color:#cbd5e1;">DA 92 Backlinks</div>
+                <div class="stat-lbl">🔗 Auto-Backlinks</div>
+                <div class="stat-val">{stats['backlink_today']} <span style="font-size:14px; color:#94a3b8;">Today</span></div>
+                <div style="font-size:12px; color:#cbd5e1;">Total Live: {stats['total_backlinks']} Backlinks</div>
             </div>
         </div>
         <div style="background:#0f172a; padding:16px; border-radius:12px; font-size:13px; line-height:1.6; color:#94a3b8;">

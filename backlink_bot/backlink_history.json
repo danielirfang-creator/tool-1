@@ -1,0 +1,25 @@
+{
+  "total_backlinks": 2,
+  "backlinks": [
+    {
+      "id": 1,
+      "anchor_text": "Laminate Plank & Underlayment Calculator",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/flooring/laminate-calculator",
+      "cluster": "flooring",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": false,
+      "pinged_pingomatic": false,
+      "timestamp": "2026-09-09T11:10:24.848373"
+    },
+    {
+      "id": 2,
+      "anchor_text": "Precision Flooring Material Calculator",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/flooring/flooring-calculator",
+      "cluster": "flooring",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": true,
+      "pinged_pingomatic": false,
+      "timestamp": "2026-09-09T11:10:40.586738"
+    }
+  ]
+}
