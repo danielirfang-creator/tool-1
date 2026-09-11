@@ -1,0 +1,41 @@
+name: Daily Blog & Authority Article Auto-Publisher
+
+on:
+  schedule:
+    # Runs daily at 14:00 UTC (7:00 PM PKT) automatically on GitHub Cloud
+    - cron: '0 14 * * *'
+  workflow_dispatch: # Allows manual 1-click publishing anytime from GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  publish-blog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies & Chromium
+        run: |
+          pip install playwright requests pillow
+          python -m playwright install --with-deps chromium
+
+      - name: Publish Next Article (Medium & Dev.to)
+        run: |
+          python scripts/blog_auto_publisher.py --headless
+
+      - name: Commit & Push Updated Publishing History
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add blog_bot/published_history.json
+          git diff --staged --quiet || (git commit -m "Auto-published scheduled blog article [skip ci]" && git push)
