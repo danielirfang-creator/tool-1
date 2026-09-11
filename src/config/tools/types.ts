@@ -1,8 +1,8 @@
-﻿export interface ToolMeta {
+export interface ToolMeta {
   id: string;
   slug: string;
   name: string;
-  cluster: 'flooring' | 'painting' | 'concrete-masonry' | 'garden' | 'rooms' | 'conversions';
+  cluster: 'flooring' | 'painting' | 'concrete-masonry' | 'garden' | 'rooms' | 'conversions' | 'drywall-framing' | 'roofing-siding' | 'fencing-decking';
   clusterName: string;
   clusterHref: string;
   benefit: string;

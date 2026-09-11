@@ -15,6 +15,9 @@ import {
   Truck,
   ArrowRightLeft,
   CheckCircle2,
+  Square,
+  Shield,
+  Columns
 } from 'lucide-react';
 
 interface UniversalCalculatorWidgetProps {
@@ -31,15 +34,33 @@ export function UniversalCalculatorWidget({ tool }: UniversalCalculatorWidgetPro
   const [wasteFactor, setWasteFactor] = useState<number>(10);
   const [pricePerUnit, setPricePerUnit] = useState<number>(0);
 
-  // Painting Specific Inputs
-  const [height, setHeight] = useState<number>(9);
+  // Painting & Drywall Specific Inputs
+  const [height, setHeight] = useState<number>(8);
   const [doors, setDoors] = useState<number>(2);
   const [windows, setWindows] = useState<number>(2);
   const [coats, setCoats] = useState<number>(2);
+  const [includeCeiling, setIncludeCeiling] = useState<boolean>(true);
+  const [sheetSize, setSheetSize] = useState<'4x8' | '4x12'>('4x8');
+
+  // Framing & Stud Inputs
+  const [studSpacing, setStudSpacing] = useState<16 | 24>(16);
+  const [corners, setCorners] = useState<number>(4);
+
+  // Roofing & Siding Inputs
+  const [pitch, setPitch] = useState<number>(6); // e.g. 6/12 pitch
+  const [gables, setGables] = useState<number>(2);
+  const [gableHeight, setGableHeight] = useState<number>(6);
 
   // Fence Specific Inputs
   const [fenceLength, setFenceLength] = useState<number>(100);
   const [postSpacing, setPostSpacing] = useState<number>(8);
+  const [railsCount, setRailsCount] = useState<number>(3);
+  const [picketWidth, setPicketWidth] = useState<number>(5.5); // 5.5" privacy vs 3.5" 1x4
+  const [gates, setGates] = useState<number>(1);
+
+  // Decking Specific Inputs
+  const [deckMaterial, setDeckMaterial] = useState<'composite' | 'wood-54' | 'wood-2x6'>('composite');
+  const [joistSpacing, setJoistSpacing] = useState<12 | 16>(12);
 
   // Conversion Specific Inputs
   const [convertValue, setConvertValue] = useState<number>(100);
@@ -78,7 +99,6 @@ export function UniversalCalculatorWidget({ tool }: UniversalCalculatorWidgetPro
         result = convertDirection === 'forward' ? convertValue * 0.264172 : convertValue / 0.264172;
         formulaStr = convertDirection === 'forward' ? '1 L = 0.264172 US gal' : '1 US gal = 3.78541 L';
       } else {
-        // kg to lbs
         fromUnit = convertDirection === 'forward' ? 'Kilograms (kg)' : 'Pounds (lbs)';
         toUnit = convertDirection === 'forward' ? 'Pounds (lbs)' : 'Kilograms (kg)';
         result = convertDirection === 'forward' ? convertValue * 2.20462 : convertValue / 2.20462;
@@ -107,7 +127,269 @@ export function UniversalCalculatorWidget({ tool }: UniversalCalculatorWidgetPro
       };
     }
 
-    // 2. PAINTING CLUSTER
+    // 2. DRYWALL & FRAMING CLUSTER
+    if (cluster === 'drywall-framing') {
+      if (slug === 'drywall-calculator') {
+        const wallPerimeter = 2 * (length + width);
+        const grossWallArea = wallPerimeter * height;
+        const openingsDeduction = doors * 21 + windows * 15;
+        const netWallArea = Math.max(0, grossWallArea - openingsDeduction);
+        const ceilingArea = includeCeiling ? length * width : 0;
+        const totalDrywallArea = (netWallArea + ceilingArea) * (1 + wasteFactor / 100);
+
+        const sheetSqFt = sheetSize === '4x8' ? 32 : 48;
+        const totalSheets = Math.ceil(totalDrywallArea / sheetSqFt);
+        const mudPails = Math.ceil(totalDrywallArea / 500); // 1 4.5gal/50lb bucket per 500 sq ft
+        const tapeRolls = Math.ceil(totalDrywallArea / 400); // 1 250ft roll per 400 sq ft
+        const screwLbs = Math.ceil((totalSheets * 32) / 300); // ~300 1-1/4" screws per lb
+
+        return {
+          type: 'standard',
+          primaryMetric: {
+            label: `Drywall Sheets (${sheetSize})`,
+            value: `${totalSheets} Sheets`,
+            subtext: `Covers ${Math.round(totalDrywallArea)} sq ft with ${wasteFactor}% cutting waste`,
+          },
+          secondaryMetrics: [
+            { label: 'Joint Compound (Mud)', value: `${mudPails} Pails (4.5 Gal / 50lb)` },
+            { label: 'Joint Tape (250ft)', value: `${tapeRolls} Roll(s)` },
+            { label: '1-1/4" Drywall Screws', value: `${screwLbs} lbs (~${totalSheets * 32} screws)` },
+            { label: 'Net Wall Surface', value: `${Math.round(netWallArea)} sq ft` },
+            { label: 'Ceiling Surface', value: `${Math.round(ceilingArea)} sq ft` },
+          ],
+          breakdowns: [
+            { label: 'Room Perimeter', value: `${wallPerimeter} ft` },
+            { label: 'Ceiling Height', value: `${height} ft` },
+            { label: 'Door & Window Deductions', value: `-${openingsDeduction} sq ft (${doors} doors, ${windows} windows)` },
+            { label: 'Sheet Dimension', value: sheetSize === '4x8' ? '4 ft x 8 ft (32 sq ft)' : '4 ft x 12 ft (48 sq ft)' },
+          ],
+          alerts: [
+            {
+              type: 'tip' as const,
+              title: 'Taping Tip',
+              message: 'Using 4x12 sheets instead of 4x8 reduces total taped butt joints by 25% for a smoother finish.',
+            },
+          ],
+        };
+      }
+
+      if (slug === 'wall-stud-calculator') {
+        const wallLinearFt = length;
+        const spacingFt = studSpacing / 12; // 1.33 ft for 16" OC, 2.0 ft for 24" OC
+        const fieldStuds = Math.ceil(wallLinearFt / spacingFt) + 1;
+        const cornerStuds = corners * 2;
+        const openingStuds = (doors + windows) * 2; // Jack + King studs
+        const totalStuds = Math.ceil((fieldStuds + cornerStuds + openingStuds) * (1 + wasteFactor / 100));
+        
+        // Plates: Double top plate + single bottom sill plate = 3 plates
+        const plateLinearFt = wallLinearFt * 3;
+        const plateBoards10ft = Math.ceil(plateLinearFt / 10);
+        const framingNailLbs = Math.ceil(totalStuds / 20); // 16d framing nails
+
+        return {
+          type: 'standard',
+          primaryMetric: {
+            label: 'Total Framing Studs',
+            value: `${totalStuds} Studs`,
+            subtext: `For ${wallLinearFt} linear ft at ${studSpacing}" On-Center with ${wasteFactor}% waste`,
+          },
+          secondaryMetrics: [
+            { label: 'Top & Bottom Plates (10ft)', value: `${plateBoards10ft} Boards (2x4x10)` },
+            { label: 'Field Studs', value: `${fieldStuds} Studs` },
+            { label: 'Corner & Opening Extras', value: `${cornerStuds + openingStuds} Studs` },
+            { label: 'Plate Linear Footage', value: `${plateLinearFt} Linear Ft` },
+            { label: '16d Framing Nails', value: `${framingNailLbs} lbs` },
+          ],
+          breakdowns: [
+            { label: 'Wall Length', value: `${wallLinearFt} Linear Feet` },
+            { label: 'On-Center Spacing', value: `${studSpacing}" On-Center (${spacingFt.toFixed(2)} ft)` },
+            { label: 'Plate Configuration', value: 'Double Top Plate + Single Sill Plate (3x length)' },
+            { label: 'Corners & Intersections', value: `${corners} Corners (+${cornerStuds} studs)` },
+          ],
+          alerts: [
+            {
+              type: 'info' as const,
+              title: 'Treated Sill Plate',
+              message: 'When fastening bottom plates directly to concrete slabs or basement floors, use pressure-treated lumber.',
+            },
+          ],
+        };
+      }
+    }
+
+    // 3. ROOFING & SIDING CLUSTER
+    if (cluster === 'roofing-siding') {
+      if (slug === 'roof-shingle-calculator') {
+        const footprintSqFt = length * width;
+        // Pitch multipliers: sqrt(1 + (pitch/12)^2)
+        const pitchMultiplier = Math.sqrt(1 + Math.pow(pitch / 12, 2));
+        const trueRoofArea = footprintSqFt * pitchMultiplier;
+        const totalRoofAreaWithWaste = trueRoofArea * (1 + wasteFactor / 100);
+        const roofingSquares = totalRoofAreaWithWaste / 100;
+        const shingleBundles = Math.ceil(roofingSquares * 3); // 3 bundles per square
+        const underlaymentRolls = Math.ceil(roofingSquares / 10); // Synthetic underlayment = 10 squares/roll
+        const starterStripFt = Math.round(2 * (length + width));
+        const ridgeCapBundles = Math.ceil(length / 30); // 30 linear ft per ridge bundle
+
+        return {
+          type: 'standard',
+          primaryMetric: {
+            label: 'Architectural Shingle Bundles',
+            value: `${shingleBundles} Bundles`,
+            subtext: `${Math.ceil(roofingSquares)} Roofing Squares (${Math.round(totalRoofAreaWithWaste)} sq ft)`,
+          },
+          secondaryMetrics: [
+            { label: 'Roofing Squares', value: `${roofingSquares.toFixed(1)} Squares` },
+            { label: 'Underlayment (10 sq rolls)', value: `${underlaymentRolls} Roll(s)` },
+            { label: 'Starter Strip Length', value: `${starterStripFt} Linear Ft` },
+            { label: 'Ridge Cap Bundles', value: `${ridgeCapBundles} Bundles` },
+            { label: 'Roofing Coil Nails (1-1/4")', value: `${Math.ceil(roofingSquares * 320)} Nails (1 Box)` },
+          ],
+          breakdowns: [
+            { label: 'Ground Footprint Area', value: `${footprintSqFt} sq ft` },
+            { label: 'Roof Pitch / Slope', value: `${pitch}/12 (Multiplier: ${pitchMultiplier.toFixed(3)})` },
+            { label: 'True Sloped Roof Area', value: `${Math.round(trueRoofArea)} sq ft` },
+            { label: 'Gable & Valley Waste Buffer', value: `+${wasteFactor}%` },
+          ],
+          alerts: [
+            {
+              type: 'tip' as const,
+              title: 'Ice & Water Shield',
+              message: 'Install self-adhering Ice & Water shield membrane at least 3 feet up from the eaves and in all valleys.',
+            },
+          ],
+        };
+      }
+
+      if (slug === 'siding-calculator') {
+        const wallPerimeter = length; // linear ft of exterior walls
+        const grossWallArea = wallPerimeter * height;
+        const gableArea = gables * (0.5 * width * gableHeight);
+        const openingsDeduction = doors * 21 + windows * 15;
+        const netSidingArea = Math.max(0, (grossWallArea + gableArea - openingsDeduction)) * (1 + wasteFactor / 100);
+        const sidingSquares = netSidingArea / 100;
+        const sidingBoxes = Math.ceil(sidingSquares / 2); // 2 squares per standard vinyl carton
+        const starterPieces = Math.ceil(wallPerimeter / 10); // 10ft starter strips
+        const jChannelPieces = Math.ceil((openingsDeduction * 1.5 + wallPerimeter) / 12.5); // 12.5ft pieces
+        const cornerPosts = Math.ceil(corners * (height / 10));
+
+        return {
+          type: 'standard',
+          primaryMetric: {
+            label: 'Vinyl Siding Cartons',
+            value: `${sidingBoxes} Cartons (2 Sq/Box)`,
+            subtext: `${sidingSquares.toFixed(1)} Squares (${Math.round(netSidingArea)} sq ft) with ${wasteFactor}% waste`,
+          },
+          secondaryMetrics: [
+            { label: 'Total Siding Squares', value: `${sidingSquares.toFixed(1)} Squares` },
+            { label: '10ft Starter Strips', value: `${starterPieces} Pieces` },
+            { label: '12.5ft J-Channels', value: `${jChannelPieces} Pieces` },
+            { label: 'Outside Corner Posts', value: `${cornerPosts} Posts` },
+            { label: 'Housewrap Vapor Barrier', value: `${Math.ceil(netSidingArea / 900)} Roll(s) (9x100ft)` },
+          ],
+          breakdowns: [
+            { label: 'Rectangular Wall Area', value: `${grossWallArea} sq ft` },
+            { label: 'Gable Peak Triangular Area', value: `+${Math.round(gableArea)} sq ft (${gables} gables)` },
+            { label: 'Door & Window Deductions', value: `-${openingsDeduction} sq ft (${doors} doors, ${windows} windows)` },
+            { label: 'Net Siding Surface', value: `${Math.round(netSidingArea)} sq ft` },
+          ],
+          alerts: [
+            {
+              type: 'info' as const,
+              title: 'Fastening Rule',
+              message: 'Fasten nails in the center of the nailing slots without driving heads tight to allow natural thermal expansion.',
+            },
+          ],
+        };
+      }
+    }
+
+    // 4. FENCING & DECKING CLUSTER
+    if (cluster === 'fencing-decking') {
+      if (slug === 'fence-calculator') {
+        const totalRunFt = fenceLength;
+        const sections = Math.ceil(totalRunFt / postSpacing);
+        const posts = sections + 1 + gates; // 1 end post + gate posts
+        const rails = sections * railsCount;
+        const picketWidthInches = picketWidth;
+        const pickets = Math.ceil(((totalRunFt * 12) / picketWidthInches) * 1.05); // 5% waste
+        const concreteBags50lb = posts * 2; // 2 bags per post hole
+
+        return {
+          type: 'standard',
+          primaryMetric: {
+            label: 'Total 4x4 Fence Posts',
+            value: `${posts} Posts`,
+            subtext: `For ${totalRunFt} linear ft at ${postSpacing}ft spacing with ${gates} gate(s)`,
+          },
+          secondaryMetrics: [
+            { label: '2x4 Horizontal Rails', value: `${rails} Rails (${railsCount} per section)` },
+            { label: `${picketWidth}" Fence Pickets`, value: `${pickets} Pickets` },
+            { label: '50lb Fast-Setting Concrete', value: `${concreteBags50lb} Bags (2/hole)` },
+            { label: 'Fence Sections', value: `${sections} Sections` },
+            { label: '1-5/8" Exterior Screws', value: `${Math.ceil((pickets * 6) / 350)} lbs (~${pickets * 6} screws)` },
+          ],
+          breakdowns: [
+            { label: 'Total Fence Run', value: `${totalRunFt} Linear Feet` },
+            { label: 'Post Spacing', value: `${postSpacing} Feet On-Center` },
+            { label: 'Rail Configuration', value: `${railsCount} Rails (Top, ${railsCount === 3 ? 'Middle, ' : ''}Bottom)` },
+            { label: 'Picket Size', value: `${picketWidth}" Wide Dog-Ear Pickets` },
+          ],
+          alerts: [
+            {
+              type: 'tip' as const,
+              title: 'Post Hole Depth',
+              message: 'Dig post holes to a minimum depth of 30–36 inches to stay safely below the frost line and ensure wind stability.',
+            },
+          ],
+        };
+      }
+
+      if (slug === 'decking-calculator') {
+        const deckAreaSqFt = length * width; // length along wall, width outward
+        const boardWidthInches = 5.5; // Standard 5.5" for 5/4x6 and composite
+        const boardsPerFt = 12 / boardWidthInches; // ~2.18 boards per ft of width
+        const rawBoardRunFt = Math.ceil(width * boardsPerFt);
+        const totalBoards = Math.ceil(rawBoardRunFt * (1 + wasteFactor / 100));
+        const totalLinearFeet = Math.round(totalBoards * length);
+        
+        // Joists: length / spacing
+        const joistSpacingFt = joistSpacing / 12;
+        const joistsCount = Math.ceil(length / joistSpacingFt) + 1;
+        const fastenerClips = Math.ceil((deckAreaSqFt * 2.5) / 90); // 90 clips per box
+
+        return {
+          type: 'standard',
+          primaryMetric: {
+            label: 'Deck Surface Boards (16ft)',
+            value: `${totalBoards} Boards`,
+            subtext: `${totalLinearFeet} Lineal Feet for ${deckAreaSqFt} sq ft deck with ${wasteFactor}% waste`,
+          },
+          secondaryMetrics: [
+            { label: 'Framing Joists (2x8)', value: `${joistsCount} Joists (${joistSpacing}" OC)` },
+            { label: 'Total Linear Footage', value: `${totalLinearFeet} Linear Ft` },
+            { label: 'Hidden Fastener Boxes', value: `${fastenerClips} Boxes (90ct/box)` },
+            { label: 'Ledger Board (2x8)', value: `${length} Linear Ft` },
+            { label: 'Joist Hangers', value: `${joistsCount} Hangers` },
+          ],
+          breakdowns: [
+            { label: 'Deck Dimensions', value: `${length} ft (along house) x ${width} ft (projection)` },
+            { label: 'Surface Square Footage', value: `${deckAreaSqFt} sq ft` },
+            { label: 'Material Type', value: deckMaterial === 'composite' ? 'Composite / Trex (5.5" width)' : 'Treated 5/4x6 Wood' },
+            { label: 'Joist Spacing', value: `${joistSpacing}" On-Center` },
+          ],
+          alerts: [
+            {
+              type: 'info' as const,
+              title: 'Composite 12" Rule',
+              message: 'Composite decking requires 12" on-center joist spacing for diagonal layouts or maximum non-flex support.',
+            },
+          ],
+        };
+      }
+    }
+
+    // 5. PAINTING CLUSTER
     if (cluster === 'painting') {
       const wallPerimeter = 2 * (length + width);
       const grossWallArea = wallPerimeter * height;
@@ -156,7 +438,7 @@ export function UniversalCalculatorWidget({ tool }: UniversalCalculatorWidgetPro
       };
     }
 
-    // 3. CONCRETE & MASONRY CLUSTER
+    // 6. CONCRETE & MASONRY CLUSTER
     if (cluster === 'concrete-masonry') {
       const areaSqFt = length * width;
       const depthFeet = depthInches / 12;
@@ -164,16 +446,15 @@ export function UniversalCalculatorWidget({ tool }: UniversalCalculatorWidgetPro
       const cubicFeetWithBuffer = rawCubicFeet * (1 + wasteFactor / 100);
       const cubicYards = (cubicFeetWithBuffer / 27);
 
-      const bags80lb = Math.ceil(cubicFeetWithBuffer / 0.60); // 0.60 cu ft per 80lb bag
-      const bags60lb = Math.ceil(cubicFeetWithBuffer / 0.45); // 0.45 cu ft per 60lb bag
-      const rebarFeet = Math.round(areaSqFt * 1.5); // Grid estimate
-      const gravelYards = (areaSqFt * (4 / 12) / 27).toFixed(1); // 4" gravel base
+      const bags80lb = Math.ceil(cubicFeetWithBuffer / 0.60);
+      const bags60lb = Math.ceil(cubicFeetWithBuffer / 0.45);
+      const rebarFeet = Math.round(areaSqFt * 1.5);
+      const gravelYards = (areaSqFt * (4 / 12) / 27).toFixed(1);
       const totalCost = pricePerUnit > 0 ? bags80lb * pricePerUnit : 0;
 
-      // Special handling for Brick / Block
       if (slug === 'brick-calculator') {
-        const totalBricks = Math.ceil(areaSqFt * 7 * (1 + wasteFactor / 100)); // ~7 bricks/sq ft
-        const mortarBags = Math.ceil(totalBricks / 140); // 1 bag per 140 bricks
+        const totalBricks = Math.ceil(areaSqFt * 7 * (1 + wasteFactor / 100));
+        const mortarBags = Math.ceil(totalBricks / 140);
         return {
           type: 'standard',
           primaryMetric: {
@@ -202,30 +483,57 @@ export function UniversalCalculatorWidget({ tool }: UniversalCalculatorWidgetPro
       }
 
       if (slug === 'block-calculator') {
-        const totalBlocks = Math.ceil(areaSqFt * 1.125 * (1 + wasteFactor / 100)); // 1.125 blocks/sq ft (8x8x16)
-        const mortarBags = Math.ceil(totalBlocks / 35); // 1 bag per 35 blocks
+        const totalBlocks = Math.ceil(areaSqFt * 1.125 * (1 + wasteFactor / 100));
+        const mortarBags = Math.ceil(totalBlocks / 30);
         return {
           type: 'standard',
           primaryMetric: {
-            label: 'Total 8x8x16 CMU Blocks',
+            label: 'Standard 8x8x16 CMU Blocks',
             value: `${totalBlocks.toLocaleString()} Blocks`,
-            subtext: `Includes ${wasteFactor}% cutting buffer`,
+            subtext: `Includes ${wasteFactor}% cutting and corner waste`,
           },
           secondaryMetrics: [
-            { label: 'Mortar Bags (70lb)', value: `${mortarBags} Bags` },
-            { label: 'Core-Fill Concrete', value: `${(totalBlocks * 0.012).toFixed(1)} Cu Yds` },
-            { label: 'Wall Area', value: `${areaSqFt} sq ft` },
+            { label: 'Type S Mortar Bags (80lb)', value: `${mortarBags} Bags` },
+            { label: 'Core-Fill Grout Volume', value: `${((totalBlocks * 0.86) / 100).toFixed(2)} Cu Yds` },
+            { label: 'Wall Surface Area', value: `${areaSqFt} sq ft` },
           ],
           breakdowns: [
             { label: 'Wall Surface Area', value: `${areaSqFt} sq ft` },
-            { label: 'Block Dimensions', value: '8" x 8" x 16" Standard CMU' },
-            { label: 'Joint Buffer', value: '3/8" Mortar Bedding' },
+            { label: 'Block Density', value: '1.125 Blocks / Sq Ft (8x8x16)' },
+            { label: 'Mortar Yield', value: '30 Blocks Per 80lb Bag' },
+          ],
+          alerts: [
+            {
+              type: 'tip' as const,
+              title: 'Below Grade Specification',
+              message: 'Use Type S high-strength mortar (minimum 1,800 PSI) for structural retaining and foundation block walls.',
+            },
+          ],
+        };
+      }
+
+      if (slug === 'mortar-calculator') {
+        const mortarBags = Math.ceil(areaSqFt / 30);
+        return {
+          type: 'standard',
+          primaryMetric: {
+            label: 'Total Mortar Bags (80lb)',
+            value: `${mortarBags} Bags`,
+            subtext: 'Type N (Above Grade) or Type S (Below Grade)',
+          },
+          secondaryMetrics: [
+            { label: 'Masonry Sand Volume', value: `${(mortarBags * 0.12).toFixed(1)} Tons` },
+            { label: 'Water Requirement', value: `${(mortarBags * 1.2).toFixed(1)} Gallons` },
+          ],
+          breakdowns: [
+            { label: 'Square Footage Covered', value: `${areaSqFt} sq ft` },
+            { label: 'Yield Rule', value: '~30 sq ft coverage per 80lb bag @ 3/8" joint' },
           ],
           alerts: [
             {
               type: 'info' as const,
-              title: 'Core Filling Requirement',
-              message: 'Retaining walls and structural foundations require rebar and concrete grout core-fill every 32 to 48 inches.',
+              title: 'Mortar Pot Life',
+              message: 'Once mixed with water, mortar has a working pot life of approximately 90 minutes before setting.',
             },
           ],
         };
@@ -234,150 +542,100 @@ export function UniversalCalculatorWidget({ tool }: UniversalCalculatorWidgetPro
       return {
         type: 'standard',
         primaryMetric: {
-          label: 'Total Concrete Volume',
+          label: 'Total Ready-Mix Concrete',
           value: `${cubicYards.toFixed(2)} Cubic Yards`,
-          subtext: `Includes ${wasteFactor}% subgrade spillage & compaction buffer`,
+          subtext: `Or ${bags80lb} Bags (80lb) / ${bags60lb} Bags (60lb)`,
         },
         secondaryMetrics: [
-          { label: '80lb Quikrete Bags', value: `${bags80lb} Bags` },
-          { label: '60lb Pre-Mix Bags', value: `${bags60lb} Bags` },
-          { label: 'Rebar Grid (#4 1/2")', value: `${rebarFeet} Linear Ft` },
-          { label: '4" Compacted Base', value: `${gravelYards} Cu Yds` },
-          ...(totalCost > 0 ? [{ label: 'Estimated Material Cost', value: `$${totalCost.toFixed(2)}` }] : []),
+          { label: '80lb Pre-Mixed Bags', value: `${bags80lb} Bags` },
+          { label: '60lb Pre-Mixed Bags', value: `${bags60lb} Bags` },
+          { label: 'Total Cubic Feet', value: `${cubicFeetWithBuffer.toFixed(1)} Cu Ft` },
+          { label: 'Crushed Gravel Subbase (4")', value: `${gravelYards} Cu Yds` },
+          { label: 'Rebar / Wire Mesh', value: `${rebarFeet} Linear Ft` },
+          ...(totalCost > 0 ? [{ label: 'Estimated Bag Cost', value: `$${totalCost.toFixed(2)}` }] : []),
         ],
         breakdowns: [
-          { label: 'Slab Surface Area', value: `${areaSqFt} sq ft` },
-          { label: 'Slab Thickness', value: `${depthInches} inches (${(depthInches/12).toFixed(2)} ft)` },
-          { label: 'Net Volume', value: `${(rawCubicFeet / 27).toFixed(2)} Cu Yds` },
-          { label: 'Spillage Buffer', value: `+${wasteFactor}%` },
+          { label: 'Slab Dimensions', value: `${length} ft x ${width} ft (${areaSqFt} sq ft)` },
+          { label: 'Pour Depth', value: `${depthInches} inches (${depthFeet.toFixed(3)} ft)` },
+          { label: 'Subgrade Waste Margin', value: `+${wasteFactor}%` },
         ],
         alerts: [
           {
             type: 'tip' as const,
-            title: 'Truck Delivery vs Bags',
-            message: 'If your project exceeds 1.5 cubic yards (~68 80lb bags), ordering ready-mix truck delivery is significantly faster and less costly.',
+            title: 'Truck Delivery Threshold',
+            message: 'If your project exceeds 1.5 cubic yards (~65 bags), ordering a ready-mix truck delivery saves hours of mixing labor.',
           },
         ],
       };
     }
 
-    // 4. GARDEN & OUTDOORS CLUSTER
-    if (cluster === 'garden') {
-      const areaSqFt = length * width;
-
-      if (slug === 'fence-calculator') {
-        const posts = Math.ceil(fenceLength / postSpacing) + 1;
-        const rails = (posts - 1) * 3; // 3 rails for 6ft privacy fence
-        const pickets = Math.ceil((fenceLength * 12) / 5.5); // 5.5" wide pickets
-        const concreteBags = (posts * 2); // 2 50lb bags per post
-
-        return {
-          type: 'standard',
-          primaryMetric: {
-            label: 'Total 4x4 Posts Needed',
-            value: `${posts} Posts`,
-            subtext: `Based on ${postSpacing}ft on-center post spacing`,
-          },
-          secondaryMetrics: [
-            { label: '2x4 Stringer Rails', value: `${rails} Rails (3-rail fence)` },
-            { label: '1x6 Pickets (5.5" wide)', value: `${pickets} Pickets` },
-            { label: 'Fast-Set Concrete', value: `${concreteBags} Bags (2/hole)` },
-            { label: 'Total Fence Length', value: `${fenceLength} Linear Ft` },
-          ],
-          breakdowns: [
-            { label: 'Perimeter Length', value: `${fenceLength} ft` },
-            { label: 'Post Spacing', value: `${postSpacing} ft on-center` },
-            { label: 'Picket Width', value: '5.5" Dog-Ear Pine/Cedar' },
-          ],
-          alerts: [
-            {
-              type: 'info' as const,
-              title: 'Post Hole Depth Rule',
-              message: 'Post holes should be dug to at least 1/3 the height of the post (typically 24 to 36 inches deep) to stay below the regional frost line.',
-            },
-          ],
-        };
-      }
-
-      if (slug === 'patio-calculator') {
-        const pavers = Math.ceil(areaSqFt * 4.5 * (1 + wasteFactor / 100)); // Standard 4.5 pavers/sq ft
-        const gravelSubbase = ((areaSqFt * (4 / 12)) / 27).toFixed(1); // 4" crushed stone base
-        const screedSand = ((areaSqFt * (1 / 12)) / 27).toFixed(1); // 1" bedding sand
-        const edgeRestraint = Math.round(2 * (length + width));
-
-        return {
-          type: 'standard',
-          primaryMetric: {
-            label: 'Total Pavers Required',
-            value: `${pavers.toLocaleString()} Pavers`,
-            subtext: `Includes ${wasteFactor}% cutting and pattern waste`,
-          },
-          secondaryMetrics: [
-            { label: '4" Subbase Gravel', value: `${gravelSubbase} Cu Yds` },
-            { label: '1" Bedding Sand', value: `${screedSand} Cu Yds` },
-            { label: 'Polymeric Sand Grout', value: `${Math.ceil(areaSqFt / 75)} Bags (50lb)` },
-            { label: 'Snap Edge Restraints', value: `${edgeRestraint} Linear Ft` },
-          ],
-          breakdowns: [
-            { label: 'Patio Surface Area', value: `${areaSqFt} sq ft` },
-            { label: 'Paver Coverage Density', value: '4.5 Pavers / Sq Ft' },
-            { label: 'Cutting Waste Buffer', value: `+${wasteFactor}%` },
-          ],
-          alerts: [
-            {
-              type: 'tip' as const,
-              title: 'Compaction Rule',
-              message: 'Always use a plate compactor over the 4" road base before screeding your 1" bedding sand.',
-            },
-          ],
-        };
-      }
-
-      // Mulch, Gravel, Topsoil, Turf
-      const depthFeet = depthInches / 12;
-      const rawCubicFeet = areaSqFt * depthFeet;
-      const cubicYards = (rawCubicFeet / 27) * (1 + wasteFactor / 100);
-      const tonsGravel = cubicYards * 1.4; // ~1.4 tons per cu yd
-      const mulchBags2CuFt = Math.ceil(rawCubicFeet / 2);
-      const topsoilBags40lb = Math.ceil(rawCubicFeet / 0.75);
-      const turfPallets = Math.ceil(areaSqFt / 450);
+    // 7. FLOORING & GARDEN & ROOMS CLUSTER
+    const areaSqFt = length * width;
+    if (cluster === 'flooring') {
+      const totalAreaWithWaste = areaSqFt * (1 + wasteFactor / 100);
+      const boxSize = slug.includes('vinyl') ? 24 : slug.includes('tile') ? 15 : 20;
+      const totalBoxes = Math.ceil(totalAreaWithWaste / boxSize);
+      const totalCost = pricePerUnit > 0 ? totalAreaWithWaste * pricePerUnit : 0;
 
       return {
         type: 'standard',
         primaryMetric: {
-          label: slug.includes('gravel') ? 'Total Gravel Needed' : slug.includes('mulch') ? 'Total Mulch Volume' : 'Total Material Volume',
+          label: 'Flooring Material Required',
+          value: `${Math.ceil(totalAreaWithWaste)} Sq Ft`,
+          subtext: `${totalBoxes} Boxes (${boxSize} sq ft/box) with ${wasteFactor}% waste`,
+        },
+        secondaryMetrics: [
+          { label: 'Net Room Area', value: `${areaSqFt} sq ft` },
+          { label: 'Cartons / Boxes', value: `${totalBoxes} Boxes` },
+          { label: 'Waste Allowance', value: `${Math.round(totalAreaWithWaste - areaSqFt)} sq ft` },
+          ...(totalCost > 0 ? [{ label: 'Estimated Material Cost', value: `$${totalCost.toFixed(2)}` }] : []),
+        ],
+        breakdowns: [
+          { label: 'Room Dimensions', value: `${length} ft x ${width} ft` },
+          { label: 'Box Coverage Spec', value: `${boxSize} sq ft per carton` },
+          { label: 'Waste Factor', value: `+${wasteFactor}%` },
+        ],
+        alerts: [
+          {
+            type: 'tip' as const,
+            title: 'Subfloor Acclimation',
+            message: 'Allow flooring planks to acclimate in the installation room for 48 hours prior to installation.',
+          },
+        ],
+      };
+    }
+
+    // Garden Cluster
+    if (cluster === 'garden') {
+      const depthFeet = depthInches / 12;
+      const rawCubicFeet = areaSqFt * depthFeet;
+      const cubicYards = (rawCubicFeet / 27) * (1 + wasteFactor / 100);
+      const tonsGravel = cubicYards * 1.4;
+
+      return {
+        type: 'standard',
+        primaryMetric: {
+          label: slug.includes('gravel') ? 'Total Gravel Needed' : 'Total Material Volume',
           value: slug.includes('gravel') ? `${tonsGravel.toFixed(1)} Tons` : `${cubicYards.toFixed(1)} Cubic Yards`,
           subtext: `Covers ${areaSqFt} sq ft at ${depthInches}" depth with ${wasteFactor}% buffer`,
         },
         secondaryMetrics: [
           { label: 'Cubic Yards', value: `${cubicYards.toFixed(1)} Cu Yds` },
-          { label: '2 Cu Ft Bags (Mulch)', value: `${mulchBags2CuFt} Bags` },
-          { label: '40lb Soil Bags', value: `${topsoilBags40lb} Bags` },
-          { label: '500 Sq Ft Sod Pallets', value: `${turfPallets} Pallets` },
+          { label: 'Total Cubic Feet', value: `${rawCubicFeet.toFixed(1)} Cu Ft` },
+          { label: 'Coverage Area', value: `${areaSqFt} sq ft` },
         ],
         breakdowns: [
-          { label: 'Coverage Area', value: `${areaSqFt} sq ft` },
+          { label: 'Area Dimensions', value: `${length} ft x ${width} ft` },
           { label: 'Layer Depth', value: `${depthInches} inches` },
-          { label: 'Compaction Factor', value: `+${wasteFactor}%` },
         ],
-        alerts: [
-          {
-            type: 'tip' as const,
-            title: 'Mulch & Weed Suppression',
-            message: 'A 2 to 3-inch layer is ideal for weed suppression and moisture retention without suffocating plant root systems.',
-          },
-        ],
+        alerts: [],
       };
     }
 
-    // 5. ROOMS & WALLS CLUSTER
-    const areaSqFt = length * width;
+    // Rooms & Walls Cluster
     const perimeter = 2 * (length + width);
     const wallArea = Math.max(0, perimeter * height - (doors * 20 + windows * 15));
-    const cubicVolume = areaSqFt * height;
-    const drywallSheets4x8 = Math.ceil(wallArea / 32);
-    const wallpaperRolls = Math.ceil(wallArea / 28); // ~28 sq ft per double roll with repeat
-    const baseboardFeet = Math.ceil(perimeter * 1.10); // 10% miter buffer
+    const baseboardFeet = Math.ceil(perimeter * 1.10);
 
     return {
       type: 'standard',
@@ -389,25 +647,41 @@ export function UniversalCalculatorWidget({ tool }: UniversalCalculatorWidgetPro
       secondaryMetrics: [
         { label: 'Wall Surface Area', value: `${wallArea} sq ft` },
         { label: 'Room Perimeter', value: `${perimeter} Linear Ft` },
-        { label: 'Baseboard Trim (w/ Miter)', value: `${baseboardFeet} Linear Ft` },
-        { label: '4x8 Drywall Sheets', value: `${drywallSheets4x8} Sheets` },
-        { label: 'Wallpaper Double Rolls', value: `${wallpaperRolls} Rolls` },
-        { label: 'HVAC Air Volume', value: `${cubicVolume} Cu Ft` },
+        { label: 'Baseboard Trim', value: `${baseboardFeet} Linear Ft` },
       ],
       breakdowns: [
         { label: 'Room Dimensions', value: `${length} ft x ${width} ft x ${height} ft H` },
-        { label: 'Door Deductions', value: `-${doors * 20} sq ft (${doors} doors)` },
-        { label: 'Window Deductions', value: `-${windows * 15} sq ft (${windows} windows)` },
       ],
-      alerts: [
-        {
-          type: 'info' as const,
-          title: 'Trim Scarf & Miter Joints',
-          message: 'Always add a 10% allowance to linear baseboard and crown molding for 45-degree corner miters and scarf splice joints.',
-        },
-      ],
+      alerts: [],
     };
-  }, [tool, length, width, depthInches, wasteFactor, pricePerUnit, height, doors, windows, coats, fenceLength, postSpacing, convertValue, convertDirection]);
+  }, [
+    tool,
+    length,
+    width,
+    depthInches,
+    wasteFactor,
+    pricePerUnit,
+    height,
+    doors,
+    windows,
+    coats,
+    includeCeiling,
+    sheetSize,
+    studSpacing,
+    corners,
+    pitch,
+    gables,
+    gableHeight,
+    fenceLength,
+    postSpacing,
+    railsCount,
+    picketWidth,
+    gates,
+    deckMaterial,
+    joistSpacing,
+    convertValue,
+    convertDirection,
+  ]);
 
   return (
     <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/60 border border-slate-200 p-6 sm:p-8">
@@ -428,7 +702,7 @@ export function UniversalCalculatorWidget({ tool }: UniversalCalculatorWidgetPro
         )}
       </div>
 
-      {/* Inputs Form */}
+      {/* Dynamic Inputs Form */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         {tool.cluster === 'conversions' ? (
           <>
@@ -436,17 +710,15 @@ export function UniversalCalculatorWidget({ tool }: UniversalCalculatorWidgetPro
               <label className="block text-sm font-bold text-slate-700 mb-2">
                 Value to Convert
               </label>
-              <div className="relative">
-                <input
-                  type="number"
-                  min="0"
-                  step="any"
-                  value={convertValue || ''}
-                  onChange={(e) => setConvertValue(parseFloat(e.target.value) || 0)}
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                  placeholder="Enter number..."
-                />
-              </div>
+              <input
+                type="number"
+                min="0"
+                step="any"
+                value={convertValue || ''}
+                onChange={(e) => setConvertValue(parseFloat(e.target.value) || 0)}
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                placeholder="Enter number..."
+              />
             </div>
 
             <div className="md:col-span-2 flex items-center justify-between bg-slate-50 p-4 rounded-xl border border-slate-200">
@@ -459,6 +731,245 @@ export function UniversalCalculatorWidget({ tool }: UniversalCalculatorWidgetPro
                 <ArrowRightLeft className="w-4 h-4" />
                 <span>Switch Direction</span>
               </button>
+            </div>
+          </>
+        ) : tool.slug === 'drywall-calculator' ? (
+          <>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Room Length (Feet)</label>
+              <input
+                type="number"
+                min="1"
+                value={length || ''}
+                onChange={(e) => setLength(parseFloat(e.target.value) || 0)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Room Width (Feet)</label>
+              <input
+                type="number"
+                min="1"
+                value={width || ''}
+                onChange={(e) => setWidth(parseFloat(e.target.value) || 0)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Ceiling Height (Feet)</label>
+              <input
+                type="number"
+                min="1"
+                value={height || ''}
+                onChange={(e) => setHeight(parseFloat(e.target.value) || 0)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Sheet Dimensions</label>
+              <select
+                value={sheetSize}
+                onChange={(e) => setSheetSize(e.target.value as '4x8' | '4x12')}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              >
+                <option value="4x8">4 ft × 8 ft (32 sq ft - Standard)</option>
+                <option value="4x12">4 ft × 12 ft (48 sq ft - Pro Large)</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Doors (Deduct 21 sq ft)</label>
+              <input
+                type="number"
+                min="0"
+                value={doors}
+                onChange={(e) => setDoors(parseInt(e.target.value, 10) || 0)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Windows (Deduct 15 sq ft)</label>
+              <input
+                type="number"
+                min="0"
+                value={windows}
+                onChange={(e) => setWindows(parseInt(e.target.value, 10) || 0)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+            <div className="md:col-span-2 flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <input
+                type="checkbox"
+                id="includeCeiling"
+                checked={includeCeiling}
+                onChange={(e) => setIncludeCeiling(e.target.checked)}
+                className="w-5 h-5 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer"
+              />
+              <label htmlFor="includeCeiling" className="text-sm font-bold text-slate-800 cursor-pointer">
+                Include Ceiling Drywall Calculation (+{length * width} sq ft)
+              </label>
+            </div>
+            <div className="md:col-span-2">
+              <WasteFactorSelector value={wasteFactor} onChange={setWasteFactor} />
+            </div>
+          </>
+        ) : tool.slug === 'wall-stud-calculator' ? (
+          <>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Total Wall Length (Linear Feet)</label>
+              <input
+                type="number"
+                min="1"
+                value={length || ''}
+                onChange={(e) => setLength(parseFloat(e.target.value) || 0)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Stud Spacing (On-Center)</label>
+              <select
+                value={studSpacing}
+                onChange={(e) => setStudSpacing(parseInt(e.target.value, 10) as 16 | 24)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              >
+                <option value={16}>16 Inches On-Center (Standard Structural)</option>
+                <option value={24}>24 Inches On-Center (Advanced Framing)</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Corners & Wall Intersections</label>
+              <input
+                type="number"
+                min="0"
+                value={corners}
+                onChange={(e) => setCorners(parseInt(e.target.value, 10) || 0)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Door & Window Openings</label>
+              <input
+                type="number"
+                min="0"
+                value={doors + windows}
+                onChange={(e) => {
+                  const val = parseInt(e.target.value, 10) || 0;
+                  setDoors(val);
+                  setWindows(0);
+                }}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+            <div className="md:col-span-2">
+              <WasteFactorSelector value={wasteFactor} onChange={setWasteFactor} />
+            </div>
+          </>
+        ) : tool.slug === 'roof-shingle-calculator' ? (
+          <>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Roof Base Length (Feet)</label>
+              <input
+                type="number"
+                min="1"
+                value={length || ''}
+                onChange={(e) => setLength(parseFloat(e.target.value) || 0)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Roof Base Width (Feet)</label>
+              <input
+                type="number"
+                min="1"
+                value={width || ''}
+                onChange={(e) => setWidth(parseFloat(e.target.value) || 0)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Roof Pitch / Slope</label>
+              <select
+                value={pitch}
+                onChange={(e) => setPitch(parseInt(e.target.value, 10))}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              >
+                <option value={0}>Flat Roof (0/12)</option>
+                <option value={3}>Low Pitch (3/12)</option>
+                <option value={4}>4/12 Conventional</option>
+                <option value={5}>5/12 Medium</option>
+                <option value={6}>6/12 Standard Gable (Common)</option>
+                <option value={8}>8/12 Steep</option>
+                <option value={10}>10/12 High Wind & Snow</option>
+                <option value={12}>12/12 45-Degree Severe</option>
+              </select>
+            </div>
+            <div className="md:col-span-2">
+              <WasteFactorSelector value={wasteFactor} onChange={setWasteFactor} />
+            </div>
+          </>
+        ) : tool.slug === 'siding-calculator' ? (
+          <>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Total Wall Length (Linear Feet)</label>
+              <input
+                type="number"
+                min="1"
+                value={length || ''}
+                onChange={(e) => setLength(parseFloat(e.target.value) || 0)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Wall Height (Feet)</label>
+              <input
+                type="number"
+                min="1"
+                value={height || ''}
+                onChange={(e) => setHeight(parseFloat(e.target.value) || 0)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Gable Peaks (Count)</label>
+              <input
+                type="number"
+                min="0"
+                value={gables}
+                onChange={(e) => setGables(parseInt(e.target.value, 10) || 0)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Gable Peak Height (Feet)</label>
+              <input
+                type="number"
+                min="0"
+                value={gableHeight}
+                onChange={(e) => setGableHeight(parseFloat(e.target.value) || 0)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Doors (Deduct 21 sq ft)</label>
+              <input
+                type="number"
+                min="0"
+                value={doors}
+                onChange={(e) => setDoors(parseInt(e.target.value, 10) || 0)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Windows (Deduct 15 sq ft)</label>
+              <input
+                type="number"
+                min="0"
+                value={windows}
+                onChange={(e) => setWindows(parseInt(e.target.value, 10) || 0)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+            <div className="md:col-span-2">
+              <WasteFactorSelector value={wasteFactor} onChange={setWasteFactor} />
             </div>
           </>
         ) : tool.slug === 'fence-calculator' ? (
@@ -484,10 +995,90 @@ export function UniversalCalculatorWidget({ tool }: UniversalCalculatorWidgetPro
                 onChange={(e) => setPostSpacing(parseInt(e.target.value, 10))}
                 className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
               >
-                <option value={6}>6 Feet Spacing</option>
+                <option value={6}>6 Feet Spacing (High Wind)</option>
                 <option value={8}>8 Feet Standard Spacing</option>
-                <option value={10}>10 Feet Heavy Duty</option>
               </select>
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Horizontal Rails</label>
+              <select
+                value={railsCount}
+                onChange={(e) => setRailsCount(parseInt(e.target.value, 10))}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              >
+                <option value={2}>2 Rails (4ft - 5ft fence)</option>
+                <option value={3}>3 Rails (6ft privacy fence - Recommended)</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Picket Width</label>
+              <select
+                value={picketWidth}
+                onChange={(e) => setPicketWidth(parseFloat(e.target.value))}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              >
+                <option value={5.5}>5.5 Inches (1x6 Dog-Ear Privacy)</option>
+                <option value={3.5}>3.5 Inches (1x4 Standard)</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Gate Openings (Count)</label>
+              <input
+                type="number"
+                min="0"
+                value={gates}
+                onChange={(e) => setGates(parseInt(e.target.value, 10) || 0)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+          </>
+        ) : tool.slug === 'decking-calculator' ? (
+          <>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Deck Length along House (Feet)</label>
+              <input
+                type="number"
+                min="1"
+                value={length || ''}
+                onChange={(e) => setLength(parseFloat(e.target.value) || 0)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Deck Projection Width (Feet)</label>
+              <input
+                type="number"
+                min="1"
+                value={width || ''}
+                onChange={(e) => setWidth(parseFloat(e.target.value) || 0)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Decking Material</label>
+              <select
+                value={deckMaterial}
+                onChange={(e) => setDeckMaterial(e.target.value as 'composite' | 'wood-54' | 'wood-2x6')}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              >
+                <option value="composite">Composite / Trex (5.5" width)</option>
+                <option value="wood-54">Treated 5/4×6 Wood</option>
+                <option value="wood-2x6">Heavy 2×6 Wood</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Joist Spacing (On-Center)</label>
+              <select
+                value={joistSpacing}
+                onChange={(e) => setJoistSpacing(parseInt(e.target.value, 10) as 12 | 16)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:ring-2 focus:ring-emerald-500"
+              >
+                <option value={12}>12 Inches OC (Required for Composite & Diagonal)</option>
+                <option value={16}>16 Inches OC (Standard Wood)</option>
+              </select>
+            </div>
+            <div className="md:col-span-2">
+              <WasteFactorSelector value={wasteFactor} onChange={setWasteFactor} />
             </div>
           </>
         ) : (
@@ -522,7 +1113,6 @@ export function UniversalCalculatorWidget({ tool }: UniversalCalculatorWidgetPro
 
             {/* Depth Input for Concrete, Gravel, Mulch */}
             {(tool.cluster === 'concrete-masonry' || tool.cluster === 'garden') &&
-              tool.slug !== 'fence-calculator' &&
               tool.slug !== 'brick-calculator' &&
               tool.slug !== 'block-calculator' && (
                 <div>

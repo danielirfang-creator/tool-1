@@ -81,6 +81,27 @@ export const siteConfig: SiteConfig = {
         icon: 'Home',
       },
       {
+        name: 'Drywall & Framing',
+        href: '/calculators/drywall-framing',
+        description: 'Drywall sheet counts, joint compound mud pails, wall studs, and framing plates.',
+        count: 2,
+        icon: 'Square',
+      },
+      {
+        name: 'Roofing & Siding',
+        href: '/calculators/roofing-siding',
+        description: 'Roof pitch multipliers, shingle bundles, underlayment rolls, and siding squares.',
+        count: 2,
+        icon: 'Shield',
+      },
+      {
+        name: 'Fencing & Decking',
+        href: '/calculators/fencing-decking',
+        description: 'Wood and vinyl fences, deck surface boards, joist framing, and fasteners.',
+        count: 2,
+        icon: 'Columns',
+      },
+      {
         name: 'Conversions',
         href: '/calculators/conversions',
         description: 'Imperial to metric dimension, area, volume, and weight converters.',

@@ -5,12 +5,12 @@ import { siteConfig } from '@/config/site';
 import { toolsRegistry } from '@/config/tools';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { AdSlot } from '@/components/ads/AdSlot';
-import { Hammer, Layers, Paintbrush, Trees, Home, ArrowRightLeft, ArrowRight, Check } from 'lucide-react';
+import { Hammer, Layers, Paintbrush, Trees, Home, ArrowRightLeft, ArrowRight, Check, Square, Shield, Columns } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata = createMetadata({
-  title: 'All 33 DIY Project Calculators',
-  description: 'Explore all 33 professional material calculators across flooring, painting, masonry, landscaping, room dimensions, and unit conversions.',
+  title: 'All 39 DIY Project Calculators',
+  description: 'Explore all 39 professional material calculators across drywall, framing, roofing, siding, fencing, decking, flooring, painting, masonry, and landscaping.',
   path: '/calculators'
 });
 
@@ -19,6 +19,9 @@ export default function CalculatorsHubPage() {
     flooring: <Layers className="w-5 h-5 text-emerald-600" />,
     painting: <Paintbrush className="w-5 h-5 text-blue-600" />,
     'concrete-masonry': <Hammer className="w-5 h-5 text-amber-600" />,
+    'drywall-framing': <Square className="w-5 h-5 text-orange-600" />,
+    'roofing-siding': <Shield className="w-5 h-5 text-cyan-600" />,
+    'fencing-decking': <Columns className="w-5 h-5 text-amber-700" />,
     garden: <Trees className="w-5 h-5 text-green-600" />,
     rooms: <Home className="w-5 h-5 text-purple-600" />,
     conversions: <ArrowRightLeft className="w-5 h-5 text-indigo-600" />,

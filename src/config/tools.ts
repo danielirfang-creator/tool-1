@@ -1,10 +1,13 @@
-﻿import { ToolMeta } from './tools/types';
+import { ToolMeta } from './tools/types';
 import { flooringTools } from './tools/flooring';
 import { paintingTools } from './tools/painting';
 import { concreteTools } from './tools/concrete';
 import { gardenTools } from './tools/garden';
 import { roomTools } from './tools/rooms';
 import { conversionTools } from './tools/conversions';
+import { drywallTools } from './tools/drywall';
+import { roofingTools } from './tools/roofing';
+import { fencingTools } from './tools/fencing';
 
 export * from './tools/types';
 
@@ -15,6 +18,9 @@ export const toolsRegistry: ToolMeta[] = [
   ...gardenTools,
   ...roomTools,
   ...conversionTools,
+  ...drywallTools,
+  ...roofingTools,
+  ...fencingTools,
 ];
 
 export function getToolBySlug(slug: string): ToolMeta | undefined {
