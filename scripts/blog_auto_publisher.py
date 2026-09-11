@@ -408,12 +408,15 @@ def publish_next_article(headless=False):
 
     results = {}
     
-    # 1. Dev.to (API)
+    # 1. Dev.to (Official REST API)
     devto_key = config.get("devto_api_key", "SNYFU6xZyWF1Ee7RewDb2NWa")
     if devto_key:
-        devto_url = publish_to_devto(next_art, devto_key)
-        if devto_url:
-            results["devto"] = devto_url
+        try:
+            devto_url = publish_to_devto(next_art, devto_key)
+            if devto_url:
+                results["devto"] = devto_url
+        except Exception as err:
+            print(f"[ERROR] Dev.to publish failed: {err}")
 
     # 2. Medium (Official REST API first, then browser session fallback)
     medium_token = config.get("medium_token", "").strip()
@@ -422,9 +425,12 @@ def publish_next_article(headless=False):
         if med_url:
             results["medium"] = med_url
     elif (MEDIUM_BOT_DIR / "user_session").exists() or MEDIUM_STORAGE_STATE_FILE.exists():
-        med_url = publish_to_medium_browser(next_art, headless=headless)
-        if med_url:
-            results["medium"] = med_url
+        try:
+            med_url = publish_to_medium_browser(next_art, headless=headless)
+            if med_url:
+                results["medium"] = med_url
+        except Exception as ex:
+            print(f"⚠️ [WARNING] Medium publish failed: {ex}")
     else:
         print("ℹ️ Medium token or session not configured.")
 
