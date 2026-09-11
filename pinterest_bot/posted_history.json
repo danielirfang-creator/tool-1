@@ -10,7 +10,8 @@
     "8",
     "9",
     "10",
-    "img_1"
+    "img_1",
+    "img_2"
   ],
   "logs": [
     {
@@ -102,6 +103,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596464750511/",
       "media": "day01_flooring_boxes.jpg",
       "timestamp": "2026-09-11T12:09:58.525262",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_2",
+      "media_type": "image",
+      "title": "How Much Engineered Wood Do You REALLY Need? [Free Estimator]",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/flooring-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596464754062/",
+      "media": "day26_hardwood_flooring_boxes.jpg",
+      "timestamp": "2026-09-11T20:06:40.839145",
       "status": "SUCCESS"
     }
   ]
