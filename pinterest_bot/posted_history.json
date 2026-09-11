@@ -9,7 +9,8 @@
     "7",
     "8",
     "9",
-    "10"
+    "10",
+    "img_1"
   ],
   "logs": [
     {
@@ -91,6 +92,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596464737291/",
       "media": "video_primer-calculator.mp4",
       "timestamp": "2026-09-11T16:08:08.974601",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_1",
+      "media_type": "image",
+      "title": "Don't Start Your Hardwood Flooring Before Using This Formula! \ud83d\udcd0",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/flooring-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596464750511/",
+      "media": "day01_flooring_boxes.jpg",
+      "timestamp": "2026-09-11T12:09:58.525262",
       "status": "SUCCESS"
     }
   ]
