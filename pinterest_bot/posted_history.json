@@ -8,7 +8,8 @@
     "6",
     "7",
     "8",
-    "9"
+    "9",
+    "10"
   ],
   "logs": [
     {
@@ -81,6 +82,15 @@
       "link": "https://tool-1-pied.vercel.app/calculators/painting/ceiling-paint-calculator",
       "media": "video_ceiling-paint-calculator.mp4",
       "timestamp": "2026-09-11T02:17:16.681774",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "10",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: Raw Drywall & Stains: How Much Primer Do You Need?",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/primer-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596464737291/",
+      "media": "video_primer-calculator.mp4",
+      "timestamp": "2026-09-11T16:08:08.974601",
       "status": "SUCCESS"
     }
   ]
