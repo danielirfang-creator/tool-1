@@ -1,6 +1,10 @@
 {
   "posted_ids": [
-    1
+    1,
+    2,
+    3,
+    4,
+    5
   ],
   "logs": [
     {
@@ -8,6 +12,34 @@
       "category": "Flooring",
       "text": "\ud83d\udd28 DIY Rule of Thumb: Never order flooring by exact room square footage.\n\nAlways ...",
       "timestamp": "2026-09-07T21:56:02.934034",
+      "status": "SUCCESS"
+    },
+    {
+      "id": 2,
+      "category": "Painting",
+      "text": "\ud83c\udfa8 Contractor Secret: 1 standard interior door = 21 sq ft. 1 standard window = 15...",
+      "timestamp": "2026-09-10T12:24:41.101542",
+      "status": "SUCCESS"
+    },
+    {
+      "id": 3,
+      "category": "Concrete",
+      "text": "\ud83c\udfd7\ufe0f How many 80lb bags of concrete for a 10\u00d710 patio slab (4\" thick)?\n\nAnswer: Ex...",
+      "timestamp": "2026-09-10T13:21:49.744949",
+      "status": "SUCCESS"
+    },
+    {
+      "id": 4,
+      "category": "Tile",
+      "text": "\ud83d\udcd0 What trowel notch size do you REALLY need for 12\"\u00d724\" porcelain floor tiles?\n\n...",
+      "timestamp": "2026-09-11T02:06:28.092693",
+      "status": "SUCCESS"
+    },
+    {
+      "id": 5,
+      "category": "Landscaping",
+      "text": "\ud83c\udf3f Landscape Pro Formula:\nArea (sq ft) \u00d7 Target Depth (inches) \u00f7 324 = Exact Cubi...",
+      "timestamp": "2026-09-11T02:36:46.705326",
       "status": "SUCCESS"
     }
   ]

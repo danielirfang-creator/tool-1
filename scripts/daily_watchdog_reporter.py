@@ -2,6 +2,7 @@ import os
 import sys
 import time
 import json
+import requests
 import subprocess
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -25,22 +26,25 @@ PYTHON_EXE = sys.executable
 
 def send_ntfy_notification(title, message, tags="chart_with_upwards_trend,white_check_mark", priority="default", click_url="https://tool-1-pied.vercel.app"):
     url = f"https://ntfy.sh/{NTFY_TOPIC}"
+    # Ensure title has no non-ASCII unicode (emojis) inside HTTP headers to prevent Latin-1 encoding errors
+    safe_title = title.encode("ascii", "ignore").decode("ascii").strip()
+    if not safe_title:
+        safe_title = "CraftCalc Status Update"
+
+    headers = {
+        "Title": safe_title,
+        "Priority": priority,
+        "Tags": tags,
+        "Click": click_url
+    }
+    
     try:
-        cmd = [
-            "curl.exe", "-s",
-            "-H", f"Title: {title}",
-            "-H", f"Priority: {priority}",
-            "-H", f"Tags: {tags}",
-            "-H", f"Click: {click_url}",
-            "-d", message,
-            url
-        ]
-        res = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=20)
-        if res.returncode == 0:
+        res = requests.post(url, data=message.encode("utf-8"), headers=headers, timeout=25)
+        if res.status_code == 200:
             print(f"✅ Mobile Notification delivered to ntfy.sh/{NTFY_TOPIC}")
             return True
         else:
-            print(f"[ERROR] curl failed: {res.stderr}")
+            print(f"[ERROR] ntfy HTTP status {res.status_code}: {res.text}")
             return False
     except Exception as e:
         print(f"[ERROR] Failed to send ntfy notification: {e}")
@@ -193,9 +197,9 @@ def send_daily_summary(is_night_report=True):
     healed = check_and_heal_processes()
     
     if is_night_report:
-        title = f"🌙 CraftCalc End-of-Day Report (11:59 PM - {stats['date_str']})"
+        header_title = f"CraftCalc End-of-Day Report (11:59 PM - {stats['date_str']})"
     else:
-        title = f"📊 CraftCalc Daily Report ({stats['time_str']} - {stats['date_str']})"
+        header_title = f"CraftCalc Daily Report ({stats['time_str']} - {stats['date_str']})"
         
     heal_text = "🟢 Sab bots 100% normal chal rahe hain (No errors)"
     if healed:
@@ -216,12 +220,12 @@ def send_daily_summary(is_night_report=True):
     )
     
     print("=" * 60)
-    print(title)
+    print(header_title)
     print("=" * 60)
     print(message)
     print("=" * 60)
     
-    send_ntfy_notification(title, message, tags="crescent_moon,chart_with_upwards_trend,white_check_mark", priority="high" if is_night_report else "default")
+    send_ntfy_notification(header_title, message, tags="crescent_moon,chart_with_upwards_trend,white_check_mark", priority="high" if is_night_report else "default")
     generate_html_report(stats, heal_text)
 
 def generate_html_report(stats, heal_text):
@@ -314,11 +318,10 @@ def run_watchdog_loop():
 if __name__ == "__main__":
     action = sys.argv[1] if len(sys.argv) > 1 else "report"
     if action == "test":
-        send_ntfy_notification("🔔 CraftCalc Test Notification", "Test notification successful! Aapka mobile ab CraftCalc bot se connected hai. 🚀", tags="tada,rocket")
+        send_ntfy_notification("CraftCalc Test Notification", "Test notification successful! Aapka mobile ab CraftCalc bot se connected hai. 🚀", tags="tada,rocket")
     elif action == "watch":
         run_watchdog_loop()
     elif action == "--scheduled":
         send_daily_summary(is_night_report=True)
     else:
         send_daily_summary(is_night_report=False)
-

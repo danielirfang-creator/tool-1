@@ -2,7 +2,13 @@
   "posted_ids": [
     "1",
     "2",
-    "3"
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
   ],
   "logs": [
     {
@@ -27,6 +33,54 @@
       "link": "https://tool-1-pied.vercel.app/calculators/flooring/laminate-calculator",
       "media": "video_laminate-calculator.mp4",
       "timestamp": "2026-09-09T01:55:03.647255",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "4",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: Exact LVP Cartons Needed With Click-Lock Overlap",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/vinyl-flooring-calculator",
+      "media": "video_vinyl-flooring-calculator.mp4",
+      "timestamp": "2026-09-09T02:13:20.852543",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "5",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: Square Feet to Square Yards Carpet Roll Calculator",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/carpet-calculator",
+      "media": "video_carpet-calculator.mp4",
+      "timestamp": "2026-09-09T11:04:18.563159",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "6",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: Straight vs Diagonal Flooring Exact Waste Percentage Cheat Sheet",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/flooring-waste-calculator",
+      "media": "video_flooring-waste-calculator.mp4",
+      "timestamp": "2026-09-09T21:42:42.083716",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "7",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: How Many Gallons of Paint For Your Living Room?",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/paint-calculator",
+      "media": "video_paint-calculator.mp4",
+      "timestamp": "2026-09-10T12:24:40.915278",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "8",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: Exact Wall Paint Cans Minus Doors & Windows!",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/wall-paint-calculator",
+      "media": "video_wall-paint-calculator.mp4",
+      "timestamp": "2026-09-10T12:56:03.217815",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "9",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: Flat White Ceiling Paint Textured & Drywall Math",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/ceiling-paint-calculator",
+      "media": "video_ceiling-paint-calculator.mp4",
+      "timestamp": "2026-09-11T02:17:16.681774",
       "status": "SUCCESS"
     }
   ]

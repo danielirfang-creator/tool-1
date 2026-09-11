@@ -1,5 +1,5 @@
 {
-  "total_backlinks": 2,
+  "total_backlinks": 14,
   "backlinks": [
     {
       "id": 1,
@@ -20,6 +20,126 @@
       "pinged_indexnow": true,
       "pinged_pingomatic": false,
       "timestamp": "2026-09-09T11:10:40.586738"
+    },
+    {
+      "id": 3,
+      "anchor_text": "Wall & Ceiling Paint Gallon Estimator",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/painting/paint-calculator",
+      "cluster": "painting",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": false,
+      "pinged_pingomatic": false,
+      "timestamp": "2026-09-09T21:31:59.551389"
+    },
+    {
+      "id": 4,
+      "anchor_text": "Concrete Footing & Pier Volume Guide",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/concrete-footing-calculator",
+      "cluster": "concrete-masonry",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": false,
+      "pinged_pingomatic": false,
+      "timestamp": "2026-09-09T23:20:17.652099"
+    },
+    {
+      "id": 5,
+      "anchor_text": "DIY Tile & Grout Coverage Estimator",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/flooring/tile-calculator",
+      "cluster": "flooring",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": false,
+      "pinged_pingomatic": false,
+      "timestamp": "2026-09-09T23:23:54.051631"
+    },
+    {
+      "id": 6,
+      "anchor_text": "Concrete Footing & Pier Volume Guide",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/concrete-footing-calculator",
+      "cluster": "concrete-masonry",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": false,
+      "pinged_pingomatic": false,
+      "timestamp": "2026-09-09T23:30:42.277693"
+    },
+    {
+      "id": 7,
+      "anchor_text": "Concrete Slab Yardage & Bag Estimator",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/concrete-slab-calculator",
+      "cluster": "concrete-masonry",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": false,
+      "pinged_pingomatic": false,
+      "timestamp": "2026-09-10T01:07:01.802950"
+    },
+    {
+      "id": 8,
+      "anchor_text": "Wall & Ceiling Paint Gallon Estimator",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/painting/paint-calculator",
+      "cluster": "painting",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": false,
+      "pinged_pingomatic": false,
+      "timestamp": "2026-09-10T12:09:54.808709"
+    },
+    {
+      "id": 9,
+      "anchor_text": "DIY Tile & Grout Coverage Estimator",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/flooring/tile-calculator",
+      "cluster": "flooring",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": false,
+      "pinged_pingomatic": false,
+      "timestamp": "2026-09-10T12:13:47.209867"
+    },
+    {
+      "id": 10,
+      "anchor_text": "Concrete Footing & Pier Volume Guide",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/concrete-footing-calculator",
+      "cluster": "concrete-masonry",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": false,
+      "pinged_pingomatic": false,
+      "timestamp": "2026-09-10T12:44:59.312123"
+    },
+    {
+      "id": 11,
+      "anchor_text": "Laminate Plank & Underlayment Calculator",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/flooring/laminate-calculator",
+      "cluster": "flooring",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": false,
+      "pinged_pingomatic": false,
+      "timestamp": "2026-09-10T13:01:01.570689"
+    },
+    {
+      "id": 12,
+      "anchor_text": "DIY Tile & Grout Coverage Estimator",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/flooring/tile-calculator",
+      "cluster": "flooring",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": false,
+      "pinged_pingomatic": false,
+      "timestamp": "2026-09-10T13:29:30.819091"
+    },
+    {
+      "id": 13,
+      "anchor_text": "Wall & Ceiling Paint Gallon Estimator",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/painting/paint-calculator",
+      "cluster": "painting",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": true,
+      "pinged_pingomatic": true,
+      "timestamp": "2026-09-11T02:05:36.578327"
+    },
+    {
+      "id": 14,
+      "anchor_text": "DIY Tile & Grout Coverage Estimator",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/flooring/tile-calculator",
+      "cluster": "flooring",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": true,
+      "pinged_pingomatic": true,
+      "timestamp": "2026-09-11T02:36:24.947386"
     }
   ]
 }
