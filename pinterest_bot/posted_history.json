@@ -13,7 +13,8 @@
     "img_1",
     "img_2",
     "img_3",
-    "img_4"
+    "img_4",
+    "img_5"
   ],
   "logs": [
     {
@@ -135,6 +136,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596464780565/",
       "media": "day01_flooring_boxes.jpg",
       "timestamp": "2026-09-12T04:06:50.250900",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_5",
+      "media_type": "image",
+      "title": "How to Calculate Flooring Installation Math Without Waste or Guesswork",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/flooring-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596464793400/",
+      "media": "day26_hardwood_flooring_boxes.jpg",
+      "timestamp": "2026-09-12T08:07:01.623680",
       "status": "SUCCESS"
     }
   ]
