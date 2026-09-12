@@ -12,7 +12,8 @@
     "10",
     "img_1",
     "img_2",
-    "img_3"
+    "img_3",
+    "img_4"
   ],
   "logs": [
     {
@@ -124,6 +125,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596464768355/",
       "media": "pin_flooring-calculator.jpg",
       "timestamp": "2026-09-12T00:08:56.877376",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_4",
+      "media_type": "image",
+      "title": "Avoid Costly Material Shortages: Hardwood & Flooring Estimator Matrix",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/flooring-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596464780565/",
+      "media": "day01_flooring_boxes.jpg",
+      "timestamp": "2026-09-12T04:06:50.250900",
       "status": "SUCCESS"
     }
   ]
