@@ -22,7 +22,8 @@
     "img_10",
     "img_11",
     "v_11",
-    "img_12"
+    "img_12",
+    "v_12"
   ],
   "logs": [
     {
@@ -234,6 +235,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596464913209/",
       "media": "day24_laminate_acclimation_guide.jpg",
       "timestamp": "2026-09-13T16:06:55.962473",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_12",
+      "media_type": "video",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: How Many Bags Of Concrete For A 10x10 Patio Slab?",
+      "link": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/concrete-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596464932261/",
+      "media": "video_concrete-calculator.mp4",
+      "timestamp": "2026-09-13T20:07:27.274178",
       "status": "SUCCESS"
     }
   ]
