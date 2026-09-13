@@ -20,7 +20,8 @@
     "img_8",
     "img_9",
     "img_10",
-    "img_11"
+    "img_11",
+    "v_11"
   ],
   "logs": [
     {
@@ -212,6 +213,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596464881703/",
       "media": "day03_laminate_underlayment.jpg",
       "timestamp": "2026-09-13T08:06:48.496463",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_11",
+      "media_type": "video",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: 1 Gallon = How Many Sq Ft? Paint Spread Rate Cheat Sheet",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/paint-coverage-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596464895286/",
+      "media": "video_paint-coverage-calculator.mp4",
+      "timestamp": "2026-09-13T12:08:51.413322",
       "status": "SUCCESS"
     }
   ]
