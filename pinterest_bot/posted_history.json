@@ -28,7 +28,8 @@
     "v_13",
     "img_14",
     "v_14",
-    "img_15"
+    "img_15",
+    "v_15"
   ],
   "logs": [
     {
@@ -300,6 +301,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596464992701/",
       "media": "day24_laminate_acclimation_guide.jpg",
       "timestamp": "2026-09-14T16:07:18.311964",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_15",
+      "media_type": "video",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: How Many Standard Bricks For A 10x6 Garden Wall?",
+      "link": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/brick-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465009781/",
+      "media": "video_brick-calculator.mp4",
+      "timestamp": "2026-09-14T20:07:32.821312",
       "status": "SUCCESS"
     }
   ]
