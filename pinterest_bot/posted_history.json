@@ -24,7 +24,8 @@
     "v_11",
     "img_12",
     "v_12",
-    "img_13"
+    "img_13",
+    "v_13"
   ],
   "logs": [
     {
@@ -256,6 +257,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596464945512/",
       "media": "pin_laminate-calculator.jpg",
       "timestamp": "2026-09-14T00:10:06.399685",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_13",
+      "media_type": "video",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: Concrete Slab Yardage Matrix: Volume & Bags Estimator",
+      "link": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/concrete-slab-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596464957619/",
+      "media": "video_concrete-slab-calculator.mp4",
+      "timestamp": "2026-09-14T04:07:36.680170",
       "status": "SUCCESS"
     }
   ]
