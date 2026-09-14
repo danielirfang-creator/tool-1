@@ -8,6 +8,8 @@ import { AdSlot } from '@/components/ads/AdSlot';
 import { BookOpen, Clock, Calendar, ArrowRight, CheckCircle2, ShieldCheck, Wrench, Layers, Ruler, FileCheck } from 'lucide-react';
 import type { Metadata } from 'next';
 
+export const dynamic = 'force-static';
+
 export const metadata = createMetadata({
   title: 'DIY Planning & Material Estimating Guides',
   description: 'Expert trade guides, waste margin calculations, and material takeoff tutorials written by experienced builders and renovators.',

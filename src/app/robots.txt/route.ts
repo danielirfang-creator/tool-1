@@ -32,6 +32,33 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
+# SEO & Audit Crawlers (Polite Rate Limits to prevent timeouts)
+User-agent: AhrefsSiteAudit
+Allow: /
+Crawl-delay: 2
+
+User-agent: AhrefsBot
+Allow: /
+Crawl-delay: 2
+
+User-agent: SemrushBot
+Allow: /
+Crawl-delay: 2
+
+User-agent: SemrushBot-SA
+Allow: /
+Crawl-delay: 2
+
+User-agent: DotBot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
 # General Search Crawlers
 User-agent: *
 Allow: /

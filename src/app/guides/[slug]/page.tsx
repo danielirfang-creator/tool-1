@@ -10,6 +10,9 @@ import { BookOpen, Clock, Calendar, CheckCircle2, ArrowRight, Calculator, User }
 import type { Metadata } from 'next';
 import { generateArticleSchema, generateBreadcrumbSchema } from '@/lib/seo';
 
+export const dynamic = 'force-static';
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return guidesRegistry.map((guide) => ({
     slug: guide.slug,

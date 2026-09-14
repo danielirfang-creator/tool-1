@@ -5,6 +5,8 @@ import { siteConfig } from '@/config/site';
 import { Mail, MessageSquare, ShieldCheck, HelpCircle, Wrench, Clock, FileCheck, PhoneCall } from 'lucide-react';
 import type { Metadata } from 'next';
 
+export const dynamic = 'force-static';
+
 export const metadata = createMetadata({
   title: 'Contact CraftCalc Support & Editorial',
   description: 'Get in touch with the CraftCalc editorial and engineering team for formula feedback, bug reports, contractor inquiries, and partnership requests.',

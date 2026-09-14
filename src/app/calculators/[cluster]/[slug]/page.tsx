@@ -13,6 +13,9 @@ interface ToolPageProps {
   };
 }
 
+export const dynamic = 'force-static';
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return toolsRegistry.map((tool) => ({
     cluster: tool.cluster,
