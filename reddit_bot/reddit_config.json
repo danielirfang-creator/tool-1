@@ -1,0 +1,7 @@
+﻿{
+  "warmup_mode": true,
+  "include_links": false,
+  "min_delay_minutes": 180,
+  "daily_limit": 2,
+  "warmup_description": "During warmup mode, bot gives 100% pure-value expert answers with zero external links to establish high karma, upvotes, and reputation safely."
+}
