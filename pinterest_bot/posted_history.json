@@ -31,7 +31,8 @@
     "img_15",
     "v_15",
     "img_16",
-    "v_16"
+    "v_16",
+    "img_17"
   ],
   "logs": [
     {
@@ -333,6 +334,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465034390/",
       "media": "video_block-calculator.mp4",
       "timestamp": "2026-09-15T04:08:01.046680",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_17",
+      "media_type": "image",
+      "title": "Stop Overpaying at Home Depot: Use This Luxury Vinyl Plank (LVP) Estimator",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/vinyl-flooring-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465043803/",
+      "media": "pin_flooring-calculator.jpg",
+      "timestamp": "2026-09-15T08:08:05.078561",
       "status": "SUCCESS"
     }
   ]
