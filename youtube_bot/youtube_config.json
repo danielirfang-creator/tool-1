@@ -1,0 +1,7 @@
+﻿{
+  "channel_name": "CraftCalc DIY Estimators",
+  "interval_hours": 12.0,
+  "daily_limit": 2,
+  "default_tags": ["Shorts", "DIY", "HomeImprovement", "ContractorHacks", "CraftCalc"],
+  "visibility": "PUBLIC"
+}
