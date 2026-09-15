@@ -34,7 +34,8 @@
     "v_16",
     "img_17",
     "v_17",
-    "img_18"
+    "img_18",
+    "v_18"
   ],
   "logs": [
     {
@@ -366,6 +367,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465069828/",
       "media": "day11_vinyl_plank_lvp.jpg",
       "timestamp": "2026-09-15T16:07:10.340066",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_18",
+      "media_type": "video",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: How Many Tons Of Crushed Stone For A 10x20 Driveway?",
+      "link": "https://tool-1-pied.vercel.app/calculators/garden/gravel-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465088091/",
+      "media": "video_gravel-calculator.mp4",
+      "timestamp": "2026-09-15T20:07:58.315261",
       "status": "SUCCESS"
     }
   ]
