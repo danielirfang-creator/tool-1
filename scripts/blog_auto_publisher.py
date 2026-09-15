@@ -198,6 +198,68 @@ def publish_to_devto(article, api_key):
         print(f"[ERROR] Dev.to request failed: {e}")
         return None
 
+def get_medium_browser_context(p, headless=False, proxy_dict=None):
+    """
+    Seamlessly initializes browser context for Medium (Local or Cloud GitHub Actions runner).
+    """
+    if MEDIUM_USER_DATA_DIR.exists() and any(MEDIUM_USER_DATA_DIR.iterdir()):
+        print("ℹ️ Using local Medium user_session profile")
+        context = p.chromium.launch_persistent_context(
+            user_data_dir=str(MEDIUM_USER_DATA_DIR),
+            headless=headless,
+            proxy=proxy_dict,
+            geolocation={"latitude": 40.7128, "longitude": -74.0060},
+            locale="en-US",
+            timezone_id="America/New_York",
+            permissions=["geolocation"],
+            viewport={"width": 1280, "height": 900},
+            args=[
+                "--disable-blink-features=AutomationControlled",
+                "--no-sandbox",
+                "--disable-dev-shm-usage",
+                "--disable-infobars"
+            ],
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+        )
+        return context, None
+    elif MEDIUM_STORAGE_STATE_FILE.exists():
+        print(f"ℹ️ Loading Medium authentication from {MEDIUM_STORAGE_STATE_FILE.name}")
+        browser = p.chromium.launch(
+            headless=headless,
+            proxy=proxy_dict,
+            args=[
+                "--disable-blink-features=AutomationControlled",
+                "--no-sandbox",
+                "--disable-dev-shm-usage",
+                "--disable-infobars"
+            ]
+        )
+        context = browser.new_context(
+            storage_state=str(MEDIUM_STORAGE_STATE_FILE),
+            geolocation={"latitude": 40.7128, "longitude": -74.0060},
+            locale="en-US",
+            timezone_id="America/New_York",
+            permissions=["geolocation"],
+            viewport={"width": 1280, "height": 900},
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+        )
+        return context, browser
+    else:
+        print("⚠️ No Medium session or storage_state found, launching clean context")
+        context = p.chromium.launch_persistent_context(
+            user_data_dir=str(MEDIUM_USER_DATA_DIR),
+            headless=headless,
+            proxy=proxy_dict,
+            viewport={"width": 1280, "height": 900},
+            args=[
+                "--disable-blink-features=AutomationControlled",
+                "--no-sandbox",
+                "--disable-dev-shm-usage"
+            ],
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+        )
+        return context, None
+
 def publish_to_medium_browser(article, headless=False):
     print(f"\n🚀 Publishing to Medium.com (DA 96) via Browser: '{article['title']}'...")
     
@@ -223,22 +285,7 @@ def publish_to_medium_browser(article, headless=False):
     proxy_dict = {"server": proxy_server} if proxy_server else None
 
     with sync_playwright() as p:
-        browser_context = p.chromium.launch_persistent_context(
-            user_data_dir=str(MEDIUM_USER_DATA_DIR),
-            headless=headless,
-            proxy=proxy_dict,
-            geolocation={"latitude": 40.7128, "longitude": -74.0060},
-            locale="en-US",
-            timezone_id="America/New_York",
-            permissions=["geolocation"],
-            viewport={"width": 1280, "height": 900},
-            args=[
-                "--disable-blink-features=AutomationControlled",
-                "--no-sandbox",
-                "--disable-infobars"
-            ],
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
-        )
+        browser_context, browser_instance = get_medium_browser_context(p, headless=headless, proxy_dict=proxy_dict)
         page = browser_context.new_page()
 
         try:
@@ -248,7 +295,10 @@ def publish_to_medium_browser(article, headless=False):
             # Check if redirected to login
             if "signin" in page.url.lower() or "login" in page.url.lower():
                 print("[WARNING] User is not logged into Medium! Please run '1_LOGIN_MEDIUM.bat' first.")
-                browser_context.close()
+                try:
+                    page.screenshot(path=str(MEDIUM_BOT_DIR / "login_required_error.png"))
+                except Exception:
+                    pass
                 return None
 
             # 1. Fill Title
@@ -321,16 +371,26 @@ def publish_to_medium_browser(article, headless=False):
 
             print(f"🎉 SUCCESS! Article published to Medium: {page.url}")
             med_url = page.url
-            browser_context.close()
             return med_url
 
         except Exception as e:
             print(f"[ERROR] Failed to publish on Medium: {e}")
             try:
-                browser_context.close()
+                page.screenshot(path=str(MEDIUM_BOT_DIR / "last_error.png"))
+                print(f"📸 Saved Medium error screenshot to {MEDIUM_BOT_DIR / 'last_error.png'}")
             except Exception:
                 pass
             return None
+        finally:
+            try:
+                browser_context.close()
+            except Exception:
+                pass
+            if browser_instance:
+                try:
+                    browser_instance.close()
+                except Exception:
+                    pass
 
 def publish_to_medium_api(article, token):
     print(f"\n🚀 Publishing to Medium.com (DA 96) via Official API: '{article['title']}'...")
