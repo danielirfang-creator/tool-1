@@ -33,7 +33,8 @@
     "img_16",
     "v_16",
     "img_17",
-    "v_17"
+    "v_17",
+    "img_18"
   ],
   "logs": [
     {
@@ -355,6 +356,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465055186/",
       "media": "video_mortar-calculator.mp4",
       "timestamp": "2026-09-15T12:09:26.556364",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_18",
+      "media_type": "image",
+      "title": "Step-by-Step Luxury Vinyl Plank (LVP) Estimator with Real-World Waste Buffers",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/vinyl-flooring-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465069828/",
+      "media": "day11_vinyl_plank_lvp.jpg",
+      "timestamp": "2026-09-15T16:07:10.340066",
       "status": "SUCCESS"
     }
   ]
