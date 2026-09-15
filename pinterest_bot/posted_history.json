@@ -32,7 +32,8 @@
     "v_15",
     "img_16",
     "v_16",
-    "img_17"
+    "img_17",
+    "v_17"
   ],
   "logs": [
     {
@@ -344,6 +345,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465043803/",
       "media": "pin_flooring-calculator.jpg",
       "timestamp": "2026-09-15T08:08:05.078561",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_17",
+      "media_type": "video",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: How Many Bags of Mortar For Bricks and Cinder Blocks?",
+      "link": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/mortar-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465055186/",
+      "media": "video_mortar-calculator.mp4",
+      "timestamp": "2026-09-15T12:09:26.556364",
       "status": "SUCCESS"
     }
   ]
