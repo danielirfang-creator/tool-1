@@ -40,7 +40,8 @@
     "v_19",
     "img_20",
     "v_20",
-    "img_21"
+    "img_21",
+    "v_21"
   ],
   "logs": [
     {
@@ -432,6 +433,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465147198/",
       "media": "day17_carpet_square_yards.jpg",
       "timestamp": "2026-09-16T16:08:07.545290",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_21",
+      "media_type": "video",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: Raised Garden Bed Soil Formula: Cubic Feet to Bags Matrix",
+      "link": "https://tool-1-pied.vercel.app/calculators/garden/soil-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465162380/",
+      "media": "video_soil-calculator.mp4",
+      "timestamp": "2026-09-16T20:08:04.452592",
       "status": "SUCCESS"
     }
   ]
