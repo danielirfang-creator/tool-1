@@ -38,7 +38,8 @@
     "v_18",
     "img_19",
     "v_19",
-    "img_20"
+    "img_20",
+    "v_20"
   ],
   "logs": [
     {
@@ -410,6 +411,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465121784/",
       "media": "day11_vinyl_plank_lvp.jpg",
       "timestamp": "2026-09-16T08:07:50.366320",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_20",
+      "media_type": "video",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: How Many Bags or Yards of Mulch For Weed Prevention?",
+      "link": "https://tool-1-pied.vercel.app/calculators/garden/mulch-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465132429/",
+      "media": "video_mulch-calculator.mp4",
+      "timestamp": "2026-09-16T12:09:13.028912",
       "status": "SUCCESS"
     }
   ]
