@@ -39,7 +39,8 @@
     "img_19",
     "v_19",
     "img_20",
-    "v_20"
+    "v_20",
+    "img_21"
   ],
   "logs": [
     {
@@ -421,6 +422,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465132429/",
       "media": "video_mulch-calculator.mp4",
       "timestamp": "2026-09-16T12:09:13.028912",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_21",
+      "media_type": "image",
+      "title": "Don't Start Your Carpet Roll Square Yards Before Using This Formula! \ud83d\udcd0",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/carpet-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465147198/",
+      "media": "day17_carpet_square_yards.jpg",
+      "timestamp": "2026-09-16T16:08:07.545290",
       "status": "SUCCESS"
     }
   ]
