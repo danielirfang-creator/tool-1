@@ -45,7 +45,8 @@
     "img_22",
     "v_22",
     "img_23",
-    "v_23"
+    "v_23",
+    "img_24"
   ],
   "logs": [
     {
@@ -487,6 +488,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465204767/",
       "media": "video_fence-calculator.mp4",
       "timestamp": "2026-09-17T12:08:56.783095",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_24",
+      "media_type": "image",
+      "title": "Avoid Costly Material Shortages: Carpet & Padding Estimator Matrix",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/carpet-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465218285/",
+      "media": "day17_carpet_square_yards.jpg",
+      "timestamp": "2026-09-17T16:07:49.919068",
       "status": "SUCCESS"
     }
   ]
