@@ -46,7 +46,8 @@
     "v_22",
     "img_23",
     "v_23",
-    "img_24"
+    "img_24",
+    "v_24"
   ],
   "logs": [
     {
@@ -498,6 +499,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465218285/",
       "media": "day17_carpet_square_yards.jpg",
       "timestamp": "2026-09-17T16:07:49.919068",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_24",
+      "media_type": "video",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: How To Measure Any Room: L-Shapes, Closets & Complex Walls",
+      "link": "https://tool-1-pied.vercel.app/calculators/rooms/room-area-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465233917/",
+      "media": "video_room-area-calculator.mp4",
+      "timestamp": "2026-09-17T20:07:46.038857",
       "status": "SUCCESS"
     }
   ]
