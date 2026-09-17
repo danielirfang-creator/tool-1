@@ -44,7 +44,8 @@
     "v_21",
     "img_22",
     "v_22",
-    "img_23"
+    "img_23",
+    "v_23"
   ],
   "logs": [
     {
@@ -476,6 +477,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465194204/",
       "media": "day17_carpet_square_yards.jpg",
       "timestamp": "2026-09-17T08:07:36.239877",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_23",
+      "media_type": "video",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: Posts, Rails & Pickets Formula For A 100 ft Privacy Fence",
+      "link": "https://tool-1-pied.vercel.app/calculators/garden/fence-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465204767/",
+      "media": "video_fence-calculator.mp4",
+      "timestamp": "2026-09-17T12:08:56.783095",
       "status": "SUCCESS"
     }
   ]
