@@ -43,7 +43,8 @@
     "img_21",
     "v_21",
     "img_22",
-    "v_22"
+    "v_22",
+    "img_23"
   ],
   "logs": [
     {
@@ -465,6 +466,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465184747/",
       "media": "video_turf-calculator.mp4",
       "timestamp": "2026-09-17T04:07:24.320248",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_23",
+      "media_type": "image",
+      "title": "The 1-Minute Carpet & Padding Estimator Cheat Sheet Every DIYer Needs",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/carpet-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465194204/",
+      "media": "day17_carpet_square_yards.jpg",
+      "timestamp": "2026-09-17T08:07:36.239877",
       "status": "SUCCESS"
     }
   ]
