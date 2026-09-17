@@ -41,7 +41,8 @@
     "img_20",
     "v_20",
     "img_21",
-    "v_21"
+    "v_21",
+    "img_22"
   ],
   "logs": [
     {
@@ -443,6 +444,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465162380/",
       "media": "video_soil-calculator.mp4",
       "timestamp": "2026-09-16T20:08:04.452592",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_22",
+      "media_type": "image",
+      "title": "How Much Carpet Padding Thickness Do You REALLY Need? [Free Estimator]",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/carpet-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465174273/",
+      "media": "day17_carpet_square_yards.jpg",
+      "timestamp": "2026-09-17T00:09:12.168028",
       "status": "SUCCESS"
     }
   ]
