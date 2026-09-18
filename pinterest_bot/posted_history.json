@@ -52,7 +52,8 @@
     "v_25",
     "img_26",
     "v_26",
-    "img_27"
+    "img_27",
+    "v_27"
   ],
   "logs": [
     {
@@ -564,6 +565,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465297827/",
       "media": "day20_flooring_waste_guide.jpg",
       "timestamp": "2026-09-18T16:06:36.793004",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_27",
+      "media_type": "video",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: Net Wall Area Calculator: Subtracts Doors, Windows & Openings",
+      "link": "https://tool-1-pied.vercel.app/calculators/rooms/wall-area-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465317674/",
+      "media": "video_wall-area-calculator.mp4",
+      "timestamp": "2026-09-18T20:07:55.869788",
       "status": "SUCCESS"
     }
   ]
