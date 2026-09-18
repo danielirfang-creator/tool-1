@@ -50,7 +50,8 @@
     "v_24",
     "img_25",
     "v_25",
-    "img_26"
+    "img_26",
+    "v_26"
   ],
   "logs": [
     {
@@ -542,6 +543,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465268421/",
       "media": "day20_flooring_waste_guide.jpg",
       "timestamp": "2026-09-18T08:07:21.103139",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_26",
+      "media_type": "video",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: Pattern Repeat & Double Rolls: How Many Wallpaper Rolls?",
+      "link": "https://tool-1-pied.vercel.app/calculators/rooms/wallpaper-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465280722/",
+      "media": "video_wallpaper-calculator.mp4",
+      "timestamp": "2026-09-18T12:08:36.425274",
       "status": "SUCCESS"
     }
   ]
