@@ -54,7 +54,8 @@
     "v_26",
     "img_27",
     "v_27",
-    "img_28"
+    "img_28",
+    "v_28"
   ],
   "logs": [
     {
@@ -586,6 +587,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465330216/",
       "media": "day20_flooring_waste_guide.jpg",
       "timestamp": "2026-09-19T00:09:08.978992",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_28",
+      "media_type": "video",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: Skirting Board Perimeter Math With 45\u00b0 Corner Miter Cuts",
+      "link": "https://tool-1-pied.vercel.app/calculators/rooms/skirting-board-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465343043/",
+      "media": "video_skirting-board-calculator.mp4",
+      "timestamp": "2026-09-19T04:07:31.696726",
       "status": "SUCCESS"
     }
   ]
