@@ -58,7 +58,8 @@
     "v_28",
     "img_29",
     "v_29",
-    "img_30"
+    "img_30",
+    "v_30"
   ],
   "logs": [
     {
@@ -630,6 +631,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465387669/",
       "media": "day20_flooring_waste_guide.jpg",
       "timestamp": "2026-09-19T16:07:12.627526",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_30",
+      "media_type": "video",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: Area Unit Conversion Matrix: Sq Ft to Sq Metres to Acres",
+      "link": "https://tool-1-pied.vercel.app/calculators/conversions/square-feet-to-m2",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465405909/",
+      "media": "video_square-feet-to-m2.mp4",
+      "timestamp": "2026-09-19T20:07:14.386336",
       "status": "SUCCESS"
     }
   ]
