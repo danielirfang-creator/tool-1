@@ -55,7 +55,8 @@
     "img_27",
     "v_27",
     "img_28",
-    "v_28"
+    "v_28",
+    "img_29"
   ],
   "logs": [
     {
@@ -597,6 +598,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465343043/",
       "media": "video_skirting-board-calculator.mp4",
       "timestamp": "2026-09-19T04:07:31.696726",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_29",
+      "media_type": "image",
+      "title": "How Many Boxes/Bags of Multi-Room Waste Buffer Do You Need? [Formula Inside]",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/flooring-waste-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465354266/",
+      "media": "day20_flooring_waste_guide.jpg",
+      "timestamp": "2026-09-19T08:07:37.038513",
       "status": "SUCCESS"
     }
   ]
