@@ -57,7 +57,8 @@
     "img_28",
     "v_28",
     "img_29",
-    "v_29"
+    "v_29",
+    "img_30"
   ],
   "logs": [
     {
@@ -619,6 +620,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465367828/",
       "media": "video_feet-to-metres.mp4",
       "timestamp": "2026-09-19T12:08:31.927230",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_30",
+      "media_type": "image",
+      "title": "The Ultimate DIY Cheat Sheet for Contractor Waste Rule \u2728",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/flooring-waste-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465387669/",
+      "media": "day20_flooring_waste_guide.jpg",
+      "timestamp": "2026-09-19T16:07:12.627526",
       "status": "SUCCESS"
     }
   ]
