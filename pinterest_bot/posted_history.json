@@ -56,7 +56,8 @@
     "v_27",
     "img_28",
     "v_28",
-    "img_29"
+    "img_29",
+    "v_29"
   ],
   "logs": [
     {
@@ -608,6 +609,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465354266/",
       "media": "day20_flooring_waste_guide.jpg",
       "timestamp": "2026-09-19T08:07:37.038513",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_29",
+      "media_type": "video",
+      "title": "\ud83d\udd25 CONTRACTOR SECRET: Contractor Measurement Converter: Feet, Inches, Metres & MM",
+      "link": "https://tool-1-pied.vercel.app/calculators/conversions/feet-to-metres",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465367828/",
+      "media": "video_feet-to-metres.mp4",
+      "timestamp": "2026-09-19T12:08:31.927230",
       "status": "SUCCESS"
     }
   ]
