@@ -53,7 +53,8 @@
     "img_26",
     "v_26",
     "img_27",
-    "v_27"
+    "v_27",
+    "img_28"
   ],
   "logs": [
     {
@@ -575,6 +576,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596465317674/",
       "media": "video_wall-area-calculator.mp4",
       "timestamp": "2026-09-18T20:07:55.869788",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_28",
+      "media_type": "image",
+      "title": "Step-by-Step Flooring Waste & Pattern Buffer Estimator with Real-World Waste Buffers",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/flooring-waste-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596465330216/",
+      "media": "day20_flooring_waste_guide.jpg",
+      "timestamp": "2026-09-19T00:09:08.978992",
       "status": "SUCCESS"
     }
   ]
