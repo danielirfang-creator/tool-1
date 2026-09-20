@@ -1,4 +1,4 @@
-﻿import os
+import os
 import sys
 import time
 import csv
@@ -65,6 +65,21 @@ def resolve_video_path(row):
     if all_vids:
         return str(all_vids[0])
     return None
+
+def generate_tags(category, title):
+    base_tags = ["Shorts", "DIY", "Home Improvement", "Contractor Life", "CraftCalc", "Renovation Hacks"]
+    cat_lower = (category or "").lower()
+    if "floor" in cat_lower or "tile" in cat_lower or "laminate" in cat_lower:
+        base_tags.extend(["flooring calculator", "how many boxes of flooring", "tile calculator", "flooring waste", "vinyl plank flooring", "tiling tips"])
+    elif "paint" in cat_lower:
+        base_tags.extend(["paint calculator", "how many gallons of paint", "interior painting", "paint coverage", "primer sealer", "ceiling paint"])
+    elif "concrete" in cat_lower or "masonry" in cat_lower:
+        base_tags.extend(["concrete calculator", "concrete slab yardage", "how many bags of concrete", "cinder block wall", "masonry mortar", "patio slab"])
+    elif "garden" in cat_lower or "outdoor" in cat_lower:
+        base_tags.extend(["mulch calculator", "gravel driveway", "cubic yards of mulch", "topsoil calculator", "lawn turf", "wood fence"])
+    else:
+        base_tags.extend(["building calculator", "room measurement", "material estimator", "DIY tools"])
+    return base_tags
 
 def do_login():
     ensure_dirs()
@@ -222,6 +237,27 @@ def post_single_short(row, headless=False):
                 not_for_kids_radio.click()
                 print("   ✔ Selected 'Not made for kids'")
                 page.wait_for_timeout(1000)
+
+            # Expand 'Show more' for Tags/Keywords
+            try:
+                show_more_btn = page.locator('#toggle-button, ytcp-button:has-text("Show more"), button:has-text("Show more")').first
+                if show_more_btn.count() > 0 and show_more_btn.is_visible():
+                    show_more_btn.scroll_into_view_if_needed()
+                    show_more_btn.click()
+                    page.wait_for_timeout(1000)
+                    
+                tags_input = page.locator('#tags-container input, input[aria-label="Tags"], input[placeholder*="tag" i]').first
+                if tags_input.count() > 0:
+                    tags_input.scroll_into_view_if_needed()
+                    tags_input.click()
+                    tags_list = generate_tags(row.get("Category", ""), clean_title)
+                    tags_str = ", ".join(tags_list)
+                    tags_input.fill(tags_str)
+                    page.keyboard.press("Enter")
+                    print(f"   ✔ Tags & Keywords added: {len(tags_list)} keywords inserted")
+                    page.wait_for_timeout(1000)
+            except Exception as tag_err:
+                print(f"   ⚠️ Could not insert tags: {tag_err}")
 
             # Click Next 3 times (Video elements -> Checks -> Visibility)
             for step_num in range(1, 4):
