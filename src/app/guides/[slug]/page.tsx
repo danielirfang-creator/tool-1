@@ -6,9 +6,9 @@ import { siteConfig } from '@/config/site';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { notFound } from 'next/navigation';
-import { BookOpen, Clock, Calendar, CheckCircle2, ArrowRight, Calculator, User } from 'lucide-react';
+import { BookOpen, Clock, Calendar, CheckCircle2, ArrowRight, Calculator, User, HelpCircle, ChevronDown } from 'lucide-react';
 import type { Metadata } from 'next';
-import { generateArticleSchema, generateBreadcrumbSchema } from '@/lib/seo';
+import { generateArticleSchema, generateBreadcrumbSchema, generateFaqSchema } from '@/lib/seo';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -24,16 +24,17 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   if (!guide) return {};
 
   const path = `/guides/${guide.slug}`;
+  const pageTitle = guide.seoTitle || `${guide.title} | Contractor Guide & Free Calculator`;
 
   return {
-    title: guide.title,
+    title: pageTitle,
     description: guide.summary,
     keywords: guide.keywords,
     alternates: {
       canonical: path,
     },
     openGraph: {
-      title: `${guide.title} | CraftCalc`,
+      title: `${pageTitle} | CraftCalc`,
       description: guide.summary,
       url: `${siteConfig.url}${path}`,
       type: 'article',
@@ -44,13 +45,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
           url: `${siteConfig.url}/og-image.png`,
           width: 1200,
           height: 630,
-          alt: guide.title,
+          alt: pageTitle,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${guide.title} | CraftCalc`,
+      title: `${pageTitle} | CraftCalc`,
       description: guide.summary,
       images: [`${siteConfig.url}/og-image.png`],
     },
@@ -88,6 +89,8 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
     { name: guide.title, item: `/guides/${guide.slug}` },
   ]);
 
+  const faqSchema = guide.faqs && guide.faqs.length > 0 ? generateFaqSchema(guide.faqs) : null;
+
   return (
     <div className="min-h-screen bg-slate-50/50 pb-16">
       <script
@@ -98,6 +101,12 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <Breadcrumbs
@@ -190,6 +199,66 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
               </section>
             ))}
           </div>
+
+          {/* Frequently Asked Questions (FAQ Rich Snippet Section) */}
+          {guide.faqs && guide.faqs.length > 0 && (
+            <section className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-6">
+              <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+                <div className="p-2.5 rounded-xl bg-emerald-50 text-emerald-600">
+                  <HelpCircle className="w-5 h-5" />
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-slate-900 tracking-tight">
+                    Frequently Asked Questions
+                  </h2>
+                  <p className="text-xs text-slate-500">
+                    Trade-verified contractor answers to common project questions
+                  </p>
+                </div>
+              </div>
+
+              <div className="divide-y divide-slate-100">
+                {guide.faqs.map((faq, idx) => (
+                  <details key={idx} className="group py-4 first:pt-0 last:pb-0" open={idx === 0}>
+                    <summary className="font-semibold text-slate-900 cursor-pointer list-none flex items-center justify-between gap-4 group-open:text-emerald-700 transition-colors">
+                      <span className="text-sm sm:text-base font-bold">{faq.question}</span>
+                      <span className="p-1 rounded-lg bg-slate-100 group-open:bg-emerald-100 group-open:rotate-180 transition-transform">
+                        <ChevronDown className="w-4 h-4 text-slate-600 group-open:text-emerald-700" />
+                      </span>
+                    </summary>
+                    <p className="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed pl-1">
+                      {faq.answer}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Bottom High-Converting Calculator CTA */}
+          {relatedTool && (
+            <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-emerald-700 to-teal-800 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
+              <div className="space-y-2 text-center sm:text-left">
+                <span className="px-2.5 py-1 rounded-full bg-emerald-500/30 text-emerald-100 text-[11px] font-bold uppercase tracking-wider">
+                  Instant Material Estimator
+                </span>
+                <h3 className="text-xl sm:text-2xl font-black text-white">
+                  Calculate Your Exact Materials in 10 Seconds
+                </h3>
+                <p className="text-xs sm:text-sm text-emerald-100 max-w-lg">
+                  Skip manual math and get contractor-verified totals with automatic waste factoring.
+                </p>
+              </div>
+              <Link
+                href={`${relatedTool.clusterHref}/${relatedTool.slug}`}
+                className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-100 text-emerald-950 font-bold text-sm inline-flex items-center gap-2 shrink-0 transition-all shadow-lg hover:scale-105"
+              >
+                <Calculator className="w-4 h-4 text-emerald-600" />
+                Open {relatedTool.name}
+                <ArrowRight className="w-4 h-4 text-emerald-600" />
+              </Link>
+            </div>
+          )}
 
           <AdSlot placement="footer" />
         </article>

@@ -215,6 +215,12 @@ def post_single_tweet(tweet, headless=False):
             })
             save_history(history)
 
+            try:
+                browser_context.storage_state(path=str(STORAGE_STATE_FILE))
+                print(f"   💾 Saved refreshed session state to {STORAGE_STATE_FILE.name}")
+            except Exception as se:
+                print(f"   [!] Could not save storage state: {se}")
+
             print(f"🎉 SUCCESS! Tweet #{tweet_id} posted live to Twitter/X.")
             return True
 

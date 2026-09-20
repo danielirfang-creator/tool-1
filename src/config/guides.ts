@@ -1,4 +1,11 @@
+export interface GuideFaq {
+  question: string;
+  answer: string;
+}
+
 export interface GuideMeta {
+  seoTitle?: string;
+  faqs?: GuideFaq[];
   id: string;
   slug: string;
   title: string;
@@ -26,6 +33,21 @@ export const guidesRegistry: GuideMeta[] = [
     publishedDate: '2026-08-15',
     keywords: ['how much extra flooring to order', 'flooring waste percentage', 'herringbone waste factor', 'tile waste calculation'],
     relatedToolSlug: 'flooring-calculator',
+    seoTitle: "How Much Extra Flooring to Order? (Contractor Waste Formula & Calculator)",
+    faqs: [
+    {
+        "question": "How much extra flooring should I order for a straight layout?",
+        "answer": "Contractors recommend ordering 10% extra for standard straight plank installations. This accounts for cut waste, end pieces under 8 inches, and minor manufacturing defects."
+    },
+    {
+        "question": "What is the waste percentage for herringbone or diagonal flooring?",
+        "answer": "Herringbone and chevron patterns require an 18% to 20% waste buffer, while standard 45-degree diagonal layouts require a 15% buffer due to extensive perimeter triangular cuts."
+    },
+    {
+        "question": "Should I round up to whole cartons when ordering flooring?",
+        "answer": "Yes, always round up to the nearest whole carton. Flooring is manufactured in distinct dye-lot batches, and running short mid-installation can cause visible color variations if you order more later."
+    }
+],
     keyTakeaways: [
       'Standard rectangular rooms require 10% extra for straight-lay installations.',
       'Diagonal patterns require 15% extra due to 45-degree triangle perimeter cuts.',
@@ -54,6 +76,21 @@ export const guidesRegistry: GuideMeta[] = [
     publishedDate: '2026-08-18',
     keywords: ['tile trowel size guide', 'thinset mortar coverage', 'what size trowel for 12x24 tile', 'polymer modified thinset'],
     relatedToolSlug: 'tile-calculator',
+    seoTitle: "Tile Trowel Size & Thinset Mortar Guide [Coverage Chart & Estimator]",
+    faqs: [
+    {
+        "question": "What size trowel do I need for 12x24 tile?",
+        "answer": "For 12x24 large format porcelain tiles, use a 1/2-inch by 1/2-inch square-notch trowel and directional back-buttering to achieve at least 85% to 95% mortar coverage."
+    },
+    {
+        "question": "How much thinset mortar do I need for 100 sq ft of tile?",
+        "answer": "A standard 50-pound bag of thinset mortar covers approximately 45 to 55 square feet with a 1/4x3/8 trowel, so 100 sq ft requires 2 full 50lb bags."
+    },
+    {
+        "question": "What trowel notch size is used for subway wall tiles?",
+        "answer": "Standard 3x6 inch subway tiles on walls should be installed using a 1/4-inch by 1/4-inch square-notch trowel, yielding 85 to 95 sq ft of coverage per 50lb bag."
+    }
+],
     keyTakeaways: [
       'Use a 1/4" × 3/8" square-notch trowel for standard 12"×12" floor tiles (yields ~45 sq ft/50lb bag).',
       'Large format tiles (12"×24" and larger) require a 1/2" × 1/2" notch trowel plus directional back-buttering.',
@@ -82,6 +119,21 @@ export const guidesRegistry: GuideMeta[] = [
     publishedDate: '2026-08-20',
     keywords: ['laminate acclimation time', 'expansion gap for laminate flooring', 'how to prevent laminate buckling', 'floating floor installation'],
     relatedToolSlug: 'laminate-calculator',
+    seoTitle: "Laminate Flooring Acclimation & Expansion Gap Guide [Stop Buckling]",
+    faqs: [
+    {
+        "question": "How long must laminate flooring acclimate before installation?",
+        "answer": "Laminate flooring must acclimate flat in the installation room for a minimum of 48 hours at normal living temperature (65°F–75°F) and 35%-55% relative humidity."
+    },
+    {
+        "question": "What happens if you do not leave an expansion gap for laminate?",
+        "answer": "Without a 3/8-inch perimeter expansion gap along walls and doorways, laminate boards expand with seasonal humidity, hit the drywall, and buckle upwards off the subfloor."
+    },
+    {
+        "question": "Can you install kitchen cabinets on top of floating laminate floors?",
+        "answer": "No, never install heavy fixed cabinetry or kitchen islands on top of floating laminate. Cabinets pin the floor down, causing separation and peaked joints."
+    }
+],
     keyTakeaways: [
       'Acclimate laminate boxes flat in the installation room for a minimum of 48 hours at 65°F-75°F.',
       'Leave a 3/8" to 1/2" expansion gap around all vertical walls, cabinets, posts, and pipes.',
@@ -110,6 +162,21 @@ export const guidesRegistry: GuideMeta[] = [
     publishedDate: '2026-08-22',
     keywords: ['paint sheen guide', 'eggshell vs satin paint', 'best paint sheen for bathrooms', 'interior paint finishes'],
     relatedToolSlug: 'paint-calculator',
+    seoTitle: "Paint Sheen Selection Guide: Flat vs Eggshell vs Satin [Room by Room]",
+    faqs: [
+    {
+        "question": "What is the difference between flat, eggshell, and satin paint?",
+        "answer": "Flat reflects no light (0-5% gloss) and hides drywall flaws; eggshell (10-25%) offers subtle luster with moderate wipeability; satin (25-35%) provides moisture and scrub resistance."
+    },
+    {
+        "question": "Which paint sheen is best for bathrooms and kitchens?",
+        "answer": "Satin or semi-gloss is best for bathrooms and kitchens because higher resin concentration resists steam, moisture penetration, and frequent scrubbing."
+    },
+    {
+        "question": "What paint finish is best for living room ceilings?",
+        "answer": "Flat or matte white paint is the industry standard for ceilings because non-reflective finishes eliminate light glare and hide drywall tape joints."
+    }
+],
     keyTakeaways: [
       'Flat/Matte (0-5% gloss): Best for ceilings and low-traffic areas; hides drywall imperfections completely.',
       'Eggshell (10-25% gloss): The standard for living rooms and bedrooms; soft luster with moderate wipeability.',
@@ -139,6 +206,21 @@ export const guidesRegistry: GuideMeta[] = [
     publishedDate: '2026-08-25',
     keywords: ['how to cure concrete', 'concrete compressive strength', 'prevent concrete cracking', 'curing blankets hydration'],
     relatedToolSlug: 'concrete-calculator',
+    seoTitle: "Concrete Curing & Compressive Strength Guide [7 to 28-Day Timeline]",
+    faqs: [
+    {
+        "question": "How long does concrete take to cure to full strength?",
+        "answer": "Concrete reaches approximately 70% of its strength in 7 days and reaches its full rated design strength (3,000–4,500 PSI) at 28 days through chemical hydration."
+    },
+    {
+        "question": "How often should you water freshly poured concrete?",
+        "answer": "Keep fresh concrete continuously damp for the first 5 to 7 days by misting or covering with wet burlap to prevent premature moisture loss and surface crazing."
+    },
+    {
+        "question": "How deep should control joints be cut in concrete slabs?",
+        "answer": "Control joints should be cut to a depth of at least 1/4 of the total slab thickness (1 inch deep for a 4-inch slab) within 12 to 24 hours of pouring."
+    }
+],
     keyTakeaways: [
       'Concrete does not dry by evaporation; it hardens via an exothermic chemical hydration reaction with water.',
       'Keeping concrete continuously moist for the first 7 days achieves approximately 70% of its 28-day design strength.',
@@ -167,6 +249,21 @@ export const guidesRegistry: GuideMeta[] = [
     publishedDate: '2026-08-28',
     keywords: ['how to build a paver patio base', 'paver patio depth', 'polymeric sand installation', 'crushed stone base compaction'],
     relatedToolSlug: 'patio-calculator',
+    seoTitle: "Paver Patio Subbase & Gravel Compaction Guide [Avoid Sinking]",
+    faqs: [
+    {
+        "question": "How deep should a paver patio base be excavated?",
+        "answer": "Excavate 7 to 8 inches deep to allow for 4 to 6 inches of compacted crushed stone aggregate base, 1 inch of ASTM C33 bedding sand, and 2-3/8 inch concrete pavers."
+    },
+    {
+        "question": "What slope is required for a paver patio?",
+        "answer": "Maintain a minimum slope of 1/4-inch drop per linear foot (approx 2% pitch) directed away from home foundations to ensure proper rainwater runoff."
+    },
+    {
+        "question": "What sand should be used beneath patio pavers?",
+        "answer": "Use clean, coarse concrete sand meeting ASTM C33 specifications screeded to 1 inch uniform thickness. Never use fine mason sand or stone dust."
+    }
+],
     keyTakeaways: [
       'Excavate 7 to 8 inches deep to allow for 4" gravel base, 1" bedding sand, and paver thickness.',
       'Compact crushed aggregate in 2-inch lifts using a heavy vibratory plate compactor.',
@@ -195,6 +292,21 @@ export const guidesRegistry: GuideMeta[] = [
     publishedDate: '2026-08-29',
     keywords: ['how to calculate square footage of l shaped room', 'room square footage odd shapes', 'subdividing complex floor plans'],
     relatedToolSlug: 'room-area-calculator',
+    seoTitle: "How to Calculate Room Square Footage for Odd Shapes [L-Shape & Angles]",
+    faqs: [
+    {
+        "question": "How do you calculate square footage of an L-shaped room?",
+        "answer": "Split the L-shape into two clean rectangles (Section A and Section B). Calculate Length × Width for each section, then add the two totals together."
+    },
+    {
+        "question": "How do you calculate square footage of a bay window?",
+        "answer": "Measure the base wall and perpendicular depth, then use the triangle formula: Area = 0.5 × Base × Depth, and add this to the main room total."
+    },
+    {
+        "question": "How much extra material should you add for irregularly shaped rooms?",
+        "answer": "Add 12% to 15% extra material buffer for odd-shaped rooms due to increased perimeter cutting scrap along diagonal walls and alcoves."
+    }
+],
     keyTakeaways: [
       'Subdivide complex room floor plans into simple geometric rectangles (Block A, Block B, Block C).',
       'Calculate each rectangle area individually (Length × Width) and sum them together for total net area.',
@@ -223,6 +335,21 @@ export const guidesRegistry: GuideMeta[] = [
     publishedDate: '2026-08-30',
     keywords: ['feet to meters construction conversion', 'inches to mm carpentry cheat sheet', 'metric building plan takeoff'],
     relatedToolSlug: 'feet-to-metres',
+    seoTitle: "Construction Conversions Guide: Imperial vs Metric [Instant Cheat Sheet]",
+    faqs: [
+    {
+        "question": "How many square meters is in one square foot?",
+        "answer": "1 square foot equals 0.092903 square meters. Conversely, 1 square meter equals 10.7639 square feet."
+    },
+    {
+        "question": "What are the actual dimensions of a 2x4 stud in metric?",
+        "answer": "A nominal 2x4 stud measures 1.5 inches by 3.5 inches actual, which equals 38mm by 89mm in metric."
+    },
+    {
+        "question": "How many cubic meters are in a cubic yard of concrete?",
+        "answer": "1 cubic yard (27 cubic feet) equals approximately 0.764555 cubic meters."
+    }
+],
     keyTakeaways: [
       '1 foot = 0.3048 meters | 1 meter = 3.28084 feet (approx 3 feet 3-3/8 inches).',
       '1 inch = 25.4 millimeters exactly | 1 millimeter = 0.03937 inches.',
@@ -251,6 +378,21 @@ export const guidesRegistry: GuideMeta[] = [
     publishedDate: '2026-09-05',
     keywords: ['how to calculate concrete slab yardage', 'concrete slab calculator formulas', 'how many 80lb bags for 10x10 slab', 'concrete rebar grid sizing'],
     relatedToolSlug: 'concrete-slab-calculator',
+    seoTitle: "How to Calculate Concrete Slab Yardage & Premix Bags [Cheat Sheet]",
+    faqs: [
+    {
+        "question": "How many 80lb bags of concrete for a 10x10 slab at 4 inches thick?",
+        "answer": "A 10x10 patio at 4 inches requires 1.23 cubic yards, which equals exactly 56 bags of 80lb concrete (or 62 bags with a 10% safety margin)."
+    },
+    {
+        "question": "What is the formula to calculate concrete slab yardage?",
+        "answer": "Formula: (Length in ft × Width in ft × Thickness in ft) ÷ 27 = Cubic Yards."
+    },
+    {
+        "question": "When should you order a ready-mix truck instead of bags?",
+        "answer": "As a contractor rule of thumb, any pour requiring more than 1.5 to 2.0 cubic yards (over 65 eighty-pound bags) is more economical and structurally reliable with a ready-mix truck."
+    }
+],
     keyTakeaways: [
       'Standard formula: Cubic Yards = (Length ft × Width ft × Thickness ft) ÷ 27.',
       'Always convert slab thickness from inches to feet by dividing by 12 (e.g. 4 inches = 0.333 ft).',
@@ -279,6 +421,21 @@ export const guidesRegistry: GuideMeta[] = [
     publishedDate: '2026-09-06',
     keywords: ['how many gallons of paint for room', 'paint coverage per gallon', 'when to use drywall primer', 'how much paint to subtract for windows'],
     relatedToolSlug: 'paint-calculator',
+    seoTitle: "How Many Gallons of Paint for a Room? [Coverage & Primer Guide]",
+    faqs: [
+    {
+        "question": "How many square feet does one gallon of paint cover?",
+        "answer": "One standard gallon of quality interior latex paint covers 350 to 400 square feet per coat on smooth, primed walls."
+    },
+    {
+        "question": "How much square footage do you subtract for doors and windows?",
+        "answer": "Deduct 21 square feet for each standard interior door and 15 square feet for each standard window from gross wall measurements."
+    },
+    {
+        "question": "When is a dedicated primer coat required?",
+        "answer": "A dedicated primer coat is required on brand-new bare drywall (PVA primer), heavily patched surfaces, water/smoke stains (shellac-based), and drastic color changes."
+    }
+],
     keyTakeaways: [
       'One standard gallon of quality interior latex paint covers approximately 350 to 400 square feet.',
       'Deduct 21 sq ft for each standard interior door and 15 sq ft for each standard window.',
@@ -307,6 +464,21 @@ export const guidesRegistry: GuideMeta[] = [
     publishedDate: '2026-09-06',
     keywords: ['how much gravel do i need', 'gravel depth calculator', 'crushed stone tons per cubic yard', 'mulch bag coverage depth'],
     relatedToolSlug: 'gravel-calculator',
+    seoTitle: "Gravel, Crushed Stone & Mulch Depth Guide [Cubic Yards to Tons]",
+    faqs: [
+    {
+        "question": "What is the formula for cubic yards of gravel or mulch?",
+        "answer": "Formula: Area (sq ft) × Depth (inches) ÷ 324 = Cubic Yards needed."
+    },
+    {
+        "question": "How many tons is 1 cubic yard of gravel?",
+        "answer": "One cubic yard of crushed stone or dense aggregate base weighs approximately 1.4 to 1.5 tons (2,800 to 3,000 lbs)."
+    },
+    {
+        "question": "How deep should driveway base gravel be installed?",
+        "answer": "Driveway bases require a minimum of 4 to 6 inches of 3/4-inch crushed stone with fines (road base) compacted in 2-inch layers."
+    }
+],
     keyTakeaways: [
       'Formula: Cubic Yards = (Length ft × Width ft × Depth in) ÷ 324.',
       'Gravel driveway bases require a minimum of 4 to 6 inches of 3/4" crushed stone road base.',
@@ -335,6 +507,21 @@ export const guidesRegistry: GuideMeta[] = [
     publishedDate: '2026-09-06',
     keywords: ['how many boxes of vinyl plank flooring', 'lvp waste factor', 'vinyl plank stagger spacing', 'lvp expansion gap requirement'],
     relatedToolSlug: 'vinyl-flooring-calculator',
+    seoTitle: "How Many Boxes of Vinyl Plank Flooring (LVP) Do I Need? [Guide]",
+    faqs: [
+    {
+        "question": "How much waste should you add to vinyl plank flooring?",
+        "answer": "Order 10% extra for simple rectangular rooms and 15% for multi-room open layouts with continuous hallways."
+    },
+    {
+        "question": "What is the minimum expansion gap for LVP flooring?",
+        "answer": "Maintain a 1/4-inch to 3/8-inch expansion gap around all perimeter walls, cabinets, and vertical pipes to prevent floor buckling."
+    },
+    {
+        "question": "How far should end joints be staggered on vinyl planks?",
+        "answer": "Stagger end joints by at least 8 to 12 inches between adjacent rows to ensure maximum mechanical strength of click-lock joints."
+    }
+],
     keyTakeaways: [
       'Order 10% extra for standard straight LVP runs and 15% for multi-room open floor plans.',
       'Maintain a minimum 1/4" to 3/8" expansion gap around all perimeter walls, cabinets, and doorframes.',
@@ -363,6 +550,21 @@ export const guidesRegistry: GuideMeta[] = [
     publishedDate: '2026-09-07',
     keywords: ['how many cinder blocks for retaining wall', '8x8x16 block calculator', 'mortar bags per 100 blocks', 'core fill grout volume'],
     relatedToolSlug: 'block-calculator',
+    seoTitle: "How Many Cinder Blocks Do I Need for a Wall? [CMU & Mortar Guide]",
+    faqs: [
+    {
+        "question": "How many 8x8x16 cinder blocks are in 100 square feet of wall?",
+        "answer": "100 square feet of wall requires 112.5 blocks (order 120 blocks to allow for cut waste and half-blocks)."
+    },
+    {
+        "question": "How many bags of mortar do I need for 100 cinder blocks?",
+        "answer": "It takes approximately three 80lb bags of Type S masonry mortar per 100 standard 8x8x16 CMU blocks."
+    },
+    {
+        "question": "When does a concrete block retaining wall need engineering?",
+        "answer": "Retaining walls exceeding 4 feet in height generally require professional structural engineering, footing reinforcement, and gravel drainage backfill."
+    }
+],
     keyTakeaways: [
       'Standard 8×8×16 CMU blocks cover 0.89 square feet per block (including 3/8" mortar joint).',
       'Rule of thumb: Multiply total wall square footage by 1.125 to determine total block count.',
@@ -391,6 +593,21 @@ export const guidesRegistry: GuideMeta[] = [
     publishedDate: '2026-09-07',
     keywords: ['how many rolls of wallpaper do i need', 'wallpaper pattern repeat calculation', 'double roll vs single roll wallpaper', 'wallpaper waste margin'],
     relatedToolSlug: 'wallpaper-calculator',
+    seoTitle: "Wallpaper Roll & Pattern Drop Calculation Guide [Double Roll Estimator]",
+    faqs: [
+    {
+        "question": "How many square feet does a double roll of wallpaper cover?",
+        "answer": "A standard US double roll covers approximately 56 to 60 gross square feet (plan on 50 sq ft usable after trimming)."
+    },
+    {
+        "question": "How much waste should I add for pattern repeat wallpaper?",
+        "answer": "Add 15% to 20% waste for straight match patterns, and 20% to 25% for large half-drop repeats (18 inches or greater)."
+    },
+    {
+        "question": "Do you subtract doors and windows from wallpaper calculations?",
+        "answer": "Do not deduct small standard doors and windows because continuous vertical strips must be cut around them, and offcuts cannot be used for full-height drops."
+    }
+],
     keyTakeaways: [
       'Standard "double rolls" (US) cover approximately 56 to 60 gross square feet (use 50 sq ft usable).',
       'European standard metric rolls (Euro rolls) cover approximately 57 sq ft (use 45 sq ft usable).',
