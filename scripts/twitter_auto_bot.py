@@ -148,21 +148,21 @@ def post_single_tweet(tweet, headless=False):
     with sync_playwright() as p:
         browser_context, browser_instance = get_browser_context(p, headless=headless)
         page = browser_context.new_page()
+        page.add_init_script("""
+            Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+            window.chrome = { runtime: {} };
+        """)
 
         try:
-            print("🌐 Navigating to Twitter/X compose page...")
-            page.goto("https://x.com/compose/post", timeout=45000)
+            print("🌐 Navigating to Twitter/X...")
+            page.goto("https://x.com/home", timeout=45000)
             page.wait_for_timeout(4000)
-
-            # Check if redirected to compose/tweet fallback
-            if "compose" not in page.url.lower():
-                page.goto("https://x.com/compose/tweet", timeout=45000)
-                page.wait_for_timeout(4000)
 
             # Check for login redirect
             if "login" in page.url.lower() or "i/flow/login" in page.url.lower():
                 print("[WARNING] User is not logged in! Session cookies may have expired.")
                 page.screenshot(path=str(BOT_DIR / "login_required_error.png"))
+                page.screenshot(path=str(BOT_DIR / "last_error.png"))
                 return False
 
             # Dismiss any cookie consent / prompt if present
@@ -174,7 +174,17 @@ def post_single_tweet(tweet, headless=False):
             except Exception:
                 pass
 
-            # Locate editor
+            # Open composer: check inline home editor or click SideNav_NewTweet_Button
+            editor = page.locator('[data-testid="tweetTextarea_0"], div[role="textbox"][contenteditable="true"]').first
+            if not editor.is_visible():
+                side_btn = page.locator('[data-testid="SideNav_NewTweet_Button"]').first
+                if side_btn.is_visible(timeout=4000):
+                    side_btn.click()
+                    page.wait_for_timeout(2000)
+                else:
+                    page.goto("https://x.com/compose/post", timeout=30000)
+                    page.wait_for_timeout(3000)
+
             editor = page.locator('[data-testid="tweetTextarea_0"], div[role="textbox"][contenteditable="true"]').first
             editor.wait_for(state="visible", timeout=20000)
             editor.click()
@@ -296,7 +306,9 @@ def main():
         if not next_t and tweets:
             next_t = tweets[0]
         if next_t:
-            post_single_tweet(next_t, headless=args.headless)
+            success = post_single_tweet(next_t, headless=args.headless)
+            if not success:
+                sys.exit(1)
     elif args.mode == "schedule":
         run_schedule(interval_hours=args.interval, headless=args.headless)
 

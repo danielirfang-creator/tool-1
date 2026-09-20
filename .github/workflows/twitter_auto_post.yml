@@ -34,8 +34,10 @@ jobs:
           python scripts/twitter_auto_bot.py post_one --headless
 
       - name: Commit & Push Updated History
+        if: always()
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add twitter_bot/posted_history.json twitter_bot/storage_state.json twitter_bot/last_error.png
-          git diff --staged --quiet || (git commit -m "Auto-posted scheduled Twitter tip [skip ci]" && git push)
+          git add twitter_bot/posted_history.json twitter_bot/storage_state.json || true
+          [ -f twitter_bot/last_error.png ] && git add twitter_bot/last_error.png || true
+          git diff --staged --quiet || (git pull --rebase origin main && git commit -m "Auto-posted scheduled Twitter tip [skip ci]" && git push)
