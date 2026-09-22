@@ -209,7 +209,7 @@ def send_daily_summary(is_night_report=True):
         f"   Last: {stats['latest_pin']}\n\n"
         f"🐦 Twitter/X: {stats['tweet_count_today']} Tweets Posted Today (Total: {stats['total_tweets']})\n"
         f"   Last: {stats['latest_tweet']}\n\n"
-        f"✍️ Articles Live: Medium ({stats['medium_today']}), Dev.to ({stats['devto_today']})\n"
+        f"✍️ Articles Live: Dev.to ({stats['total_articles']} Total Live | +{stats['devto_today']} Today), Medium ({stats['medium_today']})\n"
         f"   Last: {stats['latest_article']}\n\n"
         f"🔗 Auto-Backlinks: {stats['backlink_today']} Created Today (Total: {stats['total_backlinks']} Live High-DA Backlinks)\n"
         f"   Status: Pinged to IndexNow & Search Bots\n\n"
