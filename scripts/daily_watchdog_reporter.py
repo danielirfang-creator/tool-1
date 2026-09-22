@@ -50,6 +50,16 @@ def send_ntfy_notification(title, message, tags="chart_with_upwards_trend,white_
         print(f"[ERROR] Failed to send ntfy notification: {e}")
         return False
 
+def parse_iso_ts(ts_str):
+    if not ts_str:
+        return None
+    try:
+        # Strip trailing Z and timezone offset to avoid naive vs aware comparison TypeErrors
+        clean = str(ts_str).replace("Z", "").split("+")[0]
+        return datetime.fromisoformat(clean)
+    except Exception:
+        return None
+
 def get_today_and_total_stats():
     now = datetime.now()
     today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
@@ -66,12 +76,9 @@ def get_today_and_total_stats():
                 logs = pdata.get("logs", [])
                 total_pins = len(logs)
                 for l in logs:
-                    try:
-                        ts = datetime.fromisoformat(l.get("timestamp", "2000-01-01"))
-                        if ts >= today_start or ts >= cutoff_24h:
-                            pin_count_today += 1
-                    except Exception:
-                        pass
+                    ts = parse_iso_ts(l.get("timestamp"))
+                    if ts and (ts >= today_start or ts >= cutoff_24h):
+                        pin_count_today += 1
                 if logs:
                     latest_pin = logs[-1].get("title", "Pin")[:42] + "..."
         except Exception:
@@ -88,12 +95,9 @@ def get_today_and_total_stats():
                 logs = tdata.get("logs", [])
                 total_tweets = len(logs)
                 for l in logs:
-                    try:
-                        ts = datetime.fromisoformat(l.get("timestamp", "2000-01-01"))
-                        if ts >= today_start or ts >= cutoff_24h:
-                            tweet_count_today += 1
-                    except Exception:
-                        pass
+                    ts = parse_iso_ts(l.get("timestamp"))
+                    if ts and (ts >= today_start or ts >= cutoff_24h):
+                        tweet_count_today += 1
                 if logs:
                     latest_tweet = logs[-1].get("text", "Tweet")[:42] + "..."
         except Exception:
@@ -111,13 +115,10 @@ def get_today_and_total_stats():
                 published = bdata.get("published", [])
                 total_articles = len(published)
                 for b in published:
-                    try:
-                        ts = datetime.fromisoformat(b.get("timestamp", "2000-01-01"))
-                        if ts >= today_start or ts >= cutoff_24h:
-                            if "devto" in b.get("links", {}): devto_today += 1
-                            if "medium" in b.get("links", {}): medium_today += 1
-                    except Exception:
-                        pass
+                    ts = parse_iso_ts(b.get("timestamp"))
+                    if ts and (ts >= today_start or ts >= cutoff_24h):
+                        if "devto" in b.get("links", {}): devto_today += 1
+                        if "medium" in b.get("links", {}): medium_today += 1
                 if published:
                     latest_article = published[-1].get("title", "Article")[:42] + "..."
         except Exception:
@@ -133,12 +134,9 @@ def get_today_and_total_stats():
                 blist = bkdata.get("backlinks", [])
                 total_backlinks = len(blist)
                 for bl in blist:
-                    try:
-                        ts = datetime.fromisoformat(bl.get("timestamp", "2000-01-01"))
-                        if ts >= today_start or ts >= cutoff_24h:
-                            backlink_today += 1
-                    except Exception:
-                        pass
+                    ts = parse_iso_ts(bl.get("timestamp"))
+                    if ts and (ts >= today_start or ts >= cutoff_24h):
+                        backlink_today += 1
         except Exception:
             pass
 

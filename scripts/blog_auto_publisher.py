@@ -191,6 +191,9 @@ def publish_to_devto(article, api_key):
             article_url = data.get("url")
             print(f"🎉 SUCCESS! Published on Dev.to: {article_url}")
             return article_url
+        elif res.status_code == 422 and "already been taken" in res.text:
+            print(f"ℹ️ Article was previously published on Dev.to. Advancing queue.")
+            return "https://dev.to/craftcalc"
         else:
             print(f"[ERROR] Dev.to responded with status {res.status_code}: {res.text}")
             return None

@@ -40,4 +40,6 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add twitter_bot/posted_history.json twitter_bot/storage_state.json || true
           [ -f twitter_bot/last_error.png ] && git add twitter_bot/last_error.png || true
-          git diff --staged --quiet || (git pull --rebase origin main && git commit -m "Auto-posted scheduled Twitter tip [skip ci]" && git push)
+          git diff --staged --quiet || git commit -m "Auto-posted scheduled Twitter tip [skip ci]"
+          git pull --rebase origin main || true
+          git push origin main || true

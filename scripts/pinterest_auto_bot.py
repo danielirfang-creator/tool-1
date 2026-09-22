@@ -381,18 +381,27 @@ def post_single_pin(row, headless=False):
                 page.wait_for_timeout(1000)
 
             if board_btn.count() > 0:
-                board_btn.click(force=True)
-                page.wait_for_timeout(2000)
+                try:
+                    board_btn.click(force=True, timeout=5000)
+                    page.wait_for_timeout(2000)
 
-                # Click first board option in dropdown
-                board_option = page.locator('div[data-test-id="board-row"], div[role="option"]').filter(has_not_text="Select all").first
-                if board_option.count() > 0 and board_option.is_visible():
-                    board_option.click(force=True)
-                    print(f"   ✔ Board selected")
-                else:
-                    # Fallback click
-                    page.locator('div:has-text("DIY Home Improvement")').first.click(force=True)
-                    print("   ✔ Board selected via text fallback")
+                    # Click first board option in dropdown
+                    board_option = page.locator('div[data-test-id="board-row"], div[role="option"]').filter(has_not_text="Select all").first
+                    if board_option.count() > 0 and board_option.is_visible():
+                        board_option.click(force=True, timeout=5000)
+                        print(f"   ✔ Board selected")
+                    else:
+                        # Fallback click by specific board name or keyboard
+                        board_target = page.locator(f'div:has-text("{board_name}")').first
+                        if board_target.count() > 0 and board_target.is_visible():
+                            board_target.click(force=True, timeout=5000)
+                            print(f"   ✔ Board selected ({board_name})")
+                        else:
+                            page.keyboard.press("ArrowDown")
+                            page.keyboard.press("Enter")
+                            print("   ✔ Board selected via keyboard navigation")
+                except Exception as b_err:
+                    print(f"   [!] Board selection notice: {b_err}")
             page.wait_for_timeout(1500)
 
             # 6. Click Publish Button (Specifically the top-right red Publish button)
@@ -543,11 +552,26 @@ def main():
         schedule_rows = load_schedule(pin_type=args.type)
         history = load_history()
         posted_ids = set(str(x) for x in history.get("posted_ids", []))
-        next_pin = next((r for r in schedule_rows if not is_pin_already_posted(r, posted_ids)), None)
+        failed_ids = set(str(x) for x in history.get("failed_ids", []))
+
+        # Prefer pins that haven't failed repeatedly
+        next_pin = next((r for r in schedule_rows if not is_pin_already_posted(r, posted_ids) and str(r.get("unique_id", "")) not in failed_ids), None)
+        if not next_pin:
+            # Fallback to any unposted pin
+            next_pin = next((r for r in schedule_rows if not is_pin_already_posted(r, posted_ids)), None)
         if not next_pin and schedule_rows:
             next_pin = schedule_rows[0]
+
         if next_pin:
-            post_single_pin(next_pin, headless=args.headless)
+            success = post_single_pin(next_pin, headless=args.headless)
+            if not success:
+                uid = str(next_pin.get("unique_id", ""))
+                if "failed_ids" not in history:
+                    history["failed_ids"] = []
+                if uid and uid not in history["failed_ids"]:
+                    history["failed_ids"].append(uid)
+                    save_history(history)
+                    print(f"⚠️ Pin #{uid} marked for temporary retry-skip. Moving to next pin on next cycle.")
         else:
             print("No pins found in schedule!")
     elif args.mode == "schedule":

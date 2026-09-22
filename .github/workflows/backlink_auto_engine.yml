@@ -1,0 +1,40 @@
+name: Auto-Backlink Engine & IndexNow Ping
+
+on:
+  schedule:
+    # Runs twice daily at 06:00 UTC and 18:00 UTC automatically on GitHub Cloud
+    - cron: '0 6,18 * * *'
+  workflow_dispatch: # Allows manual 1-click trigger anytime from GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  build-backlinks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          pip install requests
+
+      - name: Run Auto-Backlink Engine & Ping IndexNow
+        run: |
+          python scripts/auto_backlink_engine.py --now
+
+      - name: Commit & Push Updated Backlink History
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add backlink_bot/backlink_history.json
+          git diff --staged --quiet || (git commit -m "Auto-generated high-DA backlink and search bot ping [skip ci]" && git pull --rebase origin main && git push origin main)
