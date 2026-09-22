@@ -25,7 +25,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: ToolPageProps): Promise<Metadata> {
   const tool = getToolBySlug(params.slug);
-  if (!tool) return {};
+  if (!tool || tool.cluster !== params.cluster) return {};
 
   const path = `${tool.clusterHref}/${tool.slug}`;
 
@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
 export default function GenericToolPage({ params }: ToolPageProps) {
   const tool = getToolBySlug(params.slug);
 
-  if (!tool) {
+  if (!tool || tool.cluster !== params.cluster) {
     notFound();
   }
 

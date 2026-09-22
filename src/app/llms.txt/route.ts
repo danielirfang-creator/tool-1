@@ -35,21 +35,33 @@ export async function GET() {
 - [Brick & Block Calculator](${siteConfig.url}/calculators/concrete-masonry/brick-block-calculator): Estimate standard bricks and concrete blocks for walls with waste factors.
 
 ### 4. Garden, Landscaping & Outdoors
-- [Topsoil Calculator](${siteConfig.url}/calculators/garden/topsoil-calculator): Calculate cubic yards, bulk tons, and 40lb bags of garden soil.
+- [Soil Calculator](${siteConfig.url}/calculators/garden/soil-calculator): Calculate cubic yards, bulk tons, and 40lb bags of garden soil.
 - [Mulch Calculator](${siteConfig.url}/calculators/garden/mulch-calculator): Determine cubic yards and 2 cu ft bags for weed barrier bedding.
 - [Gravel Calculator](${siteConfig.url}/calculators/garden/gravel-calculator): Calculate gravel and crushed stone tons and cubic yards for driveways and French drains.
-- [Paver & Patio Calculator](${siteConfig.url}/calculators/garden/paver-calculator): Estimate patio pavers, bedding sand, and polymeric joint sand.
-- [Turf & Sod Calculator](${siteConfig.url}/calculators/garden/turf-sod-calculator): Calculate sod rolls, pallets, and square feet for lawn installation.
-- [Fence Calculator](${siteConfig.url}/calculators/garden/fence-calculator): Calculate fence posts, rails, pickets, and concrete bags.
+- [Paver Patio Calculator](${siteConfig.url}/calculators/garden/patio-calculator): Estimate patio pavers, bedding sand, and polymeric joint sand.
+- [Turf & Sod Calculator](${siteConfig.url}/calculators/garden/turf-calculator): Calculate sod rolls, pallets, and square feet for lawn installation.
 
-### 5. Rooms & Interior Measurements
+### 5. Fencing & Decking
+- [Fence Calculator](${siteConfig.url}/calculators/fencing-decking/fence-calculator): Calculate fence posts, rails, pickets, and concrete bags.
+- [Decking Calculator](${siteConfig.url}/calculators/fencing-decking/decking-calculator): Calculate 5/4x6 deck boards, 12" and 16" OC framing joists, and hidden fasteners.
+
+### 6. Roofing & Siding
+- [Roofing Calculator](${siteConfig.url}/calculators/roofing-siding/roofing-calculator): Calculate roofing squares, 3-tab/architectural shingle bundles, and underlayment felt rolls.
+- [Siding Calculator](${siteConfig.url}/calculators/roofing-siding/siding-calculator): Calculate vinyl and fiber-cement siding squares, starter strips, and trim.
+- [Gutter Calculator](${siteConfig.url}/calculators/roofing-siding/gutter-calculator): Estimate gutter run lengths, downspouts, and fascia brackets.
+
+### 7. Drywall & Framing
+- [Drywall Calculator](${siteConfig.url}/calculators/drywall-framing/drywall-calculator): Determine 4x8 and 4x12 drywall sheets, joint compound, and tape.
+- [Framing Stud Calculator](${siteConfig.url}/calculators/drywall-framing/framing-calculator): Calculate 16" and 24" OC wall studs, top plates, and corner studs.
+- [Insulation Calculator](${siteConfig.url}/calculators/drywall-framing/insulation-calculator): Calculate fiberglass batts, roll bags, and R-value requirements.
+
+### 8. Rooms & Interior Measurements
 - [Square Footage Calculator](${siteConfig.url}/calculators/rooms/square-footage-calculator): Calculate square feet and square meters for rectangular, L-shaped, and irregular rooms.
 - [Square Meter Calculator](${siteConfig.url}/calculators/rooms/square-meter-calculator): Metric surface and floor area calculations.
 - [Wallpaper Calculator](${siteConfig.url}/calculators/rooms/wallpaper-calculator): Calculate wallpaper rolls taking into account vertical pattern repeats.
-- [Drywall Sheet Calculator](${siteConfig.url}/calculators/rooms/drywall-calculator): Determine 4x8 and 4x12 drywall sheets, joint compound, and tape.
 - [Baseboard / Skirting Board Calculator](${siteConfig.url}/calculators/rooms/baseboard-calculator): Calculate perimeter linear feet minus doorways plus 10% corner waste.
 
-### 6. Conversion Tools
+### 9. Conversion Tools
 - [Feet to Meters Converter](${siteConfig.url}/calculators/conversions/feet-to-meters): Instant bidirectional length conversions.
 - [Square Feet to Square Meters](${siteConfig.url}/calculators/conversions/sqft-to-sqm): Area conversion with step-by-step formula.
 - [Cubic Yards to Cubic Feet](${siteConfig.url}/calculators/conversions/cubic-yards-to-cubic-feet): Volume calculation for bulk aggregates.

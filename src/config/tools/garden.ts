@@ -1,4 +1,4 @@
-﻿import { ToolMeta } from './types';
+import { ToolMeta } from './types';
 
 export const gardenTools: ToolMeta[] = [
   {
@@ -186,54 +186,6 @@ export const gardenTools: ToolMeta[] = [
       }
     ],
     relatedToolSlugs: ['soil-calculator', 'mulch-calculator', 'patio-calculator'],
-    status: 'live'
-  },
-  {
-    id: 'fence-calculator',
-    slug: 'fence-calculator',
-    name: 'Fence Calculator',
-    cluster: 'garden',
-    clusterName: 'Garden & Outdoors',
-    clusterHref: '/calculators/garden',
-    benefit: 'Calculate fence posts, rails, pickets, gate kits, and concrete bags for privacy and post-and-rail fences.',
-    metaTitle: 'Fence Calculator - Posts, Rails & Pick',
-    metaDescription: 'Calculate privacy fence posts (6ft or 8ft spacing), 2x4 support rails, individual pickets, gate hardware, and post hole concrete bag requirements.',
-    keywords: ['fence calculator', 'how many fence pickets do i need', 'fence post calculator', 'fence material calculator'],
-    formula: 'Posts = ⌈Length ÷ Post Spacing⌉ + 1 + Gate Posts | Pickets = (Length in inches ÷ Picket Width) × 1.05',
-    formulaDescription: 'Divides total fence run by post spacing (typically 8ft or 6ft), calculates horizontal rails, and calculates pickets.',
-    methodology: ['Measure total linear feet', 'Choose post spacing (6ft or 8ft)', 'Select fence height (6ft privacy vs 4ft)', 'Calculate concrete (2 bags/post)'],
-    limitations: ['Sloped yards require stepping or racking panels, which alters picket lengths.'],
-    workedExample: {
-      title: '150 Linear Feet of 6ft Privacy Fence',
-      scenario: 'Building a 150 ft wood privacy fence with 8ft post spacing, 3 rails, 5.5" pickets, and 1 walk gate.',
-      inputs: [{ label: 'Fence Run', value: '150 linear feet' }, { label: 'Picket Width', value: '5.5 inch dog-ear pickets' }],
-      steps: [
-        { step: '1. Line Posts', calculation: '⌈150 ÷ 8⌉ + 1', result: '20 4x4 Posts' },
-        { step: '2. 2x4 Rails (3 per section)', calculation: '19 sections × 3 rails', result: '57 8-ft 2x4s' },
-        { step: '3. Pickets (5.5" width)', calculation: '(150 × 12) ÷ 5.5 = 327.2 × 1.05', result: '344 Pickets' },
-        { step: '4. Concrete (2 bags/post)', calculation: '20 posts × 2 bags', result: '40 Bags (50lb/60lb)' }
-      ],
-      finalAnswer: 'Purchase 20 4x4 posts (8ft or 9ft), 57 2x4 rails (8ft), 344 dog-ear pickets, and 40 bags of concrete.',
-      proTip: 'Use 3 horizontal 2x4 rails on all 6ft privacy fences to prevent pickets from warping and bowing.'
-    },
-    decisionSupport: {
-      title: 'Fence Post Spacing & Rail Guidelines',
-      description: 'Engineering standards for wood fencing.',
-      headers: ['Fence Height', 'Post Spacing', 'Rails Per Section', 'Min Post Depth in Ground'],
-      rows: [
-        ['4 ft Picket Fence', '8 ft on center', '2 rails (top/bottom)', '24 inches (2 ft)'],
-        ['6 ft Privacy Fence', '8 ft on center (6ft in windy areas)', '3 rails', '30 - 36 inches (below frost line)'],
-        ['8 ft Commercial Fence', '6 ft on center', '4 rails', '36 - 48 inches']
-      ],
-      notes: ['Always call 811 to locate underground utility lines before digging any post holes.']
-    },
-    faqs: [
-      {
-        question: 'How deep should fence posts be set in the ground?',
-        answer: 'Fence posts should be buried at least 1/3 of their total length, or a minimum of 30 to 36 inches (below the local winter frost line).'
-      }
-    ],
-    relatedToolSlugs: ['concrete-bags-calculator', 'patio-calculator', 'turf-calculator'],
     status: 'live'
   },
   {
