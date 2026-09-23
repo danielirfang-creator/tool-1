@@ -5,6 +5,9 @@ on:
     # Runs every 4 hours automatically in the cloud 24/7
     - cron: '0 */4 * * *'
   workflow_dispatch: # Allows manual 1-click run anytime from GitHub
+  push:
+    paths:
+      - 'scripts/pinterest_auto_bot.py'
 
 permissions:
   contents: write

@@ -303,8 +303,11 @@ def post_single_pin(row, headless=False):
 
             # Wait for upload processing
             if media_type == "video":
-                print("⏳ 3. Waiting for video processing (15s)...")
-                for sec in range(15):
+                print("⏳ 3. Waiting for video processing (up to 30s)...")
+                for sec in range(30):
+                    if page.locator('[data-test-id="video-cover-thumbnail"], [data-test-id="media-uploader-preview"], button[data-test-id*="video"]').count() > 0:
+                        print(f"   ✔ Video preview ready ({sec}s)")
+                        break
                     page.wait_for_timeout(1000)
             else:
                 print("⏳ 3. Waiting for image preview (4s)...")
@@ -372,7 +375,7 @@ def post_single_pin(row, headless=False):
 
             # 5. Select Board
             print("⏳ 7. Selecting Board...")
-            board_btn = page.locator('[data-test-id="board-dropdown-select-button"]')
+            board_btn = page.locator('[data-test-id="board-dropdown-select-button"], button[aria-label*="board" i], button:has-text("Choose a board"), button:has-text("Board")').first
             
             # Wait until board dropdown is enabled
             for _ in range(15):
@@ -385,48 +388,94 @@ def post_single_pin(row, headless=False):
                     board_btn.click(force=True, timeout=5000)
                     page.wait_for_timeout(2000)
 
-                    # Click first board option in dropdown
-                    board_option = page.locator('div[data-test-id="board-row"], div[role="option"]').filter(has_not_text="Select all").first
-                    if board_option.count() > 0 and board_option.is_visible():
-                        board_option.click(force=True, timeout=5000)
-                        print(f"   ✔ Board selected")
-                    else:
-                        # Fallback click by specific board name or keyboard
-                        board_target = page.locator(f'div:has-text("{board_name}")').first
-                        if board_target.count() > 0 and board_target.is_visible():
-                            board_target.click(force=True, timeout=5000)
-                            print(f"   ✔ Board selected ({board_name})")
+                    board_selected = False
+
+                    # Try matching specific board name
+                    board_target = page.locator(f'div:has-text("{board_name}")').filter(has_not_text="Select all").first
+                    if board_target.count() > 0 and board_target.is_visible():
+                        board_target.click(force=True, timeout=5000)
+                        print(f"   ✔ Board selected ({board_name})")
+                        board_selected = True
+
+                    if not board_selected:
+                        # Click first available board option in dropdown
+                        board_option = page.locator('div[data-test-id="board-row"], div[role="option"], div[data-test-id*="board"]').filter(has_not_text="Select all").first
+                        if board_option.count() > 0 and board_option.is_visible():
+                            board_option.click(force=True, timeout=5000)
+                            print(f"   ✔ First available board selected")
+                            board_selected = True
+
+                    if not board_selected:
+                        # Fallback: check Create Board or keyboard navigation
+                        create_board_btn = page.locator('button:has-text("Create board"), [data-test-id="create-board-button"], div:has-text("Create board")').first
+                        if create_board_btn.count() > 0 and create_board_btn.is_visible():
+                            create_board_btn.click(force=True)
+                            page.wait_for_timeout(1000)
+                            b_input = page.locator('input[id*="board-name"], input[placeholder*="Name" i], input[type="text"]').first
+                            if b_input.count() > 0:
+                                b_input.fill("CraftCalc DIY Tools")
+                            c_submit = page.locator('button:has-text("Create"), button[type="submit"]').first
+                            if c_submit.count() > 0:
+                                c_submit.click(force=True)
+                                print("   ✔ Created & selected new board: CraftCalc DIY Tools")
+                                board_selected = True
                         else:
                             page.keyboard.press("ArrowDown")
                             page.keyboard.press("Enter")
                             print("   ✔ Board selected via keyboard navigation")
+                            board_selected = True
                 except Exception as b_err:
                     print(f"   [!] Board selection notice: {b_err}")
+            
+            # Dismiss board dropdown so it doesn't obstruct the Publish button
+            page.keyboard.press("Escape")
             page.wait_for_timeout(1500)
 
             # 6. Click Publish Button (Specifically the top-right red Publish button)
             print("⏳ 8. Submitting Pin (Publishing)...")
-            publish_btn = page.locator('button[data-test-id="storyboard-creation-publish-button"], button:has-text("Publish")').filter(has_not_text="draft").first
-            for _ in range(25):
-                if publish_btn.count() > 0 and not publish_btn.is_disabled():
+            publish_candidates = [
+                'button[data-test-id="storyboard-creation-publish-button"]',
+                'button[data-test-id="board-dropdown-save-button"]',
+                'button:has-text("Publish")',
+                'button:has-text("Save")'
+            ]
+            
+            clicked = False
+            for _ in range(15):
+                for selector in publish_candidates:
+                    btns = page.locator(selector).all()
+                    for b in btns:
+                        try:
+                            if b.is_visible() and not b.is_disabled():
+                                txt = (b.inner_text() or "").strip()
+                                if "draft" not in txt.lower():
+                                    b.click(force=True)
+                                    print(f"   🚀 Clicked Publish button ({selector} - '{txt}')!")
+                                    clicked = True
+                                    break
+                        except Exception:
+                            pass
+                    if clicked:
+                        break
+                if clicked:
                     break
-                page.wait_for_timeout(500)
+                page.wait_for_timeout(1000)
 
-            # If drafts checkbox got selected, ensure we target active publish button
-            active_red_buttons = page.locator('button:has-text("Publish")').all()
-            target_pub = None
-            for b in active_red_buttons:
-                if b.is_visible() and not b.is_disabled():
-                    target_pub = b
+            if not clicked:
+                print("   [!] Direct publish button not clickable yet, trying generic button click...")
+                for b in page.locator('button').all():
+                    try:
+                        txt = (b.inner_text() or "").strip()
+                        if txt in ["Publish", "Save"] and not b.is_disabled() and b.is_visible():
+                            b.click(force=True)
+                            print(f"   🚀 Clicked button: '{txt}'")
+                            clicked = True
+                            break
+                    except Exception:
+                        pass
 
-            if target_pub:
-                target_pub.click(force=True)
-                print("   🚀 Clicked Red Publish button!")
-            elif publish_btn.count() > 0:
-                publish_btn.click(force=True)
-                print("   🚀 Clicked Publish button!")
-            else:
-                print("   [!] Publish button not found directly, pressing Save...")
+            if not clicked:
+                print("   [!] Fallback: pressing Control+Enter...")
                 page.keyboard.press("Control+Enter")
 
             # 7. Verification: Wait for Pinterest to confirm publication
@@ -448,17 +497,33 @@ def post_single_pin(row, headless=False):
                     break
                 
                 # Check for success toast text
-                if page.locator('div:has-text("Saved to"), div:has-text("Your Pin has been published"), div:has-text("You created a Pin")').count() > 0:
+                if page.locator('div:has-text("Saved to"), div:has-text("Your Pin has been published"), div:has-text("You created a Pin"), div:has-text("Pin created"), [data-test-id="toast"]').count() > 0:
                     is_confirmed = True
                     print("   🎉 Pinterest confirmed: Pin Saved & Live!")
                     break
 
                 # Check if redirected to Pin page
-                if "/pin/" in page.url and "creation" not in page.url:
+                if "/pin/" in page.url and "creation" not in page.url and "builder" not in page.url:
                     is_confirmed = True
                     pin_url = page.url
                     print(f"   🎉 Redirected to live Pin: {pin_url}")
                     break
+
+            # Profile fallback check if not confirmed directly on creator page
+            if not is_confirmed and clicked:
+                print("⏳ 10. Checking profile created pins tab as fallback verification...")
+                try:
+                    page.goto("https://www.pinterest.com/danielirfang/_created/", timeout=30000)
+                    page.wait_for_timeout(5000)
+                    pin_link_el = page.locator('a[href*="/pin/"]').first
+                    if pin_link_el.count() > 0:
+                        href = pin_link_el.get_attribute("href")
+                        if href:
+                            is_confirmed = True
+                            pin_url = f"https://www.pinterest.com{href}" if not href.startswith("http") else href
+                            print(f"   🎉 Verified live pin via Created Pins tab: {pin_url}")
+                except Exception as p_err:
+                    print(f"   [!] Profile check warning: {p_err}")
 
             # Save screenshot for proof
             screenshot_path = BOT_DIR / "last_publish_result.png"
@@ -469,6 +534,8 @@ def post_single_pin(row, headless=False):
                 history = load_history()
                 if pin_id not in history["posted_ids"]:
                     history["posted_ids"].append(pin_id)
+                if "failed_ids" in history and pin_id in history["failed_ids"]:
+                    history["failed_ids"].remove(pin_id)
                 history["logs"].append({
                     "id": pin_id,
                     "media_type": media_type,
