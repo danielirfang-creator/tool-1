@@ -1,5 +1,5 @@
 {
-  "total_backlinks": 18,
+  "total_backlinks": 19,
   "backlinks": [
     {
       "id": 1,
@@ -180,6 +180,16 @@
       "pinged_indexnow": true,
       "pinged_pingomatic": true,
       "timestamp": "2026-09-24T06:05:48.603343"
+    },
+    {
+      "id": 19,
+      "anchor_text": "Concrete Footing & Pier Volume Guide",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/concrete-footing-calculator",
+      "cluster": "concrete-masonry",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": true,
+      "pinged_pingomatic": true,
+      "timestamp": "2026-09-24T18:05:32.236403"
     }
   ]
 }
