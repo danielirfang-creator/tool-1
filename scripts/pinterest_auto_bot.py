@@ -228,6 +228,56 @@ def get_browser_context(p, headless=False):
         )
         return context, None
 
+def purge_leftover_drafts(page):
+    """
+    Pinterest has a strict 50-draft limit. When 50 drafts accumulate,
+    Pinterest completely locks the Pin Builder (all fields disabled, upload blocked).
+    This function detects if drafts are present, selects all, and deletes them
+    to ensure the pin creation editor is 100% unlocked and clean.
+    """
+    try:
+        # Check if drafts panel is present with any drafts
+        drafts_header = page.locator('div:has-text("Pin drafts")').first
+        if drafts_header.count() > 0 and drafts_header.is_visible():
+            header_text = drafts_header.inner_text().strip()
+            print(f"🧹 Detected Pinterest drafts panel ({header_text}). Purging old drafts...")
+            
+            # 1. Click 'Select all'
+            select_all = page.locator('label:has-text("Select all"), div:has-text("Select all"), input[aria-label*="Select all" i], [data-test-id*="select-all"]').first
+            if select_all.count() > 0 and select_all.is_visible():
+                print("   👉 Selecting all drafts...")
+                select_all.click(force=True)
+                page.wait_for_timeout(1500)
+                
+                # 2. Click the Trash / Delete icon button on the bottom toolbar
+                trash_btn = page.locator('button[aria-label*="delete" i], button[aria-label*="trash" i], button:has-text("Delete"), [data-test-id*="delete"]').first
+                if trash_btn.count() > 0 and trash_btn.is_visible():
+                    print("   👉 Clicking Trash button to purge drafts...")
+                    trash_btn.click(force=True)
+                    page.wait_for_timeout(1500)
+                    
+                    # 3. Confirm deletion in the confirmation modal
+                    confirm_btn = page.locator('div[role="dialog"] button:has-text("Delete"), button[data-test-id*="confirm"], button:has-text("Delete")').first
+                    if confirm_btn.count() > 0 and confirm_btn.is_visible():
+                        confirm_btn.click(force=True)
+                        print("   🗑️ Purged all old drafts successfully!")
+                        page.wait_for_timeout(3000)
+
+            # 4. Close the drafts panel with the 'X' button so it does not interfere
+            close_btn = page.locator('button[aria-label*="Close" i], svg[aria-label*="Close" i], div[aria-label*="Close" i]').first
+            if close_btn.count() > 0 and close_btn.is_visible():
+                close_btn.click(force=True)
+                page.wait_for_timeout(1000)
+                
+            # 5. If 'Create new' button is visible and active, click it to open a fresh pin
+            create_new = page.locator('button:has-text("Create new")').first
+            if create_new.count() > 0 and create_new.is_visible() and not create_new.is_disabled():
+                create_new.click(force=True)
+                print("   ✔ Opened fresh clean pin canvas")
+                page.wait_for_timeout(2000)
+    except Exception as ex:
+        print(f"   [!] Drafts purge notice: {ex}")
+
 def post_single_pin(row, headless=False):
     ensure_dirs()
     media_path, media_type = resolve_local_media(row)
@@ -282,6 +332,9 @@ def post_single_pin(row, headless=False):
                 context.close()
                 if browser: browser.close()
                 return False
+
+            # Purge leftover drafts (prevents 50-draft Pinterest account lock)
+            purge_leftover_drafts(page)
 
             # 1. Upload media file (Works for both .mp4 videos and .jpg images)
             print(f"⏳ 2. Uploading {media_type.upper()} file ({Path(media_path).name})...")
@@ -507,6 +560,12 @@ def post_single_pin(row, headless=False):
                     is_confirmed = True
                     pin_url = page.url
                     print(f"   🎉 Redirected to live Pin: {pin_url}")
+                    break
+
+                # Check if editor canvas reset back to empty upload (indicates pin successfully published)
+                if check >= 3 and page.locator('div:has-text("Upload your media")').count() > 0:
+                    is_confirmed = True
+                    print("   🎉 Canvas reset to empty state - Pin published successfully!")
                     break
 
             # Profile fallback check if not confirmed directly on creator page
