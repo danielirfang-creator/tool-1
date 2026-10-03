@@ -1,5 +1,5 @@
 {
-  "total_backlinks": 36,
+  "total_backlinks": 37,
   "backlinks": [
     {
       "id": 1,
@@ -360,6 +360,16 @@
       "pinged_indexnow": true,
       "pinged_pingomatic": true,
       "timestamp": "2026-10-03T10:50:27.457402"
+    },
+    {
+      "id": 37,
+      "anchor_text": "Contractor Flooring Waste Margin Guidelines",
+      "target_url": "https://tool-1-pied.vercel.app/guides/flooring-waste-percentage-guide",
+      "cluster": "guides",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": true,
+      "pinged_pingomatic": true,
+      "timestamp": "2026-10-03T20:21:49.555136"
     }
   ]
 }
