@@ -1,5 +1,5 @@
 {
-  "total_backlinks": 44,
+  "total_backlinks": 45,
   "backlinks": [
     {
       "id": 1,
@@ -440,6 +440,16 @@
       "pinged_indexnow": true,
       "pinged_pingomatic": true,
       "timestamp": "2026-10-07T12:20:47.186593"
+    },
+    {
+      "id": 45,
+      "anchor_text": "DIY Tile & Grout Coverage Estimator",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/flooring/tile-calculator",
+      "cluster": "flooring",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": true,
+      "pinged_pingomatic": true,
+      "timestamp": "2026-10-07T22:27:09.076894"
     }
   ]
 }
