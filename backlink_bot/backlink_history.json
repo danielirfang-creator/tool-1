@@ -1,5 +1,5 @@
 {
-  "total_backlinks": 53,
+  "total_backlinks": 54,
   "backlinks": [
     {
       "id": 1,
@@ -530,6 +530,16 @@
       "pinged_indexnow": true,
       "pinged_pingomatic": true,
       "timestamp": "2026-10-11T21:15:59.540788"
+    },
+    {
+      "id": 54,
+      "anchor_text": "Luxury Vinyl Plank (LVP) Carton Calculator",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/flooring/vinyl-flooring-calculator",
+      "cluster": "flooring",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": true,
+      "pinged_pingomatic": true,
+      "timestamp": "2026-10-12T13:56:39.656696"
     }
   ]
 }
