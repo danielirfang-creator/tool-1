@@ -61,7 +61,8 @@
     "img_30",
     "v_30",
     "img_31",
-    "img_64"
+    "img_64",
+    "v_64"
   ],
   "logs": [
     {
@@ -663,6 +664,16 @@
       "pinterest_url": "Live on Profile",
       "media": "day19_ceiling_paint_sloped.jpg",
       "timestamp": "2026-10-12T20:43:41.208527",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_64",
+      "media_type": "video",
+      "title": "\ud83d\udcd0 THE 1-MINUTE CHEAT SHEET: Exact LVP Cartons Needed With Click-Lock Overlap",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/vinyl-flooring-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_vinyl-flooring-calculator.mp4",
+      "timestamp": "2026-10-13T04:56:05.269103",
       "status": "SUCCESS"
     }
   ],
