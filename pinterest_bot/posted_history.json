@@ -63,7 +63,8 @@
     "img_31",
     "img_64",
     "v_64",
-    "img_65"
+    "img_65",
+    "v_65"
   ],
   "logs": [
     {
@@ -685,6 +686,16 @@
       "pinterest_url": "Live on Profile",
       "media": "day19_ceiling_paint_sloped.jpg",
       "timestamp": "2026-10-13T15:30:00.250463",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_65",
+      "media_type": "video",
+      "title": "\ud83d\udcd0 THE 1-MINUTE CHEAT SHEET: Square Feet to Square Yards Carpet Roll Calculator",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/carpet-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_carpet-calculator.mp4",
+      "timestamp": "2026-10-13T20:57:36.891218",
       "status": "SUCCESS"
     }
   ],
