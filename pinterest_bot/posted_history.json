@@ -67,7 +67,8 @@
     "v_65",
     "img_66",
     "v_66",
-    "img_67"
+    "img_67",
+    "v_67"
   ],
   "logs": [
     {
@@ -729,6 +730,16 @@
       "pinterest_url": "Live on Profile",
       "media": "day25_primer_sealer_paint.jpg",
       "timestamp": "2026-10-14T16:19:19.041131",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_67",
+      "media_type": "video",
+      "title": "\ud83d\udcd0 THE 1-MINUTE CHEAT SHEET: How Many Gallons of Paint For Your Living Room?",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/paint-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_paint-calculator.mp4",
+      "timestamp": "2026-10-14T22:56:38.465534",
       "status": "SUCCESS"
     }
   ],
