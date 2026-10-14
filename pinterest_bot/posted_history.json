@@ -64,7 +64,8 @@
     "img_64",
     "v_64",
     "img_65",
-    "v_65"
+    "v_65",
+    "img_66"
   ],
   "logs": [
     {
@@ -696,6 +697,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_carpet-calculator.mp4",
       "timestamp": "2026-10-13T20:57:36.891218",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_66",
+      "media_type": "image",
+      "title": "Contractor Secret: The Exact Math for Pva Primer For New Drywall \ud83d\udee0\ufe0f",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/primer-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "day25_primer_sealer_paint.jpg",
+      "timestamp": "2026-10-14T03:03:07.408180",
       "status": "SUCCESS"
     }
   ],
