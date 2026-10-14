@@ -66,7 +66,8 @@
     "img_65",
     "v_65",
     "img_66",
-    "v_66"
+    "v_66",
+    "img_67"
   ],
   "logs": [
     {
@@ -718,6 +719,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_flooring-waste-calculator.mp4",
       "timestamp": "2026-10-14T09:12:53.464162",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_67",
+      "media_type": "image",
+      "title": "Stop Overpaying at Home Depot: Use This Paint Primer & Sealer Estimator",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/primer-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "day25_primer_sealer_paint.jpg",
+      "timestamp": "2026-10-14T16:19:19.041131",
       "status": "SUCCESS"
     }
   ],
