@@ -65,7 +65,8 @@
     "v_64",
     "img_65",
     "v_65",
-    "img_66"
+    "img_66",
+    "v_66"
   ],
   "logs": [
     {
@@ -707,6 +708,16 @@
       "pinterest_url": "Live on Profile",
       "media": "day25_primer_sealer_paint.jpg",
       "timestamp": "2026-10-14T03:03:07.408180",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_66",
+      "media_type": "video",
+      "title": "\ud83d\udcd0 THE 1-MINUTE CHEAT SHEET: Straight vs Diagonal Flooring Exact Waste Percentage Cheat Sheet",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/flooring-waste-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_flooring-waste-calculator.mp4",
+      "timestamp": "2026-10-14T09:12:53.464162",
       "status": "SUCCESS"
     }
   ],
