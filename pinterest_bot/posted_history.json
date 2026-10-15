@@ -71,7 +71,8 @@
     "v_67",
     "img_68",
     "v_68",
-    "img_69"
+    "img_69",
+    "v_69"
   ],
   "logs": [
     {
@@ -773,6 +774,16 @@
       "pinterest_url": "Live on Profile",
       "media": "day25_primer_sealer_paint.jpg",
       "timestamp": "2026-10-15T16:07:10.150447",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_69",
+      "media_type": "video",
+      "title": "\ud83d\udcd0 THE 1-MINUTE CHEAT SHEET: Flat White Ceiling Paint Textured & Drywall Math",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/ceiling-paint-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_ceiling-paint-calculator.mp4",
+      "timestamp": "2026-10-15T22:50:40.472825",
       "status": "SUCCESS"
     }
   ],
