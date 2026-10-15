@@ -68,7 +68,8 @@
     "img_66",
     "v_66",
     "img_67",
-    "v_67"
+    "v_67",
+    "img_68"
   ],
   "logs": [
     {
@@ -740,6 +741,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_paint-calculator.mp4",
       "timestamp": "2026-10-14T22:56:38.465534",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_68",
+      "media_type": "image",
+      "title": "Step-by-Step Paint Primer & Sealer Estimator with Real-World Waste Buffers",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/primer-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "day25_primer_sealer_paint.jpg",
+      "timestamp": "2026-10-15T02:42:46.037172",
       "status": "SUCCESS"
     }
   ],
