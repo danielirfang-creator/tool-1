@@ -73,7 +73,8 @@
     "v_68",
     "img_69",
     "v_69",
-    "img_70"
+    "img_70",
+    "v_70"
   ],
   "logs": [
     {
@@ -795,6 +796,16 @@
       "pinterest_url": "Live on Profile",
       "media": "day25_primer_sealer_paint.jpg",
       "timestamp": "2026-10-16T02:38:57.095753",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_70",
+      "media_type": "video",
+      "title": "\ud83d\udcd0 THE 1-MINUTE CHEAT SHEET: Raw Drywall & Stains: How Much Primer Do You Need?",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/primer-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_primer-calculator.mp4",
+      "timestamp": "2026-10-16T08:41:30.704922",
       "status": "SUCCESS"
     }
   ],
