@@ -75,7 +75,8 @@
     "v_69",
     "img_70",
     "v_70",
-    "img_71"
+    "img_71",
+    "v_71"
   ],
   "logs": [
     {
@@ -817,6 +818,16 @@
       "pinterest_url": "Live on Profile",
       "media": "day04_paint_gallons.jpg",
       "timestamp": "2026-10-16T15:55:05.209415",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_71",
+      "media_type": "video",
+      "title": "\ud83d\udcd0 THE 1-MINUTE CHEAT SHEET: 1 Gallon = How Many Sq Ft? Paint Spread Rate Cheat Sheet",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/paint-coverage-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_paint-coverage-calculator.mp4",
+      "timestamp": "2026-10-16T19:12:08.865593",
       "status": "SUCCESS"
     }
   ],
