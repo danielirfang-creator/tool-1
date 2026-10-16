@@ -76,7 +76,8 @@
     "img_70",
     "v_70",
     "img_71",
-    "v_71"
+    "v_71",
+    "img_72"
   ],
   "logs": [
     {
@@ -828,6 +829,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_paint-coverage-calculator.mp4",
       "timestamp": "2026-10-16T19:12:08.865593",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_72",
+      "media_type": "image",
+      "title": "How Much Liters Per Square Meter Do You REALLY Need? [Free Estimator]",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/paint-coverage-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "pin_paint-calculator.jpg",
+      "timestamp": "2026-10-16T22:24:20.985418",
       "status": "SUCCESS"
     }
   ],
