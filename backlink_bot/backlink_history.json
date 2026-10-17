@@ -1,5 +1,5 @@
 {
-  "total_backlinks": 63,
+  "total_backlinks": 64,
   "backlinks": [
     {
       "id": 1,
@@ -630,6 +630,16 @@
       "pinged_indexnow": true,
       "pinged_pingomatic": true,
       "timestamp": "2026-10-16T20:17:13.578880"
+    },
+    {
+      "id": 64,
+      "anchor_text": "Precision Flooring Material Calculator",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/flooring/flooring-calculator",
+      "cluster": "flooring",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": true,
+      "pinged_pingomatic": true,
+      "timestamp": "2026-10-17T09:54:54.122972"
     }
   ]
 }
