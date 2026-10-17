@@ -78,7 +78,8 @@
     "img_71",
     "v_71",
     "img_72",
-    "v_72"
+    "v_72",
+    "img_73"
   ],
   "logs": [
     {
@@ -850,6 +851,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_concrete-calculator.mp4",
       "timestamp": "2026-10-17T02:31:06.276144",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_73",
+      "media_type": "image",
+      "title": "The 1-Minute Paint Coverage (Liters & Gallons) Converter Cheat Sheet Every DIYer Needs",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/paint-coverage-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "day04_paint_gallons.jpg",
+      "timestamp": "2026-10-17T08:12:32.517463",
       "status": "SUCCESS"
     }
   ],
