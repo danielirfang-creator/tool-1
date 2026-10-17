@@ -81,7 +81,8 @@
     "v_72",
     "img_73",
     "v_73",
-    "img_74"
+    "img_74",
+    "v_74"
   ],
   "logs": [
     {
@@ -883,6 +884,16 @@
       "pinterest_url": "Live on Profile",
       "media": "pin_paint-calculator.jpg",
       "timestamp": "2026-10-17T18:06:29.832738",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_74",
+      "media_type": "video",
+      "title": "\ud83d\udcd0 THE 1-MINUTE CHEAT SHEET: How Many Bags Per Yard? Exact Concrete Bag Converter",
+      "link": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/concrete-bags-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_concrete-bags-calculator.mp4",
+      "timestamp": "2026-10-17T21:56:42.905000",
       "status": "SUCCESS"
     }
   ],
