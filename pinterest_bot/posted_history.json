@@ -77,7 +77,8 @@
     "v_70",
     "img_71",
     "v_71",
-    "img_72"
+    "img_72",
+    "v_72"
   ],
   "logs": [
     {
@@ -839,6 +840,16 @@
       "pinterest_url": "Live on Profile",
       "media": "pin_paint-calculator.jpg",
       "timestamp": "2026-10-16T22:24:20.985418",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_72",
+      "media_type": "video",
+      "title": "\ud83d\udcd0 THE 1-MINUTE CHEAT SHEET: How Many Bags Of Concrete For A 10x10 Patio Slab?",
+      "link": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/concrete-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_concrete-calculator.mp4",
+      "timestamp": "2026-10-17T02:31:06.276144",
       "status": "SUCCESS"
     }
   ],
