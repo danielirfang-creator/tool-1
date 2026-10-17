@@ -79,7 +79,8 @@
     "v_71",
     "img_72",
     "v_72",
-    "img_73"
+    "img_73",
+    "v_73"
   ],
   "logs": [
     {
@@ -861,6 +862,16 @@
       "pinterest_url": "Live on Profile",
       "media": "day04_paint_gallons.jpg",
       "timestamp": "2026-10-17T08:12:32.517463",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_73",
+      "media_type": "video",
+      "title": "\ud83d\udcd0 THE 1-MINUTE CHEAT SHEET: Concrete Slab Yardage Matrix: Volume & Bags Estimator",
+      "link": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/concrete-slab-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_concrete-slab-calculator.mp4",
+      "timestamp": "2026-10-17T14:47:51.111639",
       "status": "SUCCESS"
     }
   ],
