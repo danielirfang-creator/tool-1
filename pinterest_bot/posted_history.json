@@ -80,7 +80,8 @@
     "img_72",
     "v_72",
     "img_73",
-    "v_73"
+    "v_73",
+    "img_74"
   ],
   "logs": [
     {
@@ -872,6 +873,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_concrete-slab-calculator.mp4",
       "timestamp": "2026-10-17T14:47:51.111639",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_74",
+      "media_type": "image",
+      "title": "Avoid Costly Material Shortages: Paint Coverage (Liters & Gallons) Converter Matrix",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/paint-coverage-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "pin_paint-calculator.jpg",
+      "timestamp": "2026-10-17T18:06:29.832738",
       "status": "SUCCESS"
     }
   ],
