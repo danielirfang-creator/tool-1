@@ -84,7 +84,8 @@
     "img_74",
     "v_74",
     "img_75",
-    "v_75"
+    "v_75",
+    "img_76"
   ],
   "logs": [
     {
@@ -916,6 +917,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_brick-calculator.mp4",
       "timestamp": "2026-10-18T08:29:32.074209",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_76",
+      "media_type": "image",
+      "title": "Contractor Secret: The Exact Math for Living Room Paint Gallons \ud83d\udee0\ufe0f",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/paint-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "pin_paint-calculator.jpg",
+      "timestamp": "2026-10-18T15:13:21.086184",
       "status": "SUCCESS"
     }
   ],
