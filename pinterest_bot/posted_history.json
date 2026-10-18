@@ -86,7 +86,8 @@
     "img_75",
     "v_75",
     "img_76",
-    "v_76"
+    "v_76",
+    "img_77"
   ],
   "logs": [
     {
@@ -938,6 +939,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_block-calculator.mp4",
       "timestamp": "2026-10-18T18:25:07.128971",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_77",
+      "media_type": "image",
+      "title": "Stop Overpaying at Home Depot: Use This Whole Room Paint Estimator",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/paint-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "day04_paint_gallons.jpg",
+      "timestamp": "2026-10-18T22:10:01.620727",
       "status": "SUCCESS"
     }
   ],
