@@ -85,7 +85,8 @@
     "v_74",
     "img_75",
     "v_75",
-    "img_76"
+    "img_76",
+    "v_76"
   ],
   "logs": [
     {
@@ -927,6 +928,16 @@
       "pinterest_url": "Live on Profile",
       "media": "pin_paint-calculator.jpg",
       "timestamp": "2026-10-18T15:13:21.086184",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_76",
+      "media_type": "video",
+      "title": "\ud83d\udcd0 THE 1-MINUTE CHEAT SHEET: Exact 8x8x16 Cinder Blocks For Foundations & Retaining Walls",
+      "link": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/block-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_block-calculator.mp4",
+      "timestamp": "2026-10-18T18:25:07.128971",
       "status": "SUCCESS"
     }
   ],
