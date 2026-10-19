@@ -88,7 +88,8 @@
     "img_76",
     "v_76",
     "img_77",
-    "v_77"
+    "v_77",
+    "img_78"
   ],
   "logs": [
     {
@@ -960,6 +961,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_mortar-calculator.mp4",
       "timestamp": "2026-10-19T02:45:20.848829",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_78",
+      "media_type": "image",
+      "title": "Step-by-Step Whole Room Paint Estimator with Real-World Waste Buffers",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/paint-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "pin_paint-calculator.jpg",
+      "timestamp": "2026-10-19T09:31:02.312854",
       "status": "SUCCESS"
     }
   ],
