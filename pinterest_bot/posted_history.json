@@ -93,7 +93,8 @@
     "v_78",
     "img_79",
     "v_79",
-    "img_80"
+    "img_80",
+    "v_80"
   ],
   "logs": [
     {
@@ -1015,6 +1016,16 @@
       "pinterest_url": "Live on Profile",
       "media": "pin_paint-calculator.jpg",
       "timestamp": "2026-10-20T09:04:37.659786",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_80",
+      "media_type": "video",
+      "title": "\ud83d\udcd0 THE 1-MINUTE CHEAT SHEET: How Many Bags or Yards of Mulch For Weed Prevention?",
+      "link": "https://tool-1-pied.vercel.app/calculators/garden/mulch-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_mulch-calculator.mp4",
+      "timestamp": "2026-10-20T16:10:25.120877",
       "status": "SUCCESS"
     }
   ],
