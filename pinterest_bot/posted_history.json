@@ -94,7 +94,8 @@
     "img_79",
     "v_79",
     "img_80",
-    "v_80"
+    "v_80",
+    "img_81"
   ],
   "logs": [
     {
@@ -1026,6 +1027,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_mulch-calculator.mp4",
       "timestamp": "2026-10-20T16:10:25.120877",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_81",
+      "media_type": "image",
+      "title": "Don't Start Your Accent Wall Paint Before Using This Formula! \ud83d\udcd0",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/wall-paint-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "pin_paint-calculator.jpg",
+      "timestamp": "2026-10-20T22:54:07.669325",
       "status": "SUCCESS"
     }
   ],
