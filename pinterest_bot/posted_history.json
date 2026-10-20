@@ -91,7 +91,8 @@
     "v_77",
     "img_78",
     "v_78",
-    "img_79"
+    "img_79",
+    "v_79"
   ],
   "logs": [
     {
@@ -993,6 +994,16 @@
       "pinterest_url": "Live on Profile",
       "media": "day04_paint_gallons.jpg",
       "timestamp": "2026-10-19T23:16:17.034102",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_79",
+      "media_type": "video",
+      "title": "\ud83d\udcd0 THE 1-MINUTE CHEAT SHEET: Pavers & Base Sand Estimator Avoid Mid-Project Stoppage!",
+      "link": "https://tool-1-pied.vercel.app/calculators/garden/patio-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_patio-calculator.mp4",
+      "timestamp": "2026-10-20T02:56:54.286925",
       "status": "SUCCESS"
     }
   ],
