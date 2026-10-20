@@ -92,7 +92,8 @@
     "img_78",
     "v_78",
     "img_79",
-    "v_79"
+    "v_79",
+    "img_80"
   ],
   "logs": [
     {
@@ -1004,6 +1005,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_patio-calculator.mp4",
       "timestamp": "2026-10-20T02:56:54.286925",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_80",
+      "media_type": "image",
+      "title": "The Ultimate DIY Cheat Sheet for Interior Paint Math \u2728",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/paint-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "pin_paint-calculator.jpg",
+      "timestamp": "2026-10-20T09:04:37.659786",
       "status": "SUCCESS"
     }
   ],
