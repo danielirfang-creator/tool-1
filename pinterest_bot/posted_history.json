@@ -96,7 +96,8 @@
     "img_80",
     "v_80",
     "img_81",
-    "v_81"
+    "v_81",
+    "img_82"
   ],
   "logs": [
     {
@@ -1048,6 +1049,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_soil-calculator.mp4",
       "timestamp": "2026-10-21T02:51:07.015712",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_82",
+      "media_type": "image",
+      "title": "How Much Door And Window Deductions Do You REALLY Need? [Free Estimator]",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/wall-paint-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "day04_paint_gallons.jpg",
+      "timestamp": "2026-10-21T09:03:32.011701",
       "status": "SUCCESS"
     }
   ],
