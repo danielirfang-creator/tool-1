@@ -101,7 +101,8 @@
     "v_82",
     "img_83",
     "v_83",
-    "img_84"
+    "img_84",
+    "v_84"
   ],
   "logs": [
     {
@@ -1103,6 +1104,16 @@
       "pinterest_url": "Live on Profile",
       "media": "day04_paint_gallons.jpg",
       "timestamp": "2026-10-22T16:27:00.390656",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_84",
+      "media_type": "video",
+      "title": "\ud83d\udcd0 THE 1-MINUTE CHEAT SHEET: How To Measure Any Room: L-Shapes, Closets & Complex Walls",
+      "link": "https://tool-1-pied.vercel.app/calculators/rooms/room-area-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_room-area-calculator.mp4",
+      "timestamp": "2026-10-22T22:55:36.959716",
       "status": "SUCCESS"
     }
   ],
