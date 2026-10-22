@@ -100,7 +100,8 @@
     "img_82",
     "v_82",
     "img_83",
-    "v_83"
+    "v_83",
+    "img_84"
   ],
   "logs": [
     {
@@ -1092,6 +1093,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_fence-calculator.mp4",
       "timestamp": "2026-10-22T09:06:50.687135",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_84",
+      "media_type": "image",
+      "title": "Avoid Costly Material Shortages: Wall Surface Paint Estimator Matrix",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/wall-paint-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "day04_paint_gallons.jpg",
+      "timestamp": "2026-10-22T16:27:00.390656",
       "status": "SUCCESS"
     }
   ],
