@@ -99,7 +99,8 @@
     "v_81",
     "img_82",
     "v_82",
-    "img_83"
+    "img_83",
+    "v_83"
   ],
   "logs": [
     {
@@ -1081,6 +1082,16 @@
       "pinterest_url": "Live on Profile",
       "media": "pin_paint-calculator.jpg",
       "timestamp": "2026-10-22T02:49:41.048134",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_83",
+      "media_type": "video",
+      "title": "\ud83d\udcd0 THE 1-MINUTE CHEAT SHEET: Posts, Rails & Pickets Formula For A 100 ft Privacy Fence",
+      "link": "https://tool-1-pied.vercel.app/calculators/garden/fence-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_fence-calculator.mp4",
+      "timestamp": "2026-10-22T09:06:50.687135",
       "status": "SUCCESS"
     }
   ],
