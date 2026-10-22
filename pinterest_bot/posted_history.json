@@ -98,7 +98,8 @@
     "img_81",
     "v_81",
     "img_82",
-    "v_82"
+    "v_82",
+    "img_83"
   ],
   "logs": [
     {
@@ -1070,6 +1071,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_turf-calculator.mp4",
       "timestamp": "2026-10-21T16:26:17.932068",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_83",
+      "media_type": "image",
+      "title": "The 1-Minute Wall Surface Paint Estimator Cheat Sheet Every DIYer Needs",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/wall-paint-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "pin_paint-calculator.jpg",
+      "timestamp": "2026-10-22T02:49:41.048134",
       "status": "SUCCESS"
     }
   ],
