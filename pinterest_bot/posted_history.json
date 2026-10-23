@@ -102,7 +102,8 @@
     "img_83",
     "v_83",
     "img_84",
-    "v_84"
+    "v_84",
+    "img_85"
   ],
   "logs": [
     {
@@ -1114,6 +1115,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_room-area-calculator.mp4",
       "timestamp": "2026-10-22T22:55:36.959716",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_85",
+      "media_type": "image",
+      "title": "How to Calculate Textured Wall Paint Without Waste or Guesswork",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/wall-paint-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "pin_paint-calculator.jpg",
+      "timestamp": "2026-10-23T02:53:34.942580",
       "status": "SUCCESS"
     }
   ],
