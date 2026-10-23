@@ -104,7 +104,8 @@
     "img_84",
     "v_84",
     "img_85",
-    "v_85"
+    "v_85",
+    "img_86"
   ],
   "logs": [
     {
@@ -1136,6 +1137,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_square-metres-calculator.mp4",
       "timestamp": "2026-10-23T09:00:28.324948",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_86",
+      "media_type": "image",
+      "title": "Contractor Secret: The Exact Math for Flat Ceiling Paint \ud83d\udee0\ufe0f",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/ceiling-paint-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "day19_ceiling_paint_sloped.jpg",
+      "timestamp": "2026-10-23T16:15:42.978898",
       "status": "SUCCESS"
     }
   ],
