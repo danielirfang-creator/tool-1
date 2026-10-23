@@ -105,7 +105,8 @@
     "v_84",
     "img_85",
     "v_85",
-    "img_86"
+    "img_86",
+    "v_86"
   ],
   "logs": [
     {
@@ -1147,6 +1148,16 @@
       "pinterest_url": "Live on Profile",
       "media": "day19_ceiling_paint_sloped.jpg",
       "timestamp": "2026-10-23T16:15:42.978898",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_86",
+      "media_type": "video",
+      "title": "\ud83d\udcd0 THE 1-MINUTE CHEAT SHEET: Pattern Repeat & Double Rolls: How Many Wallpaper Rolls?",
+      "link": "https://tool-1-pied.vercel.app/calculators/rooms/wallpaper-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_wallpaper-calculator.mp4",
+      "timestamp": "2026-10-23T22:49:58.044793",
       "status": "SUCCESS"
     }
   ],
