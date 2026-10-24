@@ -109,7 +109,8 @@
     "v_86",
     "img_87",
     "v_87",
-    "img_88"
+    "img_88",
+    "v_88"
   ],
   "logs": [
     {
@@ -1191,6 +1192,16 @@
       "pinterest_url": "Live on Profile",
       "media": "day19_ceiling_paint_sloped.jpg",
       "timestamp": "2026-10-24T15:12:33.438146",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_88",
+      "media_type": "video",
+      "title": "\ud83d\udcd0 THE 1-MINUTE CHEAT SHEET: Skirting Board Perimeter Math With 45\u00b0 Corner Miter Cuts",
+      "link": "https://tool-1-pied.vercel.app/calculators/rooms/skirting-board-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_skirting-board-calculator.mp4",
+      "timestamp": "2026-10-24T18:31:39.250422",
       "status": "SUCCESS"
     }
   ],
