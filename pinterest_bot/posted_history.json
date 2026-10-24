@@ -107,7 +107,8 @@
     "v_85",
     "img_86",
     "v_86",
-    "img_87"
+    "img_87",
+    "v_87"
   ],
   "logs": [
     {
@@ -1169,6 +1170,16 @@
       "pinterest_url": "Live on Profile",
       "media": "day19_ceiling_paint_sloped.jpg",
       "timestamp": "2026-10-24T02:50:32.083763",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_87",
+      "media_type": "video",
+      "title": "\ud83d\udcd0 THE 1-MINUTE CHEAT SHEET: Net Wall Area Calculator: Subtracts Doors, Windows & Openings",
+      "link": "https://tool-1-pied.vercel.app/calculators/rooms/wall-area-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_wall-area-calculator.mp4",
+      "timestamp": "2026-10-24T08:34:41.085184",
       "status": "SUCCESS"
     }
   ],
