@@ -110,7 +110,8 @@
     "img_87",
     "v_87",
     "img_88",
-    "v_88"
+    "v_88",
+    "img_89"
   ],
   "logs": [
     {
@@ -1202,6 +1203,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_skirting-board-calculator.mp4",
       "timestamp": "2026-10-24T18:31:39.250422",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_89",
+      "media_type": "image",
+      "title": "How Many Boxes/Bags of Popcorn Ceiling Coverage Do You Need? [Formula Inside]",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/ceiling-paint-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596468446840/",
+      "media": "day19_ceiling_paint_sloped.jpg",
+      "timestamp": "2026-10-24T22:11:10.157755",
       "status": "SUCCESS"
     }
   ],
