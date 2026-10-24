@@ -106,7 +106,8 @@
     "img_85",
     "v_85",
     "img_86",
-    "v_86"
+    "v_86",
+    "img_87"
   ],
   "logs": [
     {
@@ -1158,6 +1159,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_wallpaper-calculator.mp4",
       "timestamp": "2026-10-23T22:49:58.044793",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_87",
+      "media_type": "image",
+      "title": "Stop Overpaying at Home Depot: Use This Ceiling Paint Estimator",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/ceiling-paint-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "day19_ceiling_paint_sloped.jpg",
+      "timestamp": "2026-10-24T02:50:32.083763",
       "status": "SUCCESS"
     }
   ],
