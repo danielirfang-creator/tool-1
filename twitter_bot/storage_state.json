@@ -35,7 +35,7 @@
       "value": "8026f102-836d-448e-be16-59584faa46b4",
       "domain": "x.com",
       "path": "/",
-      "expires": 1828907515,
+      "expires": 1828939920,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -45,7 +45,7 @@
       "value": "8026f102-836d-448e-be16-59584faa46b4",
       "domain": ".x.com",
       "path": "/",
-      "expires": 1828907515,
+      "expires": 1828939920,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -65,7 +65,7 @@
       "value": "u%3D2097037713577009152",
       "domain": ".x.com",
       "path": "/",
-      "expires": 1825883514.133748,
+      "expires": 1825915919.622129,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -161,45 +161,45 @@
       "sameSite": "None"
     },
     {
+      "name": "cf_clearance",
+      "value": "CtrImANO2GfNFPEp5Q1qbyRO1cx-C3KOx_i-6507bQONM4o4ASACkRVekZtHN44UNceVwbrw835yxtZxxDg-65Ptl7kyLcztRkonQCrr343biQH2Env6xBWxiFs0ZUepZY3gDNWGb5dN75sB-FZCepnP2I6XL-GjrAEYv4imciu81GGk43KqohnMPbpJWPlBE1BqYlKtLVVr0Y0dNHARQgse4gs_HHvgUYgTGTvOLZXq6_9Y-fF3Gw7nBhVX-KyjiDZvw46hF02vI9ZgTBoeTc2g84pzvhTBTDh3FtKVyzCs0c3uhx4NM8zOybmt6xSuag8Ngp-Fmj1B_K0fHYkCSJ2xzBk5y0yBZ9tCXs0xZXz9TZIfmaFhBymsnTdgPA",
+      "domain": ".x.com",
+      "path": "/",
+      "expires": 1825915918.874376,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None",
+      "partitionKey": "https://x.com",
+      "_crHasCrossSiteAncestor": false
+    },
+    {
+      "name": "__cf_bm",
+      "value": "uRmh1ycMhIuRHSo9Fg15mFcm3KW5eR.cNPs_buyGgIE-1794379918.8663747-1.0.1.1-Yo6.4_udYiLQYqo4vLOlT7_EHkAYFTbqBuZh4LLP.eVI4VVwkFvMZzw_mfrx_BT0zesTLi1oA7LE68Ou4P2Ogz8C7HMAzNi3OTn_qFxg_HVsqdpvIzS9xUU.vGRYffSe",
+      "domain": ".x.com",
+      "path": "/",
+      "expires": 1794381718.874463,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None",
+      "partitionKey": "https://x.com",
+      "_crHasCrossSiteAncestor": false
+    },
+    {
       "name": "IDE",
-      "value": "AHWqTUnpt_3ZDuE8P8eZQOGmcWsSzn43qxVdUtSAN1_8IElwWDmX6HHdULA6uUlHDN8",
+      "value": "AHWqTUnTP4e1NeU8dkk25OVcrloz211Cd48dzEaqVRzW3HV14_xnq-r6PniR6zxfL4Y",
       "domain": ".doubleclick.net",
       "path": "/",
-      "expires": 1828838972.658845,
+      "expires": 1828939919.683959,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
     },
     {
-      "name": "cf_clearance",
-      "value": "CmTmBrGezPjtOG3DDnMilcUAIc3jwIlNr24EuadiFcVP25a4idtzB6o2ZFcgnY_MGwkM_KDtquZd04rpEdT-jQGNTajLzd4nX6ACDxhlMJY15zdrqqdESd4UHbzoBMZqRllxdT8kc1slOnZRcTTA_5rxvIOnwQhWEfw9Vw2hJ_Td5eSKnw79_mycKljnA8GWbTI--WBClCyNCkddQf8EJrKDDU4_FOU9EAK4BY9hOGT87yupH_jBVVeZ-GWyiFxJtsfEM2LyU8_A3rlJKqSbvqkmahwOUytqhYugWyqZkHBYqfMGT5a54qlfWRGjb90kZta4ec8IvERXy4-17ecRSGPWBpBn9P1lpl0ZArVehYzYGNSTGrX5MNW-zs6T",
-      "domain": ".x.com",
-      "path": "/",
-      "expires": 1825883513.907737,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "None",
-      "partitionKey": "https://x.com",
-      "_crHasCrossSiteAncestor": false
-    },
-    {
       "name": "__cf_bm",
-      "value": "OOsG7aplGiWcv7cNH76yB3YmxNuR9KkESLtTYNd6IkY-1794347513.8972132-1.0.1.1-0v4rnb7SBUnnmjIBf8T3rYnPeaCai7v4kJiOJUIG6h4imHtYumdomm0vRuub_aHOj63QVzfqLEfg4xlrr_ixXrF4MByQ3ClxvJBL7oIWZaaHdFdOtOYJLXY8.0OnFlBf",
-      "domain": ".x.com",
-      "path": "/",
-      "expires": 1794349313.907826,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "None",
-      "partitionKey": "https://x.com",
-      "_crHasCrossSiteAncestor": false
-    },
-    {
-      "name": "__cf_bm",
-      "value": "Pm0laAOd.TSH6rB9UfNd2tpLQ47DMEpOmeBXoPzs7Nw-1794347514.9177701-1.0.1.1-ow0_bvDuTJu960nk1PonnUFrE4JRHhm76fYgQBWTrdKnVpwwFgElTsHCQaonnFORdDVngZ_NDYrJDB8a1jEeg0zhjYpTipJON7YNnjFS1RT2yszd8ttrDnV8Mk23r3t2",
+      "value": "OZ4glubJZqsrATo8bTFCqW9cxxFxXmMG1t1lfyvgKvw-1794379919.715375-1.0.1.1-7C6gf9eVcaYT_utB_CWizQlfcW0gVMPP2hIBBjGFIxDUDfEDWPpofPdIUALu45To6q_zMeKERiT.FWhf6qhMdr7tHWygK5ZilpzSPgGK5hT_EsxNOrkDPCbV3BNTESZp",
       "domain": ".twitter.com",
       "path": "/",
-      "expires": 1794349314.961558,
+      "expires": 1794381719.750948,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None",
@@ -207,11 +207,21 @@
       "_crHasCrossSiteAncestor": true
     },
     {
+      "name": "lang",
+      "value": "en",
+      "domain": "api.x.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
       "name": "__cf_bm",
-      "value": "WHToIkJB8gwZ4gdN5CnXgoQVZvkKKlIdEZI0faq6B4E-1794347523.6130888-1.0.1.1-aDwKhGNGZBDfszE9DokZzEP1ieX4xV2WOMoxzNhWFcHvPtdlk1nirBBqiENz1mCrkiHSLwBJZD295GJ6S2SGE2uGNWgYfSFNmGpGfovESBikErCP7FF_xMJz9toTMlYV",
+      "value": "6mO4a1as5pcbaSZHX9qOyI3zdbra.JkMAIqFCQ46UyQ-1794379932.3801334-1.0.1.1-.ULabdFIeB0llC.6shTuGgB3swjK2KvyhfE6cKV.rQ0oxHE4dAGszA3v2.zk6QrFsrg7C74XL8kT0HLQLChk02ITr4i84FqRA2hBn4vIE9jZs470sfHs_pfsFxCmj91y",
       "domain": ".upload.x.com",
       "path": "/",
-      "expires": 1794349323.88683,
+      "expires": 1794381732.697178,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None",
@@ -224,6 +234,10 @@
       "origin": "https://x.com",
       "localStorage": [
         {
+          "name": "rweb:xchat-embed:last-build",
+          "value": "{\"publicPath\":\"https://abs.twimg.com/x-web/xchat/embed/814a11e257b24d64df271e4cf93efbe857d9adbc/\",\"savedAt\":1794379921876}"
+        },
+        {
           "name": "__cuid",
           "value": "8026f102-836d-448e-be16-59584faa46b4"
         },
@@ -234,6 +248,10 @@
         {
           "name": "rweb.recentUserIds",
           "value": "AOBanrAsGh0"
+        },
+        {
+          "name": "xchat_user2097037713577009152_last-jwt-connection-token",
+          "value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJYIiwic3ViIjoiMjA5NzAzNzcxMzU3NzAwOTE1MiIsImV4cCI6IjE3OTQzODAyMjMiLCJuYmYiOiIxNzk0Mzc5OTIzIiwiZGlkIjoiIiwidWEiOiJNb3ppbGxhXC81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXRcLzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZVwvMTI4LjAuMC4wIFNhZmFyaVwvNTM3LjM2IiwiY2MiOiIifQ.2JFAbC2zI52X_V7wTuV4h8l0YnTK7HBOBFPy72-XiOo"
         }
       ]
     },
