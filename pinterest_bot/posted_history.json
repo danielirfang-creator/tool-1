@@ -113,7 +113,8 @@
     "v_88",
     "img_89",
     "v_122",
-    "img_123"
+    "img_123",
+    "v_123"
   ],
   "logs": [
     {
@@ -1235,6 +1236,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596470111107/",
       "media": "day16_cinder_block_cmu.jpg",
       "timestamp": "2026-11-13T11:47:33.823155",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_123",
+      "media_type": "video",
+      "title": "\ud83d\udee0\ufe0f STOP OVERPAYING FOR MATERIALS: Laminate Planks & Foam Roll Formula with 3/8\" Gap",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/laminate-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596470141436/",
+      "media": "video_laminate-calculator.mp4",
+      "timestamp": "2026-11-13T19:03:23.910903",
       "status": "SUCCESS"
     }
   ],
