@@ -111,7 +111,8 @@
     "v_87",
     "img_88",
     "v_88",
-    "img_89"
+    "img_89",
+    "v_122"
   ],
   "logs": [
     {
@@ -1213,6 +1214,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596468446840/",
       "media": "day19_ceiling_paint_sloped.jpg",
       "timestamp": "2026-10-24T22:11:10.157755",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_122",
+      "media_type": "video",
+      "title": "\ud83d\udee0\ufe0f STOP OVERPAYING FOR MATERIALS: Stop Buying The Wrong Number of Tiles & Grout!",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/tile-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596470081738/",
+      "media": "video_tile-calculator.mp4",
+      "timestamp": "2026-11-13T00:50:56.916275",
       "status": "SUCCESS"
     }
   ],
