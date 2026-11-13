@@ -112,7 +112,8 @@
     "img_88",
     "v_88",
     "img_89",
-    "v_122"
+    "v_122",
+    "img_123"
   ],
   "logs": [
     {
@@ -1224,6 +1225,16 @@
       "pinterest_url": "https://www.pinterest.com/pin/1100637596470081738/",
       "media": "video_tile-calculator.mp4",
       "timestamp": "2026-11-13T00:50:56.916275",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_123",
+      "media_type": "image",
+      "title": "The 1-Minute 8x8x16 Cinder Block (CMU) Estimator Cheat Sheet Every DIYer Needs",
+      "link": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/block-calculator",
+      "pinterest_url": "https://www.pinterest.com/pin/1100637596470111107/",
+      "media": "day16_cinder_block_cmu.jpg",
+      "timestamp": "2026-11-13T11:47:33.823155",
       "status": "SUCCESS"
     }
   ],
