@@ -117,7 +117,8 @@
     "v_123",
     "img_124",
     "v_124",
-    "img_125"
+    "img_125",
+    "v_125"
   ],
   "logs": [
     {
@@ -1279,6 +1280,16 @@
       "pinterest_url": "Live on Profile",
       "media": "day16_cinder_block_cmu.jpg",
       "timestamp": "2026-11-14T17:33:31.051846",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_125",
+      "media_type": "video",
+      "title": "\ud83d\udee0\ufe0f STOP OVERPAYING FOR MATERIALS: Square Feet to Square Yards Carpet Roll Calculator",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/carpet-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_carpet-calculator.mp4",
+      "timestamp": "2026-11-14T23:34:59.013025",
       "status": "SUCCESS"
     }
   ],
