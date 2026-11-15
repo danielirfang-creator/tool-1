@@ -119,7 +119,8 @@
     "v_124",
     "img_125",
     "v_125",
-    "img_126"
+    "img_126",
+    "v_126"
   ],
   "logs": [
     {
@@ -1301,6 +1302,16 @@
       "pinterest_url": "Live on Profile",
       "media": "day28_masonry_mortar_mix.jpg",
       "timestamp": "2026-11-15T04:15:18.777996",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_126",
+      "media_type": "video",
+      "title": "\ud83d\udee0\ufe0f STOP OVERPAYING FOR MATERIALS: Straight vs Diagonal Flooring Exact Waste Percentage Cheat Sh...",
+      "link": "https://tool-1-pied.vercel.app/calculators/flooring/flooring-waste-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_flooring-waste-calculator.mp4",
+      "timestamp": "2026-11-15T15:12:05.576415",
       "status": "SUCCESS"
     }
   ],
