@@ -120,7 +120,8 @@
     "img_125",
     "v_125",
     "img_126",
-    "v_126"
+    "v_126",
+    "img_127"
   ],
   "logs": [
     {
@@ -1312,6 +1313,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_flooring-waste-calculator.mp4",
       "timestamp": "2026-11-15T15:12:05.576415",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_127",
+      "media_type": "image",
+      "title": "Stop Overpaying at Home Depot: Use This Type N & Type S Mortar Estimator",
+      "link": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/mortar-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "day28_masonry_mortar_mix.jpg",
+      "timestamp": "2026-11-15T20:43:31.082401",
       "status": "SUCCESS"
     }
   ],
