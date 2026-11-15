@@ -118,7 +118,8 @@
     "img_124",
     "v_124",
     "img_125",
-    "v_125"
+    "v_125",
+    "img_126"
   ],
   "logs": [
     {
@@ -1290,6 +1291,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_carpet-calculator.mp4",
       "timestamp": "2026-11-14T23:34:59.013025",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_126",
+      "media_type": "image",
+      "title": "Contractor Secret: The Exact Math for Masonry Mortar Bags \ud83d\udee0\ufe0f",
+      "link": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/mortar-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "day28_masonry_mortar_mix.jpg",
+      "timestamp": "2026-11-15T04:15:18.777996",
       "status": "SUCCESS"
     }
   ],
