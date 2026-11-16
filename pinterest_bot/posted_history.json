@@ -122,7 +122,8 @@
     "img_126",
     "v_126",
     "img_127",
-    "v_127"
+    "v_127",
+    "img_128"
   ],
   "logs": [
     {
@@ -1334,6 +1335,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_paint-calculator.mp4",
       "timestamp": "2026-11-16T04:13:48.517535",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_128",
+      "media_type": "image",
+      "title": "Step-by-Step Type N & Type S Mortar Estimator with Real-World Waste Buffers",
+      "link": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/mortar-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "day28_masonry_mortar_mix.jpg",
+      "timestamp": "2026-11-16T17:46:29.888179",
       "status": "SUCCESS"
     }
   ],
