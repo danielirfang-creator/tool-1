@@ -123,7 +123,8 @@
     "v_126",
     "img_127",
     "v_127",
-    "img_128"
+    "img_128",
+    "v_128"
   ],
   "logs": [
     {
@@ -1345,6 +1346,16 @@
       "pinterest_url": "Live on Profile",
       "media": "day28_masonry_mortar_mix.jpg",
       "timestamp": "2026-11-16T17:46:29.888179",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_128",
+      "media_type": "video",
+      "title": "\ud83d\udee0\ufe0f STOP OVERPAYING FOR MATERIALS: Exact Wall Paint Cans Minus Doors & Windows!",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/wall-paint-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_wall-paint-calculator.mp4",
+      "timestamp": "2026-11-17T02:44:29.497669",
       "status": "SUCCESS"
     }
   ],
