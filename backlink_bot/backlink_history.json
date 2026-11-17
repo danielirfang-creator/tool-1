@@ -1,5 +1,5 @@
 {
-  "total_backlinks": 125,
+  "total_backlinks": 126,
   "backlinks": [
     {
       "id": 1,
@@ -1250,6 +1250,16 @@
       "pinged_indexnow": true,
       "pinged_pingomatic": true,
       "timestamp": "2026-11-17T01:18:38.047617"
+    },
+    {
+      "id": 126,
+      "anchor_text": "Concrete Slab Yardage & Bag Estimator",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/concrete-slab-calculator",
+      "cluster": "concrete-masonry",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": true,
+      "pinged_pingomatic": true,
+      "timestamp": "2026-11-17T15:12:46.529161"
     }
   ]
 }
