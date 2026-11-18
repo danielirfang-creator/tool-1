@@ -127,7 +127,8 @@
     "v_128",
     "img_129",
     "v_129",
-    "img_130"
+    "img_130",
+    "v_130"
   ],
   "logs": [
     {
@@ -1389,6 +1390,16 @@
       "pinterest_url": "Live on Profile",
       "media": "day28_masonry_mortar_mix.jpg",
       "timestamp": "2026-11-18T05:29:38.285215",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_130",
+      "media_type": "video",
+      "title": "\ud83d\udee0\ufe0f STOP OVERPAYING FOR MATERIALS: Raw Drywall & Stains: How Much Primer Do You Need?",
+      "link": "https://tool-1-pied.vercel.app/calculators/painting/primer-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_primer-calculator.mp4",
+      "timestamp": "2026-11-18T16:53:04.844696",
       "status": "SUCCESS"
     }
   ],
