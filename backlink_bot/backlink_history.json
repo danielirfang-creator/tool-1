@@ -1,5 +1,5 @@
 {
-  "total_backlinks": 129,
+  "total_backlinks": 130,
   "backlinks": [
     {
       "id": 1,
@@ -1290,6 +1290,16 @@
       "pinged_indexnow": true,
       "pinged_pingomatic": true,
       "timestamp": "2026-11-18T23:43:28.266548"
+    },
+    {
+      "id": 130,
+      "anchor_text": "Laminate Plank & Underlayment Calculator",
+      "target_url": "https://tool-1-pied.vercel.app/calculators/flooring/laminate-calculator",
+      "cluster": "flooring",
+      "domain_authority": "DA 92-96",
+      "pinged_indexnow": true,
+      "pinged_pingomatic": true,
+      "timestamp": "2026-11-19T14:56:08.744992"
     }
   ]
 }
