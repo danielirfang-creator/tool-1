@@ -131,7 +131,8 @@
     "v_130",
     "img_131",
     "v_131",
-    "img_132"
+    "img_132",
+    "v_132"
   ],
   "logs": [
     {
@@ -1433,6 +1434,16 @@
       "pinterest_url": "Live on Profile",
       "media": "day05_concrete_yards_bags.jpg",
       "timestamp": "2026-11-20T05:14:07.908564",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_132",
+      "media_type": "video",
+      "title": "\ud83d\udee0\ufe0f STOP OVERPAYING FOR MATERIALS: How Many Bags Of Concrete For A 10x10 Patio Slab?",
+      "link": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/concrete-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_concrete-calculator.mp4",
+      "timestamp": "2026-11-20T16:35:39.341608",
       "status": "SUCCESS"
     }
   ],
