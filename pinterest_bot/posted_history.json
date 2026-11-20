@@ -130,7 +130,8 @@
     "img_130",
     "v_130",
     "img_131",
-    "v_131"
+    "v_131",
+    "img_132"
   ],
   "logs": [
     {
@@ -1422,6 +1423,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_paint-coverage-calculator.mp4",
       "timestamp": "2026-11-19T22:52:37.261082",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_132",
+      "media_type": "image",
+      "title": "How Much Concrete Volume Formula Do You REALLY Need? [Free Estimator]",
+      "link": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/concrete-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "day05_concrete_yards_bags.jpg",
+      "timestamp": "2026-11-20T05:14:07.908564",
       "status": "SUCCESS"
     }
   ],
