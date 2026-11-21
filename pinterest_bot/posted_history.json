@@ -134,7 +134,8 @@
     "img_132",
     "v_132",
     "img_133",
-    "v_133"
+    "v_133",
+    "img_134"
   ],
   "logs": [
     {
@@ -1466,6 +1467,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_concrete-slab-calculator.mp4",
       "timestamp": "2026-11-21T11:59:12.652025",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_134",
+      "media_type": "image",
+      "title": "Avoid Costly Material Shortages: Cubic Yard Concrete Estimator Matrix",
+      "link": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/concrete-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "day05_concrete_yards_bags.jpg",
+      "timestamp": "2026-11-21T18:45:42.485466",
       "status": "SUCCESS"
     }
   ],
