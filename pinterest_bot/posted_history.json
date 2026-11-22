@@ -136,7 +136,8 @@
     "img_133",
     "v_133",
     "img_134",
-    "v_134"
+    "v_134",
+    "img_135"
   ],
   "logs": [
     {
@@ -1488,6 +1489,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_concrete-bags-calculator.mp4",
       "timestamp": "2026-11-22T00:01:41.333968",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_135",
+      "media_type": "image",
+      "title": "How to Calculate Driveway Concrete Without Waste or Guesswork",
+      "link": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/concrete-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "pin_concrete-calculator.jpg",
+      "timestamp": "2026-11-22T12:13:05.338029",
       "status": "SUCCESS"
     }
   ],
