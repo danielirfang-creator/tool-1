@@ -140,7 +140,8 @@
     "img_135",
     "v_135",
     "img_136",
-    "v_136"
+    "v_136",
+    "img_137"
   ],
   "logs": [
     {
@@ -1532,6 +1533,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_block-calculator.mp4",
       "timestamp": "2026-11-23T19:44:31.664741",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_137",
+      "media_type": "image",
+      "title": "Stop Overpaying at Home Depot: Use This Concrete Slab, Rebar & Gravel Estimator",
+      "link": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/concrete-slab-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "day05_concrete_yards_bags.jpg",
+      "timestamp": "2026-11-24T04:38:49.781636",
       "status": "SUCCESS"
     }
   ],
