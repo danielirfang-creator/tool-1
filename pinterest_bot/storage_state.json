@@ -2,10 +2,10 @@
   "cookies": [
     {
       "name": "_GRECAPTCHA",
-      "value": "09AKhCRwhCrd5ngqq8k6hcbFiaXWsXTrUAfMhBNhqYa9gRpLuEx-PZaeb62agx9J8JDln1PeEbsuSZeO2fSAirHWM",
+      "value": "09AKhCRwjZN5E7DQY3rtYgxoY1qR5sqGF5Of8ZegchnEDiv7otjrdy9KoNOJJjcQWsAzzRPGuGqOYkcmHrCvSW2x0",
       "domain": "www.recaptcha.net",
       "path": "/recaptcha",
-      "expires": 1811099763.939033,
+      "expires": 1811128668.445855,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
@@ -279,16 +279,6 @@
       "sameSite": "None"
     },
     {
-      "name": "_routing_id",
-      "value": "\"087761cc-0b8e-4a6f-94cb-135e192670dd\"",
-      "domain": "www.pinterest.com",
-      "path": "/",
-      "expires": 1795549409.732752,
-      "httpOnly": true,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
       "name": "sessionFunnelEventLogged",
       "value": "1",
       "domain": "www.pinterest.com",
@@ -299,31 +289,41 @@
       "sameSite": "Lax"
     },
     {
+      "name": "_routing_id",
+      "value": "\"86dd63b3-e026-4868-807d-b31c0f9f2f4e\"",
+      "domain": "www.pinterest.com",
+      "path": "/",
+      "expires": 1795663054.33861,
+      "httpOnly": true,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
       "name": "_ir",
       "value": "0",
       "domain": "api.pinterest.com",
       "path": "/",
-      "expires": 1795549562.655114,
+      "expires": 1795578467.072855,
       "httpOnly": true,
       "secure": true,
       "sameSite": "Lax"
     },
     {
       "name": "g_state",
-      "value": "{\"i_l\":0,\"i_ll\":1795547762833,\"i_b\":\"SD0QWUcVR2acgtTlYSEkVOwh/Iy0WbRgsIxZjlO/yu8\",\"i_e\":{\"enable_itp_optimization\":24},\"i_et\":1795547762833}",
+      "value": "{\"i_l\":0,\"i_ll\":1795576667246,\"i_b\":\"ljiDHzLMxQyDPFRaGt9YZCT8fw7cvhEBoLk6H7YnfZQ\",\"i_e\":{\"enable_itp_optimization\":24},\"i_et\":1795576667246}",
       "domain": "www.pinterest.com",
       "path": "/",
-      "expires": 1811099762,
+      "expires": 1811128667,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
     },
     {
       "name": "tst",
-      "value": "AaJ6sj13hiXkuoQAWK4kZOAQgbgGExdwypw26SN8GNvIZOTe5DyWXDpOXBPR1NczdbJV2DUcXFw5IiMjj-Vfsat-CPPRe38UNzz5VJaIJEyiiwCs2NbDzosVaC84oI6lOi_U1P0ydnn8gr5j37ArCCeqmdPHE2lsF-bw-XkL550hlQH25TLT_tAJcWYIoKBde4Lebod-nAZfxsg1iA",
+      "value": "AaJ6oaGzL-0sItsAXMbgcE8wjZlObMaSwohFoe_WPqOpq5R-K2iHzTwIXyzJdVXEB9XosBvRMSpqMsXcffxBIWjmdyY53DUNN2eN2znhLZPDdNUY3j1iKBxuAFaEMvcmjCmaDPuIQtVmR0D5NjK1Kt5LXg3WAWxAcXd_QzwAHLnXS4KfDjz4A30-NGMI10_7C61t8AuQs0zajuBXRQ",
       "domain": ".pinterest.com",
       "path": "/",
-      "expires": 1795720563.252427,
+      "expires": 1795749467.588094,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
@@ -351,7 +351,7 @@
         },
         {
           "name": "_epik_localstore",
-          "value": "\"{\\\"value\\\":\\\"dj0yJnU9MGFhMTB0VjlfWi1CbWVZaU0wallOY2tyMUtUZzNVSm4mcD0yJm49eGpObHoxa2ZTWjQtQVhHbTNFWUt5QSZ0PUFBQUFBR3NGNG1R\\\",\\\"expiry\\\":1827083762590}\""
+          "value": "\"{\\\"value\\\":\\\"dj0yJnU9TlZsX1VZVHRhSXNwamlkU3pMOEY0aTJKaDVmMGxILTkmcD0yJm49U1pTSDl0N0stcERZOFZYX3MxclR2USZ0PUFBQUFBR3NHVTA0\\\",\\\"expiry\\\":1827112666989}\""
         },
         {
           "name": "pid",
@@ -367,7 +367,7 @@
         },
         {
           "name": "_grecaptcha",
-          "value": "09AKhCRwi-Xfvg3Wn3PI9NahvNdR3V4UPH2Rzlo9iXOFFrTYcQj2-PSjnObfJX4-rJ1YFDRSF0puCEi1vAWxfCMeAg_A7o5-07rKMZP7yyiTFriZ23dB_7oWFuntRiDelP"
+          "value": "09AKhCRwgu7RGOeVXf04ygoFKwetLvcMOkPnfP6LYUbyEYloh4q0pDRvKE2vJR2zUwFzIyL7SrRG7b1QhCfthnu-jxCtzLT92Cr-T4_vNJV4gAfwhB1DlAxeOX3GxOXr9N"
         },
         {
           "name": "uoiou",
@@ -388,7 +388,7 @@
       "localStorage": [
         {
           "name": "_epik_localstore",
-          "value": "{\"value\":\"dj0yJnU9MGFhMTB0VjlfWi1CbWVZaU0wallOY2tyMUtUZzNVSm4mcD0yJm49eGpObHoxa2ZTWjQtQVhHbTNFWUt5QSZ0PUFBQUFBR3NGNG1R\",\"expiry\":1827083763490}"
+          "value": "{\"value\":\"dj0yJnU9TlZsX1VZVHRhSXNwamlkU3pMOEY0aTJKaDVmMGxILTkmcD0yJm49U1pTSDl0N0stcERZOFZYX3MxclR2USZ0PUFBQUFBR3NHVTA0\",\"expiry\":1827112667640}"
         }
       ]
     },
@@ -401,7 +401,7 @@
         },
         {
           "name": "rc::f",
-          "value": "0aAEONSEvIBy2TxCVfGjEExpGgjJp7xrOMpzb5rzY0MFMgmYU5n6PRN2he0rxbD9XdVezhCeE"
+          "value": "0aAEONSEuowIL1egJz-P4nXY_-A9xGeJuPNhI4E-P-fyPSaG003CG3heZ4Gytcop897nyBHUY"
         }
       ]
     }
