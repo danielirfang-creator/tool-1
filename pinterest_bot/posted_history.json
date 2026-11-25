@@ -143,7 +143,8 @@
     "v_136",
     "img_137",
     "v_137",
-    "img_138"
+    "img_138",
+    "v_138"
   ],
   "logs": [
     {
@@ -1565,6 +1566,16 @@
       "pinterest_url": "Live on Profile",
       "media": "pin_concrete-calculator.jpg",
       "timestamp": "2026-11-25T03:18:39.873904",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_138",
+      "media_type": "video",
+      "title": "\ud83d\udee0\ufe0f STOP OVERPAYING FOR MATERIALS: How Many Tons Of Crushed Stone For A 10x20 Driveway?",
+      "link": "https://tool-1-pied.vercel.app/calculators/garden/gravel-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_gravel-calculator.mp4",
+      "timestamp": "2026-11-25T13:48:05.936333",
       "status": "SUCCESS"
     }
   ],
