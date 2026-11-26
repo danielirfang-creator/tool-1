@@ -145,7 +145,8 @@
     "v_137",
     "img_138",
     "v_138",
-    "img_139"
+    "img_139",
+    "v_139"
   ],
   "logs": [
     {
@@ -1587,6 +1588,16 @@
       "pinterest_url": "Live on Profile",
       "media": "day05_concrete_yards_bags.jpg",
       "timestamp": "2026-11-25T23:57:35.521203",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "v_139",
+      "media_type": "video",
+      "title": "\ud83d\udee0\ufe0f STOP OVERPAYING FOR MATERIALS: Pavers & Base Sand Estimator Avoid Mid-Project Stoppage!",
+      "link": "https://tool-1-pied.vercel.app/calculators/garden/patio-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "video_patio-calculator.mp4",
+      "timestamp": "2026-11-26T06:41:23.359520",
       "status": "SUCCESS"
     }
   ],
