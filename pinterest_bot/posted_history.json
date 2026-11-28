@@ -150,7 +150,8 @@
     "img_140",
     "v_140",
     "img_141",
-    "v_141"
+    "v_141",
+    "img_142"
   ],
   "logs": [
     {
@@ -1642,6 +1643,16 @@
       "pinterest_url": "Live on Profile",
       "media": "video_soil-calculator.mp4",
       "timestamp": "2026-11-27T23:53:11.741726",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "img_142",
+      "media_type": "image",
+      "title": "How Much 60Lb Sakrete Concrete Bags Do You REALLY Need? [Free Estimator]",
+      "link": "https://tool-1-pied.vercel.app/calculators/concrete-masonry/concrete-bags-calculator",
+      "pinterest_url": "Live on Profile",
+      "media": "day05_concrete_yards_bags.jpg",
+      "timestamp": "2026-11-28T05:51:15.325964",
       "status": "SUCCESS"
     }
   ],
